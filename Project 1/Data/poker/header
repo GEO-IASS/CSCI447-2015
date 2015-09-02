@@ -1,0 +1,16 @@
+Title: Poker Hand Dataset
+Creator: Robert Cattral (cattral@gmail.com)
+Creator: Franz Oppacher (oppacher@scs.carleton.ca)
+Date: January, 2007
+Attributes:
+CardSuit1:Numeric
+CardRank1:Numeric
+CardSuit2:Numeric
+CardRank2:Numeric
+CardSuit3:Numeric
+CardRank3:Numeric
+CardSuit4:Numeric
+CardRank4:Numeric
+CardSuit5:Numeric
+CardRank5:Numeric
+CardClass:Numeric
