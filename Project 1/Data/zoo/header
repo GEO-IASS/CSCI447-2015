@@ -1,0 +1,23 @@
+Title: Zoo database
+Creator: Richard Forsyth
+Donor: Richard S. Forsyth 
+Date: 5/15/1990
+Attributes:
+Animal Name:(aardvark, antelope, bear, boar, buffalo, calf, cavy, cheetah, deer, dolphin, elephant, fruitbat, giraffe, girl, goat, gorilla, hamster, hare, leopard, lion, lynx, mink, mole, mongoose, opossum, oryx, platypus, polecat, pony, porpoise, puma, pussycat, raccoon, reindeer, seal, sealion, squirrel, vampire, vole, wallaby, wolf, chicken, crow, dove, duck, flamingo, gull, hawk, kiwi, lark, ostrich, parakeet, penguin, pheasant, rhea, skimmer, skua, sparrow, swan, vulture, wren, pitviper, seasnake, slowworm, tortoise, tuatara, bass, carp, catfish, chub, dogfish, haddock, herring, pike, piranha, seahorse, sole, stingray, tuna, frog, newt, toad, flea, gnat, honeybee, housefly, ladybird, moth, termite, wasp, clam, crab, crayfish, lobster, octopus, scorpion, seawasp, slug, starfish, worm)
+Hair:Numeric
+Feathers:Numeric
+Eggs:Numeric
+Milk:Numeric
+Airborne:Numeric
+Aquatic:Numeric
+Predator:Numeric
+Toothed:Numeric
+Backbone:Numeric
+Breathes:Numeric
+Venomous:Numeric
+Fins:Numeric
+Legs:(0,2,4,5,6,8)
+Tail:Numeric
+Domestic:Numeric
+Catsize:Numeric
+Type:Numeric
