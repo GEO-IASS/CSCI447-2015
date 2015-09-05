@@ -81,8 +81,8 @@ foreach my $y (@lines[$split+1 .. $#lines]){
 		my $stuff = substr($y, index($y, ":")+1, length $y);
 		#print "$stuff\n";
 		$stuff =~s/[_]+//g;
-		$stuff =~s/[\{]+/\(/g;
-		$stuff =~s/[\}]+/\)/g;
+		$stuff =~s/[\(]+/\{/g;
+		$stuff =~s/[\)]+/\}/g;
 		#print "$stuff\n";
 		print $output $stuff;
 	}
