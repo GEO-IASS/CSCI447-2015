@@ -72,19 +72,23 @@ foreach my $y (@lines[$split+1 .. $#lines]){
 	print $output "\@ATTRIBUTE\t" . substr($y, 0, index($y, ":")) . "\t";
 	if (index($y, 'date') != -1) {
 		#print "\#2\n";
-		print $output uc substr($y, index($y, ":")+1, length $y) . "yyyy-MM-dd HH:mm:ss";
+		my $out = substr($y, index($y, ":")+1, length $y);
+		chomp($out);
+		print $output uc $out . "yyyy-MM-dd HH:mm:ss\n";
 	} elsif (index($y, '(') == -1 and index($y, '{') == -1) {
 		#print "\#1\n";
-		print $output uc substr($y, index($y, ":")+1, length $y);
+		my $out = substr($y, index($y, ":")+1, length $y);
+		chomp($out);
+		print $output uc $out . "\n";
 	} else {
 		#print "\#3\n";
-		my $stuff = substr($y, index($y, ":")+1, length $y);
-		#print "$stuff\n";
-		$stuff =~s/[_]+//g;
-		$stuff =~s/[\(]+/\{/g;
-		$stuff =~s/[\)]+/\}/g;
-		#print "$stuff\n";
-		print $output $stuff;
+		my $out = substr($y, index($y, ":")+1, length $y);
+		chomp($out);
+		$out =~s/[_]+//g;
+		$out =~s/[\(]+/\{/g;
+		$out =~s/[\)]+/\}/g;
+		#print "$out\n";
+		print $output $out ."\n";
 	}
 }
 
