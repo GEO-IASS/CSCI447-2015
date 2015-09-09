@@ -1,0 +1,22 @@
+Title: Letter Image Recognition Data 
+Creator: David J. Slate
+Donor: David J. Slate (dave@math.nwu.edu)
+Date: January, 1991
+Attributes:
+lettr:(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z)
+x-box:Numeric
+y-box:Numeric
+width:Numeric
+high:Numeric
+onpix:Numeric
+x-bar:Numeric
+y-bar:Numeric
+x2bar:Numeric
+y2bar:Numeric
+xybar:Numeric
+x2ybr:Numeric
+xy2br:Numeric
+x-ege:Numeric
+xegvy:Numeric
+y-ege:Numeric
+yegvx:Numeric
