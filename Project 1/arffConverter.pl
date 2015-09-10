@@ -32,12 +32,13 @@ if ((substr $folder, -1) eq '/'){
 	chop($folder); # Remove extra / at end of path
 }
 $folder =~ tr/\\//; # Remove user escaping spaces.
+my $newarff = $folder;
 $folder = "Data/" . $folder;
 
 # Open files for reading and writing for this transaction
 open(my $header, '<', "$folder/header") or die "Unable to locate header file.";
 open(my $data, '<', "$folder/data") or die "Unable to locate data file.";
-open(my $output, '>', "$folder/new.arff") or die "Unable to write new arff file";
+open(my $output, '>', "$folder/$newarff.arff") or die "Unable to write new arff file";
 
 # Get lines from crafted header file
 my @lines;
@@ -108,7 +109,7 @@ close $data;
 close $output;
 
 # Print finished confirmation
-print("Successfully created $folder/new.arff\n");
-
+print("Successfully created $folder/$newarff.arff\n");
+	
 
 
