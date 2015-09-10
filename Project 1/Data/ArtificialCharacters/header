@@ -1,0 +1,13 @@
+Title: Artificial Character Database
+Creator: Marco Botta (email: botta@di.unito.it)
+Date: July, 1992
+Attributes:
+CLASS:(A, C, D, E, F, G, H, L, P, R)
+OBJNUM:Numeric
+TYPE:String
+XX1:Numeric
+YY1:Numeric
+XX2:Numeric
+YY2:Numeric
+SIZE:Numeric
+DIAG:Numeric
