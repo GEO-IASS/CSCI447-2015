@@ -1,0 +1,15 @@
+Title: Protein Localization Sites
+Creator: (nakai@imcb.osaka-u.ac.jp)
+Donor: Paul Horton (paulh@cs.berkeley.edu)
+Date:  September, 1996
+Attributes:
+Sequence Name:String
+mcg:Numeric
+gvh:Numeric
+alm:Numeric
+mit:Numeric
+erl:Numeric
+pox:Numeric
+vac:Numeric
+nuc:Numeric
+class:(CYT,NUC,MIT,ME3,ME2,ME1,EXC,VAC,POX,ERL)

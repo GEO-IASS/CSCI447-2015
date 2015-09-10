@@ -1,0 +1,22 @@
+#!/usr/bin/env expect -f
+
+# grab the list
+send_user -- "List of folders to generate ARFFs for (ALL for all): "
+expect_user -re "(.*)\n"
+set pass $expect_out(1,string)
+send_user "\n"
+# list is now in $pass
+# send_user "$pass\n"
+
+if {$pass == "ALL"} {
+	set list {ArtificialCharacters car connect-4 ecoli letter-recognition OnlineNewsPopularity poker wine yeast zoo}
+} else {
+	set list [split $pass { }]
+}
+
+foreach x $list {
+	spawn perl arffConverter.pl
+	expect "Please enter folder to scan: "
+	send "$x\n"
+	expect "Successfully created*"
+}

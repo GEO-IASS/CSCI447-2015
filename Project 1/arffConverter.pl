@@ -93,7 +93,7 @@ foreach my $y (@lines[$split+1 .. $#lines]){
 }
 
 # Write data lines to arff file
-print $output "\n\n\@DATA\n";
+print $output "\n\@DATA\n";
 @lines = ();
 while (<$data>){
 	push (@lines, $_);

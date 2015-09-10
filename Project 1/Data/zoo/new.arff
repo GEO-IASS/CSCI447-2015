@@ -26,7 +26,6 @@
 @ATTRIBUTE	Catsize	NUMERIC
 @ATTRIBUTE	Type	NUMERIC
 
-
 @DATA
 aardvark,1,0,0,1,0,0,1,1,1,1,0,0,4,0,0,1,1
 antelope,1,0,0,1,0,0,0,1,1,1,0,0,4,1,0,1,1
