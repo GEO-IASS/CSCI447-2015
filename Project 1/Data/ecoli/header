@@ -1,0 +1,14 @@
+Title: Protein Localization Sites
+Creator: Kenta Nakai (nakai@imcb.osaka-u.ac.jp)
+Donor: Paul Horton (paulh@cs.berkeley.edu)
+Date:  September, 1996
+Attributes:
+Sequence Name:String
+mcg:Numeric
+gvh:Numeric
+lip:Numeric
+chg:Numeric
+aac:Numeric
+alm1:Numeric
+alm2:Numeric
+class:(cp,im,pp,imU,om,omL,imL,imS)
