@@ -275,20 +275,49 @@ weka.classifiers.<Something>
 
 
 
-<...>. --> Need to locate
+<...>.functions.RBFNetwork
+
+-B <number>
+	Set the number of clusters (basis functions) to generate. (default = 2).
+-S <seed>
+	Set the random seed to be used by K-means. (default = 1).
+-R <ridge>
+	Set the ridge value for the logistic or linear regression.
+-M <number>
+	Set the maximum number of iterations for the logistic regression. (default -1, until convergence).
+-W <number>
+	Set the minimum standard deviation for the clusters. (default 0.1).
 
 
 
 
+<...>.meta.AdaBoostM1
 
-<...>. --> Need to locate
+Options specific to weka.classifiers.meta.AdaBoostM1:
 
+-P <num>
+	Percentage of weight mass to base training on.
+	(default 100, reduce to around 90 speed up)
+-Q
+	Use resampling for boosting.
+-S <num>
+	Random number seed.
+	(default 1)
+-I <num>
+	Number of iterations.
+	(default 10)
+-D
+	If set, classifier is run in debug mode and
+	may output additional info to the console
+-W
+	Full name of base classifier.
+	(default: weka.classifiers.trees.DecisionStump)
 
+Options specific to classifier weka.classifiers.trees.DecisionStump:
 
-
-
-
-
+-D
+	If set, classifier is run in debug mode and
+	may output additional info to the console
 
 
 
