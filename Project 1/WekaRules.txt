@@ -1,0 +1,295 @@
+java -cp /Users/<UName>/GitHub\ Repos/CSCI477-2015/Project\ 1/weka.jar weka.<Things>
+
+
+
+
+
+weka.classifiers.<Something>
+
+-h or -help
+	Output help information.
+-synopsis or -info
+	Output synopsis for classifier (use in conjunction  with -h)
+-t <name of training file>
+	Sets training file.
+-T <name of test file>
+	Sets test file. If missing, a cross-validation will be performed
+	on the training data.
+-c <class index>
+	Sets index of class attribute (default: last).
+-x <number of folds>
+	Sets number of folds for cross-validation (default: 10).
+-no-cv
+	Do not perform any cross validation.
+-split-percentage <percentage>
+	Sets the percentage for the train/test set split, e.g., 66.
+-preserve-order
+	Preserves the order in the percentage split.
+-s <random number seed>
+	Sets random number seed for cross-validation or percentage split
+	(default: 1).
+-m <name of file with cost matrix>
+	Sets file with cost matrix.
+-l <name of input file>
+	Sets model input file. In case the filename ends with '.xml',
+	a PMML file is loaded or, if that fails, options are loaded
+	from the XML file.
+-d <name of output file>
+	Sets model output file. In case the filename ends with '.xml',
+	only the options are saved to the XML file, not the model.
+-v
+	Outputs no statistics for training data.
+-o
+	Outputs statistics only, not the classifier.
+-i
+	Outputs detailed information-retrieval statistics for each class.
+-k
+	Outputs information-theoretic statistics.
+-p <attribute range>
+	Only outputs predictions for test instances (or the train
+	instances if no test instances provided and -no-cv is used),
+	along with attributes (0 for none).
+-distribution
+	Outputs the distribution instead of only the prediction
+	in conjunction with the '-p' option (only nominal classes).
+-r
+	Only outputs cumulative margin distribution.
+-z <class name>
+	Only outputs the source representation of the classifier,
+	giving it the supplied name.
+-g
+	Only outputs the graph representation of the classifier.
+-xml filename | xml-string
+	Retrieves the options from the XML-data instead of the command line.
+-threshold-file <file>
+	The file to save the threshold data to.
+	The format is determined by the extensions, e.g., '.arff' for ARFF
+	format or '.csv' for CSV.
+-threshold-label <label>
+	The class label to determine the threshold data for
+	(default is the first label)
+
+
+
+
+
+<...>.lazy.IB1
+
+-D
+	If set, classifier is run in debug mode and
+	may output additional info to the console
+
+
+
+
+
+<...>.lazy.IBk
+
+-I
+	Weight neighbours by the inverse of their distance
+	(use when k > 1)
+-F
+	Weight neighbours by 1 - their distance
+	(use when k > 1)
+-K <number of neighbors>
+	Number of nearest neighbours (k) used in classification.
+	(Default = 1)
+-E
+	Minimise mean squared error rather than mean absolute
+	error when using -X option with numeric prediction.
+-W <window size>
+	Maximum number of training instances maintained.
+	Training instances are dropped FIFO. (Default = no window)
+-X
+	Select the number of nearest neighbours between 1
+	and the k value specified using hold-one-out evaluation
+	on the training data (use when k > 1)
+-A
+	The nearest neighbour search algorithm to use (default: weka.core.neighboursearch.LinearNNSearch).
+
+
+
+
+
+<...>.bayes.NaiveBayes
+
+-K
+	Use kernel density estimator rather than normal
+	distribution for numeric attributes
+-D
+	Use supervised discretization to process numeric attributes
+
+-O
+	Display model in old format (good when there are many classes)
+
+
+
+
+
+<...>.functions.Logistic
+
+-D
+	Turn on debugging output.
+-R <ridge>
+	Set the ridge in the log-likelihood.
+-M <number>
+	Set the maximum number of iterations (default -1, until convergence).
+
+
+
+
+
+<...>.trees.J48
+
+-U
+	Use unpruned tree.
+-C <pruning confidence>
+	Set confidence threshold for pruning.
+	(default 0.25)
+-M <minimum number of instances>
+	Set minimum number of instances per leaf.
+	(default 2)
+-R
+	Use reduced error pruning.
+-N <number of folds>
+	Set number of folds for reduced error
+	pruning. One fold is used as pruning set.
+	(default 3)
+-B
+	Use binary splits only.
+-S
+	Don't perform subtree raising.
+-L
+	Do not clean up after the tree has been built.
+-A
+	Laplace smoothing for predicted probabilities.
+-Q <seed>
+	Seed for random data shuffling (default 1).
+
+
+
+
+
+<...>.rules.JRip
+
+-F <number of folds>
+	Set number of folds for REP
+	One fold is used as pruning set.
+	(default 3)
+-N <min. weights>
+	Set the minimal weights of instances
+	within a split.
+	(default 2.0)
+-O <number of runs>
+	Set the number of runs of
+	optimizations. (Default: 2)
+-D
+	Set whether turn on the
+	debug mode (Default: false)
+-S <seed>
+	The seed of randomization
+	(Default: 1)
+-E
+	Whether NOT check the error rate>=0.5
+	in stopping criteria 	(default: check)
+-P
+	Whether NOT use pruning
+	(default: use pruning)
+
+
+
+
+
+<...>.functions.SMO
+
+-D
+	Enables debugging output (if available) to be printed.
+	(default: off)
+-no-checks
+	Turns off all checks - use with caution!
+	(default: checks on)
+-C <num>
+	The size of the cache (a prime number), 0 for full cache and
+	-1 to turn it off.
+	(default: 250007)
+-E <num>
+	The Exponent to use.
+	(default: 1.0)
+-L
+	Use lower-order terms.
+	(default: no)
+
+
+
+
+<...>.functions.MultilayerPerceptron
+
+-L <learning rate>
+	Learning Rate for the backpropagation algorithm.
+	(Value should be between 0 - 1, Default = 0.3).
+-M <momentum>
+	Momentum Rate for the backpropagation algorithm.
+	(Value should be between 0 - 1, Default = 0.2).
+-N <number of epochs>
+	Number of epochs to train through.
+	(Default = 500).
+-V <percentage size of validation set>
+	Percentage size of validation set to use to terminate
+	training (if this is non zero it can pre-empt num of epochs.
+	(Value should be between 0 - 100, Default = 0).
+-S <seed>
+	The value used to seed the random number generator
+	(Value should be >= 0 and and a long, Default = 0).
+-E <threshold for number of consequetive errors>
+	The consequetive number of errors allowed for validation
+	testing before the netwrok terminates.
+	(Value should be > 0, Default = 20).
+-G
+	GUI will be opened.
+	(Use this to bring up a GUI).
+-A
+	Autocreation of the network connections will NOT be done.
+	(This will be ignored if -G is NOT set)
+-B
+	A NominalToBinary filter will NOT automatically be used.
+	(Set this to not use a NominalToBinary filter).
+-H <comma seperated numbers for nodes on each layer>
+	The hidden layers to be created for the network.
+	(Value should be a list of comma separated Natural
+	numbers or the letters 'a' = (attribs + classes) / 2,
+	'i' = attribs, 'o' = classes, 't' = attribs .+ classes)
+	for wildcard values, Default = a).
+-C
+	Normalizing a numeric class will NOT be done.
+	(Set this to not normalize the class if it's numeric).
+-I
+	Normalizing the attributes will NOT be done.
+	(Set this to not normalize the attributes).
+-R
+	Reseting the network will NOT be allowed.
+	(Set this to not allow the network to reset).
+-D
+	Learning rate decay will occur.
+	(Set this to cause the learning rate to decay).
+
+
+
+
+<...>. --> Need to locate
+
+
+
+
+
+<...>. --> Need to locate
+
+
+
+
+
+
+
+
+
+
+
