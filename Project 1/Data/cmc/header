@@ -1,0 +1,15 @@
+Title: Contraceptive Method Choice
+Creator: Tjen-Sien Lim (limt@stat.wisc.edu)
+Donor: Tjen-Sien Lim (limt@stat.wisc.edu)
+Date: June 7, 1997
+Attributes:
+Wife's age:Numeric
+Wife's education:Numeric
+Husband's education:Numeric
+Number of children ever born:Numeric
+Wife's religion:Numeric
+Wife's now working?:Numeric
+Husband's occupation:Numeric
+Standard-of-living index:Numeric
+Media exposure:Numeric
+Contraceptive method used: (1,2,3)

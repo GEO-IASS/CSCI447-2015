@@ -70,6 +70,7 @@ print $output "%\n\@RELATION $relation\n\n";
 # Write attributes to arff file from types in header file. Needs some more work for all types to be supported.
 foreach my $y (@lines[$split+1 .. $#lines]){
 	$y =~s/ /_/g;
+	$y =~s/\'//g;
 	print $output "\@ATTRIBUTE\t" . substr($y, 0, index($y, ":")) . "\t";
 	if (index($y, 'date') != -1) {
 		#print "\#2\n";
