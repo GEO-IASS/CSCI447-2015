@@ -30,6 +30,7 @@ for (i in AlgList){
 
 
 data = read.csv("results.csv")
+data$Percent = data$Number_Correct/data$Number_Total*100
 DaterList <- list("ArtificialCharacters", "Car", "Cmc", "Connect-4", "Ecoli", "Letter-Recognition", "Tic-Tac-Toe", "Wine", "Yeast", "Zoo")
 #AlgList <- list("ADABOOSTM1", "IB1", "IBK", "J48", "JRIP", "LOGISTIC", "MULTILAYERPERCEPTRON", "NAIVEBAYES", "RBFNETWORK", "SMO")
 AlgList <- list("Decision Tree", "Ensemble", "Feedforward Neural Networks", "K-Nearest Neighbor", "Kernel Neural Network", "Logistic", "Naive Bayes", "Ripper", "Simple Nearest Neighbor", "Support Vector Machine")
@@ -37,7 +38,7 @@ AlgList <- list("Decision Tree", "Ensemble", "Feedforward Neural Networks", "K-N
 AlgListMini <- list("J4", "AB", "MP", "NK", "RB", "LT", "NB", "JR", "N1", "SM")
 DaterListMini <- list("AC", "CR", "CM", "C4", "EC", "LR", "T3", "WI", "YS", "ZO")
 
-pdf("square.pdf")
+pdf("Plots/square.pdf")
 plotF<-function(opt){
   data.temp<-data[data$Algorithm==opt,]
   plot(data.temp$Data_Set, data.temp$Square_Loss, xaxt = "n", main=paste(toString(opt)))
@@ -51,7 +52,7 @@ for (i in AlgList){
 title("Square Loss for Various Classification Algorithms", outer=TRUE, cex.main=2)
 dev.off()
 
-pdf("hinge.pdf")
+pdf("Plots/hinge.pdf")
 plotF<-function(opt){
   data.temp<-data[data$Algorithm==opt,]
   plot(data.temp$Data_Set, data.temp$Hinge_Loss,  xaxt = "n", main=paste(toString(opt)))
@@ -66,7 +67,7 @@ for (i in AlgList){
 title("Hinge Loss for Various Classification Algorithms", outer=TRUE, cex.main=2)
 dev.off()
 
-pdf("log.pdf")
+pdf("Plots/log.pdf")
 plotF<-function(opt){
   data.temp<-data[data$Algorithm==opt,]
   plot(data.temp$Data_Set, data.temp$Log_Loss/data.temp$Number_Total, xaxt = "n", main=paste(toString(opt)))
@@ -95,10 +96,10 @@ dev.off()
 
 
 
-pdf("percentage.pdf")
+pdf("Plots/percentage.pdf")
 plotF<-function(opt){
   data.temp<-data[data$Algorithm==opt,]
-  plot(data.temp$Data_Set, data.temp$Number_Correct/data.temp$Number_Total, main=paste(toString(opt)))
+  plot(data.temp$Data_Set, data.temp$Percent, main=paste(toString(opt)))
 }
 par(mar=c(2.5,2,1.5,1))
 par(mfrow=c(5,2),oma=c(0,0,4,0))
