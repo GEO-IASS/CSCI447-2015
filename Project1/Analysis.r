@@ -81,7 +81,53 @@ for (i in AlgList){
 title("Log Loss for Various Classification Algorithms", outer=TRUE, cex.main=2)
 dev.off()
 
+pdf("Plots/percent.pdf")
+plotF<-function(opt){
+  data.temp<-data[data$Algorithm==opt,]
+  plot(data.temp$Data_Set, data.temp$Percent, xaxt = "n", main=paste(toString(opt)))
+  axis(1, at=1:10, labels=DaterListMini)
+}
+par(mar=c(2.5,2,1.5,1))
+par(mfrow=c(5,2),oma=c(0,0,4,0))
+for (i in AlgList){
+  plotF(i)
+}
+title("Percent Accuracy for Various Classification Algorithms", outer=TRUE)
+dev.off()
 
+pdf("Plots/Algorithms.pdf", width=20, height=20)
+plotF<-function(opt){
+  data.temp<-data[data$Data_Set==opt,]
+  plot(data.temp$Algorithm, data.temp$Square_Loss, xaxt = "n", cex.lab=.2, main=paste(toString(opt)))
+  axis(1, at=1:10, labels=AlgListMini)
+  plot(data.temp$Algorithm, data.temp$Hinge_Loss, xaxt = "n", cex.lab=.2, main=paste(toString(opt)))
+  axis(1, at=1:10, labels=AlgListMini)
+  plot(data.temp$Algorithm, data.temp$Los_Loss, xaxt = "n", cex.lab=.2, main=paste(toString(opt)))
+  axis(1, at=1:10, labels=AlgListMini)
+}
+par(mar=c(2.1,2,1.1,1))
+par(mfrow=c(10,3))
+for (i in DaterList){
+  plotF(i)
+}
+dev.off()
+
+pdf("Plots/Datasets.pdf")
+plotF<-function(opt){
+  data.temp<-data[data$Algorithms==opt,]
+  plot(data.temp$Data_Set, data.temp$Square_Loss, xaxt = "n", cex.lab=.2, main=paste(toString(opt)))
+  axis(1, at=1:10, labels=DaterListMini)
+  plot(data.temp$Data_Set, data.temp$Hinge_Loss, xaxt = "n", cex.lab=.2, main=paste(toString(opt)))
+  axis(1, at=1:10, labels=DaterListMini)
+  plot(data.temp$Data_Set, data.temp$Los_Loss, xaxt = "n", cex.lab=.2, main=paste(toString(opt)))
+  axis(1, at=1:10, labels=DaterListMini)
+}
+par(mar=c(2.1,2,1.1,1))
+par(mfrow=c(10,3))
+for (i in AlgList){
+  plotF(i)
+}
+dev.off()
 
 
 
