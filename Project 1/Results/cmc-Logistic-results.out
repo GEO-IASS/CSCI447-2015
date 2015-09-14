@@ -1,0 +1,221 @@
+
+Logistic Regression with ridge parameter of 1.0E-8
+Coefficients...
+                                                  Class
+Variable                                              1                     2
+=============================================================================
+Wifes_age=16                                    -0.0566              -13.8156
+Wifes_age=17                                     -3.595               -0.7514
+Wifes_age=18                                     0.6564                0.8432
+Wifes_age=19                                    -1.0661               -1.7416
+Wifes_age=20                                    -0.6115               -0.6717
+Wifes_age=21                                     -2.065               -0.7667
+Wifes_age=22                                     -1.464               -0.7852
+Wifes_age=23                                     -0.123               -0.0527
+Wifes_age=24                                    -0.5659               -0.1472
+Wifes_age=25                                    -0.5228               -0.6073
+Wifes_age=26                                    -0.6989                0.0177
+Wifes_age=27                                    -0.7897               -0.4404
+Wifes_age=28                                     0.0136               -0.5508
+Wifes_age=29                                    -0.8737               -0.1775
+Wifes_age=30                                    -0.3308               -0.4707
+Wifes_age=31                                     0.1559               -0.3618
+Wifes_age=32                                    -0.1985               -0.1163
+Wifes_age=33                                    -0.1643                0.1615
+Wifes_age=34                                     0.0782                0.5256
+Wifes_age=35                                    -0.1945                0.2566
+Wifes_age=36                                    -0.2739                0.1827
+Wifes_age=37                                     0.3841                0.0064
+Wifes_age=38                                     0.8681                0.5945
+Wifes_age=39                                     0.5212                0.2712
+Wifes_age=40                                     0.7289                0.2634
+Wifes_age=41                                     0.5316                0.8841
+Wifes_age=42                                     1.7381                1.2151
+Wifes_age=43                                     1.0359                0.2982
+Wifes_age=44                                     0.6671                1.3719
+Wifes_age=45                                     1.9377                1.4185
+Wifes_age=46                                     0.7723               -0.3534
+Wifes_age=47                                     2.1642                1.1104
+Wifes_age=48                                     2.3763                 0.844
+Wifes_age=49                                     3.4781                1.3603
+Wifes_education=1                                0.5451               -1.2598
+Wifes_education=2                                 0.444               -0.3413
+Wifes_education=3                                0.2402                0.2159
+Wifes_education=4                                -0.686                0.4746
+Husbands_education=1                             1.3623                2.8199
+Husbands_education=2                            -0.0134               -0.0939
+Husbands_education=3                            -0.2075               -0.2797
+Husbands_education=4                             0.0248               -0.0339
+Number_of_children_ever_born=0                   4.6733              -16.2729
+Number_of_children_ever_born=1                   1.0199                1.0671
+Number_of_children_ever_born=2                  -0.0215                0.7652
+Number_of_children_ever_born=3                  -0.7439                0.6617
+Number_of_children_ever_born=4                  -0.9014                0.9791
+Number_of_children_ever_born=5                  -1.0779                0.6042
+Number_of_children_ever_born=6                  -0.7073                1.0844
+Number_of_children_ever_born=7                  -0.9139                1.8599
+Number_of_children_ever_born=8                  -0.6569                0.9545
+Number_of_children_ever_born=9                  -1.9857                 0.458
+Number_of_children_ever_born=10                  26.232                27.522
+Number_of_children_ever_born=11                 -1.5554                0.0462
+Number_of_children_ever_born=12                 26.2313                2.1046
+Number_of_children_ever_born=13                -49.7873                0.6664
+Number_of_children_ever_born=16                -17.3702             -183.2467
+Wifes_religion                                   0.0246               -0.2691
+Wifes_now_working?                              -0.1671               -0.1428
+Husbands_occupation=1                            0.2676                0.4183
+Husbands_occupation=2                            0.0555               -0.1915
+Husbands_occupation=3                           -0.2078               -0.2366
+Husbands_occupation=4                            -1.074                0.4536
+Standard-of-living_index=1                       0.1162               -0.3895
+Standard-of-living_index=2                      -0.0117               -0.1552
+Standard-of-living_index=3                      -0.0399                0.0854
+Standard-of-living_index=4                       0.0073                0.1107
+Media_exposure                                   1.0222                 0.122
+Intercept                                       -0.2695               -1.2051
+
+
+Odds Ratios...
+                                                  Class
+Variable                                              1                     2
+=============================================================================
+Wifes_age=16                                      0.945                     0
+Wifes_age=17                                     0.0275                0.4717
+Wifes_age=18                                     1.9277                2.3237
+Wifes_age=19                                     0.3443                0.1752
+Wifes_age=20                                     0.5425                0.5108
+Wifes_age=21                                     0.1268                0.4645
+Wifes_age=22                                     0.2313                 0.456
+Wifes_age=23                                     0.8842                0.9487
+Wifes_age=24                                     0.5679                0.8631
+Wifes_age=25                                     0.5929                0.5448
+Wifes_age=26                                     0.4971                1.0179
+Wifes_age=27                                      0.454                0.6438
+Wifes_age=28                                     1.0136                0.5765
+Wifes_age=29                                     0.4174                0.8373
+Wifes_age=30                                     0.7183                0.6245
+Wifes_age=31                                     1.1687                0.6964
+Wifes_age=32                                     0.8199                0.8902
+Wifes_age=33                                     0.8485                1.1753
+Wifes_age=34                                     1.0813                1.6914
+Wifes_age=35                                     0.8232                1.2925
+Wifes_age=36                                     0.7604                1.2005
+Wifes_age=37                                     1.4682                1.0065
+Wifes_age=38                                     2.3825                1.8121
+Wifes_age=39                                      1.684                1.3116
+Wifes_age=40                                     2.0728                1.3014
+Wifes_age=41                                     1.7017                2.4207
+Wifes_age=42                                     5.6863                3.3705
+Wifes_age=43                                     2.8176                1.3474
+Wifes_age=44                                     1.9487                 3.943
+Wifes_age=45                                     6.9427                 4.131
+Wifes_age=46                                     2.1648                0.7023
+Wifes_age=47                                     8.7076                3.0356
+Wifes_age=48                                    10.7645                2.3256
+Wifes_age=49                                    32.3994                3.8974
+Wifes_education=1                                1.7248                0.2837
+Wifes_education=2                                1.5589                0.7109
+Wifes_education=3                                1.2716                 1.241
+Wifes_education=4                                0.5036                1.6073
+Husbands_education=1                              3.905               16.7746
+Husbands_education=2                             0.9866                0.9104
+Husbands_education=3                             0.8126                 0.756
+Husbands_education=4                             1.0251                0.9667
+Number_of_children_ever_born=0                 107.0505                     0
+Number_of_children_ever_born=1                   2.7729                2.9071
+Number_of_children_ever_born=2                   0.9787                2.1495
+Number_of_children_ever_born=3                   0.4752                1.9382
+Number_of_children_ever_born=4                    0.406                2.6621
+Number_of_children_ever_born=5                   0.3403                1.8299
+Number_of_children_ever_born=6                    0.493                2.9577
+Number_of_children_ever_born=7                    0.401                6.4231
+Number_of_children_ever_born=8                   0.5184                2.5974
+Number_of_children_ever_born=9                   0.1373                 1.581
+Number_of_children_ever_born=10    2.468280973829872E11  8.967304270596373E11
+Number_of_children_ever_born=11                  0.2111                1.0473
+Number_of_children_ever_born=12    2.466586698405959E11                8.2042
+Number_of_children_ever_born=13                       0                1.9473
+Number_of_children_ever_born=16                       0                     0
+Wifes_religion                                   1.0249                0.7641
+Wifes_now_working?                               0.8461                0.8669
+Husbands_occupation=1                            1.3068                1.5194
+Husbands_occupation=2                            1.0571                0.8258
+Husbands_occupation=3                            0.8123                0.7893
+Husbands_occupation=4                            0.3416                1.5739
+Standard-of-living_index=1                       1.1232                0.6774
+Standard-of-living_index=2                       0.9883                0.8563
+Standard-of-living_index=3                       0.9609                1.0892
+Standard-of-living_index=4                       1.0073                 1.117
+Media_exposure                                   2.7792                1.1297
+
+
+Time taken to build model: 1.67 seconds
+Time taken to test model on training data: 0.05 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances         701               59.5076 %
+Incorrectly Classified Instances       477               40.4924 %
+Kappa statistic                          0.3633
+K&B Relative Info Score              34482.534  %
+K&B Information Score                  535.749  bits      0.4548 bits/instance
+Class complexity | order 0            1830.0531 bits      1.5535 bits/instance
+Class complexity | scheme             1453.1827 bits      1.2336 bits/instance
+Complexity improvement     (Sf)        376.8704 bits      0.3199 bits/instance
+Mean absolute error                      0.3405
+Root mean squared error                  0.4123
+Relative absolute error                 78.3885 %
+Root relative squared error             88.4638 %
+Total Number of Instances             1178     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.533     0.097      0.685     0.533     0.599      0.798    1
+                 0.462     0.155      0.54      0.462     0.498      0.768    2
+                 0.722     0.396      0.583     0.722     0.645      0.742    3
+Weighted Avg.    0.595     0.243      0.6       0.595     0.591      0.765
+
+
+=== Confusion Matrix ===
+
+   a   b   c   <-- classified as
+ 178  38 118 |   a = 1
+  33 154 146 |   b = 2
+  49  93 369 |   c = 3
+
+
+=== Error on test data ===
+
+Correctly Classified Instances         147               49.8305 %
+Incorrectly Classified Instances       148               50.1695 %
+Kappa statistic                          0     
+K&B Relative Info Score              11942.7009 %
+K&B Information Score                  185.5516 bits      0.629  bits/instance
+Class complexity | order 0             536.2439 bits      1.8178 bits/instance
+Class complexity | scheme              432.6044 bits      1.4665 bits/instance
+Complexity improvement     (Sf)        103.6395 bits      0.3513 bits/instance
+Mean absolute error                      0.3469
+Root mean squared error                  0.4481
+Relative absolute error                 72.6421 %
+Root relative squared error             87.8107 %
+Total Number of Instances              295     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.498     0          1         0.498     0.665      ?        1
+                 0         0.153      0         0         0          ?        2
+                 0         0.349      0         0         0          ?        3
+Weighted Avg.    0.498     0          1         0.498     0.665      0    
+
+
+=== Confusion Matrix ===
+
+   a   b   c   <-- classified as
+ 147  45 103 |   a = 1
+   0   0   0 |   b = 2
+   0   0   0 |   c = 3
+

@@ -1,0 +1,129 @@
+
+Naive Bayes Classifier
+
+                          Class
+Attribute              positive negative
+                         (0.57)   (0.43)
+=========================================
+top-left-square
+  x                        104.0    124.0
+  o                        190.0    147.0
+  b                        143.0     64.0
+  [total]                  437.0    335.0
+
+top-middle-square
+  x                        113.0    154.0
+  o                        151.0    102.0
+  b                        173.0     79.0
+  [total]                  437.0    335.0
+
+top-right-square
+  x                        187.0    124.0
+  o                        124.0    147.0
+  b                        126.0     64.0
+  [total]                  437.0    335.0
+
+middle-left-square
+  x                        163.0    154.0
+  o                        153.0    102.0
+  b                        121.0     79.0
+  [total]                  437.0    335.0
+
+middle-middle-square
+  x                        280.0     93.0
+  o                         90.0    193.0
+  b                         67.0     49.0
+  [total]                  437.0    335.0
+
+middle-right-square
+  x                        184.0    154.0
+  o                        144.0    102.0
+  b                        109.0     79.0
+  [total]                  437.0    335.0
+
+bottom-left-square
+  x                        228.0    124.0
+  o                        116.0    147.0
+  b                         93.0     64.0
+  [total]                  437.0    335.0
+
+bottom-middle-square
+  x                        183.0    154.0
+  o                        146.0    102.0
+  b                        108.0     79.0
+  [total]                  437.0    335.0
+
+bottom-right-square
+  x                        226.0    124.0
+  o                        120.0    147.0
+  b                         91.0     64.0
+  [total]                  437.0    335.0
+
+
+
+Time taken to build model: 0.8 seconds
+Time taken to test model on training data: 0.05 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances         573               74.8042 %
+Incorrectly Classified Instances       193               25.1958 %
+Kappa statistic                          0.4779
+K&B Relative Info Score              24212.9542 %
+K&B Information Score                  239.0396 bits      0.3121 bits/instance
+Class complexity | order 0             756.1734 bits      0.9872 bits/instance
+Class complexity | scheme              554.2898 bits      0.7236 bits/instance
+Complexity improvement     (Sf)        201.8836 bits      0.2636 bits/instance
+Mean absolute error                      0.3502
+Root mean squared error                  0.4086
+Relative absolute error                 71.2955 %
+Root relative squared error             82.452  %
+Total Number of Instances              766     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.834     0.364      0.749     0.834     0.79       0.827    positive
+                 0.636     0.166      0.746     0.636     0.686      0.827    negative
+Weighted Avg.    0.748     0.278      0.748     0.748     0.745      0.827
+
+
+=== Confusion Matrix ===
+
+   a   b   <-- classified as
+ 362  72 |   a = positive
+ 121 211 |   b = negative
+
+
+=== Error on test data ===
+
+Correctly Classified Instances          74               38.5417 %
+Incorrectly Classified Instances       118               61.4583 %
+Kappa statistic                          0     
+K&B Relative Info Score              -7046.7523 %
+K&B Information Score                  -69.5682 bits     -0.3623 bits/instance
+Class complexity | order 0             157.4575 bits      0.8201 bits/instance
+Class complexity | scheme              286.7791 bits      1.4936 bits/instance
+Complexity improvement     (Sf)       -129.3217 bits     -0.6736 bits/instance
+Mean absolute error                      0.5753
+Root mean squared error                  0.6172
+Relative absolute error                132.6805 %
+Root relative squared error            142.3447 %
+Total Number of Instances              192     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.385     0          1         0.385     0.556      ?        positive
+                 0         0.615      0         0         0          ?        negative
+Weighted Avg.    0.385     0          1         0.385     0.556      0    
+
+
+=== Confusion Matrix ===
+
+   a   b   <-- classified as
+  74 118 |   a = positive
+   0   0 |   b = negative
+

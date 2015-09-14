@@ -1,0 +1,122 @@
+
+AdaBoostM1: No boosting possible, one classifier used!
+Decision Stump
+
+Classifications
+
+XX1 = 0 : E
+XX1 != 0 : G
+XX1 is missing : R
+
+Class distributions
+
+XX1 = 0
+A	C	D	E	F	G	H	L	P	R	
+0.0	0.0	0.05970011958421488	0.19869377242204028	0.15518351577591757	0.07680986109833501	0.13798178640419465	0.13798178640419465	0.10780976911047742	0.1258393892006255	
+XX1 != 0
+A	C	D	E	F	G	H	L	P	R	
+0.0	0.0	0.18630423418714062	0.03554626241505489	0.032723470987976996	0.22770517511761632	0.10454783063251437	0.0	0.18996340825927863	0.2232096184004182	
+XX1 is missing
+A	C	D	E	F	G	H	L	P	R	
+0.0	0.0	0.11895674300254452	0.12233313760031317	0.09786651008025053	0.14743589743589744	0.12233313760031317	0.07339988256018791	0.14626149931493443	0.17141319240555883	
+
+
+
+Time taken to build model: 0.8 seconds
+Time taken to test model on training data: 0.09 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances        4338               21.2272 %
+Incorrectly Classified Instances     16098               78.7728 %
+Kappa statistic                          0.0903
+K&B Relative Info Score             264549.2544 %
+K&B Information Score                 7835.9004 bits      0.3834 bits/instance
+Class complexity | order 0           60507.7026 bits      2.9608 bits/instance
+Class complexity | scheme            56111.5788 bits      2.7457 bits/instance
+Complexity improvement     (Sf)       4396.1237 bits      0.2151 bits/instance
+Mean absolute error                      0.1679
+Root mean squared error                  0.2897
+Relative absolute error                 96.6497 %
+Root relative squared error             98.3115 %
+Total Number of Instances            20436     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0         0          0         0         0          ?        A
+                 0         0          0         0         0          ?        C
+                 0         0          0         0         0          0.65     D
+                 0.864     0.486      0.199     0.864     0.323      0.689    E
+                 0         0          0         0         0          0.673    F
+                 0.723     0.424      0.228     0.723     0.346      0.649    G
+                 0         0          0         0         0          0.539    H
+                 0         0          0         0         0          0.753    L
+                 0         0          0         0         0          0.582    P
+                 0         0          0         0         0          0.585    R
+Weighted Avg.    0.212     0.122      0.058     0.212     0.091      0.63 
+
+
+=== Confusion Matrix ===
+
+    a    b    c    d    e    f    g    h    i    j   <-- classified as
+    0    0    0    0    0    0    0    0    0    0 |    a = A
+    0    0    0    0    0    0    0    0    0    0 |    b = C
+    0    0    0  649    0 1782    0    0    0    0 |    c = D
+    0    0    0 2160    0  340    0    0    0    0 |    d = E
+    0    0    0 1687    0  313    0    0    0    0 |    e = F
+    0    0    0  835    0 2178    0    0    0    0 |    f = G
+    0    0    0 1500    0 1000    0    0    0    0 |    g = H
+    0    0    0 1500    0    0    0    0    0    0 |    h = L
+    0    0    0 1172    0 1817    0    0    0    0 |    i = P
+    0    0    0 1368    0 2135    0    0    0    0 |    j = R
+
+
+=== Error on test data ===
+
+Correctly Classified Instances           0                0      %
+Incorrectly Classified Instances      5109              100      %
+Kappa statistic                          0     
+K&B Relative Info Score               1042.0472 %
+K&B Information Score                   30.8652 bits      0.006  bits/instance
+Class complexity | order 0           72281.1456 bits     14.1478 bits/instance
+Class complexity | scheme          5403525.7811 bits   1057.6484 bits/instance
+Complexity improvement     (Sf)    -5331244.6355 bits  -1043.5006 bits/instance
+Mean absolute error                      0.1996
+Root mean squared error                  0.3404
+Relative absolute error                 99.9663 %
+Root relative squared error            101.3547 %
+Total Number of Instances             5109     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0         0          0         0         0          0.5      A
+                 0         0          0         0         0          0.5      C
+                 0         0          0         0         0          0.576    D
+                 0         0.483      0         0         0          ?        E
+                 0         0          0         0         0          ?        F
+                 0         0.517      0         0         0          ?        G
+                 0         0          0         0         0          ?        H
+                 0         0          0         0         0          ?        L
+                 0         0          0         0         0          ?        P
+                 0         0          0         0         0          ?        R
+Weighted Avg.    0         0          0         0         0          0.501
+
+
+=== Confusion Matrix ===
+
+    a    b    c    d    e    f    g    h    i    j   <-- classified as
+    0    0    0 1607    0 1425    0    0    0    0 |    a = A
+    0    0    0  833    0 1166    0    0    0    0 |    b = C
+    0    0    0   26    0   52    0    0    0    0 |    c = D
+    0    0    0    0    0    0    0    0    0    0 |    d = E
+    0    0    0    0    0    0    0    0    0    0 |    e = F
+    0    0    0    0    0    0    0    0    0    0 |    f = G
+    0    0    0    0    0    0    0    0    0    0 |    g = H
+    0    0    0    0    0    0    0    0    0    0 |    h = L
+    0    0    0    0    0    0    0    0    0    0 |    i = P
+    0    0    0    0    0    0    0    0    0    0 |    j = R
+

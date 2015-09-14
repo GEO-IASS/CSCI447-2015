@@ -1,0 +1,90 @@
+
+JRIP rules:
+===========
+
+(Flavanoids = 3) => Alcohol=1 (4.0/0.0)
+(Flavanoids = 2.45) => Alcohol=1 (4.0/1.0)
+(Flavanoids = 3.25) => Alcohol=1 (2.0/0.0)
+(Magnesium = 15.5) => Alcohol=1 (2.0/0.0)
+(Total_Phenols = 118) => Alcohol=1 (2.0/0.0)
+(Malic_Acid = 13.56) => Alcohol=1 (2.0/0.0)
+(Magnesium = 20) => Alcohol=3 (12.0/3.0)
+(OD280/OD315_of_Diluted_Wines = 0.57) => Alcohol=3 (5.0/0.0)
+(Total_Phenols = 96) => Alcohol=3 (4.0/0.0)
+(Alcalinity_of_Ash = 2.48) => Alcohol=3 (3.0/0.0)
+(Total_Phenols = 106) => Alcohol=3 (3.0/0.0)
+ => Alcohol=2 (99.0/32.0)
+
+Number of Rules : 12
+
+
+Time taken to build model: 0.05 seconds
+Time taken to test model on training data: 0 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances         106               74.6479 %
+Incorrectly Classified Instances        36               25.3521 %
+Kappa statistic                          0.5544
+K&B Relative Info Score               6394.5247 %
+K&B Information Score                   93.3567 bits      0.6574 bits/instance
+Class complexity | order 0             206.5222 bits      1.4544 bits/instance
+Class complexity | scheme              128.8197 bits      0.9072 bits/instance
+Complexity improvement     (Sf)         77.7025 bits      0.5472 bits/instance
+Mean absolute error                      0.2497
+Root mean squared error                  0.3534
+Relative absolute error                 61.3395 %
+Root relative squared error             78.3939 %
+Total Number of Instances              142     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.652     0.008      0.938     0.652     0.769      0.864    1
+                 0.944     0.451      0.677     0.944     0.788      0.757    2
+                 0.5       0.032      0.889     0.5       0.64       0.782    3
+Weighted Avg.    0.746     0.238      0.791     0.746     0.735      0.783
+
+
+=== Confusion Matrix ===
+
+  a  b  c   <-- classified as
+ 15  8  0 |  a = 1
+  1 67  3 |  b = 2
+  0 24 24 |  c = 3
+
+
+=== Error on test data ===
+
+Correctly Classified Instances           3                8.3333 %
+Incorrectly Classified Instances        33               91.6667 %
+Kappa statistic                          0     
+K&B Relative Info Score                159.6591 %
+K&B Information Score                    2.3309 bits      0.0647 bits/instance
+Class complexity | order 0              93.4181 bits      2.5949 bits/instance
+Class complexity | scheme             7612.3633 bits    211.4545 bits/instance
+Complexity improvement     (Sf)      -7518.9452 bits   -208.8596 bits/instance
+Mean absolute error                      0.5722
+Root mean squared error                  0.6686
+Relative absolute error                102.8548 %
+Root relative squared error            112.6331 %
+Total Number of Instances               36     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.083     0          1         0.083     0.154      ?        1
+                 0         0.722      0         0         0          ?        2
+                 0         0.194      0         0         0          ?        3
+Weighted Avg.    0.083     0          1         0.083     0.154      0    
+
+
+=== Confusion Matrix ===
+
+  a  b  c   <-- classified as
+  3 26  7 |  a = 1
+  0  0  0 |  b = 2
+  0  0  0 |  c = 3
+

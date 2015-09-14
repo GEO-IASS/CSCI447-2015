@@ -1,0 +1,140 @@
+
+Radial basis function network
+(Logistic regression applied to K-means clusters as basis functions):
+
+Logistic Regression with ridge parameter of 1.0E-8
+Coefficients...
+                                 Class
+Variable                            cp                      im                      pp                     imU                      om                     omL                     imL
+======================================================================================================================================================================================
+pCluster_0_0                  287.9731               -100.8912                -74.8655                 -66.469                -29.5438                  -6.328                 -1.9767
+pCluster_0_1                   268.968               -100.8291                  -73.48                -57.7505                -22.4258                 -1.4925                  0.4534
+pCluster_1_0                 -122.3149                256.0266                -86.5994                  1.3599                -32.0918                 -3.1793                  0.3916
+pCluster_1_1                  -96.3752                228.2435                -65.5489                -53.6932                -27.0912                -15.5087                 -1.6208
+pCluster_2_0                 -104.0674                -98.6013                289.0653                -63.0817                 -8.6283                 -3.3451                 -0.1482
+pCluster_2_1                 -100.8223                -98.7807                283.1012                -52.8398                -20.1364                -10.7777                 -5.3476
+pCluster_3_0                 -120.3993                -117.053                -82.4873                339.6353                -37.3584                -23.7116                -14.2946
+pCluster_3_1                 -121.9049               -173.7285                -85.6896                422.2387                 -26.647                 -2.1233                  0.0768
+pCluster_4_0                 -102.4009                -94.7323                 -59.177                -57.8941                324.0377                   3.447                  1.2742
+pCluster_4_1                 -619.8342               -612.6737               -401.8831               -187.6487               1563.4005                122.8693                 71.4066
+pCluster_5_0                  -97.5389                -93.3492                -67.2466                -47.4147                -20.6834                330.6742                  11.244
+pCluster_5_1                  -95.6164                -91.3219                -65.9269                -46.4449                -21.8202                328.1965                  6.6357
+pCluster_6_0                 -185.9286               -180.7604               -127.8875                -81.7652                -40.1156                 20.2055                621.7566
+pCluster_6_1                   -87.695                -81.3181                -60.5988                -46.5535                -21.3862                  3.6287                308.1673
+pCluster_7_0               -15702.8558             -15380.4722               -9769.344             -19277.8105               -8580.731             -21214.8703             -19383.3027
+pCluster_7_1                 -661.3658               -645.1617               -443.6644               -242.1545                -92.8095              -4652.5437              -3316.0232
+Intercept                       12.643                  1.0582                 11.8924                 15.0717                  5.1507                   9.462                  6.9069
+
+
+Odds Ratios...
+                                 Class
+Variable                            cp                      im                      pp                     imU                      om                     omL                     imL
+======================================================================================================================================================================================
+pCluster_0_0      1.16179258872059E125                       0                       0                       0                       0                  0.0018                  0.1385
+pCluster_0_1     6.476200555914446E116                       0                       0                       0                       0                  0.2248                  1.5736
+pCluster_1_0                         0  1.5521942887532372E111                       0                  3.8956                       0                  0.0416                  1.4793
+pCluster_1_1                         0    1.333222154977974E99                       0                       0                       0                       0                  0.1977
+pCluster_2_0                         0                       0   3.463243580386976E125                       0                  0.0002                  0.0353                  0.8623
+pCluster_2_1                         0                       0   8.897910311851838E122                       0                       0                       0                  0.0048
+pCluster_3_0                         0                       0                       0  3.1750508693256193E147                       0                       0                       0
+pCluster_3_1                         0                       0                       0    2.37639087901133E183                       0                  0.1196                  1.0799
+pCluster_4_0                         0                       0                       0                       0   5.343161280064845E140                 31.4063                  3.5757
+pCluster_4_1                         0                       0                       0                       0                Infinity    2.298591169374316E53    1.026764928381807E31
+pCluster_5_0                         0                       0                       0                       0                       0   4.073535811201173E143               76416.688
+pCluster_5_1                         0                       0                       0                       0                       0  3.4191968921298753E142                761.7743
+pCluster_6_0                         0                       0                       0                       0                       0          595855549.2713  1.0603701189612802E270
+pCluster_6_1                         0                       0                       0                       0                       0                 37.6632   6.844741285181871E133
+pCluster_7_0                         0                       0                       0                       0                       0                       0                       0
+pCluster_7_1                         0                       0                       0                       0                       0                       0                       0
+
+
+Time taken to build model: 0.95 seconds
+Time taken to test model on training data: 0.05 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances         268              100      %
+Incorrectly Classified Instances         0                0      %
+Kappa statistic                          1     
+K&B Relative Info Score              26303.0977 %
+K&B Information Score                  634.6038 bits      2.3679 bits/instance
+Class complexity | order 0             634.6038 bits      2.3679 bits/instance
+Class complexity | scheme                0      bits      0      bits/instance
+Complexity improvement     (Sf)        634.6038 bits      2.3679 bits/instance
+Mean absolute error                      0     
+Root mean squared error                  0     
+Relative absolute error                  0      %
+Root relative squared error              0      %
+Total Number of Instances              268     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 1         0          1         1         1          1        cp
+                 1         0          1         1         1          1        im
+                 1         0          1         1         1          1        pp
+                 1         0          1         1         1          1        imU
+                 1         0          1         1         1          1        om
+                 1         0          1         1         1          1        omL
+                 1         0          1         1         1          1        imL
+                 1         0          1         1         1          1        imS
+Weighted Avg.    1         0          1         1         1          1    
+
+
+=== Confusion Matrix ===
+
+  a  b  c  d  e  f  g  h   <-- classified as
+ 75  0  0  0  0  0  0  0 |  a = cp
+  0 77  0  0  0  0  0  0 |  b = im
+  0  0 52  0  0  0  0  0 |  c = pp
+  0  0  0 35  0  0  0  0 |  d = imU
+  0  0  0  0 20  0  0  0 |  e = om
+  0  0  0  0  0  5  0  0 |  f = omL
+  0  0  0  0  0  0  2  0 |  g = imL
+  0  0  0  0  0  0  0  2 |  h = imS
+
+
+=== Error on test data ===
+
+Correctly Classified Instances          54               79.4118 %
+Incorrectly Classified Instances        14               20.5882 %
+Kappa statistic                          0     
+K&B Relative Info Score               3903.513  %
+K&B Information Score                   94.1784 bits      1.385  bits/instance
+Class complexity | order 0             126.5206 bits      1.8606 bits/instance
+Class complexity | scheme             1712.9068 bits     25.1898 bits/instance
+Complexity improvement     (Sf)      -1586.3862 bits    -23.3292 bits/instance
+Mean absolute error                      0.051 
+Root mean squared error                  0.2242
+Relative absolute error                 28.1311 %
+Root relative squared error             77.7398 %
+Total Number of Instances               68     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.794     0          1         0.794     0.885      ?        cp
+                 0         0.015      0         0         0          ?        im
+                 0         0.088      0         0         0          ?        pp
+                 0         0.029      0         0         0          ?        imU
+                 0         0.059      0         0         0          ?        om
+                 0         0          0         0         0          ?        omL
+                 0         0          0         0         0          ?        imL
+                 0         0.015      0         0         0          ?        imS
+Weighted Avg.    0.794     0          1         0.794     0.885      0    
+
+
+=== Confusion Matrix ===
+
+  a  b  c  d  e  f  g  h   <-- classified as
+ 54  1  6  2  4  0  0  1 |  a = cp
+  0  0  0  0  0  0  0  0 |  b = im
+  0  0  0  0  0  0  0  0 |  c = pp
+  0  0  0  0  0  0  0  0 |  d = imU
+  0  0  0  0  0  0  0  0 |  e = om
+  0  0  0  0  0  0  0  0 |  f = omL
+  0  0  0  0  0  0  0  0 |  g = imL
+  0  0  0  0  0  0  0  0 |  h = imS
+

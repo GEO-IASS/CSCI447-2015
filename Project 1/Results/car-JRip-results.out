@@ -1,0 +1,123 @@
+
+JRIP rules:
+===========
+
+(Safety = high) and (Lug_boot = big) and (Buying = low) and (Persons = 4) => Class=vgood (16.0/4.0)
+(Safety = high) and (Lug_boot = big) and (Persons = more) and (Buying = low) => Class=vgood (16.0/4.0)
+(Safety = high) and (Buying = med) and (Maint = low) and (Lug_boot = big) => Class=vgood (12.0/4.0)
+(Safety = high) and (Lug_boot = med) and (Buying = low) and (Persons = more) => Class=vgood (16.0/7.0)
+(Safety = high) and (Lug_boot = med) and (Doors = 4) and (Persons = 4) and (Buying = low) => Class=vgood (4.0/1.0)
+(Safety = high) and (Buying = med) and (Maint = med) and (Lug_boot = big) => Class=vgood (12.0/4.0)
+(Safety = high) and (Lug_boot = med) and (Buying = med) and (Maint = low) and (Persons = more) => Class=vgood (4.0/1.0)
+(Safety = high) and (Maint = med) and (Lug_boot = med) and (Buying = med) and (Persons = more) => Class=vgood (4.0/1.0)
+(Safety = high) and (Persons = 4) and (Lug_boot = med) and (Doors = 5more) and (Buying = low) => Class=vgood (4.0/1.0)
+(Buying = low) and (Maint = med) and (Safety = med) and (Lug_boot = big) and (Persons = more) => Class=good (4.0/0.0)
+(Buying = low) and (Persons = 4) and (Safety = high) and (Maint = low) => Class=good (6.0/0.0)
+(Maint = low) and (Buying = med) and (Safety = high) and (Persons = 4) => Class=good (8.0/2.0)
+(Maint = low) and (Buying = med) and (Safety = med) and (Lug_boot = big) => Class=good (12.0/4.0)
+(Buying = low) and (Maint = med) and (Persons = 4) and (Safety = high) => Class=good (6.0/0.0)
+(Buying = low) and (Safety = med) and (Maint = low) and (Lug_boot = big) and (Persons = 4) => Class=good (4.0/0.0)
+(Maint = low) and (Persons = more) and (Buying = low) and (Safety = med) => Class=good (12.0/5.0)
+(Maint = low) and (Buying = med) and (Persons = more) and (Safety = high) => Class=good (4.0/1.0)
+(Buying = low) and (Safety = med) and (Maint = med) and (Persons = 4) and (Lug_boot = big) => Class=good (4.0/0.0)
+(Buying = low) and (Maint = med) and (Persons = more) and (Safety = high) => Class=good (4.0/1.0)
+(Buying = low) and (Persons = more) and (Safety = high) and (Maint = low) => Class=good (4.0/1.0)
+(Lug_boot = med) and (Safety = med) and (Persons = more) and (Buying = med) and (Maint = low) => Class=good (4.0/1.0)
+(Safety = med) and (Lug_boot = med) and (Buying = low) and (Maint = med) and (Persons = more) => Class=good (4.0/1.0)
+(Safety = high) and (Persons = 4) and (Maint = high) => Class=acc (30.0/0.0)
+(Persons = 4) and (Safety = high) and (Maint = low) => Class=acc (21.0/0.0)
+(Persons = more) and (Safety = high) and (Maint = low) => Class=acc (23.0/1.0)
+(Safety = med) and (Persons = more) and (Lug_boot = big) => Class=acc (40.0/4.0)
+(Persons = 4) and (Safety = med) and (Lug_boot = big) => Class=acc (39.0/4.0)
+(Safety = high) and (Persons = more) and (Buying = med) => Class=acc (28.0/3.0)
+(Persons = 4) and (Safety = high) and (Buying = med) => Class=acc (20.0/2.0)
+(Safety = med) and (Persons = 4) and (Buying = low) and (Maint = high) => Class=acc (8.0/0.0)
+(Safety = med) and (Lug_boot = med) and (Persons = more) => Class=acc (40.0/11.0)
+(Safety = high) and (Persons = more) and (Maint = high) => Class=acc (16.0/2.0)
+(Persons = 4) and (Safety = med) and (Buying = low) and (Maint = med) => Class=acc (8.0/2.0)
+(Persons = 4) and (Safety = med) and (Buying = med) and (Maint = med) => Class=acc (8.0/0.0)
+(Persons = 4) and (Safety = high) and (Maint = med) => Class=acc (12.0/0.0)
+(Safety = med) and (Persons = 4) and (Lug_boot = med) and (Doors = 4) => Class=acc (10.0/3.0)
+(Safety = med) and (Persons = 4) and (Maint = low) => Class=acc (26.0/12.0)
+(Persons = more) and (Safety = high) and (Maint = med) => Class=acc (12.0/1.0)
+(Buying = low) and (Safety = high) and (Maint = vhigh) and (Persons = 4) => Class=acc (6.0/0.0)
+(Persons = more) and (Safety = med) and (Maint = med) and (Buying = med) => Class=acc (4.0/1.0)
+ => Class=unacc (867.0/17.0)
+
+Number of Rules : 41
+
+
+Time taken to build model: 0.23 seconds
+Time taken to test model on training data: 0.02 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances        1276               92.33   %
+Incorrectly Classified Instances       106                7.67   %
+Kappa statistic                          0.8527
+K&B Relative Info Score             112153.5569 %
+K&B Information Score                 1488.9807 bits      1.0774 bits/instance
+Class complexity | order 0            1828.7698 bits      1.3233 bits/instance
+Class complexity | scheme              421.6916 bits      0.3051 bits/instance
+Complexity improvement     (Sf)       1407.0783 bits      1.0181 bits/instance
+Mean absolute error                      0.0592
+Root mean squared error                  0.172 
+Relative absolute error                 23.3808 %
+Root relative squared error             48.3873 %
+Total Number of Instances             1382     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.94      0.036      0.98      0.94      0.96       0.972    unacc
+                 0.887     0.044      0.869     0.887     0.878      0.962    acc
+                 0.87      0.012      0.789     0.87      0.828      0.994    good
+                 0.938     0.021      0.693     0.938     0.797      0.99     vgood
+Weighted Avg.    0.923     0.036      0.93      0.923     0.925      0.972
+
+
+=== Confusion Matrix ===
+
+   a   b   c   d   <-- classified as
+ 850  38   8   8 |   a = unacc
+  17 305   6  16 |   b = acc
+   0   6  60   3 |   c = good
+   0   2   2  61 |   d = vgood
+
+
+=== Error on test data ===
+
+Correctly Classified Instances         290               83.815  %
+Incorrectly Classified Instances        56               16.185  %
+Kappa statistic                          0.5012
+K&B Relative Info Score              11090.0211 %
+K&B Information Score                  147.2341 bits      0.4255 bits/instance
+Class complexity | order 0             268.4213 bits      0.7758 bits/instance
+Class complexity | scheme            13028.6497 bits     37.6551 bits/instance
+Complexity improvement     (Sf)     -12760.2284 bits    -36.8793 bits/instance
+Mean absolute error                      0.0826
+Root mean squared error                  0.2525
+Relative absolute error                 41.9596 %
+Root relative squared error             95.3442 %
+Total Number of Instances              346     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.82      0.025      0.996     0.82      0.9        0.935    unacc
+                 0.975     0.18       0.415     0.975     0.582      0.934    acc
+                 0         0          0         0         0          ?        good
+                 0         0          0         0         0          ?        vgood
+Weighted Avg.    0.838     0.043      0.929     0.838     0.863      0.935
+
+
+=== Confusion Matrix ===
+
+   a   b   c   d   <-- classified as
+ 251  55   0   0 |   a = unacc
+   1  39   0   0 |   b = acc
+   0   0   0   0 |   c = good
+   0   0   0   0 |   d = vgood
+

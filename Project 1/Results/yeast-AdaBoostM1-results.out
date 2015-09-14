@@ -1,0 +1,122 @@
+
+AdaBoostM1: No boosting possible, one classifier used!
+Decision Stump
+
+Classifications
+
+nuc = 0.22 : CYT
+nuc != 0.22 : NUC
+nuc is missing : CYT
+
+Class distributions
+
+nuc = 0.22
+CYT	NUC	MIT	ME3	ME2	ME1	EXC	VAC	POX	ERL	
+0.3275563258232236	0.16984402079722705	0.18717504332755633	0.1265164644714038	0.04852686308492201	0.043327556325823226	0.03986135181975736	0.029462738301559793	0.024263431542461005	0.0034662045060658577	
+nuc != 0.22
+CYT	NUC	MIT	ME3	ME2	ME1	EXC	VAC	POX	ERL	
+0.2967213114754098	0.42950819672131146	0.1	0.10163934426229508	0.021311475409836064	0.022950819672131147	0.006557377049180328	0.014754098360655738	0.003278688524590164	0.003278688524590164	
+nuc is missing
+CYT	NUC	MIT	ME3	ME2	ME1	EXC	VAC	POX	ERL	
+0.3117101937657961	0.3032855939342881	0.14237573715248525	0.11373209772535804	0.03454085930918281	0.03285593934288121	0.02274641954507161	0.02190395956192081	0.013479359730412805	0.003369839932603201	
+
+
+
+Time taken to build model: 0.85 seconds
+Time taken to test model on training data: 0.08 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances         451               37.9949 %
+Incorrectly Classified Instances       736               62.0051 %
+Kappa statistic                          0.1048
+K&B Relative Info Score               8982.9117 %
+K&B Information Score                  225.0645 bits      0.1896 bits/instance
+Class complexity | order 0            2955.014  bits      2.4895 bits/instance
+Class complexity | scheme             2863.09   bits      2.412  bits/instance
+Complexity improvement     (Sf)         91.924  bits      0.0774 bits/instance
+Mean absolute error                      0.1509
+Root mean squared error                  0.2746
+Relative absolute error                 97.3021 %
+Root relative squared error             98.7082 %
+Total Number of Instances             1187     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.511     0.475      0.328     0.511     0.399      0.518    CYT
+                 0.728     0.421      0.43      0.728     0.54       0.653    NUC
+                 0         0          0         0         0          0.589    MIT
+                 0         0          0         0         0          0.531    ME3
+                 0         0          0         0         0          0.602    ME2
+                 0         0          0         0         0          0.58     ME1
+                 0         0          0         0         0          0.687    EXC
+                 0         0          0         0         0          0.586    VAC
+                 0         0          0         0         0          0.697    POX
+                 0         0          0         0         0          0.507    ERL
+Weighted Avg.    0.38      0.276      0.232     0.38      0.288      0.583
+
+
+=== Confusion Matrix ===
+
+   a   b   c   d   e   f   g   h   i   j   <-- classified as
+ 189 181   0   0   0   0   0   0   0   0 |   a = CYT
+  98 262   0   0   0   0   0   0   0   0 |   b = NUC
+ 108  61   0   0   0   0   0   0   0   0 |   c = MIT
+  73  62   0   0   0   0   0   0   0   0 |   d = ME3
+  28  13   0   0   0   0   0   0   0   0 |   e = ME2
+  25  14   0   0   0   0   0   0   0   0 |   f = ME1
+  23   4   0   0   0   0   0   0   0   0 |   g = EXC
+  17   9   0   0   0   0   0   0   0   0 |   h = VAC
+  14   2   0   0   0   0   0   0   0   0 |   i = POX
+   2   2   0   0   0   0   0   0   0   0 |   j = ERL
+
+
+=== Error on test data ===
+
+Correctly Classified Instances         102               34.3434 %
+Incorrectly Classified Instances       195               65.6566 %
+Kappa statistic                          0.0823
+K&B Relative Info Score               2445.656  %
+K&B Information Score                   61.2753 bits      0.2063 bits/instance
+Class complexity | order 0             746.0557 bits      2.512  bits/instance
+Class complexity | scheme              712.5674 bits      2.3992 bits/instance
+Complexity improvement     (Sf)         33.4883 bits      0.1128 bits/instance
+Mean absolute error                      0.1529
+Root mean squared error                  0.2755
+Relative absolute error                 97.5914 %
+Root relative squared error             97.9706 %
+Total Number of Instances              297     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.624     0.657      0.302     0.624     0.407      0.483    CYT
+                 0.638     0.268      0.419     0.638     0.506      0.685    NUC
+                 0         0          0         0         0          0.621    MIT
+                 0         0          0         0         0          0.557    ME3
+                 0         0          0         0         0          0.631    ME2
+                 0         0          0         0         0          0.578    ME1
+                 0         0          0         0         0          0.682    EXC
+                 0         0          0         0         0          0.299    VAC
+                 0         0          0         0         0          0.552    POX
+                 0         0          0         0         0          0.677    ERL
+Weighted Avg.    0.343     0.268      0.192     0.343     0.245      0.583
+
+
+=== Confusion Matrix ===
+
+  a  b  c  d  e  f  g  h  i  j   <-- classified as
+ 58 35  0  0  0  0  0  0  0  0 |  a = CYT
+ 25 44  0  0  0  0  0  0  0  0 |  b = NUC
+ 62 13  0  0  0  0  0  0  0  0 |  c = MIT
+ 21  7  0  0  0  0  0  0  0  0 |  d = ME3
+  9  1  0  0  0  0  0  0  0  0 |  e = ME2
+  4  1  0  0  0  0  0  0  0  0 |  f = ME1
+  8  0  0  0  0  0  0  0  0  0 |  g = EXC
+  1  3  0  0  0  0  0  0  0  0 |  h = VAC
+  3  1  0  0  0  0  0  0  0  0 |  i = POX
+  1  0  0  0  0  0  0  0  0  0 |  j = ERL
+

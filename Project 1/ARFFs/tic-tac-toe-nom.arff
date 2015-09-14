@@ -1,4 +1,4 @@
-@relation tic-tac-toe-weka.filters.unsupervised.attribute.NumericToNominal-Rfirst-last
+@relation tic-tac-toe-weka.filters.unsupervised.attribute.NumericToNominal-Rfirst-last-weka.filters.unsupervised.attribute.StringToNominal-Rfirst-last
 
 @attribute top-left-square {x,o,b}
 @attribute top-middle-square {x,o,b}

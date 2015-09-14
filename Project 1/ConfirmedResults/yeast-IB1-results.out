@@ -1,0 +1,101 @@
+
+IB1 classifier
+
+Time taken to build model: 0.06 seconds
+Time taken to test model on training data: 0.23 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances        1187              100      %
+Incorrectly Classified Instances         0                0      %
+Kappa statistic                          1     
+K&B Relative Info Score             117942.3201 %
+K&B Information Score                 2955.014  bits      2.4895 bits/instance
+Class complexity | order 0            2955.014  bits      2.4895 bits/instance
+Class complexity | scheme                0      bits      0      bits/instance
+Complexity improvement     (Sf)       2955.014  bits      2.4895 bits/instance
+Mean absolute error                      0     
+Root mean squared error                  0     
+Relative absolute error                  0      %
+Root relative squared error              0      %
+Total Number of Instances             1187     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 1         0          1         1         1          ?        CYT
+                 1         0          1         1         1          ?        NUC
+                 1         0          1         1         1          ?        MIT
+                 1         0          1         1         1          ?        ME3
+                 1         0          1         1         1          ?        ME2
+                 1         0          1         1         1          ?        ME1
+                 1         0          1         1         1          ?        EXC
+                 1         0          1         1         1          ?        VAC
+                 1         0          1         1         1          ?        POX
+                 1         0          1         1         1          ?        ERL
+Weighted Avg.    1         0          1         1         1          0    
+
+
+=== Confusion Matrix ===
+
+   a   b   c   d   e   f   g   h   i   j   <-- classified as
+ 370   0   0   0   0   0   0   0   0   0 |   a = CYT
+   0 360   0   0   0   0   0   0   0   0 |   b = NUC
+   0   0 169   0   0   0   0   0   0   0 |   c = MIT
+   0   0   0 135   0   0   0   0   0   0 |   d = ME3
+   0   0   0   0  41   0   0   0   0   0 |   e = ME2
+   0   0   0   0   0  39   0   0   0   0 |   f = ME1
+   0   0   0   0   0   0  27   0   0   0 |   g = EXC
+   0   0   0   0   0   0   0  26   0   0 |   h = VAC
+   0   0   0   0   0   0   0   0  16   0 |   i = POX
+   0   0   0   0   0   0   0   0   0   4 |   j = ERL
+
+
+=== Error on test data ===
+
+Correctly Classified Instances         104               35.0168 %
+Incorrectly Classified Instances       193               64.9832 %
+Kappa statistic                          0.1655
+K&B Relative Info Score               6613.1401 %
+K&B Information Score                  165.6905 bits      0.5579 bits/instance
+Class complexity | order 0             746.0557 bits      2.512  bits/instance
+Class complexity | scheme           207282      bits    697.9192 bits/instance
+Complexity improvement     (Sf)    -206535.9443 bits   -695.4072 bits/instance
+Mean absolute error                      0.13  
+Root mean squared error                  0.3605
+Relative absolute error                 82.9477 %
+Root relative squared error            128.2171 %
+Total Number of Instances              297     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.505     0.333      0.409     0.505     0.452      0.586    CYT
+                 0.377     0.145      0.441     0.377     0.406      0.616    NUC
+                 0.2       0.135      0.333     0.2       0.25       0.532    MIT
+                 0.321     0.115      0.225     0.321     0.265      0.603    ME3
+                 0.2       0.035      0.167     0.2       0.182      0.583    ME2
+                 0.6       0.01       0.5       0.6       0.545      0.795    ME1
+                 0.25      0.021      0.25      0.25      0.25       0.615    EXC
+                 0         0.017      0         0         0          0.491    VAC
+                 0         0.024      0         0         0          0.488    POX
+                 0         0          0         0         0          0.5      ERL
+Weighted Avg.    0.35      0.185      0.357     0.35      0.346      0.582
+
+
+=== Confusion Matrix ===
+
+  a  b  c  d  e  f  g  h  i  j   <-- classified as
+ 47 15 15 11  0  0  1  0  4  0 |  a = CYT
+ 23 26 10  7  1  0  0  1  1  0 |  b = NUC
+ 29 10 15 10  4  1  3  2  1  0 |  c = MIT
+ 10  3  1  9  3  1  0  1  0  0 |  d = ME3
+  3  1  1  1  2  0  1  0  1  0 |  e = ME2
+  0  0  0  1  0  3  1  0  0  0 |  f = ME1
+  0  0  2  0  2  1  2  1  0  0 |  g = EXC
+  1  2  0  1  0  0  0  0  0  0 |  h = VAC
+  1  2  1  0  0  0  0  0  0  0 |  i = POX
+  1  0  0  0  0  0  0  0  0  0 |  j = ERL
+

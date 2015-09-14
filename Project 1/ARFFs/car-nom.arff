@@ -1,4 +1,4 @@
-@relation car-weka.filters.unsupervised.attribute.NumericToNominal-Rfirst-last
+@relation car-weka.filters.unsupervised.attribute.NumericToNominal-Rfirst-last-weka.filters.unsupervised.attribute.StringToNominal-Rfirst-last
 
 @attribute Buying {vhigh,high,med,low}
 @attribute Maint {vhigh,high,med,low}

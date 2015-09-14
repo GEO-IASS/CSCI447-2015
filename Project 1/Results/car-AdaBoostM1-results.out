@@ -1,0 +1,241 @@
+
+AdaBoostM1: Base classifiers and their weights: 
+
+Decision Stump
+
+Classifications
+
+Safety = low : unacc
+Safety != low : unacc
+Safety is missing : unacc
+
+Class distributions
+
+Safety = low
+unacc	acc	good	vgood	
+1.0	0.0	0.0	0.0	
+Safety != low
+unacc	acc	good	vgood	
+0.48156182212581344	0.37310195227765725	0.07483731019522777	0.07049891540130152	
+Safety is missing
+unacc	acc	good	vgood	
+0.6541244573082489	0.24891461649782923	0.049927641099855286	0.04703328509406657	
+
+
+Weight: 0.64
+
+Decision Stump
+
+Classifications
+
+Safety = low : unacc
+Safety != low : acc
+Safety is missing : unacc
+
+Class distributions
+
+Safety = low
+unacc	acc	good	vgood	
+1.0	0.0	0.0	0.0	
+Safety != low
+unacc	acc	good	vgood	
+0.32937685459940685	0.4826241883217653	0.0968054331226799	0.0911935239561478	
+Safety is missing
+unacc	acc	good	vgood	
+0.5000000000000017	0.3598326359832621	0.07217573221757309	0.06799163179916311	
+
+
+Weight: 0.47
+
+Decision Stump
+
+Classifications
+
+Persons = 2 : unacc
+Persons != 2 : acc
+Persons is missing : unacc
+
+Class distributions
+
+Persons = 2
+unacc	acc	good	vgood	
+1.0	0.0	0.0	0.0	
+Persons != 2
+unacc	acc	good	vgood	
+0.33320153101798616	0.4115287291960711	0.13144486600917946	0.12382487377676325	
+Persons is missing
+unacc	acc	good	vgood	
+0.525414372321887	0.2929005229290078	0.09355427035588258	0.08813083439322271	
+
+
+Weight: 0.33
+
+Decision Stump
+
+Classifications
+
+Persons = 2 : unacc
+Persons != 2 : unacc
+Persons is missing : unacc
+
+Class distributions
+
+Persons = 2
+unacc	acc	good	vgood	
+1.0	0.0	0.0	0.0	
+Persons != 2
+unacc	acc	good	vgood	
+0.3764754248058746	0.3351021797975968	0.14851600956985422	0.13990638582667428	
+Persons is missing
+unacc	acc	good	vgood	
+0.5311124835660338	0.25199524619857183	0.11168333318091195	0.10520893705448227	
+
+
+Weight: 0.12
+
+Decision Stump
+
+Classifications
+
+Persons = 2 : unacc
+Persons != 2 : acc
+Persons is missing : unacc
+
+Class distributions
+
+Persons = 2
+unacc	acc	good	vgood	
+1.0	0.0	0.0	0.0	
+Persons != 2
+unacc	acc	good	vgood	
+0.3477041285999653	0.35056480061122103	0.15536898421215034	0.14636208657666336	
+Persons is missing
+unacc	acc	good	vgood	
+0.5000000000000036	0.2687160964692256	0.11909395032554625	0.11218995320522472	
+
+
+Weight: 0.01
+
+Decision Stump
+
+Classifications
+
+Persons = 2 : unacc
+Persons != 2 : unacc
+Persons is missing : unacc
+
+Class distributions
+
+Persons = 2
+unacc	acc	good	vgood	
+1.0	0.0	0.0	0.0	
+Persons != 2
+unacc	acc	good	vgood	
+0.3487718617504195	0.34857050881419527	0.15584609276896708	0.14681153666641825	
+Persons is missing
+unacc	acc	good	vgood	
+0.5001545469916204	0.2675427759493084	0.1196185426647456	0.11268413439432555	
+
+
+Weight: 0.0
+
+Decision Stump
+
+Classifications
+
+Persons = 2 : unacc
+Persons != 2 : acc
+Persons is missing : unacc
+
+Class distributions
+
+Persons = 2
+unacc	acc	good	vgood	
+1.0	0.0	0.0	0.0	
+Persons != 2
+unacc	acc	good	vgood	
+0.34863146581180926	0.3486456558799973	0.15587969106914445	0.14684318723904913	
+Persons is missing
+unacc	acc	good	vgood	
+0.49999999999999745	0.2676254973803123	0.11965552746834798	0.1127189751513423	
+
+
+Weight: 0.0
+
+Number of performed Iterations: 7
+
+
+Time taken to build model: 0.89 seconds
+Time taken to test model on training data: 0.02 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances        1110               80.3184 %
+Incorrectly Classified Instances       272               19.6816 %
+Kappa statistic                          0.6262
+K&B Relative Info Score              -8952.7771 %
+K&B Information Score                 -118.8595 bits     -0.086  bits/instance
+Class complexity | order 0            1828.7698 bits      1.3233 bits/instance
+Class complexity | scheme             1857.4586 bits      1.344  bits/instance
+Complexity improvement     (Sf)        -28.6888 bits     -0.0208 bits/instance
+Mean absolute error                      0.292 
+Root mean squared error                  0.3486
+Relative absolute error                115.3889 %
+Root relative squared error             98.0534 %
+Total Number of Instances             1382     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.847     0          1         0.847     0.917      0.924    unacc
+                 1         0.262      0.558     1         0.717      0.869    acc
+                 0         0          0         0         0          0.792    good
+                 0         0          0         0         0          0.791    vgood
+Weighted Avg.    0.803     0.065      0.793     0.803     0.778      0.897
+
+
+=== Confusion Matrix ===
+
+   a   b   c   d   <-- classified as
+ 766 138   0   0 |   a = unacc
+   0 344   0   0 |   b = acc
+   0  69   0   0 |   c = good
+   0  65   0   0 |   d = vgood
+
+
+=== Error on test data ===
+
+Correctly Classified Instances         234               67.6301 %
+Incorrectly Classified Instances       112               32.3699 %
+Kappa statistic                          0.286 
+K&B Relative Info Score             -13721.458  %
+K&B Information Score                 -182.1698 bits     -0.5265 bits/instance
+Class complexity | order 0             268.4213 bits      0.7758 bits/instance
+Class complexity | scheme              429.4503 bits      1.2412 bits/instance
+Complexity improvement     (Sf)       -161.0291 bits     -0.4654 bits/instance
+Mean absolute error                      0.2837
+Root mean squared error                  0.3365
+Relative absolute error                144.0876 %
+Root relative squared error            127.0462 %
+Total Number of Instances              346     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.634     0          1         0.634     0.776      0.817    unacc
+                 1         0.366      0.263     1         0.417      0.817    acc
+                 0         0          0         0         0          ?        good
+                 0         0          0         0         0          ?        vgood
+Weighted Avg.    0.676     0.042      0.915     0.676     0.734      0.817
+
+
+=== Confusion Matrix ===
+
+   a   b   c   d   <-- classified as
+ 194 112   0   0 |   a = unacc
+   0  40   0   0 |   b = acc
+   0   0   0   0 |   c = good
+   0   0   0   0 |   d = vgood
+

@@ -1,0 +1,286 @@
+
+JRIP rules:
+===========
+
+(XX1 = 0) and (YY1 = 0) and (OBJNUM = 2) => CLASS=L (500.0/0.0)
+(XX1 = 0) and (OBJNUM = 2) and (YY2 = 13) and (YY1 = 12) => CLASS=F (16.0/5.0)
+(XX1 = 0) and (OBJNUM = 2) and (XX2 = 11) and (SIZE = 11.18) => CLASS=F (20.0/4.0)
+(XX1 = 0) and (OBJNUM = 2) and (YY1 = 25) and (YY2 = 23) => CLASS=F (14.0/4.0)
+(YY2 = 0) and (XX2 = 0) => CLASS=D (483.0/0.0)
+(XX2 = 10) and (OBJNUM = 1) and (YY2 = 18) => CLASS=D (44.0/1.0)
+(OBJNUM = 2) and (XX1 = 10) => CLASS=D (74.0/0.0)
+(XX2 = 14) and (OBJNUM = 1) => CLASS=D (83.0/22.0)
+(YY2 = 5) and (YY1 = 10) => CLASS=D (79.0/0.0)
+(OBJNUM = 0) and (XX2 = 2) and (XX1 = 0) => CLASS=D (306.0/143.0)
+(OBJNUM = 2) and (XX1 = 14) => CLASS=D (61.0/0.0)
+(OBJNUM = 2) and (XX1 = 16) => CLASS=D (43.0/0.0)
+(DIAG = 43.83) => CLASS=D (80.0/28.0)
+(DIAG = 23.26) => CLASS=D (38.0/0.0)
+(OBJNUM = 1) and (XX1 = 2) and (YY2 = 24) => CLASS=D (21.0/0.0)
+(XX2 = 16) and (OBJNUM = 1) and (XX1 = 2) => CLASS=D (14.0/0.0)
+(XX1 = 12) and (OBJNUM = 2) => CLASS=D (30.0/0.0)
+(OBJNUM = 1) and (XX1 = 1) and (YY2 = 24) => CLASS=D (18.0/0.0)
+(XX2 = 10) and (YY2 = 6) and (OBJNUM = 3) => CLASS=D (47.0/1.0)
+(OBJNUM = 2) and (XX1 = 9) => CLASS=D (33.0/0.0)
+(DIAG = 39.36) and (YY1 = 35) => CLASS=D (8.0/0.0)
+(OBJNUM = 1) and (XX1 = 1) and (XX2 = 10) => CLASS=D (13.0/0.0)
+(YY1 = 24) and (SIZE = 12) and (YY2 = 12) => CLASS=D (33.0/0.0)
+(YY2 = 8) and (OBJNUM = 3) => CLASS=D (118.0/28.0)
+(OBJNUM = 1) and (XX1 = 2) and (XX2 = 9) => CLASS=D (11.0/0.0)
+(OBJNUM = 0) and (XX2 = 1) and (XX1 = 0) and (DIAG = 38.01) => CLASS=D (6.0/0.0)
+(DIAG = 32.2) => CLASS=D (51.0/21.0)
+(OBJNUM = 1) and (XX1 = 2) and (YY2 = 21) => CLASS=D (9.0/0.0)
+(YY2 = 4) and (OBJNUM = 4) => CLASS=D (45.0/0.0)
+(OBJNUM = 2) and (XX1 = 17) => CLASS=D (28.0/0.0)
+(OBJNUM = 1) and (XX1 = 2) and (YY2 = 20) => CLASS=D (8.0/0.0)
+(OBJNUM = 0) and (XX2 = 1) and (XX1 = 0) and (DIAG = 29.07) => CLASS=D (6.0/0.0)
+(XX1 = 0) and (OBJNUM = 4) => CLASS=E (500.0/0.0)
+(YY1 = 0) and (OBJNUM = 1) => CLASS=H (472.0/0.0)
+(XX1 = 0) and (OBJNUM = 3) and (XX2 = 1) => CLASS=H (201.0/9.0)
+(OBJNUM = 4) and (YY1 = 12) => CLASS=H (87.0/38.0)
+(OBJNUM = 4) and (YY1 = 8) => CLASS=H (70.0/28.0)
+(XX1 = 0) and (OBJNUM = 3) and (XX2 = 0) => CLASS=H (151.0/0.0)
+(OBJNUM = 4) and (YY1 = 9) => CLASS=H (62.0/20.0)
+(XX1 = 0) and (OBJNUM = 2) and (YY2 = 6) => CLASS=H (63.0/22.0)
+(OBJNUM = 4) and (YY1 = 6) and (XX2 = 25) => CLASS=H (6.0/0.0)
+(OBJNUM = 4) and (YY1 = 7) => CLASS=H (60.0/20.0)
+(OBJNUM = 4) and (XX2 = 0) => CLASS=P (347.0/164.0)
+(OBJNUM = 5) and (XX2 = 0) and (XX1 = 7) => CLASS=P (26.0/10.0)
+(OBJNUM = 5) and (XX2 = 0) and (YY1 = 23) => CLASS=P (23.0/10.0)
+(SIZE = 5) and (YY1 = 11) => CLASS=G (44.0/0.0)
+(YY2 = 10) and (YY1 = 10) and (OBJNUM = 6) => CLASS=G (37.0/0.0)
+(YY1 = 0) and (OBJNUM = 5) => CLASS=G (171.0/0.0)
+(YY2 = 6) and (YY1 = 6) => CLASS=G (81.0/0.0)
+(YY1 = 0) and (OBJNUM = 4) => CLASS=G (171.0/0.0)
+(YY2 = 10) and (OBJNUM = 1) => CLASS=G (50.0/0.0)
+(YY1 = 8) and (OBJNUM = 5) => CLASS=G (35.0/1.0)
+(XX2 = 3) and (YY1 = 0) => CLASS=G (54.0/0.0)
+(XX1 = 3) => CLASS=G (114.0/17.0)
+(YY1 = 8) and (XX2 = 0) and (YY2 = 16) => CLASS=G (49.0/3.0)
+(YY2 = 11) and (OBJNUM = 3) => CLASS=G (41.0/1.0)
+(SIZE = 5) and (YY2 = 9) => CLASS=G (33.0/0.0)
+(YY2 = 7) and (YY1 = 7) and (OBJNUM = 5) => CLASS=G (23.0/0.0)
+(YY1 = 10) and (YY2 = 10) and (OBJNUM = 4) => CLASS=G (26.0/0.0)
+(YY2 = 4) and (OBJNUM = 0) => CLASS=G (57.0/0.0)
+(YY2 = 12) and (YY1 = 6) and (XX2 = 0) => CLASS=G (51.0/2.0)
+(OBJNUM = 3) and (YY1 = 0) => CLASS=G (92.0/0.0)
+(YY1 = 10) and (OBJNUM = 5) and (YY2 = 10) => CLASS=G (23.0/0.0)
+(OBJNUM = 2) and (XX2 = 0) => CLASS=G (150.0/0.0)
+(YY1 = 11) and (YY2 = 11) and (SIZE = 6) => CLASS=G (27.0/2.0)
+(XX2 = 3) and (XX1 = 0) => CLASS=G (54.0/5.0)
+(YY2 = 5) and (OBJNUM = 0) => CLASS=G (45.0/0.0)
+(YY1 = 7) and (YY2 = 14) and (XX2 = 0) => CLASS=G (41.0/1.0)
+(XX2 = 4) and (XX1 = 0) => CLASS=G (33.0/7.0)
+(SIZE = 4) and (OBJNUM = 6) => CLASS=G (24.0/0.0)
+(YY1 = 9) and (OBJNUM = 5) and (YY2 = 9) => CLASS=G (19.0/0.0)
+(OBJNUM = 4) and (XX1 = 5) => CLASS=G (22.0/4.0)
+(YY2 = 6) and (OBJNUM = 1) => CLASS=G (26.0/0.0)
+(XX1 = 4) and (OBJNUM = 1) => CLASS=G (18.0/0.0)
+(YY1 = 11) and (YY2 = 22) and (OBJNUM = 1) => CLASS=G (24.0/3.0)
+(XX2 = 5) and (OBJNUM = 0) => CLASS=G (13.0/0.0)
+(YY2 = 8) and (OBJNUM = 6) and (YY1 = 8) => CLASS=G (21.0/0.0)
+(YY2 = 7) and (OBJNUM = 6) and (YY1 = 7) => CLASS=G (22.0/0.0)
+(YY1 = 4) => CLASS=G (52.0/0.0)
+(DIAG = 34) => CLASS=G (38.0/11.0)
+(OBJNUM = 3) and (XX1 = 0) and (XX2 = 5) => CLASS=G (18.0/0.0)
+(SIZE = 12.21) and (OBJNUM = 0) => CLASS=G (12.0/0.0)
+(YY1 = 9) and (YY2 = 18) and (XX2 = 0) => CLASS=G (25.0/3.0)
+(OBJNUM = 4) and (SIZE = 12.21) => CLASS=G (12.0/1.0)
+(OBJNUM = 4) and (YY2 = 11) => CLASS=G (11.0/0.0)
+(YY1 = 10) and (XX2 = 0) and (YY2 = 20) => CLASS=G (11.0/0.0)
+(OBJNUM = 3) and (XX1 = 0) and (SIZE = 10.82) => CLASS=G (8.0/0.0)
+(OBJNUM = 4) and (XX1 = 8) and (XX2 = 16) => CLASS=G (4.0/0.0)
+(OBJNUM = 2) and (XX2 = 2) => CLASS=G (45.0/1.0)
+(OBJNUM = 3) and (XX1 = 0) and (XX2 = 8) and (SIZE = 9.43) => CLASS=G (7.0/0.0)
+(OBJNUM = 4) and (XX1 = 4) => CLASS=G (12.0/0.0)
+(OBJNUM = 3) and (XX1 = 0) and (XX2 = 7) and (SIZE = 8.6) => CLASS=G (4.0/0.0)
+(OBJNUM = 3) and (XX1 = 0) and (YY1 = 28) and (YY2 = 35) => CLASS=G (11.0/0.0)
+(OBJNUM = 0) and (XX2 = 2) => CLASS=G (38.0/0.0)
+(YY1 = 12) and (YY2 = 24) and (XX2 = 0) => CLASS=G (19.0/2.0)
+(OBJNUM = 3) and (XX1 = 0) and (YY2 = 10) => CLASS=G (7.0/1.0)
+(OBJNUM = 3) and (XX1 = 0) and (YY2 = 20) and (YY1 = 16) => CLASS=G (7.0/0.0)
+(SIZE = 26.4) and (OBJNUM = 2) => CLASS=G (13.0/0.0)
+(OBJNUM = 0) and (XX1 = 21) => CLASS=G (30.0/0.0)
+(OBJNUM = 3) and (YY1 = 12) and (YY2 = 16) => CLASS=G (11.0/0.0)
+(YY1 = 10) and (XX2 = 7) => CLASS=G (12.0/2.0)
+(OBJNUM = 3) and (XX1 = 0) and (SIZE = 7.62) => CLASS=G (4.0/0.0)
+(OBJNUM = 2) and (XX2 = 1) => CLASS=G (27.0/0.0)
+(OBJNUM = 3) and (XX1 = 0) and (YY1 = 33) and (YY2 = 41) => CLASS=G (7.0/0.0)
+(OBJNUM = 4) and (YY2 = 44) and (YY1 = 36) => CLASS=G (7.0/0.0)
+(YY2 = 50) and (XX2 = 25) => CLASS=G (12.0/1.0)
+(SIZE = 11.66) and (OBJNUM = 0) => CLASS=G (15.0/0.0)
+(OBJNUM = 4) and (XX1 = 2) => CLASS=G (9.0/0.0)
+(OBJNUM = 3) and (YY1 = 17) and (YY2 = 22) => CLASS=G (9.0/0.0)
+(SIZE = 14.42) and (OBJNUM = 0) => CLASS=G (10.0/0.0)
+(OBJNUM = 3) and (XX1 = 0) and (YY2 = 40) and (YY1 = 32) => CLASS=G (6.0/0.0)
+(YY2 = 11) and (OBJNUM = 1) => CLASS=G (8.0/0.0)
+(YY2 = 12) and (XX1 = 1) => CLASS=G (7.0/1.0)
+(YY2 = 34) and (SIZE = 17) => CLASS=G (14.0/1.0)
+(OBJNUM = 2) and (XX1 = 0) and (YY2 = 36) and (YY1 = 24) => CLASS=G (17.0/0.0)
+(YY2 = 3) and (OBJNUM = 0) => CLASS=G (18.0/0.0)
+(OBJNUM = 3) and (XX1 = 0) and (YY1 = 27) and (YY2 = 34) => CLASS=G (6.0/0.0)
+(OBJNUM = 3) and (YY1 = 13) and (YY2 = 18) => CLASS=G (9.0/0.0)
+(OBJNUM = 3) and (YY1 = 29) and (YY2 = 38) => CLASS=G (11.0/0.0)
+(SIZE = 17.2) and (OBJNUM = 0) => CLASS=G (3.0/0.0)
+(YY1 = 15) and (SIZE = 15) => CLASS=G (19.0/2.0)
+(OBJNUM = 4) and (YY2 = 48) => CLASS=G (6.0/0.0)
+(OBJNUM = 4) and (SIZE = 9.43) => CLASS=G (9.0/2.0)
+(OBJNUM = 2) and (XX1 = 0) and (YY1 = 30) and (YY2 = 44) => CLASS=G (8.0/0.0)
+(YY1 = 2) => CLASS=G (10.0/0.0)
+(OBJNUM = 2) and (XX1 = 0) and (YY1 = 26) => CLASS=G (16.0/1.0)
+(OBJNUM = 0) and (XX1 = 17) => CLASS=G (14.0/0.0)
+(OBJNUM = 3) and (SIZE = 20.25) => CLASS=G (9.0/1.0)
+(XX2 = 6) and (OBJNUM = 0) => CLASS=G (8.0/0.0)
+(OBJNUM = 2) and (XX1 = 0) and (YY1 = 22) and (YY2 = 34) => CLASS=G (13.0/0.0)
+(OBJNUM = 0) and (YY2 = 11) and (XX1 = 14) => CLASS=G (8.0/0.0)
+(YY2 = 12) and (SIZE = 24.19) and (OBJNUM = 0) => CLASS=G (13.0/0.0)
+(YY2 = 7) and (SIZE = 13.04) and (OBJNUM = 0) => CLASS=G (9.0/0.0)
+(OBJNUM = 3) and (YY2 = 36) and (YY1 = 27) => CLASS=G (10.0/0.0)
+(OBJNUM = 2) and (XX1 = 0) and (YY1 = 28) => CLASS=G (10.0/1.0)
+(OBJNUM = 4) and (XX1 = 1) => CLASS=G (6.0/0.0)
+(OBJNUM = 4) and (XX1 = 6) => CLASS=G (16.0/7.0)
+(YY2 = 50) and (YY1 = 34) => CLASS=G (8.0/0.0)
+(YY2 = 9) and (OBJNUM = 6) and (YY1 = 9) => CLASS=G (11.0/0.0)
+(OBJNUM = 3) and (XX1 = 0) and (YY1 = 29) and (YY2 = 36) => CLASS=G (6.0/0.0)
+(SIZE = 17.2) and (XX2 = 14) and (YY1 = 22) => CLASS=G (4.0/0.0)
+(YY2 = 46) and (YY1 = 35) => CLASS=G (10.0/1.0)
+(OBJNUM = 0) and (YY2 = 8) and (XX2 = 1) => CLASS=G (3.0/0.0)
+(SIZE = 12.81) and (OBJNUM = 2) => CLASS=G (10.0/1.0)
+(OBJNUM = 4) and (XX2 = 37) => CLASS=G (4.0/0.0)
+(YY1 = 12) and (YY2 = 18) and (OBJNUM = 2) => CLASS=G (7.0/0.0)
+(YY2 = 28) and (YY1 = 14) and (XX2 = 0) => CLASS=G (9.0/0.0)
+(OBJNUM = 3) and (YY1 = 15) and (YY2 = 20) => CLASS=G (8.0/0.0)
+(OBJNUM = 4) and (SIZE = 11.66) => CLASS=G (4.0/0.0)
+(OBJNUM = 0) and (XX2 = 8) => CLASS=G (8.0/0.0)
+(YY1 = 18) and (YY2 = 24) => CLASS=G (12.0/3.0)
+(XX1 = 9) and (OBJNUM = 0) => CLASS=G (4.0/0.0)
+(OBJNUM = 0) and (XX1 = 26) => CLASS=G (11.0/0.0)
+(YY2 = 32) and (SIZE = 16) => CLASS=G (11.0/2.0)
+(OBJNUM = 0) and (XX1 = 25) => CLASS=G (10.0/0.0)
+(YY2 = 26) and (YY1 = 13) and (XX2 = 0) => CLASS=G (17.0/2.0)
+(OBJNUM = 4) and (XX1 = 7) and (YY1 = 24) => CLASS=G (3.0/0.0)
+(OBJNUM = 0) and (XX1 = 16) => CLASS=G (8.0/0.0)
+(DIAG = 59.36) => CLASS=G (6.0/0.0)
+(YY1 = 10) and (YY2 = 19) and (XX2 = 0) => CLASS=G (14.0/3.0)
+(OBJNUM = 4) and (YY2 = 42) and (YY1 = 35) => CLASS=G (5.0/0.0)
+(OBJNUM = 2) and (XX1 = 0) and (XX2 = 5) => CLASS=G (9.0/3.0)
+(DIAG = 58.83) => CLASS=G (5.0/0.0)
+(DIAG = 61.62) => CLASS=G (6.0/0.0)
+(DIAG = 49.52) => CLASS=G (9.0/3.0)
+(OBJNUM = 0) and (XX1 = 27) => CLASS=G (6.0/0.0)
+(YY1 = 12) and (YY2 = 23) and (XX2 = 0) => CLASS=G (9.0/0.0)
+(OBJNUM = 2) and (XX1 = 0) and (YY1 = 30) and (YY2 = 46) => CLASS=G (6.0/0.0)
+(OBJNUM = 3) and (XX1 = 0) and (SIZE = 17.09) => CLASS=G (3.0/0.0)
+(OBJNUM = 0) and (XX1 = 19) => CLASS=G (7.0/0.0)
+(OBJNUM = 0) and (YY2 = 9) and (XX1 = 12) => CLASS=G (4.0/0.0)
+(YY1 = 11) and (SIZE = 7) => CLASS=G (6.0/1.0)
+(OBJNUM = 3) and (XX1 = 0) and (YY1 = 17) and (YY2 = 21) => CLASS=G (5.0/0.0)
+(OBJNUM = 2) and (XX1 = 0) and (YY2 = 30) and (YY1 = 20) => CLASS=G (10.0/0.0)
+(OBJNUM = 0) and (XX1 = 18) => CLASS=G (10.0/0.0)
+(OBJNUM = 3) and (XX1 = 0) and (SIZE = 8.54) => CLASS=G (3.0/0.0)
+(SIZE = 13.89) and (OBJNUM = 3) => CLASS=G (8.0/3.0)
+(OBJNUM = 0) and (XX1 = 10) => CLASS=G (5.0/0.0)
+(OBJNUM = 2) and (XX1 = 0) and (YY1 = 18) and (YY2 = 28) => CLASS=G (7.0/0.0)
+ => CLASS=R (13236.0/10101.0)
+
+Number of Rules : 180
+
+
+Time taken to build model: 22.78 seconds
+Time taken to test model on training data: 0.08 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances        9651               47.2255 %
+Incorrectly Classified Instances     10785               52.7745 %
+Kappa statistic                          0.3744
+K&B Relative Info Score             802776.1822 %
+K&B Information Score                23778.0833 bits      1.1635 bits/instance
+Class complexity | order 0           60507.7026 bits      2.9608 bits/instance
+Class complexity | scheme            38413.906  bits      1.8797 bits/instance
+Complexity improvement     (Sf)      22093.7965 bits      1.0811 bits/instance
+Mean absolute error                      0.1169
+Root mean squared error                  0.2417
+Relative absolute error                 67.2953 %
+Root relative squared error             82.0345 %
+Total Number of Instances            20436     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0         0          0         0         0          ?        A
+                 0         0          0         0         0          ?        C
+                 0.636     0.014      0.864     0.636     0.733      0.873    D
+                 0.2       0          1         0.2       0.333      0.746    E
+                 0.019     0.001      0.74      0.019     0.036      0.693    F
+                 0.891     0.006      0.962     0.891     0.925      0.969    G
+                 0.414     0.008      0.883     0.414     0.564      0.803    H
+                 0.333     0          1         0.333     0.5        0.782    L
+                 0.071     0.011      0.535     0.071     0.125      0.709    P
+                 0.895     0.597      0.237     0.895     0.375      0.705    R
+Weighted Avg.    0.472     0.107      0.74      0.472     0.456      0.786
+
+
+=== Confusion Matrix ===
+
+    a    b    c    d    e    f    g    h    i    j   <-- classified as
+    0    0    0    0    0    0    0    0    0    0 |    a = A
+    0    0    0    0    0    0    0    0    0    0 |    b = C
+    0    0 1546    0    0    4   38    0    0  843 |    c = D
+    0    0    0  500    8    9   10    0    0 1973 |    d = E
+    0    0    8    0   37   20   12    0    0 1923 |    e = F
+    0    0   29    0    0 2686   77    0    0  221 |    f = G
+    0    0   52    0    5    6 1035    0    0 1402 |    g = H
+    0    0    4    0    0   15    0  500    0  981 |    h = L
+    0    0    0    0    0   19    0    0  212 2758 |    i = P
+    0    0  151    0    0   33    0    0  184 3135 |    j = R
+
+
+=== Error on test data ===
+
+Correctly Classified Instances          43                0.8417 %
+Incorrectly Classified Instances      5066               99.1583 %
+Kappa statistic                          0.0081
+K&B Relative Info Score               4135.4894 %
+K&B Information Score                  122.4924 bits      0.024  bits/instance
+Class complexity | order 0           72281.1456 bits     14.1478 bits/instance
+Class complexity | scheme          5403439.2076 bits   1057.6315 bits/instance
+Complexity improvement     (Sf)    -5331158.0621 bits  -1043.4837 bits/instance
+Mean absolute error                      0.1984
+Root mean squared error                  0.3929
+Relative absolute error                 99.3648 %
+Root relative squared error            116.9906 %
+Total Number of Instances             5109     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0         0          0         0         0          0.5      A
+                 0         0          0         0         0          0.5      C
+                 0.551     0.012      0.426     0.551     0.48       0.886    D
+                 0         0          0         0         0          ?        E
+                 0         0.002      0         0         0          ?        F
+                 0         0.332      0         0         0          ?        G
+                 0         0.18       0         0         0          ?        H
+                 0         0          0         0         0          ?        L
+                 0         0.001      0         0         0          ?        P
+                 0         0.465      0         0         0          ?        R
+Weighted Avg.    0.008     0          0.006     0.008     0.007      0.506
+
+
+=== Confusion Matrix ===
+
+    a    b    c    d    e    f    g    h    i    j   <-- classified as
+    0    0   40    0    8   75  909    0    5 1995 |    a = A
+    0    0   18    0    0 1623   12    0    0  346 |    b = C
+    0    0   43    0    0    0    0    0    0   35 |    c = D
+    0    0    0    0    0    0    0    0    0    0 |    d = E
+    0    0    0    0    0    0    0    0    0    0 |    e = F
+    0    0    0    0    0    0    0    0    0    0 |    f = G
+    0    0    0    0    0    0    0    0    0    0 |    g = H
+    0    0    0    0    0    0    0    0    0    0 |    h = L
+    0    0    0    0    0    0    0    0    0    0 |    i = P
+    0    0    0    0    0    0    0    0    0    0 |    j = R
+

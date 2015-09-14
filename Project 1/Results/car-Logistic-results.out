@@ -1,0 +1,131 @@
+
+Logistic Regression with ridge parameter of 1.0E-8
+Coefficients...
+                                   Class
+Variable                           unacc                     acc                    good
+========================================================================================
+Buying=vhigh                     22.2985                 19.5926                -23.3574
+Buying=high                      36.7731                 33.8277                 19.0147
+Buying=med                      -17.0962                -15.8671                 -5.4021
+Buying=low                      -25.7327                -23.2816                 -7.2693
+Maint=vhigh                      45.6557                 41.7222                 19.3113
+Maint=high                       -4.0067                 -3.7244                -25.2052
+Maint=med                       -16.7384                -15.0358                  2.6833
+Maint=low                       -21.4272                -19.7511                  2.7617
+Doors=2                           6.9987                  4.9059                  2.4889
+Doors=3                           0.5381                  0.6437                  0.6895
+Doors=4                          -3.6191                 -2.6701                 -1.5361
+Doors=5more                      -3.6191                 -2.6701                 -1.5361
+Persons=2                        43.0358                 11.2619                   9.588
+Persons=4                       -21.0276                 -4.9268                 -4.1204
+Persons=more                    -21.8896                  -6.301                 -5.4382
+Lug_boot=small                    25.964                 22.9407                 17.6923
+Lug_boot=med                     -8.6214                 -8.2374                 -7.1503
+Lug_boot=big                    -17.2674                -14.6375                -10.4921
+Safety=low                       36.2179                   4.606                   9.849
+Safety=med                        2.5932                 16.5126                  9.9246
+Safety=high                     -38.7718                -21.1136                -19.7629
+Intercept                        91.2862                 63.2279                 34.0185
+
+
+Odds Ratios...
+                                   Class
+Variable                           unacc                     acc                    good
+========================================================================================
+Buying=vhigh             4831931196.4733          322812783.4999                       0
+Buying=high         9.339744205444424E15    4.911201665124716E14          181132086.8429
+Buying=med                             0                       0                  0.0045
+Buying=low                             0                       0                  0.0007
+Maint=vhigh        6.7301235377776796E19  1.31746648658969318E18          243661569.7438
+Maint=high                        0.0182                  0.0241                       0
+Maint=med                              0                       0                 14.6332
+Maint=low                              0                       0                 15.8261
+Doors=2                        1095.1847                135.0846                 12.0479
+Doors=3                           1.7128                  1.9034                  1.9927
+Doors=4                           0.0268                  0.0692                  0.2152
+Doors=5more                       0.0268                  0.0692                  0.2152
+Persons=2          4.9003770758872463E18                77799.63              14588.2354
+Persons=4                              0                  0.0072                  0.0162
+Persons=more                           0                  0.0018                  0.0043
+Lug_boot=small      1.888020924828259E11         9183283057.1037           48269605.2177
+Lug_boot=med                      0.0002                  0.0003                  0.0008
+Lug_boot=big                           0                       0                       0
+Safety=low          5.360834566634427E15                100.0853               18939.115
+Safety=med                       13.3729           14836741.2301              20427.5248
+Safety=high                            0                       0                       0
+
+
+Time taken to build model: 0.95 seconds
+Time taken to test model on training data: 0.06 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances        1319               95.4414 %
+Incorrectly Classified Instances        63                4.5586 %
+Kappa statistic                          0.9105
+K&B Relative Info Score             122659.9509 %
+K&B Information Score                 1628.4664 bits      1.1783 bits/instance
+Class complexity | order 0            1828.7698 bits      1.3233 bits/instance
+Class complexity | scheme              244.4552 bits      0.1769 bits/instance
+Complexity improvement     (Sf)       1584.3146 bits      1.1464 bits/instance
+Mean absolute error                      0.0364
+Root mean squared error                  0.1329
+Relative absolute error                 14.3949 %
+Root relative squared error             37.3871 %
+Total Number of Instances             1382     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.968     0.033      0.982     0.968     0.975      0.994    unacc
+                 0.936     0.035      0.899     0.936     0.917      0.991    acc
+                 0.855     0.004      0.922     0.855     0.887      0.997    good
+                 0.969     0.005      0.913     0.969     0.94       0.999    vgood
+Weighted Avg.    0.954     0.031      0.955     0.954     0.955      0.994
+
+
+=== Confusion Matrix ===
+
+   a   b   c   d   <-- classified as
+ 875  28   1   0 |   a = unacc
+  16 322   4   2 |   b = acc
+   0   6  59   4 |   c = good
+   0   2   0  63 |   d = vgood
+
+
+=== Error on test data ===
+
+Correctly Classified Instances         302               87.2832 %
+Incorrectly Classified Instances        44               12.7168 %
+Kappa statistic                          0.5665
+K&B Relative Info Score              12720.0442 %
+K&B Information Score                  168.8747 bits      0.4881 bits/instance
+Class complexity | order 0             268.4213 bits      0.7758 bits/instance
+Class complexity | scheme              189.7767 bits      0.5485 bits/instance
+Complexity improvement     (Sf)         78.6445 bits      0.2273 bits/instance
+Mean absolute error                      0.0682
+Root mean squared error                  0.2221
+Relative absolute error                 34.6237 %
+Root relative squared error             83.8359 %
+Total Number of Instances              346     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.863     0.05       0.992     0.863     0.923      0.952    unacc
+                 0.95      0.137      0.475     0.95      0.633      0.952    acc
+                 0         0          0         0         0          ?        good
+                 0         0          0         0         0          ?        vgood
+Weighted Avg.    0.873     0.06       0.933     0.873     0.89       0.952
+
+
+=== Confusion Matrix ===
+
+   a   b   c   d   <-- classified as
+ 264  42   0   0 |   a = unacc
+   2  38   0   0 |   b = acc
+   0   0   0   0 |   c = good
+   0   0   0   0 |   d = vgood
+

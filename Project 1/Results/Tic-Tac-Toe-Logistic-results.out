@@ -1,0 +1,135 @@
+
+Logistic Regression with ridge parameter of 1.0E-8
+Coefficients...
+                                          Class
+Variable                                      x                      o
+======================================================================
+top-middle-square=x                    -93.5851                 80.926
+top-middle-square=o                     97.4925               -69.8553
+top-middle-square=b                     -1.3764                -13.289
+top-right-square=x                     -84.7969                81.0339
+top-right-square=o                      92.9299               -81.2394
+top-right-square=b                       -4.138                 -5.355
+middle-left-square=x                   -87.3136                73.0463
+middle-left-square=o                   103.7641               -77.6684
+middle-left-square=b                    -9.4539                -2.6393
+middle-middle-square=x                 -85.2014                 78.267
+middle-middle-square=o                  91.9888               -85.4855
+middle-middle-square=b                  -0.6842                 2.4318
+middle-right-square=x                  -82.8207                79.7925
+middle-right-square=o                    93.833               -86.1087
+middle-right-square=b                    0.1354                -5.1996
+bottom-left-square=x                   -82.3799                74.0333
+bottom-left-square=o                     95.347               -81.6363
+bottom-left-square=b                    -6.0472                -0.2024
+bottom-middle-square=x                 -81.1145                80.9727
+bottom-middle-square=o                  95.5392               -87.4481
+bottom-middle-square=b                  -4.7417                -4.6972
+bottom-right-square=x                  -80.9338                70.0658
+bottom-right-square=o                   97.4924               -78.6223
+bottom-right-square=b                  -12.4815                 2.6254
+Class                                  -65.5582                76.2972
+Intercept                               19.8197               -95.9243
+
+
+Odds Ratios...
+                                          Class
+Variable                                      x                      o
+======================================================================
+top-middle-square=x                           0  1.3986200983558156E35
+top-middle-square=o          2.1901539720034E42                      0
+top-middle-square=b                      0.2525                      0
+top-right-square=x                            0  1.5579862812297704E35
+top-right-square=o        2.2852371194903623E40                      0
+top-right-square=b                        0.016                 0.0047
+middle-left-square=x                          0   5.291937382464133E31
+middle-left-square=o      1.1592148599059738E45                      0
+middle-left-square=b                     0.0001                 0.0714
+middle-middle-square=x                        0   9.793534456768222E33
+middle-middle-square=o     8.917426892793366E39                      0
+middle-middle-square=b                   0.5045                11.3797
+middle-right-square=x                         0   4.502357774230537E34
+middle-right-square=o      5.638513011736501E40                      0
+middle-right-square=b                     1.145                 0.0055
+bottom-left-square=x                          0  1.4198679673580454E32
+bottom-left-square=o      2.5625220030221486E41                      0
+bottom-left-square=b                     0.0024                 0.8168
+bottom-middle-square=x                        0  1.4655000621382498E35
+bottom-middle-square=o     3.105727899313953E41                      0
+bottom-middle-square=b                   0.0087                 0.0091
+bottom-right-square=x                         0  2.6864140014101083E30
+bottom-right-square=o     2.1899262070501817E42                      0
+bottom-right-square=b                         0                13.8107
+Class                                         0  1.3659652689129462E33
+
+
+Time taken to build model: 0.16 seconds
+Time taken to test model on training data: 0.02 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances         762               99.4778 %
+Incorrectly Classified Instances         4                0.5222 %
+Kappa statistic                          0.992 
+K&B Relative Info Score              75733.3459 %
+K&B Information Score                 1174.3253 bits      1.5331 bits/instance
+Class complexity | order 0            1187.5604 bits      1.5503 bits/instance
+Class complexity | scheme               13.7433 bits      0.0179 bits/instance
+Complexity improvement     (Sf)       1173.817  bits      1.5324 bits/instance
+Mean absolute error                      0.0057
+Root mean squared error                  0.0535
+Relative absolute error                  1.3204 %
+Root relative squared error             11.4869 %
+Total Number of Instances              766     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.987     0.002      0.996     0.987     0.991      1        x
+                 1         0          1         1         1          1        o
+                 0.995     0.005      0.986     0.995     0.99       1        b
+Weighted Avg.    0.995     0.002      0.995     0.995     0.995      1    
+
+
+=== Confusion Matrix ===
+
+   a   b   c   <-- classified as
+ 223   0   3 |   a = x
+   0 335   0 |   b = o
+   1   0 204 |   c = b
+
+
+=== Error on test data ===
+
+Correctly Classified Instances         191               99.4792 %
+Incorrectly Classified Instances         1                0.5208 %
+Kappa statistic                          0     
+K&B Relative Info Score              21601.0714 %
+K&B Information Score                  334.9474 bits      1.7445 bits/instance
+Class complexity | order 0             337.9759 bits      1.7603 bits/instance
+Class complexity | scheme                8.6598 bits      0.0451 bits/instance
+Complexity improvement     (Sf)        329.3161 bits      1.7152 bits/instance
+Mean absolute error                      0.0051
+Root mean squared error                  0.0611
+Relative absolute error                  1.0945 %
+Root relative squared error             12.1375 %
+Total Number of Instances              192     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.995     0          1         0.995     0.997      ?        x
+                 0         0          0         0         0          ?        o
+                 0         0.005      0         0         0          ?        b
+Weighted Avg.    0.995     0          1         0.995     0.997      0    
+
+
+=== Confusion Matrix ===
+
+   a   b   c   <-- classified as
+ 191   0   1 |   a = x
+   0   0   0 |   b = o
+   0   0   0 |   c = b
+

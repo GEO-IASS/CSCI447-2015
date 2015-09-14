@@ -1,0 +1,85 @@
+
+JRIP rules:
+===========
+
+(middle-middle-square = o) and (bottom-right-square = o) and (top-left-square = o) => Class=negative (50.0/0.0)
+(middle-middle-square = o) and (bottom-left-square = o) and (top-right-square = o) => Class=negative (50.0/0.0)
+(top-left-square = x) and (top-middle-square = x) => Class=negative (33.0/0.0)
+(middle-middle-square = o) and (bottom-middle-square = o) and (top-middle-square = o) => Class=negative (36.0/0.0)
+(bottom-right-square = o) and (bottom-left-square = o) and (bottom-middle-square = o) => Class=negative (27.0/0.0)
+(middle-middle-square = o) and (middle-right-square = o) and (middle-left-square = o) => Class=negative (27.0/0.0)
+(top-right-square = o) and (top-middle-square = o) and (top-left-square = o) => Class=negative (36.0/0.0)
+(bottom-right-square = o) and (middle-right-square = o) and (top-right-square = o) => Class=negative (24.0/0.0)
+(bottom-left-square = o) and (middle-left-square = o) and (top-left-square = o) => Class=negative (36.0/0.0)
+(top-left-square = x) and (top-right-square = x) and (top-middle-square = o) => Class=negative (5.0/0.0)
+ => Class=positive (442.0/8.0)
+
+Number of Rules : 11
+
+
+Time taken to build model: 0.14 seconds
+Time taken to test model on training data: 0.02 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances         758               98.9556 %
+Incorrectly Classified Instances         8                1.0444 %
+Kappa statistic                          0.9787
+K&B Relative Info Score              73816.2484 %
+K&B Information Score                  728.7423 bits      0.9514 bits/instance
+Class complexity | order 0             756.1734 bits      0.9872 bits/instance
+Class complexity | scheme               57.7397 bits      0.0754 bits/instance
+Complexity improvement     (Sf)        698.4337 bits      0.9118 bits/instance
+Mean absolute error                      0.0205
+Root mean squared error                  0.1013
+Relative absolute error                  4.1758 %
+Root relative squared error             20.4352 %
+Total Number of Instances              766     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 1         0.024      0.982     1         0.991      0.988    positive
+                 0.976     0          1         0.976     0.988      0.988    negative
+Weighted Avg.    0.99      0.014      0.99      0.99      0.99       0.988
+
+
+=== Confusion Matrix ===
+
+   a   b   <-- classified as
+ 434   0 |   a = positive
+   8 324 |   b = negative
+
+
+=== Error on test data ===
+
+Correctly Classified Instances          48               25      %
+Incorrectly Classified Instances       144               75      %
+Kappa statistic                          0     
+K&B Relative Info Score             -13725.623  %
+K&B Information Score                 -135.5046 bits     -0.7058 bits/instance
+Class complexity | order 0             157.4575 bits      0.8201 bits/instance
+Class complexity | scheme           154657.2649 bits    805.5066 bits/instance
+Complexity improvement     (Sf)    -154499.8074 bits   -804.6865 bits/instance
+Mean absolute error                      0.7545
+Root mean squared error                  0.8661
+Relative absolute error                174.0166 %
+Root relative squared error            199.7429 %
+Total Number of Instances              192     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.25      0          1         0.25      0.4        ?        positive
+                 0         0.75       0         0         0          ?        negative
+Weighted Avg.    0.25      0          1         0.25      0.4        0    
+
+
+=== Confusion Matrix ===
+
+   a   b   <-- classified as
+  48 144 |   a = positive
+   0   0 |   b = negative
+

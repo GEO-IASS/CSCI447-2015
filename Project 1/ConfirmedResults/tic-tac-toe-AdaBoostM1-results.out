@@ -1,0 +1,302 @@
+
+AdaBoostM1: Base classifiers and their weights: 
+
+Decision Stump
+
+Classifications
+
+middle-middle-square = o : negative
+middle-middle-square != o : positive
+middle-middle-square is missing : positive
+
+Class distributions
+
+middle-middle-square = o
+positive	negative	
+0.3167259786476868	0.6832740213523132	
+middle-middle-square != o
+positive	negative	
+0.711340206185567	0.28865979381443296	
+middle-middle-square is missing
+positive	negative	
+0.566579634464752	0.43342036553524804	
+
+
+Weight: 0.85
+
+Decision Stump
+
+Classifications
+
+bottom-right-square = o : negative
+bottom-right-square != o : positive
+bottom-right-square is missing : positive
+
+Class distributions
+
+bottom-right-square = o
+positive	negative	
+0.34562827375813043	0.6543717262418696	
+bottom-right-square != o
+positive	negative	
+0.6083378907600526	0.3916621092399474	
+bottom-right-square is missing
+positive	negative	
+0.5155521943841327	0.48444780561586726	
+
+
+Weight: 0.51
+
+Decision Stump
+
+Classifications
+
+bottom-left-square = o : negative
+bottom-left-square != o : positive
+bottom-left-square is missing : negative
+
+Class distributions
+
+bottom-left-square = o
+positive	negative	
+0.3039764009197531	0.6960235990802469	
+bottom-left-square != o
+positive	negative	
+0.5769144156039	0.4230855843961	
+bottom-left-square is missing
+positive	negative	
+0.4775749773355376	0.5224250226644623	
+
+
+Weight: 0.49
+
+Decision Stump
+
+Classifications
+
+top-right-square = o : negative
+top-right-square != o : positive
+top-right-square is missing : negative
+
+Class distributions
+
+top-right-square = o
+positive	negative	
+0.28791461378887	0.71208538621113	
+top-right-square != o
+positive	negative	
+0.5462928296391591	0.4537071703608408	
+top-right-square is missing
+positive	negative	
+0.4414674420506889	0.5585325579493112	
+
+
+Weight: 0.46
+
+Decision Stump
+
+Classifications
+
+top-middle-square = b : positive
+top-middle-square != b : negative
+top-middle-square is missing : negative
+
+Class distributions
+
+top-middle-square = b
+positive	negative	
+0.5777277870337105	0.42227221296628936	
+top-middle-square != b
+positive	negative	
+0.3433627862937078	0.6566372137062922	
+top-middle-square is missing
+positive	negative	
+0.41570406104479346	0.5842959389552066	
+
+
+Weight: 0.54
+
+Decision Stump
+
+Classifications
+
+top-left-square = b : positive
+top-left-square != b : negative
+top-left-square is missing : negative
+
+Class distributions
+
+top-left-square = b
+positive	negative	
+0.6483323834778366	0.3516676165221634	
+top-left-square != b
+positive	negative	
+0.3972803417996674	0.6027196582003326	
+top-left-square is missing
+positive	negative	
+0.4637880756938404	0.5362119243061595	
+
+
+Weight: 0.47
+
+Decision Stump
+
+Classifications
+
+middle-middle-square = x : positive
+middle-middle-square != x : negative
+middle-middle-square is missing : positive
+
+Class distributions
+
+middle-middle-square = x
+positive	negative	
+0.6346862192374341	0.3653137807625659	
+middle-middle-square != x
+positive	negative	
+0.4119414580812289	0.588058541918771	
+middle-middle-square is missing
+positive	negative	
+0.5187535083842525	0.4812464916157476	
+
+
+Weight: 0.45
+
+Decision Stump
+
+Classifications
+
+bottom-right-square = x : positive
+bottom-right-square != x : negative
+bottom-right-square is missing : positive
+
+Class distributions
+
+bottom-right-square = x
+positive	negative	
+0.6136937710832504	0.3863062289167496	
+bottom-right-square != x
+positive	negative	
+0.44446049744648797	0.555539502553512	
+bottom-right-square is missing
+positive	negative	
+0.5244680139644883	0.4755319860355118	
+
+
+Weight: 0.34
+
+Decision Stump
+
+Classifications
+
+bottom-left-square = x : positive
+bottom-left-square != x : negative
+bottom-left-square is missing : positive
+
+Class distributions
+
+bottom-left-square = x
+positive	negative	
+0.6252370216558439	0.37476297834415595	
+bottom-left-square != x
+positive	negative	
+0.4494807741714898	0.5505192258285103	
+bottom-left-square is missing
+positive	negative	
+0.5298130382787276	0.47018696172127245	
+
+
+Weight: 0.34
+
+Decision Stump
+
+Classifications
+
+middle-left-square = o : negative
+middle-left-square != o : positive
+middle-left-square is missing : positive
+
+Class distributions
+
+middle-left-square = o
+positive	negative	
+0.43467578214795594	0.5653242178520441	
+middle-left-square != o
+positive	negative	
+0.5860943316267571	0.4139056683732429	
+middle-left-square is missing
+positive	negative	
+0.5381782497747356	0.46182175022526434	
+
+
+Weight: 0.32
+
+Number of performed Iterations: 10
+
+
+Time taken to build model: 0.75 seconds
+Time taken to test model on training data: 0.08 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances         596               77.8068 %
+Incorrectly Classified Instances       170               22.1932 %
+Kappa statistic                          0.5426
+K&B Relative Info Score              29129.1878 %
+K&B Information Score                  287.5745 bits      0.3754 bits/instance
+Class complexity | order 0             756.1734 bits      0.9872 bits/instance
+Class complexity | scheme              505.8679 bits      0.6604 bits/instance
+Complexity improvement     (Sf)        250.3055 bits      0.3268 bits/instance
+Mean absolute error                      0.3189
+Root mean squared error                  0.3879
+Relative absolute error                 64.9313 %
+Root relative squared error             78.2836 %
+Total Number of Instances              766     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.843     0.307      0.782     0.843     0.812      0.859    positive
+                 0.693     0.157      0.772     0.693     0.73       0.859    negative
+Weighted Avg.    0.778     0.242      0.778     0.778     0.776      0.859
+
+
+=== Confusion Matrix ===
+
+   a   b   <-- classified as
+ 366  68 |   a = positive
+ 102 230 |   b = negative
+
+
+=== Error on test data ===
+
+Correctly Classified Instances          81               42.1875 %
+Incorrectly Classified Instances       111               57.8125 %
+Kappa statistic                          0     
+K&B Relative Info Score              -7117.9537 %
+K&B Information Score                  -70.2712 bits     -0.366  bits/instance
+Class complexity | order 0             157.4575 bits      0.8201 bits/instance
+Class complexity | scheme              309.8479 bits      1.6138 bits/instance
+Complexity improvement     (Sf)       -152.3904 bits     -0.7937 bits/instance
+Mean absolute error                      0.5801
+Root mean squared error                  0.6302
+Relative absolute error                133.7997 %
+Root relative squared error            145.3404 %
+Total Number of Instances              192     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.422     0          1         0.422     0.593      ?        positive
+                 0         0.578      0         0         0          ?        negative
+Weighted Avg.    0.422     0          1         0.422     0.593      0    
+
+
+=== Confusion Matrix ===
+
+   a   b   <-- classified as
+  81 111 |   a = positive
+   0   0 |   b = negative
+

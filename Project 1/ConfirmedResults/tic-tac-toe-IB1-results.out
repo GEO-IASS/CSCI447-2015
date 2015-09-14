@@ -1,0 +1,69 @@
+
+IB1 classifier
+
+Time taken to build model: 0.05 seconds
+Time taken to test model on training data: 0.11 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances         766              100      %
+Incorrectly Classified Instances         0                0      %
+Kappa statistic                          1     
+K&B Relative Info Score              76594.814  %
+K&B Information Score                  756.1734 bits      0.9872 bits/instance
+Class complexity | order 0             756.1734 bits      0.9872 bits/instance
+Class complexity | scheme                0      bits      0      bits/instance
+Complexity improvement     (Sf)        756.1734 bits      0.9872 bits/instance
+Mean absolute error                      0     
+Root mean squared error                  0     
+Relative absolute error                  0      %
+Root relative squared error              0      %
+Total Number of Instances              766     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 1         0          1         1         1          ?        positive
+                 1         0          1         1         1          ?        negative
+Weighted Avg.    1         0          1         1         1          0    
+
+
+=== Confusion Matrix ===
+
+   a   b   <-- classified as
+ 434   0 |   a = positive
+   0 332 |   b = negative
+
+
+=== Error on test data ===
+
+Correctly Classified Instances         179               93.2292 %
+Incorrectly Classified Instances        13                6.7708 %
+Kappa statistic                          0     
+K&B Relative Info Score              13281.8663 %
+K&B Information Score                  131.1237 bits      0.6829 bits/instance
+Class complexity | order 0             157.4575 bits      0.8201 bits/instance
+Class complexity | scheme            13962      bits     72.7188 bits/instance
+Complexity improvement     (Sf)     -13804.5425 bits    -71.8987 bits/instance
+Mean absolute error                      0.0677
+Root mean squared error                  0.2602
+Relative absolute error                 15.6156 %
+Root relative squared error             60.012  %
+Total Number of Instances              192     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.932     0          1         0.932     0.965      ?        positive
+                 0         0.068      0         0         0          ?        negative
+Weighted Avg.    0.932     0          1         0.932     0.965      0    
+
+
+=== Confusion Matrix ===
+
+   a   b   <-- classified as
+ 179  13 |   a = positive
+   0   0 |   b = negative
+

@@ -1,0 +1,94 @@
+
+AdaBoostM1: No boosting possible, one classifier used!
+Decision Stump
+
+Classifications
+
+Flavanoids = 3 : 1
+Flavanoids != 3 : 2
+Flavanoids is missing : 2
+
+Class distributions
+
+Flavanoids = 3
+1	2	3	
+1.0	0.0	0.0	
+Flavanoids != 3
+1	2	3	
+0.13768115942028986	0.5144927536231884	0.34782608695652173	
+Flavanoids is missing
+1	2	3	
+0.1619718309859155	0.5	0.3380281690140845	
+
+
+
+Time taken to build model: 0.02 seconds
+Time taken to test model on training data: 0 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances          75               52.8169 %
+Incorrectly Classified Instances        67               47.1831 %
+Kappa statistic                          0.074 
+K&B Relative Info Score               1035.2849 %
+K&B Information Score                   15.1146 bits      0.1064 bits/instance
+Class complexity | order 0             206.5222 bits      1.4544 bits/instance
+Class complexity | scheme              195.5555 bits      1.3772 bits/instance
+Complexity improvement     (Sf)         10.9667 bits      0.0772 bits/instance
+Mean absolute error                      0.3857
+Root mean squared error                  0.4392
+Relative absolute error                 94.744  %
+Root relative squared error             97.429  %
+Total Number of Instances              142     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.174     0          1         0.174     0.296      0.587    1
+                 1         0.944      0.514     1         0.679      0.528    2
+                 0         0          0         0         0          0.521    3
+Weighted Avg.    0.528     0.472      0.419     0.528     0.388      0.535
+
+
+=== Confusion Matrix ===
+
+  a  b  c   <-- classified as
+  4 19  0 |  a = 1
+  0 71  0 |  b = 2
+  0 48  0 |  c = 3
+
+
+=== Error on test data ===
+
+Correctly Classified Instances           2                5.5556 %
+Incorrectly Classified Instances        34               94.4444 %
+Kappa statistic                          0     
+K&B Relative Info Score                245.2391 %
+K&B Information Score                    3.5804 bits      0.0995 bits/instance
+Class complexity | order 0              93.4181 bits      2.5949 bits/instance
+Class complexity | scheme               97.2603 bits      2.7017 bits/instance
+Complexity improvement     (Sf)         -3.8422 bits     -0.1067 bits/instance
+Mean absolute error                      0.5429
+Root mean squared error                  0.5962
+Relative absolute error                 97.5949 %
+Root relative squared error            100.4445 %
+Total Number of Instances               36     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.056     0          1         0.056     0.105      ?        1
+                 0         0.944      0         0         0          ?        2
+                 0         0          0         0         0          ?        3
+Weighted Avg.    0.056     0          1         0.056     0.105      0    
+
+
+=== Confusion Matrix ===
+
+  a  b  c   <-- classified as
+  2 34  0 |  a = 1
+  0  0  0 |  b = 2
+  0  0  0 |  c = 3
+

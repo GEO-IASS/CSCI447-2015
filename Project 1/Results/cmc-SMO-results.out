@@ -1,0 +1,303 @@
+
+SMO
+
+Kernel used:
+  Linear Kernel: K(x,y) = <x,y>
+
+Classifier for classes: 1, 2
+
+BinarySMO
+
+Machine linear: showing attribute weights, not support vectors.
+
+        -0.2458 * (normalized) Wifes_age=16
+ +       0.6395 * (normalized) Wifes_age=17
+ +      -0.193  * (normalized) Wifes_age=19
+ +      -0.4763 * (normalized) Wifes_age=20
+ +       0.61   * (normalized) Wifes_age=21
+ +       0.6102 * (normalized) Wifes_age=22
+ +      -0.1799 * (normalized) Wifes_age=23
+ +       0.4643 * (normalized) Wifes_age=24
+ +      -0.0917 * (normalized) Wifes_age=25
+ +       0.8644 * (normalized) Wifes_age=26
+ +       0.4415 * (normalized) Wifes_age=27
+ +      -0.3861 * (normalized) Wifes_age=28
+ +       0.2171 * (normalized) Wifes_age=29
+ +       0.1097 * (normalized) Wifes_age=30
+ +      -0.28   * (normalized) Wifes_age=31
+ +       0.3243 * (normalized) Wifes_age=32
+ +       0.4948 * (normalized) Wifes_age=33
+ +       0.1595 * (normalized) Wifes_age=34
+ +       0.3535 * (normalized) Wifes_age=35
+ +       0.4635 * (normalized) Wifes_age=36
+ +      -0.28   * (normalized) Wifes_age=37
+ +      -0.0384 * (normalized) Wifes_age=38
+ +      -0.2802 * (normalized) Wifes_age=39
+ +      -0.3863 * (normalized) Wifes_age=40
+ +       0.2888 * (normalized) Wifes_age=41
+ +      -0.1794 * (normalized) Wifes_age=42
+ +      -0.4887 * (normalized) Wifes_age=43
+ +       0.9401 * (normalized) Wifes_age=44
+ +      -0.2801 * (normalized) Wifes_age=45
+ +      -0.4465 * (normalized) Wifes_age=46
+ +      -0.4644 * (normalized) Wifes_age=47
+ +      -1.0028 * (normalized) Wifes_age=48
+ +      -1.2816 * (normalized) Wifes_age=49
+ +      -1.1328 * (normalized) Wifes_education=1
+ +      -0.4722 * (normalized) Wifes_education=2
+ +       0.3143 * (normalized) Wifes_education=3
+ +       1.2907 * (normalized) Wifes_education=4
+ +       0.8334 * (normalized) Husbands_education=1
+ +      -0.3553 * (normalized) Husbands_education=2
+ +      -0.1755 * (normalized) Husbands_education=3
+ +      -0.3026 * (normalized) Husbands_education=4
+ +      -2.3456 * (normalized) Number_of_children_ever_born=0
+ +      -0.7294 * (normalized) Number_of_children_ever_born=1
+ +      -0.2354 * (normalized) Number_of_children_ever_born=2
+ +       0.1008 * (normalized) Number_of_children_ever_born=3
+ +       0.2674 * (normalized) Number_of_children_ever_born=4
+ +       0.2683 * (normalized) Number_of_children_ever_born=5
+ +       0.3101 * (normalized) Number_of_children_ever_born=6
+ +       1.0953 * (normalized) Number_of_children_ever_born=7
+ +       0.2854 * (normalized) Number_of_children_ever_born=8
+ +       0.0783 * (normalized) Number_of_children_ever_born=9
+ +      -0.0951 * (normalized) Number_of_children_ever_born=10
+ +       1      * (normalized) Number_of_children_ever_born=13
+ +      -0.2088 * (normalized) Wifes_religion
+ +       0.1008 * (normalized) Wifes_now_working?
+ +      -0.0853 * (normalized) Husbands_occupation=1
+ +      -0.4933 * (normalized) Husbands_occupation=2
+ +      -0.2529 * (normalized) Husbands_occupation=3
+ +       0.8314 * (normalized) Husbands_occupation=4
+ +      -0.1741 * (normalized) Standard-of-living_index=1
+ +      -0.1126 * (normalized) Standard-of-living_index=2
+ +       0.1131 * (normalized) Standard-of-living_index=3
+ +       0.1735 * (normalized) Standard-of-living_index=4
+ +      -0.4109 * (normalized) Media_exposure
+ +       0.2108
+
+Number of kernel evaluations: 183627 (90.076% cached)
+
+Classifier for classes: 1, 3
+
+BinarySMO
+
+Machine linear: showing attribute weights, not support vectors.
+
+        -1      * (normalized) Wifes_age=16
+ +       0.5504 * (normalized) Wifes_age=17
+ +      -1.4511 * (normalized) Wifes_age=18
+ +       0.4614 * (normalized) Wifes_age=19
+ +       0.4623 * (normalized) Wifes_age=20
+ +       0.5479 * (normalized) Wifes_age=21
+ +       0.4641 * (normalized) Wifes_age=22
+ +       0.3778 * (normalized) Wifes_age=23
+ +       0.4617 * (normalized) Wifes_age=24
+ +       0.3812 * (normalized) Wifes_age=25
+ +       0.3841 * (normalized) Wifes_age=26
+ +       0.462  * (normalized) Wifes_age=27
+ +       0.3788 * (normalized) Wifes_age=28
+ +       0.3812 * (normalized) Wifes_age=29
+ +       0.3799 * (normalized) Wifes_age=30
+ +       0.3778 * (normalized) Wifes_age=31
+ +       0.378  * (normalized) Wifes_age=32
+ +       0.3804 * (normalized) Wifes_age=33
+ +       0.378  * (normalized) Wifes_age=34
+ +       0.3783 * (normalized) Wifes_age=35
+ +       0.3788 * (normalized) Wifes_age=36
+ +       0.3771 * (normalized) Wifes_age=37
+ +       0.2901 * (normalized) Wifes_age=38
+ +       0.2963 * (normalized) Wifes_age=39
+ +       0.2916 * (normalized) Wifes_age=40
+ +       0.298  * (normalized) Wifes_age=41
+ +      -1.5373 * (normalized) Wifes_age=42
+ +       0.2906 * (normalized) Wifes_age=43
+ +       0.2895 * (normalized) Wifes_age=44
+ +      -1.5372 * (normalized) Wifes_age=45
+ +       0.292  * (normalized) Wifes_age=46
+ +      -1.619  * (normalized) Wifes_age=47
+ +      -1.538  * (normalized) Wifes_age=48
+ +      -1.7066 * (normalized) Wifes_age=49
+ +      -0.0236 * (normalized) Wifes_education=1
+ +      -0.0214 * (normalized) Wifes_education=2
+ +      -0.0209 * (normalized) Wifes_education=3
+ +       0.0659 * (normalized) Wifes_education=4
+ +      -1.3688 * (normalized) Husbands_education=1
+ +       0.4562 * (normalized) Husbands_education=2
+ +       0.4568 * (normalized) Husbands_education=3
+ +       0.4558 * (normalized) Husbands_education=4
+ +      -1.8849 * (normalized) Number_of_children_ever_born=0
+ +       0.1154 * (normalized) Number_of_children_ever_born=1
+ +       0.2014 * (normalized) Number_of_children_ever_born=2
+ +       0.2835 * (normalized) Number_of_children_ever_born=3
+ +       0.2851 * (normalized) Number_of_children_ever_born=4
+ +       0.2868 * (normalized) Number_of_children_ever_born=5
+ +       0.2858 * (normalized) Number_of_children_ever_born=6
+ +       0.2853 * (normalized) Number_of_children_ever_born=7
+ +       0.201  * (normalized) Number_of_children_ever_born=8
+ +       0.3712 * (normalized) Number_of_children_ever_born=9
+ +      -1.6336 * (normalized) Number_of_children_ever_born=10
+ +       0.203  * (normalized) Number_of_children_ever_born=11
+ +      -1      * (normalized) Number_of_children_ever_born=12
+ +       1      * (normalized) Number_of_children_ever_born=13
+ +       1      * (normalized) Number_of_children_ever_born=16
+ +       0.0003 * (normalized) Wifes_religion
+ +       0.0016 * (normalized) Wifes_now_working?
+ +      -0.0002 * (normalized) Husbands_occupation=1
+ +      -0.0006 * (normalized) Husbands_occupation=2
+ +       0.0001 * (normalized) Husbands_occupation=3
+ +       0.0008 * (normalized) Husbands_occupation=4
+ +      -0.0009 * (normalized) Standard-of-living_index=1
+ +       0.0004 * (normalized) Standard-of-living_index=2
+ +       0.0005 * (normalized) Standard-of-living_index=3
+ +       0      * (normalized) Standard-of-living_index=4
+ +      -1.8256 * (normalized) Media_exposure
+ -       0.1009
+
+Number of kernel evaluations: 299923 (94.282% cached)
+
+Classifier for classes: 2, 3
+
+BinarySMO
+
+Machine linear: showing attribute weights, not support vectors.
+
+         0.3533 * (normalized) Wifes_age=17
+ +       1      * (normalized) Wifes_age=19
+ +       0.6517 * (normalized) Wifes_age=20
+ +       0.3715 * (normalized) Wifes_age=21
+ +       0.449  * (normalized) Wifes_age=22
+ +       0.3559 * (normalized) Wifes_age=23
+ +       0.3296 * (normalized) Wifes_age=24
+ +       0.3897 * (normalized) Wifes_age=25
+ +       0.3219 * (normalized) Wifes_age=26
+ +       0.3449 * (normalized) Wifes_age=27
+ +       0.4989 * (normalized) Wifes_age=28
+ +       0.2855 * (normalized) Wifes_age=29
+ +       0.4576 * (normalized) Wifes_age=30
+ +       0.5211 * (normalized) Wifes_age=31
+ +       0.3083 * (normalized) Wifes_age=32
+ +       0.2514 * (normalized) Wifes_age=33
+ +      -0.0074 * (normalized) Wifes_age=34
+ +      -0.0153 * (normalized) Wifes_age=35
+ +       0.0078 * (normalized) Wifes_age=36
+ +       0.2853 * (normalized) Wifes_age=37
+ +      -0.6262 * (normalized) Wifes_age=38
+ +      -0.4216 * (normalized) Wifes_age=39
+ +      -0.172  * (normalized) Wifes_age=40
+ +      -0.8028 * (normalized) Wifes_age=41
+ +      -1.1561 * (normalized) Wifes_age=42
+ +      -0.9057 * (normalized) Wifes_age=44
+ +      -1      * (normalized) Wifes_age=45
+ +       0.0207 * (normalized) Wifes_age=46
+ +      -0.8025 * (normalized) Wifes_age=47
+ +      -0.2946 * (normalized) Wifes_age=48
+ +      -1      * (normalized) Wifes_age=49
+ +       0.6105 * (normalized) Wifes_education=1
+ +       0.0063 * (normalized) Wifes_education=2
+ +      -0.2695 * (normalized) Wifes_education=3
+ +      -0.3472 * (normalized) Wifes_education=4
+ +      -1.4774 * (normalized) Husbands_education=1
+ +       0.3788 * (normalized) Husbands_education=2
+ +       0.5837 * (normalized) Husbands_education=3
+ +       0.5148 * (normalized) Husbands_education=4
+ +       0.1269 * (normalized) Number_of_children_ever_born=0
+ +      -0.206  * (normalized) Number_of_children_ever_born=1
+ +      -0.0966 * (normalized) Number_of_children_ever_born=2
+ +      -0.1732 * (normalized) Number_of_children_ever_born=3
+ +      -0.3104 * (normalized) Number_of_children_ever_born=4
+ +      -0.025  * (normalized) Number_of_children_ever_born=5
+ +      -0.207  * (normalized) Number_of_children_ever_born=6
+ +      -0.9035 * (normalized) Number_of_children_ever_born=7
+ +      -0.0316 * (normalized) Number_of_children_ever_born=8
+ +       0.1029 * (normalized) Number_of_children_ever_born=9
+ +       0      * (normalized) Number_of_children_ever_born=10
+ +       0.7235 * (normalized) Number_of_children_ever_born=11
+ +       1      * (normalized) Number_of_children_ever_born=16
+ +       0.2296 * (normalized) Wifes_religion
+ +       0.0105 * (normalized) Wifes_now_working?
+ +      -0.6292 * (normalized) Husbands_occupation=1
+ +       0.243  * (normalized) Husbands_occupation=2
+ +       0.3359 * (normalized) Husbands_occupation=3
+ +       0.0502 * (normalized) Husbands_occupation=4
+ +       0.0299 * (normalized) Standard-of-living_index=1
+ +       0.005  * (normalized) Standard-of-living_index=2
+ +      -0.0299 * (normalized) Standard-of-living_index=3
+ +      -0.0051 * (normalized) Standard-of-living_index=4
+ +       0.059  * (normalized) Media_exposure
+ +       0.0608
+
+Number of kernel evaluations: 300112 (92.371% cached)
+
+
+
+Time taken to build model: 2.02 seconds
+Time taken to test model on training data: 0.11 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances         677               57.4703 %
+Incorrectly Classified Instances       501               42.5297 %
+Kappa statistic                          0.3242
+K&B Relative Info Score              35449.9136 %
+K&B Information Score                  550.779  bits      0.4676 bits/instance
+Class complexity | order 0            1830.0531 bits      1.5535 bits/instance
+Class complexity | scheme           158840.0963 bits    134.8388 bits/instance
+Complexity improvement     (Sf)    -157010.0432 bits   -133.2853 bits/instance
+Mean absolute error                      0.3454
+Root mean squared error                  0.4429
+Relative absolute error                 79.5173 %
+Root relative squared error             95.0454 %
+Total Number of Instances             1178     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.425     0.075      0.693     0.425     0.527      0.738    1
+                 0.456     0.161      0.528     0.456     0.49       0.718    2
+                 0.75      0.453      0.559     0.75      0.64       0.658    3
+Weighted Avg.    0.575     0.263      0.588     0.575     0.566      0.698
+
+
+=== Confusion Matrix ===
+
+   a   b   c   <-- classified as
+ 142  44 148 |   a = 1
+  27 152 154 |   b = 2
+  36  92 383 |   c = 3
+
+
+=== Error on test data ===
+
+Correctly Classified Instances         111               37.6271 %
+Incorrectly Classified Instances       184               62.3729 %
+Kappa statistic                          0     
+K&B Relative Info Score               7740.7482 %
+K&B Information Score                  120.2666 bits      0.4077 bits/instance
+Class complexity | order 0             536.2439 bits      1.8178 bits/instance
+Class complexity | scheme            85080.3519 bits    288.408  bits/instance
+Complexity improvement     (Sf)     -84544.108  bits   -286.5902 bits/instance
+Mean absolute error                      0.4226
+Root mean squared error                  0.5232
+Relative absolute error                 88.491  %
+Root relative squared error            102.5295 %
+Total Number of Instances              295     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.376     0          1         0.376     0.547      ?        1
+                 0         0.176      0         0         0          ?        2
+                 0         0.447      0         0         0          ?        3
+Weighted Avg.    0.376     0          1         0.376     0.547      0    
+
+
+=== Confusion Matrix ===
+
+   a   b   c   <-- classified as
+ 111  52 132 |   a = 1
+   0   0   0 |   b = 2
+   0   0   0 |   c = 3
+

@@ -1,0 +1,122 @@
+
+AdaBoostM1: Base classifiers and their weights: 
+
+Decision Stump
+
+Classifications
+
+d2 = o : loss
+d2 != o : win
+d2 is missing : win
+
+Class distributions
+
+d2 = o
+win	loss	draw	
+0.40895458440445587	0.5571979434447301	0.03384747215081405	
+d2 != o
+win	loss	draw	
+0.6650667314741682	0.22846669501994857	0.1064665735058833	
+d2 is missing
+win	loss	draw	
+0.6429456934036452	0.256860024054029	0.10019428254232583	
+
+
+Weight: 0.64
+
+Decision Stump
+
+Classifications
+
+a1 = o : win
+a1 != o : win
+a1 is missing : win
+
+Class distributions
+
+a1 = o
+win	loss	draw	
+0.6329616885243012	0.20504875872971648	0.16198955274598237	
+a1 != o
+win	loss	draw	
+0.4664608099048008	0.3947114586265193	0.13882773146867997	
+a1 is missing
+win	loss	draw	
+0.5146075891332269	0.3398670144679578	0.14552539639881526	
+
+
+Weight: 0.06
+
+Number of performed Iterations: 2
+
+
+Time taken to build model: 1.89 seconds
+Time taken to test model on training data: 1.12 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances       35440               65.575  %
+Incorrectly Classified Instances     18605               34.425  %
+Kappa statistic                          0.1182
+K&B Relative Info Score            -675650.6837 %
+K&B Information Score                -8418.5507 bits     -0.1558 bits/instance
+Class complexity | order 0           67337.4363 bits      1.246  bits/instance
+Class complexity | scheme            72499.4718 bits      1.3415 bits/instance
+Complexity improvement     (Sf)      -5162.0356 bits     -0.0955 bits/instance
+Mean absolute error                      0.3902
+Root mean squared error                  0.4266
+Relative absolute error                114.6231 %
+Root relative squared error            103.3978 %
+Total Number of Instances            54045     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.945     0.857      0.665     0.945     0.781      0.544    win
+                 0.187     0.051      0.557     0.187     0.28       0.568    loss
+                 0         0          0         0         0          0.468    draw
+Weighted Avg.    0.656     0.564      0.571     0.656     0.574      0.543
+
+
+=== Confusion Matrix ===
+
+     a     b     c   <-- classified as
+ 32839  1909     0 |     a = win
+ 11281  2601     0 |     b = loss
+  5257   158     0 |     c = draw
+
+
+=== Error on test data ===
+
+Correctly Classified Instances        7868               58.2297 %
+Incorrectly Classified Instances      5644               41.7703 %
+Kappa statistic                          0.1559
+K&B Relative Info Score            -300796.1913 %
+K&B Information Score                -3747.8952 bits     -0.2774 bits/instance
+Class complexity | order 0           15027.6521 bits      1.1122 bits/instance
+Class complexity | scheme            18873.4764 bits      1.3968 bits/instance
+Complexity improvement     (Sf)      -3845.8243 bits     -0.2846 bits/instance
+Mean absolute error                      0.4009
+Root mean squared error                  0.4376
+Relative absolute error                125.9949 %
+Root relative squared error            113.7711 %
+Total Number of Instances            13512     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.631     0.464      0.778     0.631     0.697      0.584    win
+                 0.629     0.361      0.308     0.629     0.414      0.634    loss
+                 0         0          0         0         0          0.432    draw
+Weighted Avg.    0.582     0.407      0.622     0.582     0.586      0.582
+
+
+=== Confusion Matrix ===
+
+    a    b    c   <-- classified as
+ 6137 3588    0 |    a = win
+ 1022 1731    0 |    b = loss
+  734  300    0 |    c = draw
+

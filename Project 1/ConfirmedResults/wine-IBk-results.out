@@ -1,0 +1,77 @@
+
+Options: -K 5 -E 
+
+IB1 instance-based classifier
+using 5 nearest neighbour(s) for classification
+
+
+Time taken to build model: 0.02 seconds
+Time taken to test model on training data: 0.03 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances          97               68.3099 %
+Incorrectly Classified Instances        45               31.6901 %
+Kappa statistic                          0.4296
+K&B Relative Info Score               4902.2571 %
+K&B Information Score                   71.5704 bits      0.504  bits/instance
+Class complexity | order 0             206.5222 bits      1.4544 bits/instance
+Class complexity | scheme              136.2521 bits      0.9595 bits/instance
+Complexity improvement     (Sf)         70.2701 bits      0.4949 bits/instance
+Mean absolute error                      0.3059
+Root mean squared error                  0.3651
+Relative absolute error                 75.1296 %
+Root relative squared error             80.9902 %
+Total Number of Instances              142     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.261     0.017      0.75      0.261     0.387      ?        1
+                 0.901     0.535      0.627     0.901     0.74       ?        2
+                 0.563     0.053      0.844     0.563     0.675      ?        3
+Weighted Avg.    0.683     0.288      0.72      0.683     0.661      0    
+
+
+=== Confusion Matrix ===
+
+  a  b  c   <-- classified as
+  6 17  0 |  a = 1
+  2 64  5 |  b = 2
+  0 21 27 |  c = 3
+
+
+=== Error on test data ===
+
+Correctly Classified Instances           3                8.3333 %
+Incorrectly Classified Instances        33               91.6667 %
+Kappa statistic                          0     
+K&B Relative Info Score                963.2268 %
+K&B Information Score                   14.0626 bits      0.3906 bits/instance
+Class complexity | order 0              93.4181 bits      2.5949 bits/instance
+Class complexity | scheme               86.2053 bits      2.3946 bits/instance
+Complexity improvement     (Sf)          7.2127 bits      0.2004 bits/instance
+Mean absolute error                      0.5237
+Root mean squared error                  0.5742
+Relative absolute error                 94.131  %
+Root relative squared error             96.7328 %
+Total Number of Instances               36     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.083     0          1         0.083     0.154      ?        1
+                 0         0.778      0         0         0          ?        2
+                 0         0.139      0         0         0          ?        3
+Weighted Avg.    0.083     0          1         0.083     0.154      0    
+
+
+=== Confusion Matrix ===
+
+  a  b  c   <-- classified as
+  3 28  5 |  a = 1
+  0  0  0 |  b = 2
+  0  0  0 |  c = 3
+

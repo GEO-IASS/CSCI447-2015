@@ -1,0 +1,251 @@
+
+Options: -U 
+
+J48 unpruned tree
+------------------
+
+Safety = low: unacc (460.0)
+Safety = med
+|   Persons = 2: unacc (153.0)
+|   Persons = 4
+|   |   Lug_boot = small
+|   |   |   Buying = vhigh: unacc (3.0)
+|   |   |   Buying = high: unacc (16.0)
+|   |   |   Buying = med
+|   |   |   |   Maint = vhigh: unacc (4.0)
+|   |   |   |   Maint = high: unacc (4.0)
+|   |   |   |   Maint = med: acc (4.0)
+|   |   |   |   Maint = low: acc (4.0)
+|   |   |   Buying = low
+|   |   |   |   Maint = vhigh: unacc (4.0)
+|   |   |   |   Maint = high: acc (4.0)
+|   |   |   |   Maint = med: acc (4.0)
+|   |   |   |   Maint = low: acc (4.0)
+|   |   Lug_boot = med
+|   |   |   Doors = 2
+|   |   |   |   Buying = vhigh: unacc (0.0)
+|   |   |   |   Buying = high: unacc (4.0)
+|   |   |   |   Buying = med: unacc (4.0/2.0)
+|   |   |   |   Buying = low: acc (4.0/1.0)
+|   |   |   Doors = 3
+|   |   |   |   Buying = vhigh: unacc (1.0)
+|   |   |   |   Buying = high: unacc (4.0)
+|   |   |   |   Buying = med: unacc (4.0/2.0)
+|   |   |   |   Buying = low: acc (4.0/1.0)
+|   |   |   Doors = 4: acc (13.0/4.0)
+|   |   |   Doors = 5more: acc (13.0/4.0)
+|   |   Lug_boot = big
+|   |   |   Maint = vhigh
+|   |   |   |   Buying = vhigh: acc (0.0)
+|   |   |   |   Buying = high: unacc (4.0)
+|   |   |   |   Buying = med: acc (4.0)
+|   |   |   |   Buying = low: acc (4.0)
+|   |   |   Maint = high: acc (12.0)
+|   |   |   Maint = med
+|   |   |   |   Buying = vhigh: acc (0.0)
+|   |   |   |   Buying = high: acc (4.0)
+|   |   |   |   Buying = med: acc (4.0)
+|   |   |   |   Buying = low: good (4.0)
+|   |   |   Maint = low
+|   |   |   |   Buying = vhigh: acc (3.0)
+|   |   |   |   Buying = high: acc (4.0)
+|   |   |   |   Buying = med: good (4.0)
+|   |   |   |   Buying = low: good (4.0)
+|   Persons = more
+|   |   Lug_boot = small
+|   |   |   Buying = vhigh: unacc (3.0)
+|   |   |   Buying = high: unacc (16.0)
+|   |   |   Buying = med
+|   |   |   |   Maint = vhigh: unacc (4.0)
+|   |   |   |   Maint = high: unacc (4.0)
+|   |   |   |   Maint = med: acc (4.0/1.0)
+|   |   |   |   Maint = low: acc (4.0/1.0)
+|   |   |   Buying = low
+|   |   |   |   Maint = vhigh: unacc (4.0)
+|   |   |   |   Maint = high: acc (4.0/1.0)
+|   |   |   |   Maint = med: acc (4.0/1.0)
+|   |   |   |   Maint = low: acc (4.0/1.0)
+|   |   Lug_boot = med
+|   |   |   Maint = vhigh
+|   |   |   |   Buying = vhigh: unacc (0.0)
+|   |   |   |   Buying = high: unacc (4.0)
+|   |   |   |   Buying = med: acc (4.0/1.0)
+|   |   |   |   Buying = low: acc (4.0/1.0)
+|   |   |   Maint = high
+|   |   |   |   Doors = 2: unacc (3.0/1.0)
+|   |   |   |   Doors = 3: acc (3.0)
+|   |   |   |   Doors = 4: acc (3.0)
+|   |   |   |   Doors = 5more: acc (3.0)
+|   |   |   Maint = med
+|   |   |   |   Buying = vhigh: acc (0.0)
+|   |   |   |   Buying = high: acc (4.0/1.0)
+|   |   |   |   Buying = med: acc (4.0)
+|   |   |   |   Buying = low: good (4.0/1.0)
+|   |   |   Maint = low
+|   |   |   |   Buying = vhigh: acc (4.0/1.0)
+|   |   |   |   Buying = high: acc (4.0/1.0)
+|   |   |   |   Buying = med: good (4.0/1.0)
+|   |   |   |   Buying = low: good (4.0/1.0)
+|   |   Lug_boot = big
+|   |   |   Maint = vhigh
+|   |   |   |   Buying = vhigh: acc (0.0)
+|   |   |   |   Buying = high: unacc (4.0)
+|   |   |   |   Buying = med: acc (4.0)
+|   |   |   |   Buying = low: acc (4.0)
+|   |   |   Maint = high: acc (12.0)
+|   |   |   Maint = med
+|   |   |   |   Buying = vhigh: acc (0.0)
+|   |   |   |   Buying = high: acc (4.0)
+|   |   |   |   Buying = med: acc (4.0)
+|   |   |   |   Buying = low: good (4.0)
+|   |   |   Maint = low
+|   |   |   |   Buying = vhigh: acc (4.0)
+|   |   |   |   Buying = high: acc (4.0)
+|   |   |   |   Buying = med: good (4.0)
+|   |   |   |   Buying = low: good (4.0)
+Safety = high
+|   Persons = 2: unacc (153.0)
+|   Persons = 4
+|   |   Buying = vhigh: acc (9.0)
+|   |   Buying = high
+|   |   |   Maint = vhigh: unacc (12.0)
+|   |   |   Maint = high: acc (12.0)
+|   |   |   Maint = med: acc (12.0)
+|   |   |   Maint = low: acc (12.0)
+|   |   Buying = med
+|   |   |   Maint = vhigh: acc (12.0)
+|   |   |   Maint = high: acc (12.0)
+|   |   |   Maint = med
+|   |   |   |   Lug_boot = small: acc (4.0)
+|   |   |   |   Lug_boot = med: acc (4.0/2.0)
+|   |   |   |   Lug_boot = big: vgood (4.0)
+|   |   |   Maint = low
+|   |   |   |   Lug_boot = small: good (4.0)
+|   |   |   |   Lug_boot = med: good (4.0/2.0)
+|   |   |   |   Lug_boot = big: vgood (4.0)
+|   |   Buying = low
+|   |   |   Maint = vhigh: acc (12.0)
+|   |   |   Maint = high
+|   |   |   |   Lug_boot = small: acc (4.0)
+|   |   |   |   Lug_boot = med: acc (4.0/2.0)
+|   |   |   |   Lug_boot = big: vgood (4.0)
+|   |   |   Maint = med
+|   |   |   |   Lug_boot = small: good (4.0)
+|   |   |   |   Lug_boot = med: good (4.0/2.0)
+|   |   |   |   Lug_boot = big: vgood (4.0)
+|   |   |   Maint = low
+|   |   |   |   Lug_boot = small: good (4.0)
+|   |   |   |   Lug_boot = med: good (4.0/2.0)
+|   |   |   |   Lug_boot = big: vgood (4.0)
+|   Persons = more
+|   |   Buying = vhigh: acc (11.0)
+|   |   Buying = high
+|   |   |   Maint = vhigh: unacc (12.0)
+|   |   |   Maint = high: acc (12.0/1.0)
+|   |   |   Maint = med: acc (12.0/1.0)
+|   |   |   Maint = low: acc (12.0/1.0)
+|   |   Buying = med
+|   |   |   Maint = vhigh: acc (12.0/1.0)
+|   |   |   Maint = high: acc (12.0/1.0)
+|   |   |   Maint = med
+|   |   |   |   Lug_boot = small: acc (4.0/1.0)
+|   |   |   |   Lug_boot = med: vgood (4.0/1.0)
+|   |   |   |   Lug_boot = big: vgood (4.0)
+|   |   |   Maint = low
+|   |   |   |   Lug_boot = small: good (4.0/1.0)
+|   |   |   |   Lug_boot = med: vgood (4.0/1.0)
+|   |   |   |   Lug_boot = big: vgood (4.0)
+|   |   Buying = low
+|   |   |   Maint = vhigh: acc (12.0/1.0)
+|   |   |   Maint = high
+|   |   |   |   Lug_boot = small: acc (4.0/1.0)
+|   |   |   |   Lug_boot = med: vgood (4.0/1.0)
+|   |   |   |   Lug_boot = big: vgood (4.0)
+|   |   |   Maint = med
+|   |   |   |   Lug_boot = small: good (4.0/1.0)
+|   |   |   |   Lug_boot = med: vgood (4.0/1.0)
+|   |   |   |   Lug_boot = big: vgood (4.0)
+|   |   |   Maint = low
+|   |   |   |   Lug_boot = small: good (4.0/1.0)
+|   |   |   |   Lug_boot = med: vgood (4.0/1.0)
+|   |   |   |   Lug_boot = big: vgood (4.0)
+
+Number of Leaves  : 	121
+
+Size of the tree : 	166
+
+
+Time taken to build model: 0.05 seconds
+Time taken to test model on training data: 0.03 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances        1328               96.0926 %
+Incorrectly Classified Instances        54                3.9074 %
+Kappa statistic                          0.9235
+K&B Relative Info Score             126111.4036 %
+K&B Information Score                 1674.2888 bits      1.2115 bits/instance
+Class complexity | order 0            1828.7698 bits      1.3233 bits/instance
+Class complexity | scheme              171.3205 bits      0.124  bits/instance
+Complexity improvement     (Sf)       1657.4493 bits      1.1993 bits/instance
+Mean absolute error                      0.0274
+Root mean squared error                  0.1171
+Relative absolute error                 10.8408 %
+Root relative squared error             32.9483 %
+Total Number of Instances             1382     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.972     0.01       0.994     0.972     0.983      0.997    unacc
+                 0.971     0.031      0.913     0.971     0.941      0.995    acc
+                 0.87      0.009      0.833     0.87      0.851      0.996    good
+                 0.846     0.004      0.917     0.846     0.88       0.998    vgood
+Weighted Avg.    0.961     0.015      0.962     0.961     0.961      0.997
+
+
+=== Confusion Matrix ===
+
+   a   b   c   d   <-- classified as
+ 879  22   3   0 |   a = unacc
+   5 334   3   2 |   b = acc
+   0   6  60   3 |   c = good
+   0   4   6  55 |   d = vgood
+
+
+=== Error on test data ===
+
+Correctly Classified Instances         272               78.6127 %
+Incorrectly Classified Instances        74               21.3873 %
+Kappa statistic                          0.4203
+K&B Relative Info Score               7459.6231 %
+K&B Information Score                   99.036  bits      0.2862 bits/instance
+Class complexity | order 0             268.4213 bits      0.7758 bits/instance
+Class complexity | scheme            65560.2574 bits    189.4805 bits/instance
+Complexity improvement     (Sf)     -65291.8362 bits   -188.7047 bits/instance
+Mean absolute error                      0.1145
+Root mean squared error                  0.3206
+Relative absolute error                 58.1514 %
+Root relative squared error            121.0301 %
+Total Number of Instances              346     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.758     0          1         0.758     0.862      0.886    unacc
+                 1         0.242      0.351     1         0.519      0.86     acc
+                 0         0          0         0         0          ?        good
+                 0         0          0         0         0          ?        vgood
+Weighted Avg.    0.786     0.028      0.925     0.786     0.823      0.883
+
+
+=== Confusion Matrix ===
+
+   a   b   c   d   <-- classified as
+ 232  74   0   0 |   a = unacc
+   0  40   0   0 |   b = acc
+   0   0   0   0 |   c = good
+   0   0   0   0 |   d = vgood
+

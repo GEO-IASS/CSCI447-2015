@@ -1,0 +1,259 @@
+
+SMO
+
+Kernel used:
+  Linear Kernel: K(x,y) = <x,y>
+
+Classifier for classes: unacc, acc
+
+BinarySMO
+
+Machine linear: showing attribute weights, not support vectors.
+
+        -0.9993 * (normalized) Buying=vhigh
+ +      -0.9995 * (normalized) Buying=high
+ +       0.9996 * (normalized) Buying=med
+ +       0.9992 * (normalized) Buying=low
+ +      -1.4991 * (normalized) Maint=vhigh
+ +       0.4997 * (normalized) Maint=high
+ +       0.4996 * (normalized) Maint=med
+ +       0.4998 * (normalized) Maint=low
+ +      -1.4991 * (normalized) Doors=2
+ +       0.4997 * (normalized) Doors=3
+ +       0.4997 * (normalized) Doors=4
+ +       0.4997 * (normalized) Doors=5more
+ +      -3.998  * (normalized) Persons=2
+ +       1.999  * (normalized) Persons=4
+ +       1.999  * (normalized) Persons=more
+ +      -1.3325 * (normalized) Lug_boot=small
+ +       0.6662 * (normalized) Lug_boot=med
+ +       0.6663 * (normalized) Lug_boot=big
+ +      -3.332  * (normalized) Safety=low
+ +       0.6667 * (normalized) Safety=med
+ +       2.6653 * (normalized) Safety=high
+ -       2.3324
+
+Number of kernel evaluations: 156606 (78.921% cached)
+
+Classifier for classes: unacc, good
+
+BinarySMO
+
+Machine linear: showing attribute weights, not support vectors.
+
+        -0.9994 * (normalized) Buying=vhigh
+ +      -0.9992 * (normalized) Buying=high
+ +       0.9993 * (normalized) Buying=med
+ +       0.9993 * (normalized) Buying=low
+ +      -0.9992 * (normalized) Maint=vhigh
+ +      -0.999  * (normalized) Maint=high
+ +       0.9989 * (normalized) Maint=med
+ +       0.9993 * (normalized) Maint=low
+ +      -0.4026 * (normalized) Doors=2
+ +       0.134  * (normalized) Doors=3
+ +       0.1344 * (normalized) Doors=4
+ +       0.1342 * (normalized) Doors=5more
+ +      -2.1196 * (normalized) Persons=2
+ +       1.0595 * (normalized) Persons=4
+ +       1.0601 * (normalized) Persons=more
+ +      -0.6068 * (normalized) Lug_boot=small
+ +       0.0345 * (normalized) Lug_boot=med
+ +       0.5723 * (normalized) Lug_boot=big
+ +      -1.9055 * (normalized) Safety=low
+ +       0.6319 * (normalized) Safety=med
+ +       1.2736 * (normalized) Safety=high
+ -       2.8593
+
+Number of kernel evaluations: 28978 (77.251% cached)
+
+Classifier for classes: unacc, vgood
+
+BinarySMO
+
+Machine linear: showing attribute weights, not support vectors.
+
+         0      * (normalized) Buying=vhigh
+ +      -0.7059 * (normalized) Buying=high
+ +       0.3526 * (normalized) Buying=med
+ +       0.3533 * (normalized) Buying=low
+ +      -0.7059 * (normalized) Maint=vhigh
+ +       0.2349 * (normalized) Maint=high
+ +       0.2354 * (normalized) Maint=med
+ +       0.2356 * (normalized) Maint=low
+ +      -0.0003 * (normalized) Doors=2
+ +      -0.0001 * (normalized) Doors=3
+ +       0.0004 * (normalized) Doors=4
+ +       0.0001 * (normalized) Doors=5more
+ +      -1.3334 * (normalized) Persons=2
+ +       0.6667 * (normalized) Persons=4
+ +       0.6667 * (normalized) Persons=more
+ +      -1.3332 * (normalized) Lug_boot=small
+ +       0.6664 * (normalized) Lug_boot=med
+ +       0.6668 * (normalized) Lug_boot=big
+ +      -0.6679 * (normalized) Safety=low
+ +      -0.6652 * (normalized) Safety=med
+ +       1.3331 * (normalized) Safety=high
+ -       2.2547
+
+Number of kernel evaluations: 21699 (75.449% cached)
+
+Classifier for classes: acc, good
+
+BinarySMO
+
+Machine linear: showing attribute weights, not support vectors.
+
+        -2.1041 * (normalized) Buying=vhigh
+ +      -2.1042 * (normalized) Buying=high
+ +       1.499  * (normalized) Buying=med
+ +       2.7093 * (normalized) Buying=low
+ +      -2.4067 * (normalized) Maint=vhigh
+ +      -1.1967 * (normalized) Maint=high
+ +       1.1966 * (normalized) Maint=med
+ +       2.4068 * (normalized) Maint=low
+ +      -0.4928 * (normalized) Doors=2
+ +      -0.0986 * (normalized) Doors=3
+ +       0.296  * (normalized) Doors=4
+ +       0.2954 * (normalized) Doors=5more
+ +       0      * (normalized) Persons=4
+ +       0      * (normalized) Persons=more
+ +      -1.0608 * (normalized) Lug_boot=small
+ +       0.1227 * (normalized) Lug_boot=med
+ +       0.938  * (normalized) Lug_boot=big
+ +      -0.8019 * (normalized) Safety=med
+ +       0.8019 * (normalized) Safety=high
+ -       3.3383
+
+Number of kernel evaluations: 30503 (80.758% cached)
+
+Classifier for classes: acc, vgood
+
+BinarySMO
+
+Machine linear: showing attribute weights, not support vectors.
+
+        -1.4993 * (normalized) Buying=vhigh
+ +      -1.4993 * (normalized) Buying=high
+ +       0.4998 * (normalized) Buying=med
+ +       2.4988 * (normalized) Buying=low
+ +      -2.4988 * (normalized) Maint=vhigh
+ +      -0.4999 * (normalized) Maint=high
+ +       1.4993 * (normalized) Maint=med
+ +       1.4994 * (normalized) Maint=low
+ +      -0.0005 * (normalized) Doors=2
+ +       0      * (normalized) Doors=3
+ +       0      * (normalized) Doors=4
+ +       0.0005 * (normalized) Doors=5more
+ +       0      * (normalized) Persons=4
+ +       0      * (normalized) Persons=more
+ +      -1.3331 * (normalized) Lug_boot=small
+ +       0.6663 * (normalized) Lug_boot=med
+ +       0.6668 * (normalized) Lug_boot=big
+ +      -1.9987 * (normalized) Safety=med
+ +       1.9987 * (normalized) Safety=high
+ -       3.6651
+
+Number of kernel evaluations: 17483 (83.451% cached)
+
+Classifier for classes: good, vgood
+
+BinarySMO
+
+Machine linear: showing attribute weights, not support vectors.
+
+         0.0001 * (normalized) Buying=med
+ +      -0.0001 * (normalized) Buying=low
+ +       0.0012 * (normalized) Maint=high
+ +      -0.0005 * (normalized) Maint=med
+ +      -0.0007 * (normalized) Maint=low
+ +      -1.4989 * (normalized) Doors=2
+ +       0.4993 * (normalized) Doors=3
+ +       0.4999 * (normalized) Doors=4
+ +       0.4998 * (normalized) Doors=5more
+ +      -0.0001 * (normalized) Persons=4
+ +       0.0001 * (normalized) Persons=more
+ +      -1.9993 * (normalized) Lug_boot=small
+ +       0.0002 * (normalized) Lug_boot=med
+ +       1.9991 * (normalized) Lug_boot=big
+ +      -1.9996 * (normalized) Safety=med
+ +       1.9996 * (normalized) Safety=high
+ -       1.4992
+
+Number of kernel evaluations: 4260 (88.198% cached)
+
+
+
+Time taken to build model: 0.55 seconds
+Time taken to test model on training data: 0.08 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances        1312               94.9349 %
+Incorrectly Classified Instances        70                5.0651 %
+Kappa statistic                          0.9007
+K&B Relative Info Score              21021.2515 %
+K&B Information Score                  279.0838 bits      0.2019 bits/instance
+Class complexity | order 0            1828.7698 bits      1.3233 bits/instance
+Class complexity | scheme             1430.2872 bits      1.0349 bits/instance
+Complexity improvement     (Sf)        398.4826 bits      0.2883 bits/instance
+Mean absolute error                      0.2548
+Root mean squared error                  0.3183
+Relative absolute error                100.6645 %
+Root relative squared error             89.5536 %
+Total Number of Instances             1382     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.963     0.044      0.976     0.963     0.97       0.968    unacc
+                 0.913     0.035      0.897     0.913     0.905      0.945    acc
+                 0.899     0.006      0.886     0.899     0.892      0.989    good
+                 1         0.004      0.929     1         0.963      0.998    vgood
+Weighted Avg.    0.949     0.038      0.95      0.949     0.95       0.965
+
+
+=== Confusion Matrix ===
+
+   a   b   c   d   <-- classified as
+ 871  32   1   0 |   a = unacc
+  21 314   7   2 |   b = acc
+   0   4  62   3 |   c = good
+   0   0   0  65 |   d = vgood
+
+
+=== Error on test data ===
+
+Correctly Classified Instances         294               84.9711 %
+Incorrectly Classified Instances        52               15.0289 %
+Kappa statistic                          0.4953
+K&B Relative Info Score             -11188.2729 %
+K&B Information Score                 -148.5385 bits     -0.4293 bits/instance
+Class complexity | order 0             268.4213 bits      0.7758 bits/instance
+Class complexity | scheme              392.4181 bits      1.1342 bits/instance
+Complexity improvement     (Sf)       -123.9968 bits     -0.3584 bits/instance
+Mean absolute error                      0.2664
+Root mean squared error                  0.3367
+Relative absolute error                135.3023 %
+Root relative squared error            127.1344 %
+Total Number of Instances              346     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.846     0.125      0.981     0.846     0.909      0.876    unacc
+                 0.875     0.154      0.427     0.875     0.574      0.861    acc
+                 0         0          0         0         0          ?        good
+                 0         0          0         0         0          ?        vgood
+Weighted Avg.    0.85      0.128      0.917     0.85      0.87       0.875
+
+
+=== Confusion Matrix ===
+
+   a   b   c   d   <-- classified as
+ 259  47   0   0 |   a = unacc
+   5  35   0   0 |   b = acc
+   0   0   0   0 |   c = good
+   0   0   0   0 |   d = vgood
+

@@ -1,0 +1,97 @@
+
+Options: -K 5 -E 
+
+IB1 instance-based classifier
+using 5 nearest neighbour(s) for classification
+
+
+Time taken to build model: 0.05 seconds
+Time taken to test model on training data: 0.08 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances         171               63.806  %
+Incorrectly Classified Instances        97               36.194  %
+Kappa statistic                          0.51  
+K&B Relative Info Score              10143.7462 %
+K&B Information Score                  244.7339 bits      0.9132 bits/instance
+Class complexity | order 0             634.6038 bits      2.3679 bits/instance
+Class complexity | scheme              394.0396 bits      1.4703 bits/instance
+Complexity improvement     (Sf)        240.5642 bits      0.8976 bits/instance
+Mean absolute error                      0.149 
+Root mean squared error                  0.2592
+Relative absolute error                 76.2987 %
+Root relative squared error             83.0944 %
+Total Number of Instances              268     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.88      0.145      0.702     0.88      0.781      ?        cp
+                 0.857     0.241      0.589     0.857     0.698      ?        im
+                 0.673     0.097      0.625     0.673     0.648      ?        pp
+                 0.057     0.009      0.5       0.057     0.103      ?        imU
+                 0.1       0          1         0.1       0.182      ?        om
+                 0         0          0         0         0          ?        omL
+                 0         0          0         0         0          ?        imL
+                 0         0          0         0         0          ?        imS
+Weighted Avg.    0.638     0.13       0.627     0.638     0.572      0    
+
+
+=== Confusion Matrix ===
+
+  a  b  c  d  e  f  g  h   <-- classified as
+ 66  6  3  0  0  0  0  0 |  a = cp
+  8 66  1  2  0  0  0  0 |  b = im
+ 13  4 35  0  0  0  0  0 |  c = pp
+  4 29  0  2  0  0  0  0 |  d = imU
+  2  2 14  0  2  0  0  0 |  e = om
+  0  3  2  0  0  0  0  0 |  f = omL
+  0  1  1  0  0  0  0  0 |  g = imL
+  1  1  0  0  0  0  0  0 |  h = imS
+
+
+=== Error on test data ===
+
+Correctly Classified Instances          56               82.3529 %
+Incorrectly Classified Instances        12               17.6471 %
+Kappa statistic                          0     
+K&B Relative Info Score               1740.5168 %
+K&B Information Score                   41.9927 bits      0.6175 bits/instance
+Class complexity | order 0             126.5206 bits      1.8606 bits/instance
+Class complexity | scheme               85.9006 bits      1.2632 bits/instance
+Complexity improvement     (Sf)         40.62   bits      0.5974 bits/instance
+Mean absolute error                      0.1418
+Root mean squared error                  0.241 
+Relative absolute error                 78.2815 %
+Root relative squared error             83.5771 %
+Total Number of Instances               68     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.824     0          1         0.824     0.903      ?        cp
+                 0         0.118      0         0         0          ?        im
+                 0         0.059      0         0         0          ?        pp
+                 0         0          0         0         0          ?        imU
+                 0         0          0         0         0          ?        om
+                 0         0          0         0         0          ?        omL
+                 0         0          0         0         0          ?        imL
+                 0         0          0         0         0          ?        imS
+Weighted Avg.    0.824     0          1         0.824     0.903      0    
+
+
+=== Confusion Matrix ===
+
+  a  b  c  d  e  f  g  h   <-- classified as
+ 56  8  4  0  0  0  0  0 |  a = cp
+  0  0  0  0  0  0  0  0 |  b = im
+  0  0  0  0  0  0  0  0 |  c = pp
+  0  0  0  0  0  0  0  0 |  d = imU
+  0  0  0  0  0  0  0  0 |  e = om
+  0  0  0  0  0  0  0  0 |  f = omL
+  0  0  0  0  0  0  0  0 |  g = imL
+  0  0  0  0  0  0  0  0 |  h = imS
+

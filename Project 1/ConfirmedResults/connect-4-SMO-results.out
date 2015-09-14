@@ -1,0 +1,485 @@
+
+SMO
+
+Kernel used:
+  Linear Kernel: K(x,y) = <x,y>
+
+Classifier for classes: win, loss
+
+BinarySMO
+
+Machine linear: showing attribute weights, not support vectors.
+
+         0.6268 * (normalized) a1=x
+ +      -0.5493 * (normalized) a1=o
+ +      -0.0775 * (normalized) a1=b
+ +       0.5201 * (normalized) a2=x
+ +      -0.5911 * (normalized) a2=o
+ +       0.071  * (normalized) a2=b
+ +       0.5731 * (normalized) a3=x
+ +      -0.4924 * (normalized) a3=o
+ +      -0.0807 * (normalized) a3=b
+ +       0.4201 * (normalized) a4=x
+ +      -0.3626 * (normalized) a4=o
+ +      -0.0575 * (normalized) a4=b
+ +       0.8202 * (normalized) a5=x
+ +      -0.7738 * (normalized) a5=o
+ +      -0.0464 * (normalized) a5=b
+ +       1.0159 * (normalized) a6=x
+ +      -1.1086 * (normalized) a6=o
+ +       0.0927 * (normalized) a6=b
+ +       0.1331 * (normalized) b1=x
+ +      -0.0318 * (normalized) b1=o
+ +      -0.1013 * (normalized) b1=b
+ +      -0.6521 * (normalized) b2=x
+ +       0.5286 * (normalized) b2=o
+ +       0.1235 * (normalized) b2=b
+ +      -0.5005 * (normalized) b3=x
+ +       0.6654 * (normalized) b3=o
+ +      -0.1649 * (normalized) b3=b
+ +      -0.6831 * (normalized) b4=x
+ +       0.6063 * (normalized) b4=o
+ +       0.0768 * (normalized) b4=b
+ +       0.4927 * (normalized) b5=x
+ +      -0.5574 * (normalized) b5=o
+ +       0.0647 * (normalized) b5=b
+ +       1.4022 * (normalized) b6=x
+ +      -1.5247 * (normalized) b6=o
+ +       0.1225 * (normalized) b6=b
+ +      -0.1449 * (normalized) c1=x
+ +       0.1335 * (normalized) c1=o
+ +       0.0114 * (normalized) c1=b
+ +      -0.9669 * (normalized) c2=x
+ +       0.8816 * (normalized) c2=o
+ +       0.0853 * (normalized) c2=b
+ +      -1.2483 * (normalized) c3=x
+ +       1.4873 * (normalized) c3=o
+ +      -0.2389 * (normalized) c3=b
+ +      -1.05   * (normalized) c4=x
+ +       0.9351 * (normalized) c4=o
+ +       0.1149 * (normalized) c4=b
+ +       0.3083 * (normalized) c5=x
+ +      -0.4069 * (normalized) c5=o
+ +       0.0986 * (normalized) c5=b
+ +       1.2697 * (normalized) c6=x
+ +      -1.3105 * (normalized) c6=o
+ +       0.0408 * (normalized) c6=b
+ +      -1.0246 * (normalized) d1=x
+ +       0.8564 * (normalized) d1=o
+ +       0.1682 * (normalized) d1=b
+ +      -1.7128 * (normalized) d2=x
+ +       1.4616 * (normalized) d2=o
+ +       0.2512 * (normalized) d2=b
+ +      -1.8844 * (normalized) d3=x
+ +       2.3496 * (normalized) d3=o
+ +      -0.4652 * (normalized) d3=b
+ +      -1.496  * (normalized) d4=x
+ +       1.4463 * (normalized) d4=o
+ +       0.0497 * (normalized) d4=b
+ +      -0.0036 * (normalized) d5=x
+ +       0.1382 * (normalized) d5=o
+ +      -0.1345 * (normalized) d5=b
+ +       0      * (normalized) d6=x
+ +      -0.1829 * (normalized) d6=o
+ +       0.1829 * (normalized) d6=b
+ +      -0.0231 * (normalized) e1=x
+ +      -0.1357 * (normalized) e1=o
+ +       0.1588 * (normalized) e1=b
+ +      -0.9194 * (normalized) e2=x
+ +       0.86   * (normalized) e2=o
+ +       0.0595 * (normalized) e2=b
+ +      -1.1979 * (normalized) e3=x
+ +       1.2389 * (normalized) e3=o
+ +      -0.041  * (normalized) e3=b
+ +      -0.8999 * (normalized) e4=x
+ +       0.9336 * (normalized) e4=o
+ +      -0.0337 * (normalized) e4=b
+ +       0.6196 * (normalized) e5=x
+ +      -0.5289 * (normalized) e5=o
+ +      -0.0907 * (normalized) e5=b
+ +       1.471  * (normalized) e6=x
+ +      -1.0591 * (normalized) e6=o
+ +      -0.4118 * (normalized) e6=b
+ +      -0.0455 * (normalized) f1=x
+ +      -0.1106 * (normalized) f1=o
+ +       0.1562 * (normalized) f1=b
+ +      -0.531  * (normalized) f2=x
+ +       0.4432 * (normalized) f2=o
+ +       0.0878 * (normalized) f2=b
+ +      -0.4578 * (normalized) f3=x
+ +       0.5837 * (normalized) f3=o
+ +      -0.126  * (normalized) f3=b
+ +      -0.6911 * (normalized) f4=x
+ +       0.5532 * (normalized) f4=o
+ +       0.1379 * (normalized) f4=b
+ +       0.6561 * (normalized) f5=x
+ +      -0.494  * (normalized) f5=o
+ +      -0.1621 * (normalized) f5=b
+ +       0.9313 * (normalized) f6=x
+ +      -1.0797 * (normalized) f6=o
+ +       0.1485 * (normalized) f6=b
+ +       0.5764 * (normalized) g1=x
+ +      -0.6813 * (normalized) g1=o
+ +       0.105  * (normalized) g1=b
+ +       0.5917 * (normalized) g2=x
+ +      -0.5985 * (normalized) g2=o
+ +       0.0068 * (normalized) g2=b
+ +       0.6034 * (normalized) g3=x
+ +      -0.5302 * (normalized) g3=o
+ +      -0.0732 * (normalized) g3=b
+ +       0.4081 * (normalized) g4=x
+ +      -0.3917 * (normalized) g4=o
+ +      -0.0164 * (normalized) g4=b
+ +       1.0743 * (normalized) g5=x
+ +      -0.8716 * (normalized) g5=o
+ +      -0.2027 * (normalized) g5=b
+ +       1.6192 * (normalized) g6=x
+ +      -1.7291 * (normalized) g6=o
+ +       0.1098 * (normalized) g6=b
+ -       0.9778
+
+Number of kernel evaluations: 467870175 (69.248% cached)
+
+Classifier for classes: win, draw
+
+BinarySMO
+
+Machine linear: showing attribute weights, not support vectors.
+
+        -0.0976 * (normalized) a1=x
+ +       0.0488 * (normalized) a1=o
+ +       0.0488 * (normalized) a1=b
+ +      -0.0976 * (normalized) a2=x
+ +       0.0488 * (normalized) a2=o
+ +       0.0488 * (normalized) a2=b
+ +      -0.0975 * (normalized) a3=x
+ +       0.0488 * (normalized) a3=o
+ +       0.0487 * (normalized) a3=b
+ +      -0.0975 * (normalized) a4=x
+ +       0.0487 * (normalized) a4=o
+ +       0.0488 * (normalized) a4=b
+ +      -0.0974 * (normalized) a5=x
+ +       0.0487 * (normalized) a5=o
+ +       0.0488 * (normalized) a5=b
+ +      -0.0971 * (normalized) a6=x
+ +       0.0484 * (normalized) a6=o
+ +       0.0487 * (normalized) a6=b
+ +      -0.0975 * (normalized) b1=x
+ +       0.0488 * (normalized) b1=o
+ +       0.0487 * (normalized) b1=b
+ +      -0.0977 * (normalized) b2=x
+ +       0.0489 * (normalized) b2=o
+ +       0.0488 * (normalized) b2=b
+ +      -0.0976 * (normalized) b3=x
+ +       0.0488 * (normalized) b3=o
+ +       0.0487 * (normalized) b3=b
+ +      -0.0976 * (normalized) b4=x
+ +       0.0489 * (normalized) b4=o
+ +       0.0488 * (normalized) b4=b
+ +      -0.0973 * (normalized) b5=x
+ +       0.0486 * (normalized) b5=o
+ +       0.0487 * (normalized) b5=b
+ +      -0.097  * (normalized) b6=x
+ +       0.0484 * (normalized) b6=o
+ +       0.0486 * (normalized) b6=b
+ +      -0.0976 * (normalized) c1=x
+ +       0.0488 * (normalized) c1=o
+ +       0.0488 * (normalized) c1=b
+ +      -0.0977 * (normalized) c2=x
+ +       0.0488 * (normalized) c2=o
+ +       0.0489 * (normalized) c2=b
+ +      -0.0978 * (normalized) c3=x
+ +       0.049  * (normalized) c3=o
+ +       0.0488 * (normalized) c3=b
+ +      -0.0978 * (normalized) c4=x
+ +       0.049  * (normalized) c4=o
+ +       0.0488 * (normalized) c4=b
+ +      -0.0975 * (normalized) c5=x
+ +       0.0488 * (normalized) c5=o
+ +       0.0488 * (normalized) c5=b
+ +      -0.0971 * (normalized) c6=x
+ +       0.0484 * (normalized) c6=o
+ +       0.0487 * (normalized) c6=b
+ +      -0.0978 * (normalized) d1=x
+ +       0.049  * (normalized) d1=o
+ +       0.0488 * (normalized) d1=b
+ +      -0.0979 * (normalized) d2=x
+ +       0.0489 * (normalized) d2=o
+ +       0.0489 * (normalized) d2=b
+ +      -0.098  * (normalized) d3=x
+ +       0.0495 * (normalized) d3=o
+ +       0.0486 * (normalized) d3=b
+ +      -0.098  * (normalized) d4=x
+ +       0.049  * (normalized) d4=o
+ +       0.049  * (normalized) d4=b
+ +      -0.0982 * (normalized) d5=x
+ +       0.0495 * (normalized) d5=o
+ +       0.0487 * (normalized) d5=b
+ +       1.2348 * (normalized) d6=x
+ +      -0.6174 * (normalized) d6=o
+ +      -0.6174 * (normalized) d6=b
+ +      -0.0976 * (normalized) e1=x
+ +       0.0489 * (normalized) e1=o
+ +       0.0488 * (normalized) e1=b
+ +      -0.0977 * (normalized) e2=x
+ +       0.0489 * (normalized) e2=o
+ +       0.0488 * (normalized) e2=b
+ +      -0.0978 * (normalized) e3=x
+ +       0.0491 * (normalized) e3=o
+ +       0.0487 * (normalized) e3=b
+ +      -0.0979 * (normalized) e4=x
+ +       0.0489 * (normalized) e4=o
+ +       0.049  * (normalized) e4=b
+ +      -0.0974 * (normalized) e5=x
+ +       0.0489 * (normalized) e5=o
+ +       0.0485 * (normalized) e5=b
+ +      -0.0004 * (normalized) e6=o
+ +       0.0004 * (normalized) e6=b
+ +      -0.0977 * (normalized) f1=x
+ +       0.0488 * (normalized) f1=o
+ +       0.0489 * (normalized) f1=b
+ +      -0.0977 * (normalized) f2=x
+ +       0.0489 * (normalized) f2=o
+ +       0.0488 * (normalized) f2=b
+ +      -0.0976 * (normalized) f3=x
+ +       0.0489 * (normalized) f3=o
+ +       0.0487 * (normalized) f3=b
+ +      -0.0976 * (normalized) f4=x
+ +       0.0489 * (normalized) f4=o
+ +       0.0487 * (normalized) f4=b
+ +      -0.097  * (normalized) f5=x
+ +       0.0483 * (normalized) f5=o
+ +       0.0487 * (normalized) f5=b
+ +       1.237  * (normalized) f6=x
+ +      -0.619  * (normalized) f6=o
+ +      -0.618  * (normalized) f6=b
+ +      -0.0975 * (normalized) g1=x
+ +       0.0488 * (normalized) g1=o
+ +       0.0487 * (normalized) g1=b
+ +      -0.0976 * (normalized) g2=x
+ +       0.0488 * (normalized) g2=o
+ +       0.0488 * (normalized) g2=b
+ +      -0.0975 * (normalized) g3=x
+ +       0.0488 * (normalized) g3=o
+ +       0.0487 * (normalized) g3=b
+ +      -0.0976 * (normalized) g4=x
+ +       0.0487 * (normalized) g4=o
+ +       0.0488 * (normalized) g4=b
+ +      -0.0973 * (normalized) g5=x
+ +       0.0485 * (normalized) g5=o
+ +       0.0488 * (normalized) g5=b
+ +       1.2365 * (normalized) g6=x
+ +      -0.6185 * (normalized) g6=o
+ +      -0.6181 * (normalized) g6=b
+ -       0.4147
+
+Number of kernel evaluations: -762749911
+
+Classifier for classes: loss, draw
+
+BinarySMO
+
+Machine linear: showing attribute weights, not support vectors.
+
+        -0.5647 * (normalized) a1=x
+ +       0.6106 * (normalized) a1=o
+ +      -0.0459 * (normalized) a1=b
+ +      -0.3906 * (normalized) a2=x
+ +       0.4814 * (normalized) a2=o
+ +      -0.0907 * (normalized) a2=b
+ +      -0.4508 * (normalized) a3=x
+ +       0.3523 * (normalized) a3=o
+ +       0.0986 * (normalized) a3=b
+ +      -0.369  * (normalized) a4=x
+ +       0.4864 * (normalized) a4=o
+ +      -0.1174 * (normalized) a4=b
+ +      -0.7703 * (normalized) a5=x
+ +       0.6541 * (normalized) a5=o
+ +       0.1162 * (normalized) a5=b
+ +      -1.1806 * (normalized) a6=x
+ +       1.2254 * (normalized) a6=o
+ +      -0.0448 * (normalized) a6=b
+ +      -0.1723 * (normalized) b1=x
+ +       0.1053 * (normalized) b1=o
+ +       0.067  * (normalized) b1=b
+ +      -0.0077 * (normalized) b2=x
+ +      -0.2233 * (normalized) b2=o
+ +       0.2311 * (normalized) b2=b
+ +       0.455  * (normalized) b3=x
+ +      -0.5299 * (normalized) b3=o
+ +       0.0749 * (normalized) b3=b
+ +       0.273  * (normalized) b4=x
+ +      -0.3342 * (normalized) b4=o
+ +       0.0612 * (normalized) b4=b
+ +      -0.0779 * (normalized) b5=x
+ +       0.0466 * (normalized) b5=o
+ +       0.0313 * (normalized) b5=b
+ +      -0.965  * (normalized) b6=x
+ +       1.2383 * (normalized) b6=o
+ +      -0.2734 * (normalized) b6=b
+ +       0.0402 * (normalized) c1=x
+ +       0.0752 * (normalized) c1=o
+ +      -0.1154 * (normalized) c1=b
+ +       0.3235 * (normalized) c2=x
+ +      -0.5825 * (normalized) c2=o
+ +       0.259  * (normalized) c2=b
+ +       0.4534 * (normalized) c3=x
+ +      -0.6241 * (normalized) c3=o
+ +       0.1707 * (normalized) c3=b
+ +       0.622  * (normalized) c4=x
+ +      -0.5212 * (normalized) c4=o
+ +      -0.1008 * (normalized) c4=b
+ +      -0.1025 * (normalized) c5=x
+ +       0.0939 * (normalized) c5=o
+ +       0.0086 * (normalized) c5=b
+ +      -0.2812 * (normalized) c6=x
+ +       0.4475 * (normalized) c6=o
+ +      -0.1663 * (normalized) c6=b
+ +       0.1651 * (normalized) d1=x
+ +      -0.2274 * (normalized) d1=o
+ +       0.0623 * (normalized) d1=b
+ +       1.2412 * (normalized) d2=x
+ +      -1.2333 * (normalized) d2=o
+ +      -0.0079 * (normalized) d2=b
+ +       0.4882 * (normalized) d3=x
+ +      -0.9755 * (normalized) d3=o
+ +       0.4872 * (normalized) d3=b
+ +       1.403  * (normalized) d4=x
+ +      -1.4463 * (normalized) d4=o
+ +       0.0433 * (normalized) d4=b
+ +       0.0338 * (normalized) d5=x
+ +      -0.4104 * (normalized) d5=o
+ +       0.3766 * (normalized) d5=b
+ +       1      * (normalized) d6=x
+ +      -1.0036 * (normalized) d6=o
+ +       0.0036 * (normalized) d6=b
+ +      -0.059  * (normalized) e1=x
+ +       0.1118 * (normalized) e1=o
+ +      -0.0528 * (normalized) e1=b
+ +       0.5434 * (normalized) e2=x
+ +      -0.7126 * (normalized) e2=o
+ +       0.1691 * (normalized) e2=b
+ +       0.4046 * (normalized) e3=x
+ +      -0.5085 * (normalized) e3=o
+ +       0.1039 * (normalized) e3=b
+ +       0.4409 * (normalized) e4=x
+ +      -0.4729 * (normalized) e4=o
+ +       0.032  * (normalized) e4=b
+ +      -0.4121 * (normalized) e5=x
+ +       0.5469 * (normalized) e5=o
+ +      -0.1348 * (normalized) e5=b
+ +      -0.4382 * (normalized) e6=x
+ +       0.3495 * (normalized) e6=o
+ +       0.0887 * (normalized) e6=b
+ +      -0.0418 * (normalized) f1=x
+ +       0.0567 * (normalized) f1=o
+ +      -0.0149 * (normalized) f1=b
+ +       0.0946 * (normalized) f2=x
+ +      -0.1813 * (normalized) f2=o
+ +       0.0867 * (normalized) f2=b
+ +       0.244  * (normalized) f3=x
+ +      -0.5552 * (normalized) f3=o
+ +       0.3112 * (normalized) f3=b
+ +       0.0684 * (normalized) f4=x
+ +      -0.1614 * (normalized) f4=o
+ +       0.093  * (normalized) f4=b
+ +       0.0701 * (normalized) f5=x
+ +      -0.1114 * (normalized) f5=o
+ +       0.0413 * (normalized) f5=b
+ +       0.7469 * (normalized) f6=x
+ +       0.4025 * (normalized) f6=o
+ +      -1.1493 * (normalized) f6=b
+ +      -0.4427 * (normalized) g1=x
+ +       0.5248 * (normalized) g1=o
+ +      -0.0821 * (normalized) g1=b
+ +      -0.3601 * (normalized) g2=x
+ +       0.3674 * (normalized) g2=o
+ +      -0.0073 * (normalized) g2=b
+ +      -0.3474 * (normalized) g3=x
+ +       0.24   * (normalized) g3=o
+ +       0.1075 * (normalized) g3=b
+ +      -0.347  * (normalized) g4=x
+ +       0.3803 * (normalized) g4=o
+ +      -0.0333 * (normalized) g4=b
+ +      -0.8821 * (normalized) g5=x
+ +       0.7117 * (normalized) g5=o
+ +       0.1703 * (normalized) g5=b
+ +      -0.448  * (normalized) g6=x
+ +       1.3063 * (normalized) g6=o
+ +      -0.8584 * (normalized) g6=b
+ +       0.1429
+
+Number of kernel evaluations: 1748330789 (15.949% cached)
+
+
+
+Time taken to build model: 7253.4 seconds
+Time taken to test model on training data: 0.47 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances       40817               75.5241 %
+Incorrectly Classified Instances     13228               24.4759 %
+Kappa statistic                          0.4605
+K&B Relative Info Score            1207173.4194 %
+K&B Information Score                15041.2793 bits      0.2783 bits/instance
+Class complexity | order 0           67337.4363 bits      1.246  bits/instance
+Class complexity | scheme          4862143.6468 bits     89.9647 bits/instance
+Complexity improvement     (Sf)    -4794806.2105 bits    -88.7188 bits/instance
+Mean absolute error                      0.2951
+Root mean squared error                  0.3833
+Relative absolute error                 86.7006 %
+Root relative squared error             92.9014 %
+Total Number of Instances            54045     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.915     0.454      0.784     0.915     0.844      0.732    win
+                 0.648     0.111      0.669     0.648     0.658      0.832    loss
+                 0.006     0.001      0.567     0.006     0.012      0.461    draw
+Weighted Avg.    0.755     0.32       0.733     0.755     0.713      0.73 
+
+
+=== Confusion Matrix ===
+
+     a     b     c   <-- classified as
+ 31788  2945    15 |     a = win
+  4876  8995    11 |     b = loss
+  3880  1501    34 |     c = draw
+
+
+=== Error on test data ===
+
+Correctly Classified Instances       10364               76.7022 %
+Incorrectly Classified Instances      3148               23.2978 %
+Kappa statistic                          0.3237
+K&B Relative Info Score             198677.6682 %
+K&B Information Score                 2475.507  bits      0.1832 bits/instance
+Class complexity | order 0           15027.6521 bits      1.1122 bits/instance
+Class complexity | scheme           958011.4914 bits     70.9008 bits/instance
+Complexity improvement     (Sf)    -942983.8394 bits    -69.7886 bits/instance
+Mean absolute error                      0.2888
+Root mean squared error                  0.3748
+Relative absolute error                 90.7668 %
+Root relative squared error             97.4272 %
+Total Number of Instances            13512     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.951     0.683      0.781     0.951     0.858      0.636    win
+                 0.403     0.051      0.668     0.403     0.503      0.796    loss
+                 0.006     0.001      0.353     0.006     0.011      0.441    draw
+Weighted Avg.    0.767     0.502      0.726     0.767     0.721      0.653
+
+
+=== Confusion Matrix ===
+
+    a    b    c   <-- classified as
+ 9248  467   10 |    a = win
+ 1642 1110    1 |    b = loss
+  944   84    6 |    c = draw
+

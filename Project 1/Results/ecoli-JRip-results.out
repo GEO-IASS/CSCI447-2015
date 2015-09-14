@@ -1,0 +1,126 @@
+
+JRIP rules:
+===========
+
+(alm1 = 0.33) => class=om (2.0/0.0)
+(alm2 = 0.29) => class=om (5.0/2.0)
+(aac = 0.77) => class=om (3.0/0.0)
+(aac = 0.73) => class=om (2.0/0.0)
+(gvh = 0.76) => class=om (3.0/1.0)
+(mcg = 0.81) => class=imU (3.0/0.0)
+(alm1 = 0.73) => class=imU (5.0/1.0)
+(aac = 0.64) => class=imU (4.0/1.0)
+(mcg = 0.79) => class=imU (3.0/0.0)
+(mcg = 0.86) => class=imU (2.0/0.0)
+(gvh = 0.86) => class=pp (4.0/0.0)
+(mcg = 0.69) => class=pp (7.0/2.0)
+(gvh = 0.71) => class=pp (6.0/2.0)
+(gvh = 0.78) => class=pp (5.0/1.0)
+(mcg = 0.64) => class=pp (6.0/2.0)
+(gvh = 0.74) => class=pp (2.0/0.0)
+(mcg = 0.74) => class=pp (6.0/2.0)
+(alm1 = 0.51) => class=pp (2.0/0.0)
+(alm2 = 0.39) => class=cp (8.0/1.0)
+(alm2 = 0.43) => class=cp (6.0/1.0)
+(gvh = 0.28) => class=cp (4.0/0.0)
+(mcg = 0.44) => class=cp (5.0/1.0)
+(aac = 0.49) => class=cp (9.0/3.0)
+(alm1 = 0.25) => class=cp (3.0/0.0)
+(aac = 0.43) => class=cp (6.0/1.0)
+(mcg = 0.41) => class=cp (5.0/1.0)
+(aac = 0.37) => class=cp (6.0/1.0)
+ => class=im (146.0/78.0)
+
+Number of Rules : 28
+
+
+Time taken to build model: 0.11 seconds
+Time taken to test model on training data: 0 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances         167               62.3134 %
+Incorrectly Classified Instances       101               37.6866 %
+Kappa statistic                          0.497 
+K&B Relative Info Score              10790.9673 %
+K&B Information Score                  260.3491 bits      0.9715 bits/instance
+Class complexity | order 0             634.6038 bits      2.3679 bits/instance
+Class complexity | scheme              405.0096 bits      1.5112 bits/instance
+Complexity improvement     (Sf)        229.5941 bits      0.8567 bits/instance
+Mean absolute error                      0.1295
+Root mean squared error                  0.2545
+Relative absolute error                 66.3118 %
+Root relative squared error             81.5741 %
+Total Number of Instances              268     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.573     0.047      0.827     0.573     0.677      0.839    cp
+                 0.883     0.408      0.466     0.883     0.61       0.763    im
+                 0.558     0.042      0.763     0.558     0.644      0.828    pp
+                 0.429     0.009      0.882     0.429     0.577      0.824    imU
+                 0.6       0.012      0.8       0.6       0.686      0.896    om
+                 0         0          0         0         0          0.767    omL
+                 0         0          0         0         0          0.729    imL
+                 0         0          0         0         0          0.729    imS
+Weighted Avg.    0.623     0.14       0.688     0.623     0.616      0.814
+
+
+=== Confusion Matrix ===
+
+  a  b  c  d  e  f  g  h   <-- classified as
+ 43 30  0  0  2  0  0  0 |  a = cp
+  3 68  4  2  0  0  0  0 |  b = im
+  5 17 29  0  1  0  0  0 |  c = pp
+  0 17  3 15  0  0  0  0 |  d = imU
+  0  6  2  0 12  0  0  0 |  e = om
+  1  4  0  0  0  0  0  0 |  f = omL
+  0  2  0  0  0  0  0  0 |  g = imL
+  0  2  0  0  0  0  0  0 |  h = imS
+
+
+=== Error on test data ===
+
+Correctly Classified Instances          13               19.1176 %
+Incorrectly Classified Instances        55               80.8824 %
+Kappa statistic                          0     
+K&B Relative Info Score                427.0983 %
+K&B Information Score                   10.3044 bits      0.1515 bits/instance
+Class complexity | order 0             126.5206 bits      1.8606 bits/instance
+Class complexity | scheme            10846.0497 bits    159.5007 bits/instance
+Complexity improvement     (Sf)     -10719.5291 bits   -157.6401 bits/instance
+Mean absolute error                      0.1756
+Root mean squared error                  0.3337
+Relative absolute error                 96.9505 %
+Root relative squared error            115.7253 %
+Total Number of Instances               68     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.191     0          1         0.191     0.321      ?        cp
+                 0         0.632      0         0         0          ?        im
+                 0         0.015      0         0         0          ?        pp
+                 0         0          0         0         0          ?        imU
+                 0         0.162      0         0         0          ?        om
+                 0         0          0         0         0          ?        omL
+                 0         0          0         0         0          ?        imL
+                 0         0          0         0         0          ?        imS
+Weighted Avg.    0.191     0          1         0.191     0.321      0    
+
+
+=== Confusion Matrix ===
+
+  a  b  c  d  e  f  g  h   <-- classified as
+ 13 43  1  0 11  0  0  0 |  a = cp
+  0  0  0  0  0  0  0  0 |  b = im
+  0  0  0  0  0  0  0  0 |  c = pp
+  0  0  0  0  0  0  0  0 |  d = imU
+  0  0  0  0  0  0  0  0 |  e = om
+  0  0  0  0  0  0  0  0 |  f = omL
+  0  0  0  0  0  0  0  0 |  g = imL
+  0  0  0  0  0  0  0  0 |  h = imS
+

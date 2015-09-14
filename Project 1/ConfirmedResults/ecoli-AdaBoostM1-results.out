@@ -1,0 +1,114 @@
+
+AdaBoostM1: No boosting possible, one classifier used!
+Decision Stump
+
+Classifications
+
+lip = 1 : omL
+lip != 1 : im
+lip is missing : im
+
+Class distributions
+
+lip = 1
+cp	im	pp	imU	om	omL	imL	imS	
+0.0	0.1	0.0	0.1	0.1	0.5	0.2	0.0	
+lip != 1
+cp	im	pp	imU	om	omL	imL	imS	
+0.29069767441860467	0.29457364341085274	0.20155038759689922	0.13178294573643412	0.07364341085271318	0.0	0.0	0.007751937984496124	
+lip is missing
+cp	im	pp	imU	om	omL	imL	imS	
+0.2798507462686567	0.2873134328358209	0.19402985074626866	0.13059701492537312	0.07462686567164178	0.018656716417910446	0.007462686567164179	0.007462686567164179	
+
+
+
+Time taken to build model: 0.87 seconds
+Time taken to test model on training data: 0 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances          81               30.2239 %
+Incorrectly Classified Instances       187               69.7761 %
+Kappa statistic                          0.0345
+K&B Relative Info Score               1885.9933 %
+K&B Information Score                   45.5026 bits      0.1698 bits/instance
+Class complexity | order 0             634.6038 bits      2.3679 bits/instance
+Class complexity | scheme              592.3952 bits      2.2104 bits/instance
+Complexity improvement     (Sf)         42.2086 bits      0.1575 bits/instance
+Mean absolute error                      0.1905
+Root mean squared error                  0.3086
+Relative absolute error                 97.5506 %
+Root relative squared error             98.94   %
+Total Number of Instances              268     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0         0          0         0         0          0.526    cp
+                 0.987     0.953      0.295     0.987     0.454      0.517    im
+                 0         0          0         0         0          0.523    pp
+                 0         0          0         0         0          0.505    imU
+                 0         0          0         0         0          0.507    om
+                 1         0.019      0.5       1         0.667      0.99     omL
+                 0         0          0         0         0          0.985    imL
+                 0         0          0         0         0          0.519    imS
+Weighted Avg.    0.302     0.274      0.094     0.302     0.143      0.531
+
+
+=== Confusion Matrix ===
+
+  a  b  c  d  e  f  g  h   <-- classified as
+  0 75  0  0  0  0  0  0 |  a = cp
+  0 76  0  0  0  1  0  0 |  b = im
+  0 52  0  0  0  0  0  0 |  c = pp
+  0 34  0  0  0  1  0  0 |  d = imU
+  0 19  0  0  0  1  0  0 |  e = om
+  0  0  0  0  0  5  0  0 |  f = omL
+  0  0  0  0  0  2  0  0 |  g = imL
+  0  2  0  0  0  0  0  0 |  h = imS
+
+
+=== Error on test data ===
+
+Correctly Classified Instances           0                0      %
+Incorrectly Classified Instances        68              100      %
+Kappa statistic                          0     
+K&B Relative Info Score                220.3715 %
+K&B Information Score                    5.3168 bits      0.0782 bits/instance
+Class complexity | order 0             126.5206 bits      1.8606 bits/instance
+Class complexity | scheme              121.2038 bits      1.7824 bits/instance
+Complexity improvement     (Sf)          5.3168 bits      0.0782 bits/instance
+Mean absolute error                      0.1773
+Root mean squared error                  0.2858
+Relative absolute error                 97.8837 %
+Root relative squared error             99.0943 %
+Total Number of Instances               68     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0         0          0         0         0          ?        cp
+                 0         1          0         0         0          ?        im
+                 0         0          0         0         0          ?        pp
+                 0         0          0         0         0          ?        imU
+                 0         0          0         0         0          ?        om
+                 0         0          0         0         0          ?        omL
+                 0         0          0         0         0          ?        imL
+                 0         0          0         0         0          ?        imS
+Weighted Avg.    0         0          0         0         0          0    
+
+
+=== Confusion Matrix ===
+
+  a  b  c  d  e  f  g  h   <-- classified as
+  0 68  0  0  0  0  0  0 |  a = cp
+  0  0  0  0  0  0  0  0 |  b = im
+  0  0  0  0  0  0  0  0 |  c = pp
+  0  0  0  0  0  0  0  0 |  d = imU
+  0  0  0  0  0  0  0  0 |  e = om
+  0  0  0  0  0  0  0  0 |  f = omL
+  0  0  0  0  0  0  0  0 |  g = imL
+  0  0  0  0  0  0  0  0 |  h = imS
+

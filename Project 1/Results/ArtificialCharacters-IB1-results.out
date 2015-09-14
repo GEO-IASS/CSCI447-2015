@@ -1,0 +1,101 @@
+
+IB1 classifier
+
+Time taken to build model: 0.21 seconds
+Time taken to test model on training data: 54.96 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances       20072               98.2188 %
+Incorrectly Classified Instances       364                1.7812 %
+Kappa statistic                          0.9795
+K&B Relative Info Score            2002763.4508 %
+K&B Information Score                59321.486  bits      2.9028 bits/instance
+Class complexity | order 0           60507.7026 bits      2.9608 bits/instance
+Class complexity | scheme           390936      bits     19.1298 bits/instance
+Complexity improvement     (Sf)    -330428.2974 bits    -16.1689 bits/instance
+Mean absolute error                      0.0036
+Root mean squared error                  0.0597
+Relative absolute error                  2.051  %
+Root relative squared error             20.2534 %
+Total Number of Instances            20436     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0         0          0         0         0          ?        A
+                 0         0          0         0         0          ?        C
+                 1         0          1         1         1          ?        D
+                 1         0.007      0.954     1         0.976      ?        E
+                 0.974     0.004      0.967     0.974     0.971      ?        F
+                 1         0          1         1         1          ?        G
+                 0.977     0.002      0.983     0.977     0.98       ?        H
+                 0.939     0          0.997     0.939     0.967      ?        L
+                 0.992     0.007      0.958     0.992     0.975      ?        P
+                 0.961     0          1         0.961     0.98       ?        R
+Weighted Avg.    0.982     0.003      0.983     0.982     0.982      0    
+
+
+=== Confusion Matrix ===
+
+    a    b    c    d    e    f    g    h    i    j   <-- classified as
+    0    0    0    0    0    0    0    0    0    0 |    a = A
+    0    0    0    0    0    0    0    0    0    0 |    b = C
+    0    0 2431    0    0    0    0    0    0    0 |    c = D
+    0    0    0 2500    0    0    0    0    0    0 |    d = E
+    0    0    0   52 1948    0    0    0    0    0 |    e = F
+    0    0    0    0    0 3013    0    0    0    0 |    f = G
+    0    0    0   32   26    0 2442    0    0    0 |    g = H
+    0    0    0   33   32    0   27 1408    0    0 |    h = L
+    0    0    0    4    4    0   12    4 2965    0 |    i = P
+    0    0    0    0    4    0    4    0  130 3365 |    j = R
+
+
+=== Error on test data ===
+
+Correctly Classified Instances          78                1.5267 %
+Incorrectly Classified Instances      5031               98.4733 %
+Kappa statistic                          0.0138
+K&B Relative Info Score               8076.6898 %
+K&B Information Score                  239.2301 bits      0.0468 bits/instance
+Class complexity | order 0           72281.1456 bits     14.1478 bits/instance
+Class complexity | scheme          5403294      bits   1057.6031 bits/instance
+Complexity improvement     (Sf)    -5331012.8544 bits  -1043.4552 bits/instance
+Mean absolute error                      0.1969
+Root mean squared error                  0.4438
+Relative absolute error                 98.6572 %
+Root relative squared error            132.1473 %
+Total Number of Instances             5109     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0         0          0         0         0          0.5      A
+                 0         0          0         0         0          0.5      C
+                 1         0.083      0.157     1         0.271      0.958    D
+                 0         0.192      0         0         0          ?        E
+                 0         0.077      0         0         0          ?        F
+                 0         0.383      0         0         0          ?        G
+                 0         0.203      0         0         0          ?        H
+                 0         0.012      0         0         0          ?        L
+                 0         0.023      0         0         0          ?        P
+                 0         0.014      0         0         0          ?        R
+Weighted Avg.    0.015     0.001      0.002     0.015     0.004      0.507
+
+
+=== Confusion Matrix ===
+
+    a    b    c    d    e    f    g    h    i    j   <-- classified as
+    0    0  358  858  294  250 1030   60  115   67 |    a = A
+    0    0   62  122   97 1708    7    1    0    2 |    b = C
+    0    0   78    0    0    0    0    0    0    0 |    c = D
+    0    0    0    0    0    0    0    0    0    0 |    d = E
+    0    0    0    0    0    0    0    0    0    0 |    e = F
+    0    0    0    0    0    0    0    0    0    0 |    f = G
+    0    0    0    0    0    0    0    0    0    0 |    g = H
+    0    0    0    0    0    0    0    0    0    0 |    h = L
+    0    0    0    0    0    0    0    0    0    0 |    i = P
+    0    0    0    0    0    0    0    0    0    0 |    j = R
+

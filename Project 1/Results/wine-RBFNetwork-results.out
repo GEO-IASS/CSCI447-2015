@@ -1,0 +1,92 @@
+
+Radial basis function network
+(Logistic regression applied to K-means clusters as basis functions):
+
+Logistic Regression with ridge parameter of 1.0E-8
+Coefficients...
+                  Class
+Variable              1        2
+================================
+pCluster_0_0     2.9724   0.9284
+pCluster_0_1    -2.9724  -0.9284
+Intercept       -1.8628   0.2396
+
+
+Odds Ratios...
+                  Class
+Variable              1        2
+================================
+pCluster_0_0    19.5391   2.5305
+pCluster_0_1     0.0512   0.3952
+
+
+Time taken to build model: 0.08 seconds
+Time taken to test model on training data: 0.02 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances          69               48.5915 %
+Incorrectly Classified Instances        73               51.4085 %
+Kappa statistic                         -0.0008
+K&B Relative Info Score               2731.8781 %
+K&B Information Score                   39.884  bits      0.2809 bits/instance
+Class complexity | order 0             206.5222 bits      1.4544 bits/instance
+Class complexity | scheme              188.6992 bits      1.3289 bits/instance
+Complexity improvement     (Sf)         17.823  bits      0.1255 bits/instance
+Mean absolute error                      0.3677
+Root mean squared error                  0.4216
+Relative absolute error                 90.3252 %
+Root relative squared error             93.5374 %
+Total Number of Instances              142     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0         0          0         0         0          0.826    1
+                 0.93      0.901      0.508     0.93      0.657      0.697    2
+                 0.063     0.096      0.25      0.063     0.1        0.706    3
+Weighted Avg.    0.486     0.483      0.338     0.486     0.362      0.721
+
+
+=== Confusion Matrix ===
+
+  a  b  c   <-- classified as
+  0 19  4 |  a = 1
+  0 66  5 |  b = 2
+  0 45  3 |  c = 3
+
+
+=== Error on test data ===
+
+Correctly Classified Instances           0                0      %
+Incorrectly Classified Instances        36              100      %
+Kappa statistic                          0     
+K&B Relative Info Score                894.924  %
+K&B Information Score                   13.0654 bits      0.3629 bits/instance
+Class complexity | order 0              93.4181 bits      2.5949 bits/instance
+Class complexity | scheme               91.6916 bits      2.547  bits/instance
+Complexity improvement     (Sf)          1.7265 bits      0.048  bits/instance
+Mean absolute error                      0.5301
+Root mean squared error                  0.5769
+Relative absolute error                 95.2854 %
+Root relative squared error             97.1905 %
+Total Number of Instances               36     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0         0          0         0         0          ?        1
+                 0         0.972      0         0         0          ?        2
+                 0         0.028      0         0         0          ?        3
+Weighted Avg.    0         0          0         0         0          0    
+
+
+=== Confusion Matrix ===
+
+  a  b  c   <-- classified as
+  0 35  1 |  a = 1
+  0  0  0 |  b = 2
+  0  0  0 |  c = 3
+

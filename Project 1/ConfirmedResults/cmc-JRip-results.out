@@ -1,0 +1,86 @@
+
+JRIP rules:
+===========
+
+(Wifes_education = 4) and (Number_of_children_ever_born = 4) => Contraceptive_method_used=2 (74.0/28.0)
+(Number_of_children_ever_born = 0) => Contraceptive_method_used=1 (53.0/2.0)
+(Media_exposure = 1) => Contraceptive_method_used=1 (75.0/34.0)
+(Wifes_education = 1) and (Husbands_occupation = 2) => Contraceptive_method_used=1 (20.0/7.0)
+(Number_of_children_ever_born = 1) and (Standard-of-living_index = 4) and (Husbands_occupation = 3) => Contraceptive_method_used=1 (26.0/10.0)
+(Wifes_age = 47) => Contraceptive_method_used=1 (19.0/8.0)
+(Number_of_children_ever_born = 1) and (Wifes_age = 32) => Contraceptive_method_used=1 (4.0/0.0)
+ => Contraceptive_method_used=3 (907.0/460.0)
+
+Number of Rules : 8
+
+
+Time taken to build model: 0.13 seconds
+Time taken to test model on training data: 0.02 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances         629               53.3956 %
+Incorrectly Classified Instances       549               46.6044 %
+Kappa statistic                          0.2243
+K&B Relative Info Score              17961.5221 %
+K&B Information Score                  279.065  bits      0.2369 bits/instance
+Class complexity | order 0            1830.0531 bits      1.5535 bits/instance
+Class complexity | scheme             1642.2842 bits      1.3941 bits/instance
+Complexity improvement     (Sf)        187.7689 bits      0.1594 bits/instance
+Mean absolute error                      0.3883
+Root mean squared error                  0.4406
+Relative absolute error                 89.3913 %
+Root relative squared error             94.5498 %
+Total Number of Instances             1178     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.407     0.072      0.69      0.407     0.512      0.693    1
+                 0.138     0.033      0.622     0.138     0.226      0.615    2
+                 0.875     0.69       0.493     0.875     0.63       0.599    3
+Weighted Avg.    0.534     0.329      0.585     0.534     0.483      0.63 
+
+
+=== Confusion Matrix ===
+
+   a   b   c   <-- classified as
+ 136   4 194 |   a = 1
+  21  46 266 |   b = 2
+  40  24 447 |   c = 3
+
+
+=== Error on test data ===
+
+Correctly Classified Instances          94               31.8644 %
+Incorrectly Classified Instances       201               68.1356 %
+Kappa statistic                          0     
+K&B Relative Info Score               6488.0865 %
+K&B Information Score                  100.8043 bits      0.3417 bits/instance
+Class complexity | order 0             536.2439 bits      1.8178 bits/instance
+Class complexity | scheme              502.3727 bits      1.703  bits/instance
+Complexity improvement     (Sf)         33.8712 bits      0.1148 bits/instance
+Mean absolute error                      0.4098
+Root mean squared error                  0.4845
+Relative absolute error                 85.8056 %
+Root relative squared error             94.9498 %
+Total Number of Instances              295     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.319     0          1         0.319     0.483      ?        1
+                 0         0.024      0         0         0          ?        2
+                 0         0.658      0         0         0          ?        3
+Weighted Avg.    0.319     0          1         0.319     0.483      0    
+
+
+=== Confusion Matrix ===
+
+   a   b   c   <-- classified as
+  94   7 194 |   a = 1
+   0   0   0 |   b = 2
+   0   0   0 |   c = 3
+

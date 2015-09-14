@@ -1,0 +1,191 @@
+
+JRIP rules:
+===========
+
+(a2 = x) and (d2 = b) and (b2 = o) and (c2 = b) and (a1 = o) and (a3 = o) and (d1 = b) and (c1 = b) and (a4 = x) => Class=draw (23.0/6.0)
+(d2 = b) and (d1 = o) and (b2 = b) and (c2 = b) and (a1 = o) and (f1 = b) and (e2 = b) and (a2 = o) => Class=draw (60.0/18.0)
+(d2 = b) and (a2 = x) and (b2 = b) and (d1 = o) and (c1 = x) and (c2 = b) and (g2 = b) and (f1 = b) and (b1 = b) and (e2 = b) => Class=draw (30.0/6.0)
+(d2 = b) and (a2 = x) and (d1 = o) and (c1 = x) and (f1 = x) and (g1 = o) and (f2 = o) => Class=draw (11.0/2.0)
+(g2 = x) and (c2 = b) and (a1 = x) and (c1 = o) and (a3 = x) => Class=draw (45.0/21.0)
+(d2 = b) and (c2 = b) and (b2 = o) and (b4 = o) and (g1 = o) and (d1 = b) and (c1 = b) and (b3 = x) => Class=draw (68.0/27.0)
+(b2 = b) and (d3 = o) and (d1 = o) and (d4 = b) and (b1 = x) and (g1 = x) and (c2 = b) and (e2 = b) and (f1 = b) => Class=draw (28.0/3.0)
+(d2 = b) and (a2 = x) and (b2 = b) and (e3 = o) and (b1 = x) and (a1 = o) => Class=draw (28.0/11.0)
+(d2 = b) and (c2 = b) and (b2 = o) and (f2 = b) and (b4 = o) and (d1 = b) and (b3 = x) and (b5 = x) and (b6 = o) => Class=draw (23.0/5.0)
+(c3 = o) and (c2 = x) and (g2 = x) and (c1 = o) and (g1 = o) and (e1 = b) => Class=draw (58.0/18.0)
+(a2 = x) and (d1 = b) and (a4 = o) and (b1 = x) and (b2 = o) and (b3 = b) and (c1 = b) and (e1 = b) and (f2 = b) => Class=draw (20.0/5.0)
+(d1 = o) and (a1 = x) and (d2 = o) and (d3 = b) and (c2 = b) => Class=loss (758.0/110.0)
+(d1 = o) and (a1 = x) and (d2 = o) and (c1 = b) and (b1 = x) => Class=loss (138.0/24.0)
+(d1 = o) and (a1 = x) and (a2 = x) and (b1 = b) => Class=loss (685.0/194.0)
+(g1 = x) and (c2 = o) and (a1 = x) and (g2 = x) => Class=loss (149.0/21.0)
+(d1 = o) and (a1 = x) and (d2 = o) and (g1 = x) and (b1 = b) => Class=loss (89.0/16.0)
+(d1 = o) and (a1 = x) and (a2 = x) and (c1 = b) and (d2 = b) and (b1 = x) and (g1 = b) => Class=loss (73.0/2.0)
+(g1 = x) and (c3 = o) and (c4 = o) => Class=loss (263.0/59.0)
+(d1 = o) and (a1 = x) and (c2 = o) and (c3 = o) => Class=loss (175.0/37.0)
+(d1 = o) and (d2 = o) and (d3 = b) and (c2 = b) and (e1 = b) and (b2 = b) => Class=loss (233.0/39.0)
+(g1 = x) and (c2 = o) and (g2 = x) and (g3 = b) and (a1 = b) and (b1 = x) => Class=loss (71.0/9.0)
+(c2 = o) and (a1 = x) and (b1 = x) and (c3 = b) and (b2 = b) and (d2 = b) and (e1 = b) => Class=loss (127.0/17.0)
+(a1 = x) and (d1 = o) and (d2 = o) and (f2 = o) => Class=loss (25.0/6.0)
+(c2 = o) and (a1 = x) and (b2 = o) and (d1 = b) => Class=loss (243.0/39.0)
+(g1 = x) and (c2 = o) and (a1 = x) and (g2 = b) and (a2 = x) => Class=loss (66.0/15.0)
+(g1 = x) and (c2 = o) and (g2 = x) and (c1 = x) and (e1 = b) and (d1 = o) and (d2 = o) => Class=loss (25.0/0.0)
+(d1 = o) and (a1 = x) and (d3 = o) => Class=loss (528.0/188.0)
+(g1 = x) and (c3 = o) and (c4 = b) and (e1 = b) => Class=loss (622.0/219.0)
+(d1 = o) and (d2 = o) and (b1 = x) and (b2 = o) and (c2 = b) => Class=loss (222.0/33.0)
+(g1 = x) and (c2 = o) and (d1 = o) and (d2 = o) => Class=loss (123.0/31.0)
+(g1 = x) and (g2 = x) and (b2 = o) and (g3 = b) and (c1 = x) and (c2 = o) and (e1 = b) => Class=loss (22.0/1.0)
+(d1 = o) and (a1 = x) and (d2 = b) and (c1 = b) and (b2 = o) and (f1 = b) and (b3 = b) => Class=loss (53.0/1.0)
+(g1 = x) and (c2 = o) and (e2 = o) => Class=loss (225.0/72.0)
+(c2 = o) and (a1 = x) and (g1 = b) and (a2 = x) and (c3 = o) => Class=loss (66.0/13.0)
+(g1 = x) and (c2 = o) and (c3 = o) and (c4 = b) and (e2 = b) => Class=loss (113.0/23.0)
+(a1 = x) and (d1 = o) and (d2 = b) and (c1 = b) and (b2 = b) => Class=loss (306.0/101.0)
+(d1 = o) and (a1 = x) and (d2 = b) and (c2 = o) and (c3 = b) and (b2 = b) => Class=loss (174.0/54.0)
+(d1 = o) and (d2 = o) and (b1 = x) and (c1 = x) => Class=loss (559.0/240.0)
+(g1 = x) and (c2 = o) and (d1 = o) and (d2 = b) and (e1 = x) => Class=loss (71.0/24.0)
+(g1 = x) and (c2 = o) and (g2 = x) and (f2 = o) => Class=loss (46.0/10.0)
+(g1 = x) and (b2 = o) and (g2 = x) and (g3 = b) and (b1 = x) => Class=loss (226.0/85.0)
+(d1 = o) and (a1 = x) and (d2 = b) and (b1 = x) and (b2 = o) and (c2 = b) and (g1 = b) => Class=loss (130.0/32.0)
+(c3 = o) and (b1 = x) and (d1 = o) and (d2 = b) and (b2 = o) => Class=loss (58.0/7.0)
+(g1 = x) and (b2 = o) and (a1 = x) and (c1 = x) and (g2 = x) => Class=loss (14.0/0.0)
+(c3 = o) and (d1 = o) and (b1 = x) and (d2 = b) and (c4 = b) => Class=loss (115.0/26.0)
+(g1 = x) and (c2 = o) and (g2 = b) and (a1 = x) and (a3 = x) => Class=loss (23.0/4.0)
+(g1 = x) and (c2 = o) and (d1 = o) and (d2 = b) and (e1 = b) and (b1 = b) and (f2 = b) and (f1 = b) => Class=loss (58.0/6.0)
+(a1 = x) and (c2 = o) and (c3 = o) and (b1 = o) => Class=loss (100.0/28.0)
+(d1 = o) and (d2 = o) and (c2 = b) and (d4 = o) and (b2 = b) and (e2 = b) and (f2 = b) => Class=loss (81.0/14.0)
+(g1 = x) and (c3 = o) and (b2 = o) and (c2 = x) => Class=loss (31.0/5.0)
+(g1 = x) and (a1 = b) and (g2 = x) and (b1 = x) and (g3 = b) => Class=loss (65.0/18.0)
+(g1 = x) and (a1 = x) and (b2 = o) and (d1 = o) and (b1 = x) and (d2 = b) => Class=loss (85.0/18.0)
+(a1 = x) and (d1 = o) and (d2 = b) and (b1 = x) and (b2 = o) and (c1 = x) => Class=loss (53.0/15.0)
+(g1 = x) and (c2 = o) and (d1 = o) and (d3 = o) => Class=loss (46.0/9.0)
+(g1 = x) and (c2 = o) and (d1 = o) and (d2 = b) and (g3 = x) => Class=loss (27.0/6.0)
+(g1 = x) and (a1 = x) and (a2 = b) and (g2 = b) and (b1 = x) and (c1 = o) => Class=loss (54.0/8.0)
+(d1 = o) and (d2 = o) and (c2 = b) and (d3 = b) and (b3 = o) => Class=loss (58.0/9.0)
+(g1 = x) and (a1 = b) and (g2 = b) and (f1 = x) and (b2 = x) => Class=loss (56.0/13.0)
+(a1 = x) and (d1 = o) and (b1 = b) and (d2 = o) and (c2 = o) => Class=loss (59.0/15.0)
+(g1 = x) and (c3 = o) and (e2 = o) and (f1 = b) => Class=loss (37.0/7.0)
+(g1 = x) and (g2 = x) and (a1 = b) and (g3 = x) => Class=loss (45.0/8.0)
+(a1 = x) and (c2 = o) and (g1 = b) and (e1 = x) and (a2 = b) and (c5 = b) and (d2 = b) => Class=loss (52.0/8.0)
+(a1 = x) and (b3 = o) and (a2 = x) and (d1 = b) and (e1 = b) and (b4 = b) => Class=loss (97.0/20.0)
+(g1 = x) and (a1 = b) and (g2 = x) and (e1 = b) and (d1 = o) and (f1 = x) => Class=loss (14.0/0.0)
+(a1 = x) and (c2 = o) and (c3 = b) and (g1 = b) and (a2 = x) => Class=loss (152.0/51.0)
+(g1 = x) and (d2 = o) and (f2 = o) and (e1 = b) => Class=loss (22.0/3.0)
+(a1 = x) and (c2 = o) and (c3 = b) and (b1 = x) and (b3 = o) => Class=loss (26.0/2.0)
+(c3 = o) and (b1 = x) and (d1 = o) and (d2 = b) and (c4 = o) => Class=loss (36.0/2.0)
+(b1 = x) and (b3 = o) and (a2 = x) and (b2 = o) and (b4 = b) => Class=loss (110.0/41.0)
+(c3 = o) and (c4 = o) and (c1 = o) => Class=loss (80.0/9.0)
+(g1 = x) and (b2 = o) and (a1 = x) and (b1 = o) and (c2 = b) and (d1 = b) => Class=loss (183.0/67.0)
+(g1 = x) and (a1 = b) and (g2 = x) and (g4 = x) and (g5 = b) => Class=loss (49.0/11.0)
+(g1 = x) and (b3 = o) and (b4 = o) and (d1 = b) and (b1 = o) => Class=loss (49.0/11.0)
+(g1 = x) and (g2 = b) and (d1 = b) and (a1 = b) and (c1 = o) and (f1 = o) => Class=loss (68.0/18.0)
+(g1 = x) and (a1 = x) and (a2 = x) and (g2 = b) and (f1 = b) => Class=loss (57.0/25.0)
+(b1 = x) and (f1 = x) and (c2 = o) and (g1 = b) and (d1 = b) and (c3 = b) => Class=loss (158.0/65.0)
+(g1 = x) and (g2 = x) and (d1 = b) and (a2 = b) and (f3 = o) => Class=loss (45.0/11.0)
+(c3 = o) and (g1 = b) and (f1 = x) and (b1 = x) and (b2 = o) and (a1 = o) => Class=loss (13.0/0.0)
+(c3 = o) and (d1 = o) and (d2 = o) and (d3 = b) and (f2 = b) => Class=loss (97.0/9.0)
+(g1 = x) and (a1 = b) and (g2 = b) and (d3 = o) and (d4 = o) => Class=loss (38.0/3.0)
+(b1 = x) and (b3 = o) and (c1 = o) and (a1 = x) and (c2 = b) and (d1 = b) and (b4 = b) => Class=loss (53.0/13.0)
+(g1 = x) and (a1 = x) and (a2 = b) and (g2 = x) and (f1 = b) => Class=loss (30.0/11.0)
+(c3 = o) and (c4 = o) and (a1 = x) => Class=loss (124.0/50.0)
+(c2 = o) and (c3 = b) and (d2 = b) and (d1 = o) and (b3 = o) => Class=loss (47.0/5.0)
+(g1 = x) and (a2 = b) and (d1 = b) and (g2 = b) and (a1 = x) and (c1 = x) and (b1 = o) => Class=loss (42.0/13.0)
+(b1 = x) and (g1 = b) and (c3 = o) and (f1 = x) and (e1 = b) and (c2 = x) => Class=loss (49.0/18.0)
+(g1 = x) and (a1 = b) and (e2 = o) and (f1 = x) and (d1 = b) => Class=loss (55.0/10.0)
+(c2 = o) and (c3 = b) and (d2 = b) and (b2 = b) and (e2 = b) and (f2 = b) and (c1 = o) and (a1 = x) => Class=loss (66.0/13.0)
+(c2 = o) and (c3 = b) and (d2 = b) and (b2 = b) and (e2 = b) and (f2 = b) and (f1 = o) and (b1 = o) => Class=loss (36.0/4.0)
+(b1 = x) and (g1 = b) and (a1 = b) and (d3 = o) and (d4 = o) and (d1 = o) => Class=loss (48.0/0.0)
+(c2 = o) and (c3 = o) and (c4 = b) and (g1 = b) and (d2 = b) and (e2 = b) => Class=loss (194.0/81.0)
+(c2 = o) and (c3 = b) and (d2 = b) and (b2 = b) and (d1 = o) and (b1 = x) => Class=loss (108.0/45.0)
+(g1 = x) and (a1 = b) and (g3 = x) and (g4 = x) => Class=loss (75.0/36.0)
+(b1 = x) and (b3 = o) and (b4 = o) and (c1 = o) and (a1 = x) and (c2 = b) => Class=loss (29.0/2.0)
+(g1 = x) and (b3 = o) and (e1 = o) and (e2 = o) and (f1 = b) => Class=loss (38.0/7.0)
+(g1 = x) and (b2 = o) and (b4 = o) and (e1 = o) => Class=loss (43.0/15.0)
+(a1 = x) and (g1 = b) and (a2 = x) and (d1 = b) and (c2 = b) and (f1 = b) and (b1 = o) => Class=loss (149.0/68.0)
+(b1 = x) and (f1 = x) and (f3 = o) and (c1 = o) and (a1 = x) and (d1 = b) => Class=loss (28.0/2.0)
+(b1 = x) and (b3 = o) and (b4 = o) and (f1 = x) and (d1 = b) and (e1 = o) => Class=loss (19.0/4.0)
+(b1 = x) and (g1 = b) and (b4 = o) and (b5 = x) and (b6 = b) and (a1 = x) => Class=loss (25.0/7.0)
+(c2 = o) and (g2 = x) and (g3 = x) and (a1 = x) => Class=loss (27.0/9.0)
+(a1 = b) and (c3 = o) and (g1 = b) and (e2 = o) and (e3 = b) and (f1 = x) and (d1 = b) => Class=loss (20.0/2.0)
+(g1 = x) and (b2 = o) and (c1 = x) and (c2 = o) and (b3 = x) and (b1 = o) => Class=loss (36.0/11.0)
+(g1 = x) and (f2 = o) and (a1 = x) and (e1 = b) and (g3 = o) and (g2 = x) => Class=loss (14.0/1.0)
+(g1 = x) and (f2 = o) and (a1 = x) and (c1 = o) and (b1 = x) and (f1 = o) => Class=loss (12.0/1.0)
+(c2 = o) and (e2 = o) and (f1 = x) and (c3 = x) and (d1 = b) and (b2 = b) and (g1 = b) and (f2 = b) => Class=loss (16.0/1.0)
+(b1 = x) and (g1 = b) and (a2 = x) and (a3 = x) and (c1 = b) and (a4 = b) and (b4 = b) and (b2 = x) => Class=loss (11.0/0.0)
+(b1 = x) and (b3 = o) and (b4 = o) and (d1 = o) and (d2 = b) and (g1 = x) => Class=loss (27.0/8.0)
+(b1 = x) and (g1 = b) and (c3 = o) and (a1 = x) and (b2 = x) => Class=loss (14.0/1.0)
+(g1 = x) and (b2 = o) and (c1 = x) and (d1 = o) and (f1 = x) and (b1 = x) => Class=loss (18.0/4.0)
+(a1 = b) and (c3 = o) and (e1 = x) and (f1 = x) and (c2 = x) => Class=loss (15.0/1.0)
+(d3 = o) and (d4 = o) and (d1 = o) => Class=loss (103.0/2.0)
+ => Class=win (43063.0/10285.0)
+
+Number of Rules : 113
+
+
+Time taken to build model: 231.33 seconds
+Time taken to test model on training data: 0.22 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances       40906               75.6888 %
+Incorrectly Classified Instances     13139               24.3112 %
+Kappa statistic                          0.4432
+K&B Relative Info Score            1418678.7051 %
+K&B Information Score                17676.6173 bits      0.3271 bits/instance
+Class complexity | order 0           67337.4363 bits      1.246  bits/instance
+Class complexity | scheme            54993.3324 bits      1.0175 bits/instance
+Complexity improvement     (Sf)      12344.1039 bits      0.2284 bits/instance
+Mean absolute error                      0.2607
+Root mean squared error                  0.361 
+Relative absolute error                 76.5823 %
+Root relative squared error             87.5121 %
+Total Number of Instances            54045     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.943     0.533      0.761     0.943     0.843      0.71     win
+                 0.566     0.068      0.742     0.566     0.642      0.757    loss
+                 0.05      0.003      0.69      0.05      0.094      0.573    draw
+Weighted Avg.    0.757     0.36       0.749     0.757     0.716      0.708
+
+
+=== Confusion Matrix ===
+
+     a     b     c   <-- classified as
+ 32778  1915    55 |     a = win
+  5959  7856    67 |     b = loss
+  4326   817   272 |     c = draw
+
+
+=== Error on test data ===
+
+Correctly Classified Instances        9804               72.5577 %
+Incorrectly Classified Instances      3708               27.4423 %
+Kappa statistic                          0.1223
+K&B Relative Info Score             165072.7544 %
+K&B Information Score                 2056.7926 bits      0.1522 bits/instance
+Class complexity | order 0           15027.6521 bits      1.1122 bits/instance
+Class complexity | scheme            22440.7325 bits      1.6608 bits/instance
+Complexity improvement     (Sf)      -7413.0804 bits     -0.5486 bits/instance
+Mean absolute error                      0.2745
+Root mean squared error                  0.3806
+Relative absolute error                 86.2886 %
+Root relative squared error             98.9442 %
+Total Number of Instances            13512     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.967     0.864      0.742     0.967     0.84       0.552    win
+                 0.138     0.039      0.476     0.138     0.214      0.55     loss
+                 0.021     0.002      0.524     0.021     0.041      0.502    draw
+Weighted Avg.    0.726     0.63       0.671     0.726     0.651      0.548
+
+
+=== Confusion Matrix ===
+
+    a    b    c   <-- classified as
+ 9403  311   11 |    a = win
+ 2365  379    9 |    b = loss
+  906  106   22 |    c = draw
+

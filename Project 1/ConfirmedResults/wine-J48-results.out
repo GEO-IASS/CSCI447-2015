@@ -1,0 +1,214 @@
+
+Options: -U 
+
+J48 unpruned tree
+------------------
+
+Hue = 1.28: 2 (1.0)
+Hue = 1.74: 2 (1.0)
+Hue = 1.9: 2 (1.0)
+Hue = 1.95: 2 (2.0)
+Hue = 2: 2 (1.0)
+Hue = 2.06: 2 (2.0)
+Hue = 2.08: 2 (1.0)
+Hue = 2.12: 2 (1.0)
+Hue = 2.15: 2 (1.0)
+Hue = 2.2: 2 (1.0)
+Hue = 2.3: 2 (1.0)
+Hue = 2.4: 2 (1.0)
+Hue = 2.45: 2 (2.0)
+Hue = 2.5: 2 (2.0)
+Hue = 2.57: 2 (1.0)
+Hue = 2.6: 2 (4.0)
+Hue = 2.62: 2 (1.0)
+Hue = 2.65: 2 (2.0)
+Hue = 2.7: 2 (2.0)
+Hue = 2.76: 2 (1.0)
+Hue = 2.8: 2 (3.0)
+Hue = 2.85: 2 (1.0)
+Hue = 2.9: 2 (3.0)
+Hue = 2.94: 2 (1.0)
+Hue = 2.95: 2 (1.0)
+Hue = 3: 2 (1.0)
+Hue = 3.05: 2 (3.0)
+Hue = 3.08: 2 (1.0)
+Hue = 3.17: 2 (1.0)
+Hue = 3.21: 2 (1.0)
+Hue = 3.25: 2 (2.0)
+Hue = 3.27: 2 (1.0)
+Hue = 3.3: 2 (2.0)
+Hue = 3.35: 2 (1.0)
+Hue = 3.38: 2 (1.0)
+Hue = 3.4: 2 (3.0)
+Hue = 3.52: 2 (0.0)
+Hue = 3.58: 2 (0.0)
+Hue = 3.6: 2 (1.0)
+Hue = 3.7: 1 (1.0)
+Hue = 3.74: 2 (1.0)
+Hue = 3.8: 2 (3.0)
+Hue = 3.84: 2 (0.0)
+Hue = 3.85: 3 (1.0)
+Hue = 3.9: 2 (1.0)
+Hue = 3.93: 2 (0.0)
+Hue = 3.94: 2 (1.0)
+Hue = 3.95: 2 (0.0)
+Hue = 4: 3 (1.0)
+Hue = 4.1: 3 (1.0)
+Hue = 4.2: 2 (0.0)
+Hue = 4.25: 1 (1.0)
+Hue = 4.28: 1 (1.0)
+Hue = 4.32: 2 (0.0)
+Hue = 4.35: 3 (1.0)
+Hue = 4.36: 1 (1.0)
+Hue = 4.38: 2 (0.0)
+Hue = 4.4: 3 (1.0)
+Hue = 4.45: 2 (1.0)
+Hue = 4.5: 2 (1.0)
+Hue = 4.6: 2 (4.0/2.0)
+Hue = 4.68: 2 (1.0)
+Hue = 4.7: 2 (0.0)
+Hue = 4.8: 2 (1.0)
+Hue = 4.9: 1 (2.0/1.0)
+Hue = 4.92: 3 (1.0)
+Hue = 5: 3 (2.0)
+Hue = 5.04: 1 (1.0)
+Hue = 5.05: 2 (0.0)
+Hue = 5.1: 1 (1.0)
+Hue = 5.2: 2 (0.0)
+Hue = 5.24: 1 (1.0)
+Hue = 5.25: 2 (0.0)
+Hue = 5.28: 3 (1.0)
+Hue = 5.3: 2 (1.0)
+Hue = 5.4: 3 (1.0)
+Hue = 5.43: 1 (1.0)
+Hue = 5.45: 3 (1.0)
+Hue = 5.5: 3 (1.0)
+Hue = 5.58: 3 (1.0)
+Hue = 5.6: 1 (2.0/1.0)
+Hue = 5.64: 2 (0.0)
+Hue = 5.65: 2 (0.0)
+Hue = 5.68: 2 (0.0)
+Hue = 5.7: 3 (2.0)
+Hue = 5.75: 2 (1.0)
+Hue = 5.85: 1 (1.0)
+Hue = 5.88: 3 (1.0)
+Hue = 6: 1 (2.0/1.0)
+Hue = 6.1: 1 (1.0)
+Hue = 6.13: 1 (1.0)
+Hue = 6.2: 1 (1.0)
+Hue = 6.25: 1 (1.0)
+Hue = 6.3: 1 (1.0)
+Hue = 6.38: 1 (1.0)
+Hue = 6.6: 2 (0.0)
+Hue = 6.62: 3 (1.0)
+Hue = 6.75: 2 (0.0)
+Hue = 6.8: 1 (1.0)
+Hue = 6.9: 2 (0.0)
+Hue = 7.05: 1 (1.0)
+Hue = 7.1: 3 (2.0)
+Hue = 7.2: 1 (1.0)
+Hue = 7.22: 2 (0.0)
+Hue = 7.3: 3 (1.0)
+Hue = 7.5: 3 (1.0)
+Hue = 7.6: 3 (1.0)
+Hue = 7.65: 3 (2.0)
+Hue = 7.7: 3 (1.0)
+Hue = 7.8: 2 (0.0)
+Hue = 7.9: 3 (1.0)
+Hue = 8.21: 3 (1.0)
+Hue = 8.42: 3 (1.0)
+Hue = 8.5: 3 (1.0)
+Hue = 8.6: 3 (1.0)
+Hue = 8.66: 3 (1.0)
+Hue = 8.7: 2 (0.0)
+Hue = 8.9: 1 (1.0)
+Hue = 9.01: 3 (1.0)
+Hue = 9.2: 3 (1.0)
+Hue = 9.3: 3 (1.0)
+Hue = 9.4: 3 (1.0)
+Hue = 9.58: 3 (1.0)
+Hue = 9.7: 3 (1.0)
+Hue = 9.899999: 3 (1.0)
+Hue = 10.2: 3 (1.0)
+Hue = 10.26: 3 (1.0)
+Hue = 10.52: 3 (1.0)
+Hue = 10.68: 3 (1.0)
+Hue = 10.8: 3 (1.0)
+Hue = 11.75: 3 (1.0)
+Hue = 13: 3 (1.0)
+
+Number of Leaves  : 	132
+
+Size of the tree : 	133
+
+
+Time taken to build model: 0.02 seconds
+Time taken to test model on training data: 0.02 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances         137               96.4789 %
+Incorrectly Classified Instances         5                3.5211 %
+Kappa statistic                          0.9424
+K&B Relative Info Score              13341.3801 %
+K&B Information Score                  194.7771 bits      1.3717 bits/instance
+Class complexity | order 0             206.5222 bits      1.4544 bits/instance
+Class complexity | scheme               12      bits      0.0845 bits/instance
+Complexity improvement     (Sf)        194.5222 bits      1.3699 bits/instance
+Mean absolute error                      0.0258
+Root mean squared error                  0.1136
+Relative absolute error                  6.3425 %
+Root relative squared error             25.2081 %
+Total Number of Instances              142     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.957     0.025      0.88      0.957     0.917      0.997    1
+                 0.986     0.028      0.972     0.986     0.979      0.999    2
+                 0.938     0          1         0.938     0.968      0.999    3
+Weighted Avg.    0.965     0.018      0.967     0.965     0.965      0.999
+
+
+=== Confusion Matrix ===
+
+  a  b  c   <-- classified as
+ 22  1  0 |  a = 1
+  1 70  0 |  b = 2
+  2  1 45 |  c = 3
+
+
+=== Error on test data ===
+
+Correctly Classified Instances           4               11.1111 %
+Incorrectly Classified Instances        32               88.8889 %
+Kappa statistic                          0     
+K&B Relative Info Score                436.9909 %
+K&B Information Score                    6.3798 bits      0.1772 bits/instance
+Class complexity | order 0              93.4181 bits      2.5949 bits/instance
+Class complexity | scheme            11870.1499 bits    329.7264 bits/instance
+Complexity improvement     (Sf)     -11776.7318 bits   -327.1314 bits/instance
+Mean absolute error                      0.5389
+Root mean squared error                  0.6448
+Relative absolute error                 96.8617 %
+Root relative squared error            108.617  %
+Total Number of Instances               36     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.111     0          1         0.111     0.2        ?        1
+                 0         0.722      0         0         0          ?        2
+                 0         0.167      0         0         0          ?        3
+Weighted Avg.    0.111     0          1         0.111     0.2        0    
+
+
+=== Confusion Matrix ===
+
+  a  b  c   <-- classified as
+  4 26  6 |  a = 1
+  0  0  0 |  b = 2
+  0  0  0 |  c = 3
+

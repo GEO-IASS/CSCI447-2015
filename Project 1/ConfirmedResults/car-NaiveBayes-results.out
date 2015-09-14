@@ -1,0 +1,122 @@
+
+Naive Bayes Classifier
+
+                Class
+Attribute       unacc    acc   good  vgood
+               (0.65) (0.25) (0.05) (0.05)
+===========================================
+Buying
+  vhigh           55.0   33.0    1.0    1.0
+  high           325.0  109.0    1.0    1.0
+  med            269.0  116.0   24.0   27.0
+  low            259.0   90.0   47.0   40.0
+  [total]        908.0  348.0   73.0   69.0
+
+Maint
+  vhigh          253.0   73.0    1.0    1.0
+  high           207.0  106.0    1.0   14.0
+  med            197.0   80.0   24.0   27.0
+  low            251.0   89.0   47.0   27.0
+  [total]        908.0  348.0   73.0   69.0
+
+Doors
+  2              235.0   71.0   16.0   11.0
+  3              229.0   91.0   19.0   16.0
+  4              222.0   93.0   19.0   21.0
+  5more          222.0   93.0   19.0   21.0
+  [total]        908.0  348.0   73.0   69.0
+
+Persons
+  2              460.0    1.0    1.0    1.0
+  4              218.0  177.0   37.0   31.0
+  more           229.0  169.0   34.0   36.0
+  [total]        907.0  347.0   72.0   68.0
+
+Lug_boot
+  small          342.0   98.0   22.0    1.0
+  med            292.0  122.0   25.0   26.0
+  big            273.0  127.0   25.0   41.0
+  [total]        907.0  347.0   72.0   68.0
+
+Safety
+  low            461.0    1.0    1.0    1.0
+  med            257.0  167.0   40.0    1.0
+  high           189.0  179.0   31.0   66.0
+  [total]        907.0  347.0   72.0   68.0
+
+
+
+Time taken to build model: 0.38 seconds
+Time taken to test model on training data: 0.17 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances        1212               87.699  %
+Incorrectly Classified Instances       170               12.301  %
+Kappa statistic                          0.7608
+K&B Relative Info Score              87393.2656 %
+K&B Information Score                 1160.2564 bits      0.8395 bits/instance
+Class complexity | order 0            1828.7698 bits      1.3233 bits/instance
+Class complexity | scheme              654.717  bits      0.4737 bits/instance
+Complexity improvement     (Sf)       1174.0529 bits      0.8495 bits/instance
+Mean absolute error                      0.1134
+Root mean squared error                  0.222 
+Relative absolute error                 44.789  %
+Root relative squared error             62.4498 %
+Total Number of Instances             1382     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.92      0.029      0.983     0.92      0.951      0.987    unacc
+                 0.93      0.134      0.697     0.93      0.797      0.959    acc
+                 0.304     0.009      0.636     0.304     0.412      0.983    good
+                 0.6       0.004      0.886     0.6       0.716      0.999    vgood
+Weighted Avg.    0.877     0.053      0.89      0.877     0.875      0.98 
+
+
+=== Confusion Matrix ===
+
+   a   b   c   d   <-- classified as
+ 832  70   2   0 |   a = unacc
+  14 320  10   0 |   b = acc
+   0  43  21   5 |   c = good
+   0  26   0  39 |   d = vgood
+
+
+=== Error on test data ===
+
+Correctly Classified Instances         236               68.2081 %
+Incorrectly Classified Instances       110               31.7919 %
+Kappa statistic                          0.2918
+K&B Relative Info Score               4900.9364 %
+K&B Information Score                   65.0661 bits      0.1881 bits/instance
+Class complexity | order 0             268.4213 bits      0.7758 bits/instance
+Class complexity | scheme              222.6924 bits      0.6436 bits/instance
+Complexity improvement     (Sf)         45.7289 bits      0.1322 bits/instance
+Mean absolute error                      0.1325
+Root mean squared error                  0.2878
+Relative absolute error                 67.2979 %
+Root relative squared error            108.6546 %
+Total Number of Instances              346     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.641     0          1         0.641     0.781      0.893    unacc
+                 1         0.359      0.267     1         0.421      0.816    acc
+                 0         0          0         0         0          ?        good
+                 0         0          0         0         0          ?        vgood
+Weighted Avg.    0.682     0.042      0.915     0.682     0.739      0.885
+
+
+=== Confusion Matrix ===
+
+   a   b   c   d   <-- classified as
+ 196 110   0   0 |   a = unacc
+   0  40   0   0 |   b = acc
+   0   0   0   0 |   c = good
+   0   0   0   0 |   d = vgood
+

@@ -1,0 +1,73 @@
+
+IB1 classifier
+
+Time taken to build model: 0.02 seconds
+Time taken to test model on training data: 0.02 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances         142              100      %
+Incorrectly Classified Instances         0                0      %
+Kappa statistic                          1     
+K&B Relative Info Score              14145.8687 %
+K&B Information Score                  206.5222 bits      1.4544 bits/instance
+Class complexity | order 0             206.5222 bits      1.4544 bits/instance
+Class complexity | scheme                0      bits      0      bits/instance
+Complexity improvement     (Sf)        206.5222 bits      1.4544 bits/instance
+Mean absolute error                      0     
+Root mean squared error                  0     
+Relative absolute error                  0      %
+Root relative squared error              0      %
+Total Number of Instances              142     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 1         0          1         1         1          ?        1
+                 1         0          1         1         1          ?        2
+                 1         0          1         1         1          ?        3
+Weighted Avg.    1         0          1         1         1          0    
+
+
+=== Confusion Matrix ===
+
+  a  b  c   <-- classified as
+ 23  0  0 |  a = 1
+  0 71  0 |  b = 2
+  0  0 48 |  c = 3
+
+
+=== Error on test data ===
+
+Correctly Classified Instances          27               75      %
+Incorrectly Classified Instances         9               25      %
+Kappa statistic                          0     
+K&B Relative Info Score               4638.1231 %
+K&B Information Score                   67.7141 bits      1.8809 bits/instance
+Class complexity | order 0              93.4181 bits      2.5949 bits/instance
+Class complexity | scheme             9666      bits    268.5    bits/instance
+Complexity improvement     (Sf)      -9572.5819 bits   -265.9051 bits/instance
+Mean absolute error                      0.1667
+Root mean squared error                  0.4082
+Relative absolute error                 29.9587 %
+Root relative squared error             68.7737 %
+Total Number of Instances               36     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.75      0          1         0.75      0.857      ?        1
+                 0         0.222      0         0         0          ?        2
+                 0         0.028      0         0         0          ?        3
+Weighted Avg.    0.75      0          1         0.75      0.857      0    
+
+
+=== Confusion Matrix ===
+
+  a  b  c   <-- classified as
+ 27  8  1 |  a = 1
+  0  0  0 |  b = 2
+  0  0  0 |  c = 3
+
