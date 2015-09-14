@@ -72,9 +72,10 @@ foreach my $file (@list){
 					$wortot = $line;
 				} elsif ($line =~ /^Class complexity | scheme/){
 					#print "log\n";
-					$line =~ s/^Class complexity | scheme\s*//g;
-					$line =~ s/\|(\d+.\d+).*$/$1/;
+					$line =~ s/^Class complexity \| scheme\s*//g;
+					$line =~ s/(\d+.\d+).*$/$1/g;
 					$worlog = $line;
+					#print "\n\n";
 				} elsif ($line =~ /^Root mean squared error/){
 					#print "square\n";
 					$line =~ s/^Root mean squared error\s*//g;
@@ -88,7 +89,27 @@ foreach my $file (@list){
 			} elsif ($#title == 4){
 				push @dataset, join('-', ucfirst($title[0]), ucfirst($title[1]), ucfirst($title[2]));
 			}
-			push @algorithm, $title[-2];
+			if ($title[-2] eq "IB1"){
+				push @algorithm, "Simple Nearest Neighbor";
+			} elsif ($title[-2] eq "IBk"){
+				push @algorithm, "K-Nearest Neighbor";
+			} elsif ($title[-2] eq "NaiveBayes") {
+				push @algorithm, "Naive Bayes";
+			} elsif ($title[-2] eq "J48") {
+				push @algorithm, "Decision Tree";
+			} elsif ($title[-2] eq "JRip") {
+				push @algorithm, "Ripper";
+			} elsif ($title[-2] eq "SMO") {
+				push @algorithm, "Support Vector Machine";
+			} elsif ($title[-2] eq "MultilayerPerceptron") {
+				push @algorithm, "Feedforward Neural Networks";
+			} elsif ($title[-2] eq "RBFNetwork") {
+				push @algorithm, "Kernel Neural Network";
+			} elsif ($title[-2] =~ /ADABOOSTM1/i) {
+				push @algorithm, "Ensemble";
+			} else {
+				push @algorithm, $title[-2];
+			}
 			push @log, $worlog;
 			push @total, $wortot;
 			push @correct, $worcor;
@@ -102,16 +123,19 @@ foreach my $file (@list){
 					#print $wrong;
 					$line =~ s/^.{35}//g;
 					$line =~ s/^(\d{\W\d+}).*$/$1/g;
+					#print "$line\n";
 					if ($line < $min and $line > 0){
 						$min = $line;
 					}
 					$line = $line * -($wrong/abs($wrong));
+					#print "$line\n";
 					chomp($line);
 					push @midhin, $line;
 				}
 			}
-			#print $min;
+			#print "\n\n$min\n";
 			foreach my $x (@midhin){
+				#print "$x\n";
 				$worhin += $x/$min;
 			}
 			$worhin = $worhin/(length midhin);
@@ -131,9 +155,9 @@ chomp(@log);
 chomp(@square);
 chomp(@hinge);
 
-print $output "Data_Set,Algorithm,Number_Correct,Number_Total,Log_Loss,Square_Loss,Hinge_Loss\n";
+print $output "Data_Set,Algorithm,Number_Correct,Number_Total,Hinge_Loss,Square_Loss,Log_Loss\n";
 for my $i (0 .. $#dataset) {
-	print $output $dataset[$i],',',uc($algorithm[$i]),',',$correct[$i],',',$total[$i],',',nearest(0.01, $hinge[$i]),',',nearest(0.01, $square[$i]),',',nearest(0.01, $log[$i]),"\n";
+	print $output $dataset[$i],',',$algorithm[$i],',',$correct[$i],',',$total[$i],',',nearest(0.001, $hinge[$i]),',',nearest(0.001, $square[$i]),',',nearest(0.001, $log[$i]),"\n";
 }
 
 
