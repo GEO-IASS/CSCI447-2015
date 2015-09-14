@@ -1,4 +1,4 @@
-Data Set,Algorithm,# Correct,# Total,Log Loss,Square Loss,Hinge Loss
+Data_Set,Algorithm,Number_Correct,Number_Total,Log_Loss,Square_Loss,Hinge_Loss
 ArtificialCharacters,ADABOOSTM1,0,5109,-2094.24,0.12,5403525.78
 ArtificialCharacters,IB1,78,5109,311.67,0.2,5403294
 ArtificialCharacters,IBK,67,5109,7569.39,0.16,94533.76

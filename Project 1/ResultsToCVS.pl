@@ -131,7 +131,7 @@ chomp(@log);
 chomp(@square);
 chomp(@hinge);
 
-print $output "Data Set,Algorithm,# Correct,# Total,Log Loss,Square Loss,Hinge Loss\n";
+print $output "Data_Set,Algorithm,Number_Correct,Number_Total,Log_Loss,Square_Loss,Hinge_Loss\n";
 for my $i (0 .. $#dataset) {
 	print $output $dataset[$i],',',uc($algorithm[$i]),',',$correct[$i],',',$total[$i],',',nearest(0.01, $hinge[$i]),',',nearest(0.01, $square[$i]),',',nearest(0.01, $log[$i]),"\n";
 }
