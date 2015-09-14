@@ -17,6 +17,10 @@ Name:Type
 
 Types include: Numeric, String, (Options), Date Format
 ----End Header Format----
+
+Code can be run by typing in the name of the folder that contains a header and data file.
+The header file needs to have the parameters above while the data should be csv or similar.
+Warning: Not all possible layouts and conditions have been tested. 
 =cut
 
 use strict;

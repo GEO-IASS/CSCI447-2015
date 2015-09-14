@@ -5,7 +5,7 @@ Machine Learning Assignment 1 Results to CSV converter
 Authors: Clint Cooper, Emily Rohrbough
 Date: 09/13/15
 
-Takes the returned .out files and extracts useful information.
+Takes the returned .out files from experiments and extracts useful information organizing it in a csv.
 
 =cut
 
