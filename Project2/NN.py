@@ -3,7 +3,7 @@
 """
 Author: 	Clint Cooper, Emily Rohrbough, Leah Thompson
 Date:   	09/19/15
-CSCI 477:	Project 2
+CSCI 447:	Project 2
 """
 
 # Code for a neural network... Details coming to a theatre near you!!!
@@ -39,8 +39,8 @@ class node:
 				NodeValue = x.getBegin().setValue()
 				self.value += (EdgeWeight * NodeValue)
 		# Comment out one of the following to implement that function:
-		self.value = [0,1][self.value > 0] # Step Function
-		#self.value = 1/(1+math.pow((math.e), (-self.value))) # Sigmoid Function
+		#self.value = [0,1][self.value > 0] # Step Function
+		self.value = 1/(1+math.pow((math.e), (-self.value))) # Sigmoid Function
 		return self.value
 	def getValue(self):
 		return self.value
