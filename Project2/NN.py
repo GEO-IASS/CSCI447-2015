@@ -11,6 +11,21 @@ CSCI 447:	Project 2
 import sys
 import math
 import random
+import sys
+
+help_screen = ["Usage   python NN.py <#input> <#hidden_layer> <#_output>"
+               " <option> ...","OPTION  DESCRIPTION",
+               "-r,-f   test either RBF(-r) or MLP(-f), must choose just one",
+               "-i <#>  number of inputs", 
+               "-h <#>  number of hidden layers",
+               "-o <#>  number of outputs",
+               "-g <#>  number of Gaussian basis functions",
+               "-m      use momentum, default off", 
+               "-s, -l  activation fn, sigmoid or linear"]
+
+if sys.argv[1] in ['-h', '--h', '--help', '-help']:
+    print "\n".join(help_screen)
+    sys.exit()
 
 global BiasWeight
 BiasWeight = 0
@@ -105,5 +120,6 @@ def main():
 
 
 if __name__ == '__main__': main()
+
 
 
