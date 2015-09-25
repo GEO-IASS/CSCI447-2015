@@ -2,7 +2,7 @@
 
 """
 Author: 	Clint Cooper, Emily Rohrbough, Leah Thompson
-Date:   	09/19/15
+Date:   	09/25/15
 CSCI 447:	Project 2
 """
 
@@ -11,6 +11,7 @@ CSCI 447:	Project 2
 import sys
 import math
 import random
+from scipy.special import expit
 
 '''
 help_screen = ["Usage   python NN.py <#input> <#hidden_layer> <#_output>"
@@ -30,125 +31,159 @@ if sys.argv[1] in ['-h', '--h', '--help', '-help']:
 
 global BiasWeight
 BiasWeight = 0
+global LearnRate
+LearnRate = 0.5
 
 class node:
-	"""
-	Code for a node in the neural network
-	"""
-	def __init__(self, functionType, name='NULL'):
-		self.name = name
-		self.edges = []
-		self.value = random.random()
-		self.functionType = functionType
-	def getName(self):
-		return self.name
-	def addEdge(self, edge):
-		#print('Added', edge.getName())
-		self.edges.append(edge)
-	def setValue(self):
-		global BiasWeight
-		for x in self.edges:
-			#print(x.getBegin().getName())
-			if (x.getBegin().isInput()):
-				return x.getBegin().getValue()
-			else:
-				EdgeWeight = x.getWeight()
-				NodeValue = x.getBegin().setValue()
-				self.value += (EdgeWeight * NodeValue)
-		# Comment out one of the following to implement that function:
-		if self.functionType == 'L':
-			self.value = [0,1][self.value > 0] # Step Function
-		elif self.functionType == 'S':
-			self.value = 1/(1+math.pow((math.e), (-self.value))) # Sigmoid Function
-		return self.value
+	def __init__(self, appFunc = '', value = 0):
+		self.inputs = []
+		self.weights = []
+		self.outputs = []
+		self.error = 0
+		self.func = appFunc
+		self.value = value
+	def addInputs(self, nodes):
+		for x in nodes:
+			x.addOutput(self)
+			self.inputs.append(x)
+			self.weights.append(random.random())
+	def calcValue(self):
+		summa = 0
+		for x in self.inputs:
+			summa += x.getValue()*self.weights[self.inputs.index(x)]
+		summa += BiasWeight
+		if self.func == 'S':
+			self.value = expit(summa)
+		else:
+			self.value = summa
 	def getValue(self):
 		return self.value
-	def isInput(self):
-		return False
+	def addOutput(self, node):
+		self.outputs.append(node)
+	def getError(self):
+		return self.error
+	def getWeightForNode(self, node):
+		return self.weights[self.inputs.index(node)]
+	def calcHiddenError(self):
+		sigma = 0
+		for x in self.outputs:
+			sigma += x.getError() * x.getWeightForNode(self)
+		self.error = self.value * (1 - self.value) * sigma + BiasWeight
+		#Delta Weight is not calculated (no learnrate) at this stage
+	def calcOutputError(self, answer):
+		self.error = (answer - self.value) * self.value * (1 - self.value) + BiasWeight
+	def getError(self):
+		return self.error
+	def updateOutputWeights(self):
+		for x in self.weights:
+			x = x + (LearnRate * self.error * self.inputs[self.weights.index(x)].getValue())
+	def updateHiddenWeights(self):
+		for x in self.weights:
+			x = x + (LearnRate * self.error * x)
 
-class edge:
-	"""
-	Code for the connecting edges between nodes
-	"""
-	def __init__(self, begin, end, name='NULL'):
-		self.name = name
-		self.begin = begin
-		begin.addEdge(self)
-		self.end = end
-		end.addEdge(self)
-		self.weight = random.random()
-	def getName(self):
-		return self.name
-	def getBegin(self):
-		return self.begin
-	def getEnd(self):
-		return self.end
-	def updateWeight(self, weight):
-		self.weight = weight
-	def getWeight(self):
-		return self.weight
+def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshhold = 0, bias = 0):
+	global StartingNodes
+	StartingNodes = []
+	global HiddenNodes
+	HiddenNodes = [[]]
+	global OutputNodes
+	OutputNodes = []
+	global Threshhold
+	Threshhold = threshhold
+	global BiasWeight
+	BiasWeight = bias
+	global AnswerSet
+	AnswerSet = answers
 
-class starting(node):
-	"""
-	Containers for the initial values
-	"""
-	def __init__(self, value, name='NULL'):
-		self.name = name
-		self.edges = []
-		self.value = value
-	def isInput(self):
-		return True
+	# Make Start Nodes
+	for x in inputs:
+		n = node(value = x)
+		StartingNodes.append(n)
+	# Make Hidden Layers
+	for y in arrangement:
+		for x in y:
+			if arrangement.index(y) == 0:
+				n = node(appFunc = x)
+				n.addInputs(StartingNodes)
+				HiddenNodes[arrangement.index(y)].append(n)
+			else:
+				n = node(appFunc = x)
+				n.addInputs(HiddenNodes[arrangement.index(y) - 1])
+				HiddenNodes[arrangement.index(y)].append(n)
+	# Make Output Layers
+	for x in outputs:
+		n = node(appFunc = x)
+		n.addInputs(HiddenNodes[-1])
+		OutputNodes.append(n)
+	# Network created
 
-def main():
-	# This is a testing set. Build looks like:
+	print('Network Constructed. Calculating result.')
+
+	CalculateNN()
+	# Will reach this point when result has been calculated and is within proper threshold results.
+	print('Weights Found.')
+	'''
+	for x in StartingNodes:
+		print(x, 'has value:', x.getValue())
+	for y in HiddenNodes:
+		for x in y:
+			print(x, 'has value:', x.getValue())
+			print(x, 'has error:', x.getError())
+	for x in OutputNodes:
+		print(x, 'has value:', x.getValue())
+		print(x, 'has error:', x.getError())
+	'''
+
+def CalculateNN():
+	global StartingNodes
+	global HiddenNodes
+	global OutputNodes
+	global Threshhold
+	global AnswerSet
+
+	backprop = False
+
+	print()
+
+	# Forward propagation of solution
+	for x in StartingNodes:
+		x.getValue()
+	for y in HiddenNodes:
+		for x in y:
+			x.calcValue()
+	for x in OutputNodes:
+		x.calcValue()
+		x.calcOutputError(AnswerSet[OutputNodes.index(x)])
+		if not ((x.getError() <= (AnswerSet[OutputNodes.index(x)] + Threshhold)) and (x.getError() >= (AnswerSet[OutputNodes.index(x)] - Threshhold))):
+			backprop = True
+	if (backprop == True):
+		print('BackProping with', x.getError())
+		BackPropNN()
+
+def BackPropNN():
+	global StartingNodes
+	global HiddenNodes
+	global OutputNodes
+	global LearnRate
+
+	for x in OutputNodes:
+		x.updateOutputWeights()
+	for y in reversed(HiddenNodes):
+		for x in y:
+			x.calcHiddenError()
+			x.updateHiddenWeights()
+	CalculateNN()
+
+
+
+# This is a testing set. Build looks like:
 	#
 	#   A - 1 
 	#     X   > 3 - OUT
 	#   B - 2
 	#
-	A = starting(0, name = 'A')
-	B = starting(0, name = 'B')
-	node1 = node('S', name = '1')
-	node2 = node('S', name = '2')
-	node3 = node('S', name = '3')
-	edgeA1 = edge(A, node1, name = 'A.1')
-	edgeA2 = edge(A, node2, name = 'A.2')
-	edgeB1 = edge(B, node1, name = 'B.1')
-	edgeB2 = edge(B, node2, name = 'B.2')
-	edge13 = edge(node1, node3, name = '1.3')
-	edge23 = edge(node2, node3, name = '2.3')
-
-	print(node3.setValue())
-	# Currently no learning algorithm. Just computes inputs 
-	# with randomized weights via step or sigmoid
-
-def main2(inputs, layers, units, types):
-	main()
-	InputList = []
-	NodesList = []
-	y = 0
-	for i in inputs: #List of starting nodes
-		InputList.append(starting(i))
-	for i in range(layers):
-		for x in range(units[i]):
-			if i == 0:
-				#Construct grid of nodes
-				NewNode = node(types[y])
-				for j in InputList:
-					edge(j, NewNode)
-				NodesList.append(NewNode)
-			else:
-				NewNode = node(types[y])
-				for j in NodesList[-x:]:
-					edge(j, NewNode)
-				NodesList.append(NewNode)
-			y += 1
-	for i in NodesList[-len(units[-1:]):]:
-		print(i.setValue())
+if __name__== '__main__': main([2,3], [['S', 'S']], ['L'], [101], threshhold = 10)
 
 
-
-#if __name__ == '__main__': main()
-if __name__== '__main__': main2([0,0], 2, [2,1], ['S','S','S'])
 
 
