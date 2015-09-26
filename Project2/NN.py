@@ -63,12 +63,15 @@ class node:
 	def getError(self):
 		return self.error
 	def getWeightForNode(self, node):
+		print('Weight from', id(self), 'to', id(node), self.weights[self.inputs.index(node)])
 		return self.weights[self.inputs.index(node)]
 	def calcHiddenError(self):
+		print('Error for', id(self), self.error)
 		sigma = 0
 		for x in self.outputs:
 			sigma += x.getError() * x.getWeightForNode(self)
 		self.error = self.value * (1 - self.value) * sigma + BiasWeight
+
 		#Delta Weight is not calculated (no learnrate) at this stage
 	def calcOutputError(self, answer):
 		self.error = (answer - self.value) * self.value * (1 - self.value) + BiasWeight
@@ -80,20 +83,24 @@ class node:
 	def updateHiddenWeights(self):
 		for x in self.weights:
 			x = x + (LearnRate * self.error * x)
+	def getOutputs(self):
+		return self.outputs
 
-def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshhold = 0, bias = 0):
+def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 0, bias = 0):
 	global StartingNodes
 	StartingNodes = []
 	global HiddenNodes
-	HiddenNodes = [[]]
+	HiddenNodes = []
 	global OutputNodes
 	OutputNodes = []
-	global Threshhold
-	Threshhold = threshhold
+	global Threshold
+	Threshold = threshold
 	global BiasWeight
 	BiasWeight = bias
 	global AnswerSet
 	AnswerSet = answers
+	global loops
+	loops = 0
 
 	# Make Start Nodes
 	for x in inputs:
@@ -101,15 +108,17 @@ def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshhold = 0,
 		StartingNodes.append(n)
 	# Make Hidden Layers
 	for y in arrangement:
+		temp = []
 		for x in y:
 			if arrangement.index(y) == 0:
 				n = node(appFunc = x)
 				n.addInputs(StartingNodes)
-				HiddenNodes[arrangement.index(y)].append(n)
+				temp.append(n)
 			else:
 				n = node(appFunc = x)
 				n.addInputs(HiddenNodes[arrangement.index(y) - 1])
-				HiddenNodes[arrangement.index(y)].append(n)
+				temp.append(n)
+		HiddenNodes.append(temp)
 	# Make Output Layers
 	for x in outputs:
 		n = node(appFunc = x)
@@ -117,33 +126,36 @@ def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshhold = 0,
 		OutputNodes.append(n)
 	# Network created
 
+	#for y in HiddenNodes:
+	#	for x in y:
+	#		print(x, x.getOutputs())
+
 	print('Network Constructed. Calculating result.')
 
 	CalculateNN()
 	# Will reach this point when result has been calculated and is within proper threshold results.
-	print('Weights Found.')
-	'''
+	print('\nWeights Found.')
+	
 	for x in StartingNodes:
-		print(x, 'has value:', x.getValue())
+		print(id(x), 'has starting value:', x.getValue())
 	for y in HiddenNodes:
 		for x in y:
-			print(x, 'has value:', x.getValue())
-			print(x, 'has error:', x.getError())
+			print(id(x), 'has hidden value:', x.getValue())
+			print(id(x), 'has hidden error:', x.getError())
 	for x in OutputNodes:
-		print(x, 'has value:', x.getValue())
-		print(x, 'has error:', x.getError())
-	'''
+		print(id(x), 'has output value:', x.getValue())
+		print(id(x), 'has output error:', x.getError())
+	
 
 def CalculateNN():
 	global StartingNodes
 	global HiddenNodes
 	global OutputNodes
-	global Threshhold
+	global Threshold
 	global AnswerSet
+	global loops
 
 	backprop = False
-
-	print()
 
 	# Forward propagation of solution
 	for x in StartingNodes:
@@ -151,14 +163,18 @@ def CalculateNN():
 	for y in HiddenNodes:
 		for x in y:
 			x.calcValue()
+			print('Value of', id(x), x.getValue())
+	print(loops)
 	for x in OutputNodes:
 		x.calcValue()
 		x.calcOutputError(AnswerSet[OutputNodes.index(x)])
-		if not ((x.getError() <= (AnswerSet[OutputNodes.index(x)] + Threshhold)) and (x.getError() >= (AnswerSet[OutputNodes.index(x)] - Threshhold))):
+		if not ((x.getError() <= (AnswerSet[OutputNodes.index(x)] + Threshold)) and (x.getError() >= (AnswerSet[OutputNodes.index(x)] - Threshold))):
 			backprop = True
-	if (backprop == True):
-		print('BackProping with', x.getError())
-		BackPropNN()
+	if (loops < 3):
+		loops += 1
+		if (backprop == True):
+	#		print('BackProping with', x.getError())
+			BackPropNN()
 
 def BackPropNN():
 	global StartingNodes
@@ -178,11 +194,11 @@ def BackPropNN():
 
 # This is a testing set. Build looks like:
 	#
-	#   A - 1 
-	#     X   > 3 - OUT
-	#   B - 2
+	#   2 - A 
+	#     X   > C - OUT
+	#   3 - B
 	#
-if __name__== '__main__': main([2,3], [['S', 'S']], ['L'], [101], threshhold = 10)
+if __name__== '__main__': main([2,3], [['S', 'S']], ['L'], [101], threshold = 10)
 
 
 
