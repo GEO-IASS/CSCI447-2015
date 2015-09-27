@@ -2,37 +2,21 @@
 
 """
 Author: 	Clint Cooper, Emily Rohrbough, Leah Thompson
-Date:   	09/25/15
+Date:   	09/27/15
 CSCI 447:	Project 2
 """
 
-# Code for a neural network... Details coming to a theatre near you!!!
+# Code for a neural network... Details on the horizon!!!
 
 import sys
 import math
 import random
 from scipy.special import expit
 
-'''
-help_screen = ["Usage   python NN.py <#input> <#hidden_layer> <#_output>"
-               " <option> ...","OPTION  DESCRIPTION",
-               "-r,-f   test either RBF(-r) or MLP(-f), must choose just one",
-               "-i <#>  number of inputs", 
-               "-h <#>  number of hidden layers",
-               "-o <#>  number of outputs",
-               "-g <#>  number of Gaussian basis functions",
-               "-m      use momentum, default off", 
-               "-s, -l  activation fn, sigmoid or linear"]
-
-if sys.argv[1] in ['-h', '--h', '--help', '-help']:
-    print ("\n".join(help_screen))
-    sys.exit()
-'''
-
-global BiasWeight
-BiasWeight = 0
+global BWeight
+BWeight = 0
 global LearnRate
-LearnRate = 0.5
+LearnRate = 0
 
 class node:
 	def __init__(self, appFunc = '', value = 0):
@@ -42,50 +26,53 @@ class node:
 		self.error = 0
 		self.func = appFunc
 		self.value = value
+
 	def addInputs(self, nodes):
 		for x in nodes:
 			x.addOutput(self)
 			self.inputs.append(x)
-			self.weights.append(random.random())
-	def calcValue(self):
-		summa = 0
-		for x in self.inputs:
-			summa += x.getValue()*self.weights[self.inputs.index(x)]
-		summa += BiasWeight
-		if self.func == 'S':
-			self.value = expit(summa)
-		else:
-			self.value = summa
-	def getValue(self):
-		return self.value
+			self.weights.append((random.random()*2)-1)
 	def addOutput(self, node):
 		self.outputs.append(node)
+	def getValue(self):
+		return self.value
 	def getError(self):
 		return self.error
 	def getWeightForNode(self, node):
-		print('Weight from', id(self), 'to', id(node), self.weights[self.inputs.index(node)])
 		return self.weights[self.inputs.index(node)]
-	def calcHiddenError(self):
-		print('Error for', id(self), self.error)
-		sigma = 0
+	def getWeightOutputs(self):
+		temp = []
 		for x in self.outputs:
-			sigma += x.getError() * x.getWeightForNode(self)
-		self.error = self.value * (1 - self.value) * sigma + BiasWeight
-
-		#Delta Weight is not calculated (no learnrate) at this stage
-	def calcOutputError(self, answer):
-		self.error = (answer - self.value) * self.value * (1 - self.value) + BiasWeight
-	def getError(self):
-		return self.error
-	def updateOutputWeights(self):
-		for x in self.weights:
-			x = x + (LearnRate * self.error * self.inputs[self.weights.index(x)].getValue())
-	def updateHiddenWeights(self):
-		for x in self.weights:
-			x = x + (LearnRate * self.error * x)
+			temp.append(x.getWeightForNode(self))
+		return temp
 	def getOutputs(self):
 		return self.outputs
+	def getWeights(self):				#Temp
+		return self.weights
+	def getInputs(self):
+		return self.inputs
 
+	def calcValue(self):
+		summa = 0
+		for x in self.inputs: summa += x.getValue()*self.weights[self.inputs.index(x)]
+		summa += BWeight
+		if self.func == 'S': self.value = expit(summa)
+		else: self.value = summa
+	def calcHiddenError(self):
+		sigma = 0
+		for x in self.outputs: sigma += x.getError() * x.getWeightForNode(self)
+		self.error = self.value * (1-self.value) * sigma
+	def calcOutputError(self, answer):
+		self.error = (answer - self.value)
+		#Technically this should be self.error = self.value * (1-self.value) * (answer - self.value)
+
+	def updateHiddenWeights(self):
+		for i in range(len(self.weights)):
+			self.weights[i] = self.weights[i] + (LearnRate * self.error * self.weights[i])
+	def updateOutputWeights(self):
+		for i in range(len(self.weights)):
+			self.weights[i] = self.weights[i] + (LearnRate * self.error * self.inputs[i].getValue())
+	
 def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 0, bias = 0):
 	global StartingNodes
 	StartingNodes = []
@@ -95,12 +82,14 @@ def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 0, 
 	OutputNodes = []
 	global Threshold
 	Threshold = threshold
-	global BiasWeight
-	BiasWeight = bias
+	global BWeight
+	BWeight = bias
 	global AnswerSet
 	AnswerSet = answers
 	global loops
 	loops = 0
+	global LearnRate
+	LearnRate = learnrate
 
 	# Make Start Nodes
 	for x in inputs:
@@ -126,9 +115,7 @@ def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 0, 
 		OutputNodes.append(n)
 	# Network created
 
-	#for y in HiddenNodes:
-	#	for x in y:
-	#		print(x, x.getOutputs())
+	PrintNetwork()
 
 	print('Network Constructed. Calculating result.')
 
@@ -142,9 +129,11 @@ def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 0, 
 		for x in y:
 			print(id(x), 'has hidden value:', x.getValue())
 			print(id(x), 'has hidden error:', x.getError())
+			print(id(x), 'had weights:', x.getWeights())
 	for x in OutputNodes:
 		print(id(x), 'has output value:', x.getValue())
 		print(id(x), 'has output error:', x.getError())
+		print(id(x), 'had weights:', x.getWeights())
 	
 
 def CalculateNN():
@@ -158,19 +147,21 @@ def CalculateNN():
 	backprop = False
 
 	# Forward propagation of solution
-	for x in StartingNodes:
-		x.getValue()
+	print("\n", loops)
 	for y in HiddenNodes:
 		for x in y:
 			x.calcValue()
-			print('Value of', id(x), x.getValue())
-	print(loops)
+			print('H Value of', id(x), x.getValue(), 'with weights:', x.getWeights())
 	for x in OutputNodes:
 		x.calcValue()
+		print('O Value of', id(x), x.getValue(), 'with weights:', x.getWeights())
 		x.calcOutputError(AnswerSet[OutputNodes.index(x)])
-		if not ((x.getError() <= (AnswerSet[OutputNodes.index(x)] + Threshold)) and (x.getError() >= (AnswerSet[OutputNodes.index(x)] - Threshold))):
+		print('O Error of', id(x), x.getError())
+	#	print('Correct to this point')
+		if not ((x.getValue() <= (AnswerSet[OutputNodes.index(x)] + Threshold)) and (x.getValue() >= (AnswerSet[OutputNodes.index(x)] - Threshold))):
 			backprop = True
-	if (loops < 3):
+	#PrintNetwork()
+	if (loops < 15):
 		loops += 1
 		if (backprop == True):
 	#		print('BackProping with', x.getError())
@@ -182,23 +173,58 @@ def BackPropNN():
 	global OutputNodes
 	global LearnRate
 
-	for x in OutputNodes:
-		x.updateOutputWeights()
 	for y in reversed(HiddenNodes):
 		for x in y:
 			x.calcHiddenError()
+	#		print('H Error of', id(x), x.getError())
+
+	#Need to make this parallel for multiple instances...
+
+	for y in HiddenNodes:
+		for x in y:
 			x.updateHiddenWeights()
+	#		print('H Value of', id(x), x.getValue(), 'with weights:', x.getWeights())
+	for x in OutputNodes:
+		x.updateOutputWeights()
+	#	print('O Value of', id(x), x.getValue(), 'with weights:', x.getWeights())
 	CalculateNN()
+
+def PrintNetwork():
+	global StartingNodes
+	global HiddenNodes
+	global OutputNodes
+	print('\tStartingNodes:')
+	for x in StartingNodes:
+		#print(hex(id(x)), 'has inputs:', x.getInputs(), 'with weights:', x.getWeights())
+		print(hex(id(x)), 'has value:', x.getValue(), 'with error:', x.getError())
+		print(hex(id(x)), 'has outputs:', x.getOutputs(), 'with weight:', x.getWeightOutputs())
+		print('')
+	print('\tHiddenNodes:')
+	for y in HiddenNodes:
+		for x in y:
+			print(hex(id(x)), 'has inputs:', x.getInputs(), 'with weights:', x.getWeights())
+			print(hex(id(x)), 'has value:', x.getValue(), 'with error:', x.getError())
+			print(hex(id(x)), 'has outputs:', x.getOutputs(), 'with weight:', x.getWeightOutputs())
+			print('')
+		print('\tnext level')
+	print('\tOutputNodes:')
+	for x in OutputNodes:
+		print(hex(id(x)), 'has inputs:', x.getInputs(), 'with weights:', x.getWeights())
+		print(hex(id(x)), 'has value:', x.getValue(), 'with error:', x.getError())
+		print(hex(id(x)), 'has outputs:', x.getOutputs(), 'with weight:', x.getWeightOutputs())
+		print('')
 
 
 
 # This is a testing set. Build looks like:
 	#
-	#   2 - A 
-	#     X   > C - OUT
-	#   3 - B
+	#   2 - A - D 
+	#     \   /   \
+	#    	B       F - 101
+	#	  /   \   /
+	#   3 - C - E
 	#
-if __name__== '__main__': main([2,3], [['S', 'S']], ['L'], [101], threshold = 10)
+if __name__== '__main__': main([2,3], [['S','S','S',], ['S', 'S']], ['L'], [101], threshold = 5, learnrate = 0.5)
 
 
 
