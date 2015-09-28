@@ -2,7 +2,7 @@
 
 """
 Author: 	Clint Cooper, Emily Rohrbough, Leah Thompson
-Date:   	09/27/15
+Date:   	09/28/15
 CSCI 447:	Project 2
 """
 
@@ -14,7 +14,7 @@ import random
 from scipy.special import expit
 
 global BWeight
-BWeight = 0
+BWeight = 1
 global LearnRate
 LearnRate = 0
 
@@ -221,7 +221,7 @@ def PrintNetwork():
 	#   2 - A - D 
 	#     \   /   \
 	#    	B       F - 101
-	#	  /   \   /
+	#     /   \   /
 	#   3 - C - E
 	#
 if __name__== '__main__': main([2,3], [['S','S','S',], ['S', 'S']], ['L'], [101], threshold = 5, learnrate = 0.5)
