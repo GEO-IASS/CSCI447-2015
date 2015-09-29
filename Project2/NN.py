@@ -11,7 +11,7 @@ CSCI 447:	Project 2
 import sys
 import math
 import random
-from scipy.special import expit
+#from scipy.special import expit
 
 global BWeight
 BWeight = 1
@@ -56,7 +56,8 @@ class node:
 		summa = 0
 		for x in self.inputs: summa += x.getValue()*self.weights[self.inputs.index(x)]
 		summa += BWeight
-		if self.func == 'S': self.value = expit(summa)
+#		if self.func == 'S': self.value = expit(summa)
+		if self.func == 'S': self.value = 1 / (1 + math.exp(-summa))
 		else: self.value = summa
 	def calcHiddenError(self):
 		sigma = 0
@@ -151,12 +152,12 @@ def CalculateNN():
 	for y in HiddenNodes:
 		for x in y:
 			x.calcValue()
-			print('H Value of', id(x), x.getValue(), 'with weights:', x.getWeights())
+			print('Hidden Value of', id(x), x.getValue(), 'with weights:', x.getWeights())
 	for x in OutputNodes:
 		x.calcValue()
-		print('O Value of', id(x), x.getValue(), 'with weights:', x.getWeights())
+		print('Output Value of', id(x), x.getValue(), 'with weights:', x.getWeights())
 		x.calcOutputError(AnswerSet[OutputNodes.index(x)])
-		print('O Error of', id(x), x.getError())
+		print('Output Error of', id(x), x.getError())
 	#	print('Correct to this point')
 		if not ((x.getValue() <= (AnswerSet[OutputNodes.index(x)] + Threshold)) and (x.getValue() >= (AnswerSet[OutputNodes.index(x)] - Threshold))):
 			backprop = True
