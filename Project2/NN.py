@@ -11,12 +11,12 @@ CSCI 447:	Project 2
 import sys
 import math
 import random
-#from scipy.special import expit
 
 global BWeight
 BWeight = 1
 global LearnRate
 LearnRate = 0
+momentum = 1
 
 class node:
 	def __init__(self, appFunc = '', value = 0):
@@ -52,19 +52,22 @@ class node:
 	def getInputs(self):
 		return self.inputs
 
-	def calcValue(self):
+	def calcValue(self): 
 		summa = 0
 		for x in self.inputs: summa += x.getValue()*self.weights[self.inputs.index(x)]
 		summa += BWeight
-#		if self.func == 'S': self.value = expit(summa)
+#	#	if self.func == 'S': self.value = expit(summa)
 		if self.func == 'S': self.value = 1 / (1 + math.exp(-summa))
+	#	if self.func == 'S': self.value = .5 * (1 + math.tanh(.5*summa))
 		else: self.value = summa
 	def calcHiddenError(self):
-		sigma = 0
-		for x in self.outputs: sigma += x.getError() * x.getWeightForNode(self)
-		self.error = self.value * (1-self.value) * sigma
+		summa = 0
+		for x in self.outputs: summa += x.getError() * x.getWeightForNode(self)
+		self.error = self.value * (1-self.value) * summa
 	def calcOutputError(self, answer):
-		self.error = (answer - self.value)
+#		self.error = (answer - self.value) 
+		#self.error = (1 - self.value) * self.value
+		self.error = (answer - self.value) * self.value * (1 - self.value)
 		#Technically this should be self.error = self.value * (1-self.value) * (answer - self.value)
 
 	def updateHiddenWeights(self):
@@ -73,7 +76,17 @@ class node:
 	def updateOutputWeights(self):
 		for i in range(len(self.weights)):
 			self.weights[i] = self.weights[i] + (LearnRate * self.error * self.inputs[i].getValue())
-	
+	def updateWeights(self):
+		for i in range(len(self.weights)):
+			self.weights[i] = self.weights[i] + (LearnRate * self.error * self.inputs[i].getValue())
+#	def updateWeights(self):
+#		if momen == 'M': 
+#			for i in range(len(self.weights)):
+#				self.weights[i] = momentum * self.weights[i] + (LearnRate * self.error * self.inputs[i].getValue())
+#		else: 
+#			for i in range(len(self.weights)):
+#				self.weights[i] = self.weights[i] + (LearnRate * self.error * self.inputs[i].getValue())
+
 def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 0, bias = 0):
 	global StartingNodes
 	StartingNodes = []
@@ -156,16 +169,16 @@ def CalculateNN():
 	for x in OutputNodes:
 		x.calcValue()
 		print('Output Value of', id(x), x.getValue(), 'with weights:', x.getWeights())
+
 		x.calcOutputError(AnswerSet[OutputNodes.index(x)])
+		
 		print('Output Error of', id(x), x.getError())
 	#	print('Correct to this point')
 		if not ((x.getValue() <= (AnswerSet[OutputNodes.index(x)] + Threshold)) and (x.getValue() >= (AnswerSet[OutputNodes.index(x)] - Threshold))):
 			backprop = True
-	#PrintNetwork()
 	if (loops < 15):
 		loops += 1
 		if (backprop == True):
-	#		print('BackProping with', x.getError())
 			BackPropNN()
 
 def BackPropNN():
@@ -177,17 +190,16 @@ def BackPropNN():
 	for y in reversed(HiddenNodes):
 		for x in y:
 			x.calcHiddenError()
-	#		print('H Error of', id(x), x.getError())
 
 	#Need to make this parallel for multiple instances...
-
+	
 	for y in HiddenNodes:
 		for x in y:
-			x.updateHiddenWeights()
-	#		print('H Value of', id(x), x.getValue(), 'with weights:', x.getWeights())
+#			x.updateHiddenWeights()
+			x.updateWeights()
 	for x in OutputNodes:
-		x.updateOutputWeights()
-	#	print('O Value of', id(x), x.getValue(), 'with weights:', x.getWeights())
+#		x.updateOutputWeights()
+		x.updateWeights()
 	CalculateNN()
 
 def PrintNetwork():
@@ -225,7 +237,7 @@ def PrintNetwork():
 	#     /   \   /
 	#   3 - C - E
 	#
-if __name__== '__main__': main([2,3], [['S','S','S',], ['S', 'S']], ['L'], [101], threshold = 5, learnrate = 0.5)
+if __name__== '__main__': main([2,3], [['S','S','S',], ['S', 'S']], ['S'], [101], threshold = 5, learnrate = 0.5)
 
 
 
