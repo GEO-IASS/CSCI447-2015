@@ -66,7 +66,8 @@ class node:
 
 	def updateWeights(self, LearnRate):
 		for i in range(len(self.weights)):
-			self.weights[i] = self.weights[i] + (LearnRate * self.error * self.inputs[i].getValue())
+			self.weights[i] = self.weights[i] + (LearnRate * self.error * 
+                                                    self.inputs[i].getValue())
 #	def updateWeights(self):
 #		if momen == 'M': 
 #			for i in range(len(self.weights)):
@@ -76,7 +77,8 @@ class node:
 #				self.weights[i] = self.weights[i] + (LearnRate * self.error * self.inputs[i].getValue())
 
 class NN:
-	def __init__(self, inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 0, bias = 0):
+	def __init__(self, inputs, arrangement, outputs, answers, learnrate = 0.5, 
+                                                      threshold = 0, bias = 0):
 		self.StartingNodes = []
 		self.HiddenNodes = []
 		self.OutputNodes = []
@@ -120,7 +122,8 @@ class NN:
 				print(id(x), 'has hidden error:', x.getError())
 				print(id(x), 'had weights:', x.getWeights())
 		for x in self.OutputNodes:
-			print(id(x), 'has output value:', x.getValue(), '~', self.AnswerSet[OutputNodes.index(x)])
+			print(id(x), 'has output value:', x.getValue(), '~', 
+                             self.AnswerSet[OutputNodes.index(x)])
 			print(id(x), 'has output error:', x.getError())
 			print(id(x), 'had weights:', x.getWeights())
 	def CalculateNNOutputs(self):
@@ -134,7 +137,10 @@ class NN:
 			#print('Output Value of', id(self.OutputNodes[i]), self.OutputNodes[i].getValue(), 'with weights:', self.OutputNodes[i].getWeights())
 			self.OutputNodes[i].calcOutputError(self.AnswerSet[i])
 			#print('Output Error of', id(self.OutputNodes[i]), self.OutputNodes[i].getError())
-			if not ((self.OutputNodes[i].getValue() <= (self.AnswerSet[i] + (self.Threshold * self.AnswerSet[i]))) and (self.OutputNodes[i].getValue() >= (self.AnswerSet[i] - (self.Threshold * self.AnswerSet[i])))):
+			if not ((self.OutputNodes[i].getValue() <= (self.AnswerSet[i] + 
+                    (self.Threshold * self.AnswerSet[i]))) and 
+                    (self.OutputNodes[i].getValue() >= (self.AnswerSet[i] - 
+                                      (self.Threshold * self.AnswerSet[i])))):
 				backprop = True
 			return backprop
 	def CalculateNNErrors(self):
@@ -170,7 +176,8 @@ class NN:
 		return resultSet
 
 
-def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 0, bias = 0):
+def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 0, 
+                                                                     bias = 0):
 
 	NetOne = NN(inputs, arrangement, outputs, answers, learnrate, threshold, bias)
 	NetOne.CalculateNNOutputs()
@@ -190,7 +197,8 @@ def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 0, 
 	#     /   \   /
 	#   3 - C - E
 	#
-if __name__== '__main__': main([2,3], [['S','S','S',], ['S', 'S']], ['S'], [0.101], threshold = 1, learnrate = 0.1)
+if __name__== '__main__': main([2,3], [['S','S','S',], ['S', 'S']], ['S'], 
+                                       [0.101], threshold = 1, learnrate = 0.1)
 
 
 
