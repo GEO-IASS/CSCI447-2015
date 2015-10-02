@@ -2,7 +2,7 @@
 
 """
 Author: 	Clint Cooper, Emily Rohrbough, Leah Thompson
-Date:   	09/30/15
+Date:   	10/02/15
 CSCI 447:	Project 2
 """
 
