@@ -11,14 +11,7 @@ CSCI 447:	Project 2
 import sys
 import math
 import random
-import multiprocessing
-
-global BWeight
-BWeight = 1
-global LearnRate
-LearnRate = 0
-global Momentum
-Momentum = 1
+from multiprocessing import Process, Queue
 
 class node:
 	def __init__(self, appFunc = '', value = 0):
@@ -53,12 +46,14 @@ class node:
 		return self.weights
 	def getInputs(self):
 		return self.inputs
-
-	def calcValue(self): 
+	def setNewError(self, newError):
+		self.error = newError
+ 
+	def calcValue(self, BWeight): 
 		summa = 0
 		for x in self.inputs: summa += x.getValue()*self.weights[self.inputs.index(x)]
 		summa += BWeight
-#	#	if self.func == 'S': self.value = expit(summa)
+	#	if self.func == 'S': self.value = expit(summa)
 		if self.func == 'S': self.value = 1 / (1 + math.exp(-summa))
 	#	if self.func == 'S': self.value = .5 * (1 + math.tanh(.5*summa))
 		else: self.value = summa
@@ -69,7 +64,7 @@ class node:
 	def calcOutputError(self, answer):
 		self.error = (answer - self.value) * self.value * (1 - self.value)
 
-	def updateWeights(self):
+	def updateWeights(self, LearnRate):
 		for i in range(len(self.weights)):
 			self.weights[i] = self.weights[i] + (LearnRate * self.error * self.inputs[i].getValue())
 #	def updateWeights(self):
@@ -80,139 +75,112 @@ class node:
 #			for i in range(len(self.weights)):
 #				self.weights[i] = self.weights[i] + (LearnRate * self.error * self.inputs[i].getValue())
 
-def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 0, bias = 0):
-	global StartingNodes
-	StartingNodes = []
-	global HiddenNodes
-	HiddenNodes = []
-	global OutputNodes
-	OutputNodes = []
-	global Threshold
-	Threshold = threshold
-	global BWeight
-	BWeight = bias
-	global AnswerSet
-	AnswerSet = answers
-	global loops
-	loops = 0
-	global LearnRate
-	LearnRate = learnrate
+class NN:
+	def __init__(self, inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 0, bias = 0):
+		self.StartingNodes = []
+		self.HiddenNodes = []
+		self.OutputNodes = []
+		self.Threshold = 0.01 * threshold
+		self.BWeight = bias
+		self.AnswerSet = answers
+		self.loops = 0
+		self.LearnRate = learnrate
 
-	# Make Start Nodes
-	for x in inputs:
-		n = node(value = x)
-		StartingNodes.append(n)
-	# Make Hidden Layers
-	for y in arrangement:
-		temp = []
-		for x in y:
-			if arrangement.index(y) == 0:
-				n = node(appFunc = x)
-				n.addInputs(StartingNodes)
-				temp.append(n)
-			else:
-				n = node(appFunc = x)
-				n.addInputs(HiddenNodes[arrangement.index(y) - 1])
-				temp.append(n)
-		HiddenNodes.append(temp)
-	# Make Output Layers
-	for x in outputs:
-		n = node(appFunc = x)
-		n.addInputs(HiddenNodes[-1])
-		OutputNodes.append(n)
-	# Network created
-
-	PrintNetwork()
-
-	print('Network Constructed. Calculating result.')
-
-	running = True
-	loops = 0
-	while (running and (loops < 1000)):
-		print("\n", loops)
-		running = CalculateNN()
-		if running: BackPropNN()
-		loops += 1
-
-	# Will reach this point when result has been calculated and is within proper threshold results.
-	print('\nWeights Found.')
-	
-	for x in StartingNodes:
-		print(id(x), 'has starting value:', x.getValue())
-	for y in HiddenNodes:
-		for x in y:
-			print(id(x), 'has hidden value:', x.getValue())
-			print(id(x), 'has hidden error:', x.getError())
+		# Construct the network from the inputs
+		# Make Start Nodes
+		for x in inputs:
+			n = node(value = x)
+			self.StartingNodes.append(n)
+		# Make Hidden Layers
+		for y in arrangement:
+			temp = []
+			for x in y:
+				if arrangement.index(y) == 0:
+					n = node(appFunc = x)
+					n.addInputs(self.StartingNodes)
+					temp.append(n)
+				else:
+					n = node(appFunc = x)
+					n.addInputs(self.HiddenNodes[arrangement.index(y) - 1])
+					temp.append(n)
+			self.HiddenNodes.append(temp)
+		# Make Output Layers
+		for x in outputs:
+			n = node(appFunc = x)
+			n.addInputs(self.HiddenNodes[-1])
+			self.OutputNodes.append(n)
+		# Network created and ready to function
+	def printStatus(self):
+		print('\nWeights Found in', self.loops, 'iterations.')
+		for x in self.StartingNodes:
+			print(id(x), 'has starting value:', x.getValue())
+		for y in self.HiddenNodes:
+			for x in y:
+				print(id(x), 'has hidden value:', x.getValue())
+				print(id(x), 'has hidden error:', x.getError())
+				print(id(x), 'had weights:', x.getWeights())
+		for x in self.OutputNodes:
+			print(id(x), 'has output value:', x.getValue(), '~', self.AnswerSet[OutputNodes.index(x)])
+			print(id(x), 'has output error:', x.getError())
 			print(id(x), 'had weights:', x.getWeights())
-	for x in OutputNodes:
-		print(id(x), 'has output value:', x.getValue())
-		print(id(x), 'has output error:', x.getError())
-		print(id(x), 'had weights:', x.getWeights())
-	
-
-def CalculateNN():
-	global StartingNodes
-	global HiddenNodes
-	global OutputNodes
-	global Threshold
-	global AnswerSet
-	backprop = False
-
-	for i in range(len(HiddenNodes)):
-		for j in range(len(HiddenNodes[i])):
-			HiddenNodes[i][j].calcValue()
-			print('Hidden Value of', id(HiddenNodes[i][j]), HiddenNodes[i][j].getValue(), 'with weights:', HiddenNodes[i][j].getWeights())
-	for i in range(len(OutputNodes)):
-		OutputNodes[i].calcValue()
-		print('Output Value of', id(OutputNodes[i]), OutputNodes[i].getValue(), 'with weights:', OutputNodes[i].getWeights())
-		OutputNodes[i].calcOutputError(AnswerSet[i])
-		print('Output Error of', id(OutputNodes[i]), OutputNodes[i].getError())
-		if not ((OutputNodes[i].getValue() <= (AnswerSet[i] + (Threshold * AnswerSet[i]))) and (OutputNodes[i].getValue() >= (AnswerSet[i] - (Threshold * AnswerSet[i])))):
-			backprop = True
-		return backprop
-
-def BackPropNN():
-	global StartingNodes
-	global HiddenNodes
-	global OutputNodes
-	global LearnRate
-
-	for i in range(len(list(reversed(HiddenNodes)))):
-		for j in range(len(list(reversed(HiddenNodes))[i])):
-			(list(reversed(HiddenNodes))[i][j]).calcHiddenError()
-	for i in range(len(HiddenNodes)):
-		for j in range(len(HiddenNodes[i])):
-			HiddenNodes[i][j].updateWeights()
-	for i in range(len(OutputNodes)):
-		OutputNodes[i].updateWeights()
-
-
-def PrintNetwork():
-	global StartingNodes
-	global HiddenNodes
-	global OutputNodes
-	print('\tStartingNodes:')
-	for x in StartingNodes:
-		#print(hex(id(x)), 'has inputs:', x.getInputs(), 'with weights:', x.getWeights())
-		print(hex(id(x)), 'has value:', x.getValue(), 'with error:', x.getError())
-		print(hex(id(x)), 'has outputs:', x.getOutputs(), 'with weight:', x.getWeightOutputs())
-		print('')
-	print('\tHiddenNodes:')
-	for y in HiddenNodes:
-		for x in y:
-			print(hex(id(x)), 'has inputs:', x.getInputs(), 'with weights:', x.getWeights())
-			print(hex(id(x)), 'has value:', x.getValue(), 'with error:', x.getError())
-			print(hex(id(x)), 'has outputs:', x.getOutputs(), 'with weight:', x.getWeightOutputs())
-			print('')
-		print('\tnext level')
-	print('\tOutputNodes:')
-	for x in OutputNodes:
-		print(hex(id(x)), 'has inputs:', x.getInputs(), 'with weights:', x.getWeights())
-		print(hex(id(x)), 'has value:', x.getValue(), 'with error:', x.getError())
-		print(hex(id(x)), 'has outputs:', x.getOutputs(), 'with weight:', x.getWeightOutputs())
-		print('')
+	def CalculateNNOutputs(self):
+		backprop = False
+		for i in range(len(self.HiddenNodes)):
+			for j in range(len(self.HiddenNodes[i])):
+				self.HiddenNodes[i][j].calcValue(self.BWeight)
+				#print('Hidden Value of', id(self.HiddenNodes[i][j]), 'is', self.HiddenNodes[i][j].getValue(), 'with weights:', self.HiddenNodes[i][j].getWeights())
+		for i in range(len(self.OutputNodes)):
+			self.OutputNodes[i].calcValue(self.BWeight)
+			#print('Output Value of', id(self.OutputNodes[i]), self.OutputNodes[i].getValue(), 'with weights:', self.OutputNodes[i].getWeights())
+			self.OutputNodes[i].calcOutputError(self.AnswerSet[i])
+			#print('Output Error of', id(self.OutputNodes[i]), self.OutputNodes[i].getError())
+			if not ((self.OutputNodes[i].getValue() <= (self.AnswerSet[i] + (self.Threshold * self.AnswerSet[i]))) and (self.OutputNodes[i].getValue() >= (self.AnswerSet[i] - (self.Threshold * self.AnswerSet[i])))):
+				backprop = True
+			return backprop
+	def CalculateNNErrors(self):
+		for i in range(len(list(reversed(self.HiddenNodes)))):
+			for j in range(len(list(reversed(self.HiddenNodes))[i])):
+				(list(reversed(self.HiddenNodes))[i][j]).calcHiddenError()
+	def GetNNErrors(self):
+		errorSet = []
+		for i in range(len(self.HiddenNodes)):
+			for j in range(len(self.HiddenNodes[i])):
+				errorSet.append(self.HiddenNodes[i][j].getError())
+		for i in range(len(self.OutputNodes)):
+			errorSet.append(self.OutputNodes[i].getError())
+		return errorSet
+	def SetNNErrors(self, errorSet):
+		counter = 0
+		for i in range(len(self.HiddenNodes)):
+			for j in range(len(self.HiddenNodes[i])):
+				self.HiddenNodes[i][j].setNewError(errorSet[i + j])
+				counter += 1
+		for i in range(len(self.OutputNodes)):
+			self.OutputNodes[i].setNewError(errorSet[counter + i])
+	def UpdateNNWeights(self):
+		for i in range(len(self.HiddenNodes)):
+			for j in range(len(self.HiddenNodes[i])):
+				self.HiddenNodes[i][j].updateWeights(self.LearnRate)
+		for i in range(len(self.OutputNodes)):
+			self.OutputNodes[i].updateWeights(self.LearnRate)
+	def GetNNResults(self):
+		resultSet = []
+		for i in range(len(self.OutputNodes)):
+			resultSet.append(self.OutputNodes[i].getValue())
+		return resultSet
 
 
+def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 0, bias = 0):
+
+	NetOne = NN(inputs, arrangement, outputs, answers, learnrate, threshold, bias)
+	NetOne.CalculateNNOutputs()
+	print(NetOne.GetNNResults())
+	print(NetOne.GetNNErrors())
+	NetOne.CalculateNNErrors()
+	NetOne.UpdateNNWeights()
+	NetOne.CalculateNNOutputs()
+	print(NetOne.GetNNResults())
+	print(NetOne.GetNNErrors())
 
 # This is a testing set. Build looks like:
 	#
@@ -222,7 +190,7 @@ def PrintNetwork():
 	#     /   \   /
 	#   3 - C - E
 	#
-if __name__== '__main__': main([2,3], [['S','S','S',], ['S', 'S']], ['S'], [0.2], threshold = 0.001, learnrate = 0.5)
+if __name__== '__main__': main([2,3], [['S','S','S',], ['S', 'S']], ['S'], [0.101], threshold = 1, learnrate = 0.1)
 
 
 
