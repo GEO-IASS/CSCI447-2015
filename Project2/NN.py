@@ -78,7 +78,7 @@ class node:
 
 class NN:
 	def __init__(self, inputs, arrangement, outputs, answers, learnrate = 0.5, 
-                                                      threshold = 0, bias = 0):
+                                         threshold = 0, bias = 0, mmntm = 0.2):
 		self.StartingNodes = []
 		self.HiddenNodes = []
 		self.OutputNodes = []
@@ -177,9 +177,10 @@ class NN:
 
 
 def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 0, 
-                                                                     bias = 0):
+                                                        bias = 0, mmntm = 0.2):
 
-	NetOne = NN(inputs, arrangement, outputs, answers, learnrate, threshold, bias)
+	NetOne = NN(inputs, arrangement, outputs, answers, learnrate, threshold,
+                bias, mmntm)
 	NetOne.CalculateNNOutputs()
 	print(NetOne.GetNNResults())
 	print(NetOne.GetNNErrors())

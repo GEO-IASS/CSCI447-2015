@@ -3,6 +3,9 @@
 import sys
 import random
 import NN
+import Queue
+import threading
+
 
 # inputs - 2D array where len(input[i]) is the number of dimensions, 
 # input[i][j] are the x values themselves for 2 - 6 dimensions
@@ -10,13 +13,19 @@ import NN
 # one output[i] per input[i]
 # outputs = []
 
+def start_thread(q, ip, op, num_l, hidden_vec, frac, learn, thresh, bias, mmntm):
+    q.put(NN.main(ip, num_l, ans, hidden_vec, frac, learn, thresh, bias, mmntm))
+
+q = Queue.Queue()
+
 def setup_NN(inPut, outPut):
     # is there anything we want to ask the user for as input?
-    index = 0
+    index           = 0
     activation_func = 1 # 1 is sigmoid, 0 is logistic
-    threshold = 0.001
-    learn_rate = 0.5
-    momentum = 0.2
+    threshold       = 0.001
+    learn_rate      = 0.5
+    momentum        = 0.2
+    bias            = 0;
     for i in inPut:
         # hidden is a set , where each element is # of levels for that layer 
         # followed by the activation functions per level
@@ -27,9 +36,12 @@ def setup_NN(inPut, outPut):
             hidden[j].append(random.randint(1, 5))
             for k in range(hidden[j][0])
                 hidden[j].append(activation_func)
-        # call NN.py main method to run the NN
-        NN.main(i, outPut[index], num_layers, hidden, [0.2], threshold, 
-                learn_rate, momentum)
+        # call NN.py main method to run the NN - this includes multi-threads
+        t = threading.Thread(target=start_thread, args = (q, i, outPut[index],
+                             num_layers, hidden, [0.2], learn_rate, threshold,
+                             bias, momentum))
+#        NN.main(i, outPut[index], num_layers, hidden, [0.2], threshold,
+#        learn_rate, momentum)
         index+=1
 
 
