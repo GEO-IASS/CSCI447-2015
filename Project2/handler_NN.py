@@ -25,7 +25,7 @@ def setup_NN(inPut, outPut):
     threshold       = 0.001
     learn_rate      = 0.5
     momentum        = 0.2
-    bias            = 0;
+    bias            = 0
     for i in inPut:
         # hidden is a set , where each element is # of levels for that layer 
         # followed by the activation functions per level

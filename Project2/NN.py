@@ -2,7 +2,7 @@
 
 """
 Author: 	Clint Cooper, Emily Rohrbough, Leah Thompson
-Date:   	10/02/15
+Date:   	10/03/15
 CSCI 447:	Project 2
 """
 
@@ -11,7 +11,8 @@ CSCI 447:	Project 2
 import sys
 import math
 import random
-from multiprocessing import Process, Queue
+from multiprocessing import Process
+from numpy import transpose
 
 class node:
 	def __init__(self, appFunc = '', value = 0):
@@ -66,8 +67,7 @@ class node:
 
 	def updateWeights(self, LearnRate):
 		for i in range(len(self.weights)):
-			self.weights[i] = self.weights[i] + (LearnRate * self.error * 
-                                                    self.inputs[i].getValue())
+			self.weights[i] = self.weights[i] + (LearnRate * self.error * self.inputs[i].getValue())
 #	def updateWeights(self):
 #		if momen == 'M': 
 #			for i in range(len(self.weights)):
@@ -77,8 +77,7 @@ class node:
 #				self.weights[i] = self.weights[i] + (LearnRate * self.error * self.inputs[i].getValue())
 
 class NN:
-	def __init__(self, inputs, arrangement, outputs, answers, learnrate = 0.5, 
-                                         threshold = 0, bias = 0, mmntm = 0.2):
+	def __init__(self, inputs, arrangement, outputs, answers, threshold = 1, learnrate = 0.5, bias = 1):
 		self.StartingNodes = []
 		self.HiddenNodes = []
 		self.OutputNodes = []
@@ -87,6 +86,7 @@ class NN:
 		self.AnswerSet = answers
 		self.loops = 0
 		self.LearnRate = learnrate
+		self.converged = False
 
 		# Construct the network from the inputs
 		# Make Start Nodes
@@ -122,8 +122,7 @@ class NN:
 				print(id(x), 'has hidden error:', x.getError())
 				print(id(x), 'had weights:', x.getWeights())
 		for x in self.OutputNodes:
-			print(id(x), 'has output value:', x.getValue(), '~', 
-                             self.AnswerSet[OutputNodes.index(x)])
+			print(id(x), 'has output value:', x.getValue(), '~', self.AnswerSet[OutputNodes.index(x)])
 			print(id(x), 'has output error:', x.getError())
 			print(id(x), 'had weights:', x.getWeights())
 	def CalculateNNOutputs(self):
@@ -137,12 +136,9 @@ class NN:
 			#print('Output Value of', id(self.OutputNodes[i]), self.OutputNodes[i].getValue(), 'with weights:', self.OutputNodes[i].getWeights())
 			self.OutputNodes[i].calcOutputError(self.AnswerSet[i])
 			#print('Output Error of', id(self.OutputNodes[i]), self.OutputNodes[i].getError())
-			if not ((self.OutputNodes[i].getValue() <= (self.AnswerSet[i] + 
-                    (self.Threshold * self.AnswerSet[i]))) and 
-                    (self.OutputNodes[i].getValue() >= (self.AnswerSet[i] - 
-                                      (self.Threshold * self.AnswerSet[i])))):
+			if not ((self.OutputNodes[i].getValue() <= (self.AnswerSet[i] + (self.Threshold * self.AnswerSet[i]))) and (self.OutputNodes[i].getValue() >= (self.AnswerSet[i] - (self.Threshold * self.AnswerSet[i])))):
 				backprop = True
-			return backprop
+			self.converged = backprop
 	def CalculateNNErrors(self):
 		for i in range(len(list(reversed(self.HiddenNodes)))):
 			for j in range(len(list(reversed(self.HiddenNodes))[i])):
@@ -156,13 +152,16 @@ class NN:
 			errorSet.append(self.OutputNodes[i].getError())
 		return errorSet
 	def SetNNErrors(self, errorSet):
+		#print(errorSet)
 		counter = 0
 		for i in range(len(self.HiddenNodes)):
 			for j in range(len(self.HiddenNodes[i])):
-				self.HiddenNodes[i][j].setNewError(errorSet[i + j])
+				self.HiddenNodes[i][j].setNewError(errorSet[counter])
+				#print(counter)
 				counter += 1
 		for i in range(len(self.OutputNodes)):
-			self.OutputNodes[i].setNewError(errorSet[counter + i])
+			self.OutputNodes[i].setNewError(errorSet[counter])
+			counter += 1	
 	def UpdateNNWeights(self):
 		for i in range(len(self.HiddenNodes)):
 			for j in range(len(self.HiddenNodes[i])):
@@ -174,33 +173,91 @@ class NN:
 		for i in range(len(self.OutputNodes)):
 			resultSet.append(self.OutputNodes[i].getValue())
 		return resultSet
+	def ShouldBackprop(self):
+		return self.converged
 
+#def ProcessNN(instanceSet, targetFunc):
+#	NNprocesses = []
+#	for i in range(len(instanceSet)):
+#		NNprocesses.append(Process(target=instanceSet[i].targetFunc()))
+#		NNprocesses[i].start()
+#	for i in range(len(NNprocesses)):
+#		NNprocesses[i].join()
 
-def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 0, 
-                                                        bias = 0, mmntm = 0.2):
+def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, bias = 1):
+	NNinstances = []
 
-	NetOne = NN(inputs, arrangement, outputs, answers, learnrate, threshold,
-                bias, mmntm)
-	NetOne.CalculateNNOutputs()
-	print(NetOne.GetNNResults())
-	print(NetOne.GetNNErrors())
-	NetOne.CalculateNNErrors()
-	NetOne.UpdateNNWeights()
-	NetOne.CalculateNNOutputs()
-	print(NetOne.GetNNResults())
-	print(NetOne.GetNNErrors())
+	for i in range(len(inputs)):
+		NNinstances.append(NN(inputs[i], arrangement, outputs, answers[i], learnrate, threshold, bias))
+
+	while True:
+		#ProcessNN(NNinstances, CalculateNNOutputs)
+		NNprocesses = []
+		for i in range(len(NNinstances)):
+			NNprocesses.append(Process(target=NNinstances[i].CalculateNNOutputs()))
+			NNprocesses[i].start()
+		for i in range(len(NNprocesses)):
+			NNprocesses[i].join()
+		done = True
+		for i in range(len(NNinstances)):
+			if NNinstances[i].ShouldBackprop():
+				done = False
+		#	else:
+		#		print(i, NNinstances[i].GetNNResults())
+		if done:
+			break # All NNs have converged
+		#ProcessNN(NNinstances, CalculateNNErrors)
+		NNprocesses = []
+		for i in range(len(NNinstances)):
+			NNprocesses.append(Process(target=NNinstances[i].CalculateNNErrors()))
+			NNprocesses[i].start()
+		for i in range(len(NNprocesses)):
+			NNprocesses[i].join()
+		errorSet = []
+		for i in range(len(NNinstances)):
+			errorSet.append(NNinstances[i].GetNNErrors())
+		#print('ErrorSet:\n', errorSet)
+		#zip(*errorSet) # Transpose Matrix
+		errorSet = transpose(errorSet)
+		newErrorSet = []
+		for x in errorSet:
+			newErrorSet.append((sum(x))/len(x))
+		#for i in range(len(NNinstances)):
+		#	NNinstances[i].SetNNErrors(newErrorSet)
+		#print('ErrorSet:\n', errorSet)
+		#print('NewErrorSet:\n', newErrorSet)
+		NNprocesses = []
+		for i in range(len(NNinstances)):
+			NNprocesses.append(Process(target=NNinstances[i].SetNNErrors(newErrorSet)))
+			NNprocesses[i].start()
+		for i in range(len(NNprocesses)):
+			NNprocesses[i].join()
+		#ProcessNN(NNinstances, UpdateNNWeights())
+		NNprocesses = []
+		for i in range(len(NNinstances)):
+			NNprocesses.append(Process(target=NNinstances[i].UpdateNNWeights()))
+			NNprocesses[i].start()
+		for i in range(len(NNprocesses)):
+			NNprocesses[i].join()
+
+	for i in range(len(NNinstances)):
+		print(i, NNinstances[i].GetNNResults())
 
 # This is a testing set. Build looks like:
 	#
-	#   2 - A - D 
+	#   # - A - D 
 	#     \   /   \
-	#    	B       F - 101
+	#       B       F - #
 	#     /   \   /
-	#   3 - C - E
+	#   # - C - E
 	#
-if __name__== '__main__': main([2,3], [['S','S','S',], ['S', 'S']], ['S'], 
-                                       [0.101], threshold = 1, learnrate = 0.1)
 
+# Single inputs dimension
+#if __name__== '__main__': main([2,3], [['S','S','S',], ['S', 'S']], ['S'], [0.101], 0.5, 0.1, 0)
+
+# Parallel inputs dimension
+#if __name__== '__main__': main([[2,3], [1,3], [3,3]], [['S','S','S',], ['S', 'S']], ['S'], [[0.0101], [0.0400], [0.3604]], 0.5, 10, 1)
+if __name__== '__main__': main([[2,3]], [['S','S','S',], ['S', 'S']], ['S'], [[0.0101]], 0.5, 10, 1)
 
 
 
