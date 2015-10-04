@@ -13,6 +13,7 @@ import math
 import random
 from multiprocessing import Process
 from numpy import transpose
+import time
 
 class node:
 	def __init__(self, appFunc = '', value = 0):
@@ -184,12 +185,13 @@ class NN:
 #	for i in range(len(NNprocesses)):
 #		NNprocesses[i].join()
 
-def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, bias = 1):
+def mainParallel(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, bias = 1):
 	NNinstances = []
 
 	for i in range(len(inputs)):
 		NNinstances.append(NN(inputs[i], arrangement, outputs, answers[i], learnrate, threshold, bias))
 
+	loops = 0
 	while True:
 		#ProcessNN(NNinstances, CalculateNNOutputs)
 		NNprocesses = []
@@ -206,6 +208,10 @@ def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, 
 		#		print(i, NNinstances[i].GetNNResults())
 		if done:
 			break # All NNs have converged
+		loops += 1
+		if loops > (10000000 * len(inputs)):
+			print('Reached an iterative bound. Bailing!')
+			break
 		#ProcessNN(NNinstances, CalculateNNErrors)
 		NNprocesses = []
 		for i in range(len(NNinstances)):
@@ -243,6 +249,46 @@ def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, 
 	for i in range(len(NNinstances)):
 		print(i, NNinstances[i].GetNNResults())
 
+def mainIterative(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, bias = 1):
+	NNinstances = []
+
+	for i in range(len(inputs)):
+		NNinstances.append(NN(inputs[i], arrangement, outputs, answers[i], learnrate, threshold, bias))
+
+	loops = 0
+	while True:
+		for i in range(len(NNinstances)):
+			NNinstances[i].CalculateNNOutputs()
+		done = True
+		for i in range(len(NNinstances)):
+			if NNinstances[i].ShouldBackprop():
+				done = False
+		#	else:
+		#		print(i, NNinstances[i].GetNNResults())
+		if done:
+			break # All NNs have converged
+		loops += 1
+		if loops > (10000000 * len(inputs)):
+			print('Reached an iterative bound. Bailing!')
+			break
+		for i in range(len(NNinstances)):
+			target=NNinstances[i].CalculateNNErrors()
+		errorSet = []
+		for i in range(len(NNinstances)):
+			errorSet.append(NNinstances[i].GetNNErrors())
+		errorSet = transpose(errorSet)
+		newErrorSet = []
+		for x in errorSet:
+			newErrorSet.append((sum(x))/len(x))
+		for i in range(len(NNinstances)):
+			target=NNinstances[i].SetNNErrors(newErrorSet)
+		NNprocesses = []
+		for i in range(len(NNinstances)):
+			target=NNinstances[i].UpdateNNWeights()
+
+	for i in range(len(NNinstances)):
+		print(i, NNinstances[i].GetNNResults())
+
 # This is a testing set. Build looks like:
 	#
 	#   # - A - D 
@@ -252,12 +298,47 @@ def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, 
 	#   # - C - E
 	#
 
-# Single inputs dimension
-#if __name__== '__main__': main([2,3], [['S','S','S',], ['S', 'S']], ['S'], [0.101], 0.5, 0.1, 0)
+if __name__== '__main__':
+	print('Starting some NN tests...')
 
-# Parallel inputs dimension
-#if __name__== '__main__': main([[2,3], [1,3], [3,3]], [['S','S','S',], ['S', 'S']], ['S'], [[0.0101], [0.0400], [0.3604]], 0.5, 10, 1)
-if __name__== '__main__': main([[2,3]], [['S','S','S',], ['S', 'S']], ['S'], [[0.0101]], 0.5, 10, 1)
+	start = time.time()
+	for i in range(3): mainParallel([[2,3]], [['S','S','S'], ['S', 'S']], ['S'], [[0.0101]], 0.5, 25, 1)
+	end = time.time()
+	print('One Set ~ Parallel ~ Average Time:', (end - start)/3)
+	print()
+	start = time.time()
+	for i in range(3): mainIterative([[2,3]], [['S','S','S'], ['S', 'S']], ['S'], [[0.0101]], 0.5, 25, 1)
+	end = time.time()
+	print('One Set ~ Iterative ~ Average Time:', (end - start)/3)
+	print()
+	start = time.time()
+	for i in range(3): mainParallel([[2,3], [1,3]], [['S','S','S'], ['S', 'S']], ['S'], [[0.0101], [0.0400]], 0.5, 25, 1)
+	end = time.time()
+	print('Two Set ~ Parallel ~ Average Time:', (end - start)/3)
+	print()
+	start = time.time()
+	for i in range(3): mainIterative([[2,3], [1,3]], [['S','S','S'], ['S', 'S']], ['S'], [[0.0101], [0.0400]], 0.5, 25, 1)
+	end = time.time()
+	print('Two Set ~ Iterative ~ Average Time:', (end - start)/3)
+	print()
+	start = time.time()
+	for i in range(3): mainParallel([[2,3], [1,3], [3,3]], [['S','S','S'], ['S', 'S']], ['S'], [[0.0101], [0.0400], [0.3604]], 0.5, 25, 1)
+	end = time.time()
+	print('Three Set ~ Parallel ~ Average Time:', (end - start)/3)
+	print()
+	start = time.time()
+	for i in range(3): mainIterative([[2,3], [1,3], [3,3]], [['S','S','S'], ['S', 'S']], ['S'], [[0.0101], [0.0400], [0.3604]], 0.5, 25, 1)
+	end = time.time()
+	print('Three Set ~ Iterative ~ Average Time:', (end - start)/3)
 
+
+#if __name__== '__main__': mainParallel([[2,3]], [['S','S','S'], ['S', 'S']], ['S'], [[0.0101]], 0.5, 10, 1) #Takes roughly 32 secs
+#if __name__== '__main__': mainIterative([[2,3]], [['S','S','S'], ['S', 'S']], ['S'], [[0.0101]], 0.5, 10, 1) #Takes roughly 0.5 secs
+
+#if __name__== '__main__': mainParallel([[2,3], [1,3]], [['S','S','S'], ['S', 'S']], ['S'], [[0.0101], [0.0400]], 0.5, 10, 1) #Ran 10130 secs without answer...
+#if __name__== '__main__': mainIterative([[2,3], [1,3]], [['S','S','S'], ['S', 'S']], ['S'], [[0.0101], [0.0400]], 0.5, 10, 1) #Takes roughly 30 secs
+
+#if __name__== '__main__': mainParallel([[2,3], [1,3], [3,3]], [['S','S','S'], ['S', 'S']], ['S'], [[0.0101], [0.0400], [0.3604]], 0.5, 10, 1)
+#if __name__== '__main__': mainIterative([[2,3], [1,3], [3,3]], [['S','S','S'], ['S', 'S']], ['S'], [[0.0101], [0.0400], [0.3604]], 0.5, 10, 1)
 
 
