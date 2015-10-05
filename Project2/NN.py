@@ -11,6 +11,7 @@ CSCI 447:	Project 2
 import sys
 import math
 import random
+from scipy.special import expit
 from multiprocessing import Process
 from numpy import transpose
 import time
@@ -23,12 +24,17 @@ class node:
 		self.error = 0
 		self.func = appFunc
 		self.value = value
+		self.historicalWeights = []
 
 	def addInputs(self, nodes):
 		for x in nodes:
 			x.addOutput(self)
 			self.inputs.append(x)
 			self.weights.append((random.random()*2)-1)
+			self.historicalWeights.append(0)
+		self.inputs.append(node('B', 1))
+		self.weights.append((random.random()*2)-1)
+		self.historicalWeights.append(0)
 	def addOutput(self, node):
 		self.outputs.append(node)
 	def getValue(self):
@@ -51,43 +57,50 @@ class node:
 	def setNewError(self, newError):
 		self.error = newError
  
-	def calcValue(self, BWeight): 
-		summa = 0
-		for x in self.inputs: summa += x.getValue()*self.weights[self.inputs.index(x)]
-		summa += BWeight
-	#	if self.func == 'S': self.value = expit(summa)
-		if self.func == 'S': self.value = 1 / (1 + math.exp(-summa))
-	#	if self.func == 'S': self.value = .5 * (1 + math.tanh(.5*summa))
-		else: self.value = summa
+	def calcValue(self): 
+		if self.func == 'S':
+			summa = 0
+			for x in self.inputs: summa += x.getValue()*self.weights[self.inputs.index(x)]
+			self.value = expit(summa)
+	#		self.value = 1 / (1 + math.exp(-summa))
+	#		self.value = .5 * (1 + math.tanh(.5*summa))
+		elif self.func == 'B': self.value = 1
+		elif self.func == 'L': 
+			summa = 0
+			for x in self.inputs: summa += x.getValue()*self.weights[self.inputs.index(x)]
+			self.value = (lambda x: 1 if x > 0 else 0, summa)
+		else: self.value = 1
 	def calcHiddenError(self):
 		summa = 0
-		for x in self.outputs: summa += x.getError() * x.getWeightForNode(self)
+		for x in self.outputs:
+		#	print(summa)
+			summa += x.getError() * x.getWeightForNode(self)
+		#	print(summa)
 		self.error = self.value * (1-self.value) * summa
 	def calcOutputError(self, answer):
 		self.error = (answer - self.value) * self.value * (1 - self.value)
 
-	def updateWeights(self, LearnRate):
+	#def updateWeights(self, LearnRate):
+	#	for i in range(len(self.weights)):
+	#		self.weights[i] = self.weights[i] + (LearnRate * self.error * self.inputs[i].getValue())
+	def updateWeights(self, LearnRate, Momentum):
 		for i in range(len(self.weights)):
-			self.weights[i] = self.weights[i] + (LearnRate * self.error * self.inputs[i].getValue())
-#	def updateWeights(self):
-#		if momen == 'M': 
-#			for i in range(len(self.weights)):
-#				self.weights[i] = Momentum * self.weights[i] + (LearnRate * self.error * self.inputs[i].getValue())
-#		else: 
-#			for i in range(len(self.weights)):
-#				self.weights[i] = self.weights[i] + (LearnRate * self.error * self.inputs[i].getValue())
+			temp = self.weights[i]
+			self.weights[i] = self.weights[i] + ((1 - Momentum) * LearnRate * self.error * self.inputs[i].getValue()) + (Momentum * (self.weights[i] - self.historicalWeights[i]))
+			self.historicalWeights[i] = temp
+
 
 class NN:
-	def __init__(self, inputs, arrangement, outputs, answers, threshold = 1, learnrate = 0.5, bias = 1):
+	def __init__(self, inputs, arrangement, outputs, answers, learnrate, threshold, momentum):
 		self.StartingNodes = []
 		self.HiddenNodes = []
 		self.OutputNodes = []
-		self.Threshold = 0.01 * threshold
-		self.BWeight = bias
+		self.Threshold = 0.01 * threshold 
 		self.AnswerSet = answers
 		self.loops = 0
 		self.LearnRate = learnrate
 		self.converged = False
+		self.Momentum = momentum
 
 		# Construct the network from the inputs
 		# Make Start Nodes
@@ -123,21 +136,23 @@ class NN:
 				print(id(x), 'has hidden error:', x.getError())
 				print(id(x), 'had weights:', x.getWeights())
 		for x in self.OutputNodes:
-			print(id(x), 'has output value:', x.getValue(), '~', self.AnswerSet[OutputNodes.index(x)])
+			print(id(x), 'has output value:', x.getValue(), '~', self.AnswerSet[self.OutputNodes.index(x)])
 			print(id(x), 'has output error:', x.getError())
 			print(id(x), 'had weights:', x.getWeights())
 	def CalculateNNOutputs(self):
 		backprop = False
 		for i in range(len(self.HiddenNodes)):
 			for j in range(len(self.HiddenNodes[i])):
-				self.HiddenNodes[i][j].calcValue(self.BWeight)
+				self.HiddenNodes[i][j].calcValue()
 				#print('Hidden Value of', id(self.HiddenNodes[i][j]), 'is', self.HiddenNodes[i][j].getValue(), 'with weights:', self.HiddenNodes[i][j].getWeights())
 		for i in range(len(self.OutputNodes)):
-			self.OutputNodes[i].calcValue(self.BWeight)
+			self.OutputNodes[i].calcValue()
 			#print('Output Value of', id(self.OutputNodes[i]), self.OutputNodes[i].getValue(), 'with weights:', self.OutputNodes[i].getWeights())
 			self.OutputNodes[i].calcOutputError(self.AnswerSet[i])
 			#print('Output Error of', id(self.OutputNodes[i]), self.OutputNodes[i].getError())
+			#print(self.OutputNodes[i].getValue(), self.AnswerSet[i] + (self.AnswerSet[i] * self.Threshold), self.AnswerSet[i] - (self.AnswerSet[i] * self.Threshold))
 			if not ((self.OutputNodes[i].getValue() <= (self.AnswerSet[i] + (self.Threshold * self.AnswerSet[i]))) and (self.OutputNodes[i].getValue() >= (self.AnswerSet[i] - (self.Threshold * self.AnswerSet[i])))):
+			#if not ((self.OutputNodes[i].getValue() < self.AnswerSet[i] + self.Threshold) and (self.OutputNodes[i].getValue() > self.AnswerSet[i] - self.Threshold)):
 				backprop = True
 			self.converged = backprop
 	def CalculateNNErrors(self):
@@ -166,9 +181,9 @@ class NN:
 	def UpdateNNWeights(self):
 		for i in range(len(self.HiddenNodes)):
 			for j in range(len(self.HiddenNodes[i])):
-				self.HiddenNodes[i][j].updateWeights(self.LearnRate)
+				self.HiddenNodes[i][j].updateWeights(self.LearnRate, self.Momentum)
 		for i in range(len(self.OutputNodes)):
-			self.OutputNodes[i].updateWeights(self.LearnRate)
+			self.OutputNodes[i].updateWeights(self.LearnRate, self.Momentum)
 	def GetNNResults(self):
 		resultSet = []
 		for i in range(len(self.OutputNodes)):
@@ -185,11 +200,18 @@ class NN:
 #	for i in range(len(NNprocesses)):
 #		NNprocesses[i].join()
 
-def mainParallel(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, bias = 1):
+def mainParallel(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, momentum = 0):
 	NNinstances = []
 
+	scale = 0
+	for x in answers: scale = max(scale, max(x))
+
+	for i in range(len(answers)):
+		for j in range(len(answers[i])):
+			answers[i][j] = answers[i][j]/scale
+
 	for i in range(len(inputs)):
-		NNinstances.append(NN(inputs[i], arrangement, outputs, answers[i], learnrate, threshold, bias))
+		NNinstances.append(NN(inputs[i], arrangement, outputs, answers[i], learnrate, threshold, momentum))
 
 	loops = 0
 	while True:
@@ -209,7 +231,7 @@ def mainParallel(inputs, arrangement, outputs, answers, learnrate = 0.5, thresho
 		if done:
 			break # All NNs have converged
 		loops += 1
-		if loops > (10000000 * len(inputs)):
+		if loops > (1000000):
 			print('Reached an iterative bound. Bailing!')
 			break
 		#ProcessNN(NNinstances, CalculateNNErrors)
@@ -247,18 +269,32 @@ def mainParallel(inputs, arrangement, outputs, answers, learnrate = 0.5, thresho
 			NNprocesses[i].join()
 
 	for i in range(len(NNinstances)):
-		print(i, NNinstances[i].GetNNResults())
+		print(loops, i, [x*scale for x in NNinstances[i].GetNNResults()])
 
-def mainIterative(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, bias = 1):
+def mainIterative(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, momentum = 0):
 	NNinstances = []
 
+	maxim = 0
+	for x in answers: maxim = max(maxim, max(x))
+
+	minim = 10000
+	for x in answers: minim = min(minim, min(x))
+
+
+	for i in range(len(answers)):
+		for j in range(len(answers[i])):
+			#answers[i][j] = answers[i][j]/scale
+			if (maxim == minim): answers[i][j] = maxim/(2*maxim)
+			else: answers[i][j] = (((answers[i][j] - minim) * (0.8 - 0.2)) / (maxim - minim)) + 0.2
+
 	for i in range(len(inputs)):
-		NNinstances.append(NN(inputs[i], arrangement, outputs, answers[i], learnrate, threshold, bias))
+		NNinstances.append(NN(inputs[i], arrangement, outputs, answers[i], learnrate, threshold, momentum))
 
 	loops = 0
 	while True:
 		for i in range(len(NNinstances)):
 			NNinstances[i].CalculateNNOutputs()
+			#NNinstances[i].printStatus()
 		done = True
 		for i in range(len(NNinstances)):
 			if NNinstances[i].ShouldBackprop():
@@ -268,7 +304,8 @@ def mainIterative(inputs, arrangement, outputs, answers, learnrate = 0.5, thresh
 		if done:
 			break # All NNs have converged
 		loops += 1
-		if loops > (10000000 * len(inputs)):
+		#print(loops)
+		if loops > (1000000):
 			print('Reached an iterative bound. Bailing!')
 			break
 		for i in range(len(NNinstances)):
@@ -286,8 +323,16 @@ def mainIterative(inputs, arrangement, outputs, answers, learnrate = 0.5, thresh
 		for i in range(len(NNinstances)):
 			target=NNinstances[i].UpdateNNWeights()
 
+	results = answers
+
 	for i in range(len(NNinstances)):
-		print(i, NNinstances[i].GetNNResults())
+		for j in range(len(NNinstances[i].GetNNResults())):
+			#answers[i][j] = answers[i][j]/scale
+			if (maxim == minim): results[i][j] = NNinstances[i].GetNNResults()[j] * maxim * 2
+			else: results[i][j] = (((NNinstances[i].GetNNResults()[j] - 0.2) * (maxim - minim)) / (0.8 - 0.2)) + minim
+
+	for i in range(len(results)):
+		print(loops, i, results[i])
 
 # This is a testing set. Build looks like:
 	#
@@ -301,36 +346,40 @@ def mainIterative(inputs, arrangement, outputs, answers, learnrate = 0.5, thresh
 if __name__== '__main__':
 	print('Starting some NN tests...')
 
+	#mainIterative([[2,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101]], learnrate = 0.5, threshold = 1, momentum = 0.25)
+	
+	#start = time.time()
+	#for i in range(3): mainParallel([[2,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101]], learnrate = 0.5, threshold = 10, momentum = 0.25)
+	#end = time.time()
+	#print('One Set ~ Parallel ~ Average Time:', (end - start)/3)
+	#print()
+	#start = time.time()
+	#for i in range(3): mainIterative([[2,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101]], learnrate = .5, threshold = 10, momentum = .5)
+	#end = time.time()
+	#print('One Set ~ Iterative ~ Average Time:', (end - start)/3)
+	#print()
+	#start = time.time()
+	#for i in range(3): mainParallel([[2,3], [1,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101], [400]], learnrate = 0.5, threshold = 10, momentum = 0.25)
+	#end = time.time()
+	#print('Two Set ~ Parallel ~ Average Time:', (end - start)/3)
+	#print()
+	
 	start = time.time()
-	for i in range(3): mainParallel([[2,3]], [['S','S','S'], ['S', 'S']], ['S'], [[0.0101]], 0.5, 25, 1)
-	end = time.time()
-	print('One Set ~ Parallel ~ Average Time:', (end - start)/3)
-	print()
-	start = time.time()
-	for i in range(3): mainIterative([[2,3]], [['S','S','S'], ['S', 'S']], ['S'], [[0.0101]], 0.5, 25, 1)
-	end = time.time()
-	print('One Set ~ Iterative ~ Average Time:', (end - start)/3)
-	print()
-	start = time.time()
-	for i in range(3): mainParallel([[2,3], [1,3]], [['S','S','S'], ['S', 'S']], ['S'], [[0.0101], [0.0400]], 0.5, 25, 1)
-	end = time.time()
-	print('Two Set ~ Parallel ~ Average Time:', (end - start)/3)
-	print()
-	start = time.time()
-	for i in range(3): mainIterative([[2,3], [1,3]], [['S','S','S'], ['S', 'S']], ['S'], [[0.0101], [0.0400]], 0.5, 25, 1)
+	for i in range(3): mainIterative([[2,3], [1,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101], [400]], learnrate = 0.5, threshold = 10, momentum = 0.5)
 	end = time.time()
 	print('Two Set ~ Iterative ~ Average Time:', (end - start)/3)
 	print()
-	start = time.time()
-	for i in range(3): mainParallel([[2,3], [1,3], [3,3]], [['S','S','S'], ['S', 'S']], ['S'], [[0.0101], [0.0400], [0.3604]], 0.5, 25, 1)
-	end = time.time()
-	print('Three Set ~ Parallel ~ Average Time:', (end - start)/3)
-	print()
-	start = time.time()
-	for i in range(3): mainIterative([[2,3], [1,3], [3,3]], [['S','S','S'], ['S', 'S']], ['S'], [[0.0101], [0.0400], [0.3604]], 0.5, 25, 1)
-	end = time.time()
-	print('Three Set ~ Iterative ~ Average Time:', (end - start)/3)
-
+	
+	#start = time.time()
+	#for i in range(3): mainParallel([[2,3], [1,3], [3,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101], [400], [3604]], learnrate = 0.5, threshold = 10, momentum = 0.25)
+	#end = time.time()
+	#print('Three Set ~ Parallel ~ Average Time:', (end - start)/3)
+	#print()
+	#start = time.time()
+	#for i in range(3): mainIterative([[2,3], [1,3], [3,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101], [400], [3604]], learnrate = 0.75, threshold = 10, momentum = 0.75)
+	#end = time.time()
+	#print('Three Set ~ Iterative ~ Average Time:', (end - start)/3)
+	
 
 #if __name__== '__main__': mainParallel([[2,3]], [['S','S','S'], ['S', 'S']], ['S'], [[0.0101]], 0.5, 10, 1) #Takes roughly 32 secs
 #if __name__== '__main__': mainIterative([[2,3]], [['S','S','S'], ['S', 'S']], ['S'], [[0.0101]], 0.5, 10, 1) #Takes roughly 0.5 secs
