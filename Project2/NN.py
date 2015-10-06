@@ -203,12 +203,17 @@ class NN:
 def mainParallel(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, momentum = 0):
 	NNinstances = []
 
-	scale = 0
-	for x in answers: scale = max(scale, max(x))
+	maxim = 0
+	for x in answers: maxim = max(maxim, max(x))
+
+	minim = 10000
+	for x in answers: minim = min(minim, min(x))
+
 
 	for i in range(len(answers)):
 		for j in range(len(answers[i])):
-			answers[i][j] = answers[i][j]/scale
+			if (maxim == minim): answers[i][j] = maxim/(2*maxim)
+			else: answers[i][j] = (((answers[i][j] - minim) * (0.8 - 0.2)) / (maxim - minim)) + 0.2
 
 	for i in range(len(inputs)):
 		NNinstances.append(NN(inputs[i], arrangement, outputs, answers[i], learnrate, threshold, momentum))
@@ -268,8 +273,15 @@ def mainParallel(inputs, arrangement, outputs, answers, learnrate = 0.5, thresho
 		for i in range(len(NNprocesses)):
 			NNprocesses[i].join()
 
+	results = answers
+
 	for i in range(len(NNinstances)):
-		print(loops, i, [x*scale for x in NNinstances[i].GetNNResults()])
+		for j in range(len(NNinstances[i].GetNNResults())):
+			if (maxim == minim): results[i][j] = NNinstances[i].GetNNResults()[j] * maxim * 2
+			else: results[i][j] = (((NNinstances[i].GetNNResults()[j] - 0.2) * (maxim - minim)) / (0.8 - 0.2)) + minim
+
+	for i in range(len(results)):
+		print(loops, i, results[i], answers[i])
 
 def mainIterative(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, momentum = 0):
 	NNinstances = []
@@ -283,7 +295,6 @@ def mainIterative(inputs, arrangement, outputs, answers, learnrate = 0.5, thresh
 
 	for i in range(len(answers)):
 		for j in range(len(answers[i])):
-			#answers[i][j] = answers[i][j]/scale
 			if (maxim == minim): answers[i][j] = maxim/(2*maxim)
 			else: answers[i][j] = (((answers[i][j] - minim) * (0.8 - 0.2)) / (maxim - minim)) + 0.2
 
@@ -327,7 +338,6 @@ def mainIterative(inputs, arrangement, outputs, answers, learnrate = 0.5, thresh
 
 	for i in range(len(NNinstances)):
 		for j in range(len(NNinstances[i].GetNNResults())):
-			#answers[i][j] = answers[i][j]/scale
 			if (maxim == minim): results[i][j] = NNinstances[i].GetNNResults()[j] * maxim * 2
 			else: results[i][j] = (((NNinstances[i].GetNNResults()[j] - 0.2) * (maxim - minim)) / (0.8 - 0.2)) + minim
 
@@ -343,27 +353,33 @@ def mainIterative(inputs, arrangement, outputs, answers, learnrate = 0.5, thresh
 	#   # - C - E
 	#
 
+# Things to add
+#	Dynamic learn rate (Possibly a logarithmic function)
+#	Turbulence (noise) injection at # of loops to encourage new errors
+# 	RBFN stuff... Leah!
+
 if __name__== '__main__':
 	print('Starting some NN tests...')
-
-	#mainIterative([[2,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101]], learnrate = 0.5, threshold = 1, momentum = 0.25)
 	
+	#mainIterative([[2,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101]], learnrate = 0.5, threshold = 10, momentum = 0.5)
+	#mainIterative([[2,3], [1,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101], [400]], learnrate = 0.5, threshold = 10, momentum = 0.5)
+	
+	start = time.time()
+	for i in range(3): mainParallel([[2,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101]], learnrate = 0.5, threshold = 10, momentum = 0.5)
+	end = time.time()
+	print('One Set ~ Parallel ~ Average Time:', (end - start)/3)
+	print()
+	start = time.time()
+	for i in range(3): mainIterative([[2,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101]], learnrate = 0.5, threshold = 10, momentum = 0.5)
+	end = time.time()
+	print('One Set ~ Iterative ~ Average Time:', (end - start)/3)
+	print()
+	'''
 	#start = time.time()
-	#for i in range(3): mainParallel([[2,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101]], learnrate = 0.5, threshold = 10, momentum = 0.25)
-	#end = time.time()
-	#print('One Set ~ Parallel ~ Average Time:', (end - start)/3)
-	#print()
-	#start = time.time()
-	#for i in range(3): mainIterative([[2,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101]], learnrate = .5, threshold = 10, momentum = .5)
-	#end = time.time()
-	#print('One Set ~ Iterative ~ Average Time:', (end - start)/3)
-	#print()
-	#start = time.time()
-	#for i in range(3): mainParallel([[2,3], [1,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101], [400]], learnrate = 0.5, threshold = 10, momentum = 0.25)
+	#for i in range(3): mainParallel([[2,3], [1,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101], [400]], learnrate = 0.5, threshold = 10, momentum = 0.5)
 	#end = time.time()
 	#print('Two Set ~ Parallel ~ Average Time:', (end - start)/3)
 	#print()
-	
 	start = time.time()
 	for i in range(3): mainIterative([[2,3], [1,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101], [400]], learnrate = 0.5, threshold = 10, momentum = 0.5)
 	end = time.time()
@@ -379,7 +395,7 @@ if __name__== '__main__':
 	#for i in range(3): mainIterative([[2,3], [1,3], [3,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101], [400], [3604]], learnrate = 0.75, threshold = 10, momentum = 0.75)
 	#end = time.time()
 	#print('Three Set ~ Iterative ~ Average Time:', (end - start)/3)
-	
+	'''
 
 #if __name__== '__main__': mainParallel([[2,3]], [['S','S','S'], ['S', 'S']], ['S'], [[0.0101]], 0.5, 10, 1) #Takes roughly 32 secs
 #if __name__== '__main__': mainIterative([[2,3]], [['S','S','S'], ['S', 'S']], ['S'], [[0.0101]], 0.5, 10, 1) #Takes roughly 0.5 secs
