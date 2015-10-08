@@ -18,9 +18,6 @@ import time
 import copy
 from operator import sub
 
-global Bloops
-Bloops = 9999
-
 class node:
 	def __init__(self, appFunc = '', value = 0, dmax = 1):
 		self.inputs = []
@@ -99,27 +96,19 @@ class node:
 			self.error = summa
 		elif self.func == 'G':
 			self.error = 1
-	def calcOutputError(self, answer, loop):
+	def calcOutputError(self, answer):
 		if self.func == 'S':
 			self.error = (answer - self.value) * self.value * (1 - self.value)
-			# Turbulence: Not sure if it helps
-			#noise = 0
-			#if loop%500 == 0:
-			#	if self.error > 0: noise = random.random()
-			#	else: noise = -1 * random.random()
-			#print('Error:', self.error)
-			#self.error = self.error + noise
-			#print('Error with Noise:', self.error, noise)
 		elif self.func == 'L': 
 			#print(answer, self.value)
 			self.error = (answer - self.value)
 		elif self.func == 'R':
-			self.error = (answer - self.value)
+			self.error = (answer - self.value)**2
 			#self.error = (answer - self.value)**2 This should be the error, but the values don't converge. 
 		else: self.error = 0
 	def updateWeights(self, LearnRate, Momentum, loop):
 		global Bloops
-		DLR = 0
+		DLR = 1 - 1/(Bloops-loop+1) # Linear decreasing relationship
 		#DLR = -((1 + 1/(Bloops ** 5))**(loop ** 10)) + 2 # This is a bit arbitrary... 
 		if self.func == 'S' or self.func == 'L' or self.func == 'R':
 			for i in range(len(self.weights)):
@@ -130,10 +119,12 @@ class node:
 		elif self.func == 'G':
 			for i in range(len(self.weights)):
 				temp = self.weights[i]
-				beta = (4 * len(self.inputs[0].getOutputs()) / self.dmax)
+				beta1 = -(2 * len(self.inputs[0].getOutputs()) / (self.dmax**2))
+				beta2 = (2 * len(self.inputs[0].getOutputs()) / (self.dmax**3))
 				gaussInput = list(map(sub, (list(map(lambda x: x.getValue(), self.inputs))), self.weights))
 				norm = EuclideanDistance(gaussInput)
-				self.weights[i] = self.weights[i] + ((1 - Momentum) * -1 * max(LearnRate, DLR) * (math.sqrt(2 / len(self.inputs[0].getOutputs())) * beta * norm * (math.e ** (-beta * (norm) ** 2)) * norm) * self.weights[i])
+				self.weights[i] = self.weights[i] + ((1 - Momentum) * -1 * max(LearnRate, DLR) * ( 4 * len(self.inputs[0].getOutputs()) * norm**4 * (math.e**((-norm**2)/(2 * (self.dmax/math.sqrt(2*len(self.inputs[0].getOutputs())))))))/(self.dmax**4))
+				#self.weights[i] = self.weights[i] + ((1 - Momentum) * -1 * max(LearnRate, DLR) * (beta2 * norm * (math.e ** (beta1 * (norm ** 2)))) * self.weights[i])
 				self.weights[i] = self.weights[i] + (Momentum * (self.weights[i] - self.historicalWeights[i]))
 				self.historicalWeights[i] = temp
 
@@ -206,18 +197,12 @@ class NN:
 			print(id(x), 'has output value:', x.getValue(), '~', self.AnswerSet[self.OutputNodes.index(x)])
 			#print(id(x), 'has output error:', x.getError())
 			#print(id(x), 'had weights:', x.getWeights())
-	def CalculateNNOutputs(self, loop):
-		backprop = False
+	def CalculateNNOutputs(self):
 		for i in range(len(self.HiddenNodes)):
 			for j in range(len(self.HiddenNodes[i])):
 				self.HiddenNodes[i][j].calcValue()
 		for i in range(len(self.OutputNodes)):
 			self.OutputNodes[i].calcValue()
-			self.OutputNodes[i].calcOutputError(self.AnswerSet[i], loop)
-			if not ((self.OutputNodes[i].getValue() <= (self.AnswerSet[i] + (self.Threshold * self.AnswerSet[i]))) and 
-				(self.OutputNodes[i].getValue() >= (self.AnswerSet[i] - (self.Threshold * self.AnswerSet[i])))):
-				backprop = True
-			self.converged = backprop
 	def CalculateNNErrors(self):
 		for i in range(len(list(reversed(self.HiddenNodes)))):
 			for j in range(len(list(reversed(self.HiddenNodes))[i])):
@@ -267,6 +252,13 @@ class NN:
 			resultSet.append(self.OutputNodes[i].getValue())
 		return resultSet
 	def ShouldBackprop(self):
+		backprop = False
+		for i in range(len(self.OutputNodes)):
+			self.OutputNodes[i].calcOutputError(self.AnswerSet[i])
+		if not ((self.OutputNodes[i].getValue() <= (self.AnswerSet[i] + (self.Threshold * self.AnswerSet[i]))) and 
+			(self.OutputNodes[i].getValue() >= (self.AnswerSet[i] - (self.Threshold * self.AnswerSet[i])))):
+			backprop = True
+		self.converged = backprop
 		return self.converged
 
 def ProcessGroupFunc(instance, loops):
@@ -282,6 +274,7 @@ def EuclideanDistance(vector):
 
 def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, momentum = 0):
 	global Bloops
+	Bloops = 100 ** len(inputs)
 	NNinstances = []
 	OrigAnswers = copy.deepcopy(answers)
 
@@ -332,20 +325,23 @@ def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, 
 	while True:
 		#print()
 		for i in range(len(NNinstances)): 
-			NNinstances[i].CalculateNNOutputs(loops)
+			NNinstances[i].CalculateNNOutputs()
 			#NNinstances[i].PrintStatus()
 		done = True
 		for i in range(len(NNinstances)): 
 			if NNinstances[i].ShouldBackprop(): done = False
-		if done:
-			weightSet = []
-			for i in range(len(NNinstances)): weightSet.append(NNinstances[i].GetNNWeights())
-			weightSet = transpose(weightSet)
-			newWeightSet = []
-			for x in weightSet: newWeightSet.append((sum(x))/len(x))
-			for i in range(len(NNinstances)): NNinstances[i].SetNNWeights(newWeightSet)
+		weightSet = []
+		for i in range(len(NNinstances)): weightSet.append(NNinstances[i].GetNNWeights())
+		weightSet = transpose(weightSet)
+		newWeightSet = []
+		for x in weightSet: newWeightSet.append((sum(x))/len(x))
+		for i in range(len(NNinstances)): NNinstances[i].SetNNWeights(newWeightSet)
 		for i in range(len(NNinstances)): 
-			if NNinstances[i].ShouldBackprop(): done = False
+			if NNinstances[i].ShouldBackprop(): 
+				#print(i)
+				done = False
+		#print()
+		
 		if (done and (loops >= 100)): break
 		loops += 1
 		if loops > (Bloops):
@@ -355,14 +351,22 @@ def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, 
 			NNinstances[i].CalculateNNErrors()
 			NNinstances[i].UpdateNNWeights(loops)
 
-	results = answers
+	#results = answers
+	#for i in range(len(NNinstances)):
+	#	for j in range(len(NNinstances[i].GetNNResults())):
+	#		if (maxim == minim): results[i][j] = NNinstances[i].GetNNResults()[j] * maxim * 2
+	#		else: results[i][j] = (((NNinstances[i].GetNNResults()[j] - 0.2) * (maxim - minim)) / (0.8 - 0.2)) + minim
+	#for i in range(len(results)): print(loops, inputs[i], results[i], OrigAnswers[i])
 
-	for i in range(len(NNinstances)):
-		for j in range(len(NNinstances[i].GetNNResults())):
-			if (maxim == minim): results[i][j] = NNinstances[i].GetNNResults()[j] * maxim * 2
-			else: results[i][j] = (((NNinstances[i].GetNNResults()[j] - 0.2) * (maxim - minim)) / (0.8 - 0.2)) + minim
+	finalNN = copy.deepcopy(NNinstances[0])
 
-	for i in range(len(results)): print(loops, i, results[i], OrigAnswers[i])
+	for x in inputs:
+		#print(x)
+		finalNN.SetStartingNodesValues(x)
+		finalNN.CalculateNNOutputs()
+		print(loops, x, ((((finalNN.GetNNResults()[0] - 0.2) * (maxim - minim)) / (0.8 - 0.2)) + minim), OrigAnswers[inputs.index(x)])
+
+	return finalNN
 
 # Things to add
 # 	For RBFN use G for hidden and R for output
@@ -371,7 +375,7 @@ if __name__== '__main__':
 	print('Starting some NN tests...\n')
 	
 	#main([[2,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101]], learnrate = 0.5, threshold = 10, momentum = 0.5)
-	#main([[2,3], [1,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101], [400]], learnrate = 0.5, threshold = 1, momentum = 0.5)
-	main([[2,3], [1,3], [3,3]], [['S','S','S'], ['S','S']], ['S'], [[101], [400], [3604]], learnrate = 0.5, threshold = 1, momentum = 0.5)
-	main([[2,3], [1,3], [3,3]], [['G','G','G']], ['R'], [[101], [400], [3604]], learnrate = 0.5, threshold = 1, momentum = 0.5)
+	#main([[2,3], [1,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101], [400]], learnrate = 0.1, threshold = 1, momentum = 0.5)
+	#main([[2,3], [1,3], [3,3]], [['S','S','S'], ['S','S']], ['S'], [[101], [400], [3604]], learnrate = 0.5, threshold = 1, momentum = 0.5)
+	main([[2,3], [1,3], [3,3]], [['G','G','G']], ['R'], [[101], [400], [3604]], learnrate = 0.5, threshold = 10, momentum = 0.5)
 
