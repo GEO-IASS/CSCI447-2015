@@ -87,15 +87,18 @@ class node:
 		elif self.func == 'R':
 			self.value = summa
 		else: self.value = 1
+
 	def calcHiddenError(self):
 		summa = 0
 		for x in self.outputs: summa += x.getError() * x.getWeightForNode(self)
 		if self.func == 'S':
 			self.error = self.value * (1-self.value) * summa
 		elif self.func == 'L':
-			self.error = summa
+			#self.error = summa * ()
+			self.error = self.value 
 		elif self.func == 'G':
 			self.error = 1
+
 	def calcOutputError(self, answer):
 		if self.func == 'S':
 			self.error = (answer - self.value) * self.value * (1 - self.value)
@@ -103,9 +106,10 @@ class node:
 			#print(answer, self.value)
 			self.error = (answer - self.value)
 		elif self.func == 'R':
-			self.error = (answer - self.value)**2
+			self.error = (answer - self.value)
 			#self.error = (answer - self.value)**2 This should be the error, but the values don't converge. 
 		else: self.error = 0
+
 	def updateWeights(self, LearnRate, Momentum, loop):
 		global Bloops
 		DLR = 1 - 1/(Bloops-loop+1) # Linear decreasing relationship
@@ -274,7 +278,7 @@ def EuclideanDistance(vector):
 
 def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, momentum = 0):
 	global Bloops
-	Bloops = 100 ** len(inputs)
+	Bloops = 10 ** len(inputs)
 	NNinstances = []
 	OrigAnswers = copy.deepcopy(answers)
 
@@ -341,7 +345,7 @@ def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, 
 				#print(i)
 				done = False
 		#print()
-		
+		print("Progress {:2.1%}".format(loops / Bloops), end="\r")
 		if (done and (loops >= 100)): break
 		loops += 1
 		if loops > (Bloops):
@@ -351,12 +355,12 @@ def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, 
 			NNinstances[i].CalculateNNErrors()
 			NNinstances[i].UpdateNNWeights(loops)
 
-	#results = answers
-	#for i in range(len(NNinstances)):
-	#	for j in range(len(NNinstances[i].GetNNResults())):
-	#		if (maxim == minim): results[i][j] = NNinstances[i].GetNNResults()[j] * maxim * 2
-	#		else: results[i][j] = (((NNinstances[i].GetNNResults()[j] - 0.2) * (maxim - minim)) / (0.8 - 0.2)) + minim
-	#for i in range(len(results)): print(loops, inputs[i], results[i], OrigAnswers[i])
+	results = answers
+	for i in range(len(NNinstances)):
+		for j in range(len(NNinstances[i].GetNNResults())):
+			if (maxim == minim): results[i][j] = NNinstances[i].GetNNResults()[j] * maxim * 2
+			else: results[i][j] = (((NNinstances[i].GetNNResults()[j] - 0.2) * (maxim - minim)) / (0.8 - 0.2)) + minim
+	for i in range(len(results)): print(loops, inputs[i], results[i], OrigAnswers[i])
 
 	finalNN = copy.deepcopy(NNinstances[0])
 
@@ -365,6 +369,10 @@ def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, 
 		finalNN.SetStartingNodesValues(x)
 		finalNN.CalculateNNOutputs()
 		print(loops, x, ((((finalNN.GetNNResults()[0] - 0.2) * (maxim - minim)) / (0.8 - 0.2)) + minim), OrigAnswers[inputs.index(x)])
+
+	finalNN.SetStartingNodesValues([3.5])
+	finalNN.CalculateNNOutputs()
+	print(loops, [3.5], ((((finalNN.GetNNResults()[0] - 0.2) * (maxim - minim)) / (0.8 - 0.2)) + minim), [12.25])
 
 	return finalNN
 
@@ -377,5 +385,8 @@ if __name__== '__main__':
 	#main([[2,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101]], learnrate = 0.5, threshold = 10, momentum = 0.5)
 	#main([[2,3], [1,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101], [400]], learnrate = 0.1, threshold = 1, momentum = 0.5)
 	#main([[2,3], [1,3], [3,3]], [['S','S','S'], ['S','S']], ['S'], [[101], [400], [3604]], learnrate = 0.5, threshold = 1, momentum = 0.5)
-	main([[2,3], [1,3], [3,3]], [['G','G','G']], ['R'], [[101], [400], [3604]], learnrate = 0.5, threshold = 10, momentum = 0.5)
+#	main([[1],[2],[3],[4],[5]], [['S','S','S','S','S'], ['S','S','S']], ['S'], [[1],[4],[9],[16],[25]], learnrate = 0.5, threshold = 5, momentum = 0.3)
+	main([[1],[2],[3],[4],[5]], [['L', 'L', 'L']], ['S'], [[1],[4],[9],[16],[25]], learnrate = .5, threshold = 5, momentum = .3)
+	#main([[2,3], [1,3], [3,3]], [['G','G','G']], ['R'], [[101], [400], [3604]], learnrate = 0.5, threshold = 10, momentum = 0.5)
+	#main([[2,3], [1,3]], [['G','G','G']], ['R'], [[101], [400]], learnrate = 0.5, threshold = 10, momentum = 0.5)
 
