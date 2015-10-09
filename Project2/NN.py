@@ -278,7 +278,7 @@ def EuclideanDistance(vector):
 
 def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, momentum = 0):
 	global Bloops
-	Bloops = 10 ** len(inputs)
+	Bloops = 100 ** len(inputs)
 	NNinstances = []
 	OrigAnswers = copy.deepcopy(answers)
 
@@ -370,9 +370,9 @@ def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, 
 		finalNN.CalculateNNOutputs()
 		print(loops, x, ((((finalNN.GetNNResults()[0] - 0.2) * (maxim - minim)) / (0.8 - 0.2)) + minim), OrigAnswers[inputs.index(x)])
 
-	finalNN.SetStartingNodesValues([3.5])
-	finalNN.CalculateNNOutputs()
-	print(loops, [3.5], ((((finalNN.GetNNResults()[0] - 0.2) * (maxim - minim)) / (0.8 - 0.2)) + minim), [12.25])
+	#finalNN.SetStartingNodesValues([3.5])
+	#finalNN.CalculateNNOutputs()
+	#print(loops, [3.5], ((((finalNN.GetNNResults()[0] - 0.2) * (maxim - minim)) / (0.8 - 0.2)) + minim), [12.25])
 
 	return finalNN
 
@@ -383,10 +383,10 @@ if __name__== '__main__':
 	print('Starting some NN tests...\n')
 	
 	#main([[2,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101]], learnrate = 0.5, threshold = 10, momentum = 0.5)
-	#main([[2,3], [1,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101], [400]], learnrate = 0.1, threshold = 1, momentum = 0.5)
+	main([[2,3], [1,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101], [400]], learnrate = 0.1, threshold = 1, momentum = 0.5)
 	#main([[2,3], [1,3], [3,3]], [['S','S','S'], ['S','S']], ['S'], [[101], [400], [3604]], learnrate = 0.5, threshold = 1, momentum = 0.5)
-#	main([[1],[2],[3],[4],[5]], [['S','S','S','S','S'], ['S','S','S']], ['S'], [[1],[4],[9],[16],[25]], learnrate = 0.5, threshold = 5, momentum = 0.3)
-	main([[1],[2],[3],[4],[5]], [['L', 'L', 'L']], ['S'], [[1],[4],[9],[16],[25]], learnrate = .5, threshold = 5, momentum = .3)
+	#main([[1],[2],[3],[4],[5]], [['S','S','S','S','S'], ['S','S','S']], ['S'], [[1],[4],[9],[16],[25]], learnrate = 0.5, threshold = 5, momentum = 0.3)
+	#main([[1],[2],[3],[4],[5]], [['L', 'L', 'L']], ['S'], [[1],[4],[9],[16],[25]], learnrate = .5, threshold = 5, momentum = .3)
 	#main([[2,3], [1,3], [3,3]], [['G','G','G']], ['R'], [[101], [400], [3604]], learnrate = 0.5, threshold = 10, momentum = 0.5)
 	#main([[2,3], [1,3]], [['G','G','G']], ['R'], [[101], [400]], learnrate = 0.5, threshold = 10, momentum = 0.5)
 
