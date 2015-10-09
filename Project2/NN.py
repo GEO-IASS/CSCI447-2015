@@ -11,7 +11,6 @@ CSCI 447:	Project 2
 import sys
 import math
 import random
-#from scipy.special import expit
 from multiprocessing import Process
 from numpy import transpose, linalg
 import time
@@ -39,52 +38,63 @@ class node:
 		self.inputs.append(node(appFunc = 'B', value = 1))
 		self.weights.append((random.random()*2)-1)
 		self.historicalWeights.append(0)
+
+	def getInputs(self):
+		return self.inputs
+
 	def addOutput(self, node):
 		self.outputs.append(node)
+
+	def getOutputs(self):
+		return self.outputs
+
 	def setValue(self, value):
 		self.value = value
+
 	def getValue(self):
 		return self.value
+
+	def setNewError(self, newError):
+		self.error = newError
+
 	def getError(self):
 		return self.error
+
 	def getWeightForNode(self, node):
 		return self.weights[self.inputs.index(node)]
+
 	def getWeightOutputs(self):
 		temp = []
 		for x in self.outputs: temp.append(x.getWeightForNode(self))
 		return temp
-	def getOutputs(self):
-		return self.outputs
+
 	def getWeights(self):
 		return self.weights
+
 	def setWeights(self, values):
 		self.weights = values
-	def getInputs(self):
-		return self.inputs
-	def setNewError(self, newError):
-		self.error = newError
+
 	def setDmax(self, newdmax):
 		self.dmax = newdmax
  
 	def calcValue(self): 
 		summa = 0	
 		for x in self.inputs: summa += x.getValue()*self.weights[self.inputs.index(x)]
-		if self.func == 'S':
-	#		self.value = expit(summa)
+		if self.func == 'S':	#sigmoid
 			self.value = 1 / (1 + math.exp(-summa))
-	#		self.value = .5 * (1 + math.tanh(.5*summa))
-		elif self.func == 'B': self.value = 1
-		elif self.func == 'G': 
+		elif self.func == 'B': 	#bias value
+			self.value = 1
+		elif self.func == 'G': 	#guassian 
 			inputVector = []
 			for x in self.inputs:
 				inputVector.append(x.getValue())
 			gaussInput = list(map(sub, inputVector, self.weights[:-1]))
-			beta = -(4*len(self.inputs[0].getOutputs())/(self.dmax**2))
-			self.value = math.e**(beta*EuclideanDistance(gaussInput))
-		elif self.func == 'L': 
+			beta = (4*len(self.inputs[0].getOutputs())/(self.dmax**2))
+			self.value = math.e**(-beta*EuclideanDistance(gaussInput))
+		elif self.func == 'L': 	#linear step
 			if summa > 0: self.value = 1
 			else: self.value = 0
-		elif self.func == 'R':
+		elif self.func == 'R':	#summation
 			self.value = summa
 		else: self.value = 1
 
@@ -94,13 +104,13 @@ class node:
 		if self.func == 'S':
 			self.error = self.value * (1-self.value) * summa
 		elif self.func == 'L':
-			#self.error = summa * ()
-			self.error = self.value 
+			self.error = summa 
+			#self.error = self.value 
 		elif self.func == 'G':
 			self.error = 1
 
 	def calcOutputError(self, answer):
-		if self.func == 'S':
+		if self.func == 'S':	
 			self.error = (answer - self.value) * self.value * (1 - self.value)
 		elif self.func == 'L': 
 			#print(answer, self.value)
@@ -152,6 +162,7 @@ class NN:
 		for i in range(len(self.HiddenNodes)):
 			for j in range(len(self.HiddenNodes[i])):
 				self.HiddenNodes[i][j].setDmax(newdmax)
+
 	def ConstructNetwork(self):
 		# Construct the network from the inputs
 		# Make Start Nodes
@@ -180,14 +191,18 @@ class NN:
 			n.addInputs(self.HiddenNodes[-1])
 			self.OutputNodes.append(n)
 		# Network created and ready to function
+
 	def SetStartingNodesValues(self, values):
 		for i in range(len(self.StartingNodes)):
 			self.StartingNodes[i].setValue(values[i])
+
 	def SetAnswerSetValues(self, values):
 		for i in range(len(self.AnswerSet)):
 			self.AnswerSet = values
+
 	def getAnswerSet(self):
 		return self.AnswerSet
+
 	def PrintStatus(self):
 		print()
 		#for x in self.StartingNodes:
@@ -201,16 +216,19 @@ class NN:
 			print(id(x), 'has output value:', x.getValue(), '~', self.AnswerSet[self.OutputNodes.index(x)])
 			#print(id(x), 'has output error:', x.getError())
 			#print(id(x), 'had weights:', x.getWeights())
+
 	def CalculateNNOutputs(self):
 		for i in range(len(self.HiddenNodes)):
 			for j in range(len(self.HiddenNodes[i])):
 				self.HiddenNodes[i][j].calcValue()
 		for i in range(len(self.OutputNodes)):
 			self.OutputNodes[i].calcValue()
+
 	def CalculateNNErrors(self):
 		for i in range(len(list(reversed(self.HiddenNodes)))):
 			for j in range(len(list(reversed(self.HiddenNodes))[i])):
 				(list(reversed(self.HiddenNodes))[i][j]).calcHiddenError()
+
 	def GetNNWeights(self):
 		weightSet = []
 		for i in range(len(self.HiddenNodes)):
@@ -220,6 +238,7 @@ class NN:
 			for x in self.OutputNodes[i].getWeights(): 
 				weightSet.append(x)
 		return weightSet
+
 	def GetNNWeightsTrim(self):
 		weightSet = []
 		for i in range(len(self.HiddenNodes)):
@@ -229,6 +248,7 @@ class NN:
 			for x in self.OutputNodes[i].getWeights()[:-1]: 
 				weightSet.append(x)
 		return weightSet
+
 	def SetNNWeights(self, values):
 		counter = 0
 		for i in range(len(self.HiddenNodes)):
@@ -244,17 +264,20 @@ class NN:
 				temp.append(values[counter])
 				counter += 1
 			self.OutputNodes[i].setWeights(temp)
+
 	def UpdateNNWeights(self, loop):
 		for i in range(len(self.HiddenNodes)):
 			for j in range(len(self.HiddenNodes[i])):
 				self.HiddenNodes[i][j].updateWeights(self.LearnRate, self.Momentum, loop)
 		for i in range(len(self.OutputNodes)): 
 			self.OutputNodes[i].updateWeights(self.LearnRate, self.Momentum, loop)
+
 	def GetNNResults(self):
 		resultSet = []
 		for i in range(len(self.OutputNodes)): 
 			resultSet.append(self.OutputNodes[i].getValue())
 		return resultSet
+
 	def ShouldBackprop(self):
 		backprop = False
 		for i in range(len(self.OutputNodes)):
@@ -278,7 +301,7 @@ def EuclideanDistance(vector):
 
 def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, momentum = 0):
 	global Bloops
-	Bloops = 10 ** len(inputs)
+	Bloops = 20 ** len(inputs)
 	NNinstances = []
 	OrigAnswers = copy.deepcopy(answers)
 
@@ -370,9 +393,9 @@ def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, 
 		finalNN.CalculateNNOutputs()
 		print(loops, x, ((((finalNN.GetNNResults()[0] - 0.2) * (maxim - minim)) / (0.8 - 0.2)) + minim), OrigAnswers[inputs.index(x)])
 
-	finalNN.SetStartingNodesValues([3.5])
+	#finalNN.SetStartingNodesValues([3.5])
 	finalNN.CalculateNNOutputs()
-	print(loops, [3.5], ((((finalNN.GetNNResults()[0] - 0.2) * (maxim - minim)) / (0.8 - 0.2)) + minim), [12.25])
+	#print(loops, [3.5], ((((finalNN.GetNNResults()[0] - 0.2) * (maxim - minim)) / (0.8 - 0.2)) + minim), [12.25])
 
 	return finalNN
 
@@ -385,8 +408,8 @@ if __name__== '__main__':
 	#main([[2,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101]], learnrate = 0.5, threshold = 10, momentum = 0.5)
 	#main([[2,3], [1,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101], [400]], learnrate = 0.1, threshold = 1, momentum = 0.5)
 	#main([[2,3], [1,3], [3,3]], [['S','S','S'], ['S','S']], ['S'], [[101], [400], [3604]], learnrate = 0.5, threshold = 1, momentum = 0.5)
-#	main([[1],[2],[3],[4],[5]], [['S','S','S','S','S'], ['S','S','S']], ['S'], [[1],[4],[9],[16],[25]], learnrate = 0.5, threshold = 5, momentum = 0.3)
-	main([[1],[2],[3],[4],[5]], [['L', 'L', 'L']], ['S'], [[1],[4],[9],[16],[25]], learnrate = .5, threshold = 5, momentum = .3)
+	main([[1],[2],[3],[4],[5]], [['S','S','S','S','S'], ['S','S','S']], ['S'], [[1],[4],[9],[16],[25]], learnrate = 0.5, threshold = 5, momentum = 0.3)
+	#main([[1],[2],[3],[4],[5]], [['L', 'L', 'L']], ['S'], [[1],[4],[9],[16],[25]], learnrate = .5, threshold = 5, momentum = .3)
 	#main([[2,3], [1,3], [3,3]], [['G','G','G']], ['R'], [[101], [400], [3604]], learnrate = 0.5, threshold = 10, momentum = 0.5)
 	#main([[2,3], [1,3]], [['G','G','G']], ['R'], [[101], [400]], learnrate = 0.5, threshold = 10, momentum = 0.5)
 
