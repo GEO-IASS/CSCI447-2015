@@ -29,57 +29,75 @@ class node:
 		self.oldLR = 0.5
 		self.dmax = dmax
 
+	# Add an array of input nodes to this node. 
+	# When doing so, adds random weights for each node.
+	# Also adds a bias node with value 1 and 
 	def addInputs(self, nodes):
 		for x in nodes:
 			x.addOutput(self)
 			self.inputs.append(x)
-			self.weights.append((random.random()*2)-1)
+			self.weights.append(random.random()-0.5)
 			self.historicalWeights.append(0)
 		self.inputs.append(node(appFunc = 'B', value = 1))
-		self.weights.append((random.random()*2)-1)
+		self.weights.append(random.random()-0.5)
 		self.historicalWeights.append(0)
 
+	# Returns the set of input nodes for this node
 	def getInputs(self):
 		return self.inputs
 
+	# Add a node as an output to this node
 	def addOutput(self, node):
 		self.outputs.append(node)
 
+	# Return the set of output nodes
 	def getOutputs(self):
 		return self.outputs
 
+	# Set the value of this node without calculating it
 	def setValue(self, value):
 		self.value = value
 
+	# Return this nodes current value
 	def getValue(self):
 		return self.value
 
+	# Set the error of this node without calculating it
 	def setNewError(self, newError):
 		self.error = newError
 
+	# Return the error of this node
 	def getError(self):
 		return self.error
 
+	# Return the weight for a particular input node given as an input
 	def getWeightForNode(self, node):
 		return self.weights[self.inputs.index(node)]
 
+	# Return the set of weights for the output nodes and this node
 	def getWeightOutputs(self):
 		temp = []
 		for x in self.outputs: temp.append(x.getWeightForNode(self))
 		return temp
 
+	# Return the set of weights for the input nodes and this node
 	def getWeights(self):
 		return self.weights
 
+	# Set the weights to the values provided by the list values
 	def setWeights(self, values):
 		self.weights = values
 
+	# Set the dmax of this node to the newdmax
 	def setDmax(self, newdmax):
 		self.dmax = newdmax
  
+ 	# Calculate the value of this node. 
+ 	# This is dependent on the function this node possesses.
 	def calcValue(self): 
 		summa = 0	
 		for x in self.inputs: summa += x.getValue()*self.weights[self.inputs.index(x)]
+		# summa is the summation 
 		if self.func == 'S':	#sigmoid
 			self.value = 1 / (1 + math.exp(-summa))
 		elif self.func == 'B': 	#bias value
@@ -89,8 +107,8 @@ class node:
 			for x in self.inputs:
 				inputVector.append(x.getValue())
 			gaussInput = list(map(sub, inputVector, self.weights[:-1]))
-			beta = (4*len(self.inputs[0].getOutputs())/(self.dmax**2))
-			self.value = math.e**(-beta*EuclideanDistance(gaussInput))
+			width = 2*self.dmax/(2*len(self.inputs[0].getOutputs()))
+			self.value = math.e**((-EuclideanDistance(gaussInput)**2)/width)
 		elif self.func == 'L': 	#linear step
 			if summa > 0: self.value = 1
 			else: self.value = 0
@@ -282,9 +300,9 @@ class NN:
 		backprop = False
 		for i in range(len(self.OutputNodes)):
 			self.OutputNodes[i].calcOutputError(self.AnswerSet[i])
-		if not ((self.OutputNodes[i].getValue() <= (self.AnswerSet[i] + (self.Threshold * self.AnswerSet[i]))) and 
-			(self.OutputNodes[i].getValue() >= (self.AnswerSet[i] - (self.Threshold * self.AnswerSet[i])))):
-			backprop = True
+			if not ((self.OutputNodes[i].getValue() <= (self.AnswerSet[i] + (self.Threshold * self.AnswerSet[i]))) and 
+				(self.OutputNodes[i].getValue() >= (self.AnswerSet[i] - (self.Threshold * self.AnswerSet[i])))):
+				backprop = True
 		self.converged = backprop
 		return self.converged
 
@@ -393,14 +411,12 @@ def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, 
 		finalNN.CalculateNNOutputs()
 		print(loops, x, ((((finalNN.GetNNResults()[0] - 0.2) * (maxim - minim)) / (0.8 - 0.2)) + minim), OrigAnswers[inputs.index(x)])
 
+	# Testing Example
 	#finalNN.SetStartingNodesValues([3.5])
 	#finalNN.CalculateNNOutputs()
 	#print(loops, [3.5], ((((finalNN.GetNNResults()[0] - 0.2) * (maxim - minim)) / (0.8 - 0.2)) + minim), [12.25])
 
 	return finalNN
-
-# Things to add
-# 	For RBFN use G for hidden and R for output
 
 if __name__== '__main__':
 	print('Starting some NN tests...\n')
