@@ -103,6 +103,7 @@ class node:
 		# Sigmoid Function
 		if self.func == 'S':
 			for x in self.inputs: summa += x.getValue()*self.weights[self.inputs.index(x)]
+			#print('Sum:', summa)
 			self.value = 1 / (1 + math.exp(-summa))
 		# Bias Node Function
 		elif self.func == 'B':
@@ -124,6 +125,7 @@ class node:
 		elif self.func == 'R':
 			try:
 				for x in self.inputs: 
+					#print(summa)
 					summa += x.getValue()*self.weights[self.inputs.index(x)]
 			except:
 				summa = sys.maxsize
@@ -153,6 +155,7 @@ class node:
 	def calcOutputError(self, answer):
 		# Sigmoid Error
 		if self.func == 'S':
+			#self.error = (answer - self.value)
 			self.error = (answer - self.value) * self.value * (1 - self.value)
 		# Linear Step Error and RBF Error (Delta Rule as derivative of the Linear Step Function is 1)
 		elif self.func == 'L' or self.func == 'R': 
@@ -170,8 +173,11 @@ class node:
 		if self.func == 'S' or self.func == 'L' or self.func == 'R':
 			for i in range(len(self.weights)):
 				temp = self.weights[i]
+				#print('Before:', temp)
+				#self.weights[i] = self.weights[i] + ((1 - Momentum) * max(LearnRate, DLR) * self.error * self.value * (1 - self.value) * self.inputs[i].getValue()) + (Momentum * (self.weights[i] - self.historicalWeights[i]))
 				self.weights[i] = self.weights[i] + ((1 - Momentum) * max(LearnRate, DLR) * self.error * self.inputs[i].getValue()) + (Momentum * (self.weights[i] - self.historicalWeights[i]))
 				self.historicalWeights[i] = temp
+				#print('After', self.weights[i])
 		# Gaussian nodes apply a new weight based on the derivative of the Gaussian equation (TBD) and their error
 		elif self.func == 'G':
 			for i in range(len(self.weights)):
@@ -263,24 +269,27 @@ class NN:
 
 	# Print all the values, errors, and weights contained within this NN
 	def PrintStatus(self):
-		#print()
-		#for x in self.StartingNodes:
-		#	print(id(x), 'has starting value:', x.getValue())
-		#for y in self.HiddenNodes:
-		#	for x in y:
-		#		print(id(x), 'has hidden value:', x.getValue())
-		#		print(id(x), 'has hidden error:', x.getError())
-		#		print(id(x), 'had weights:', x.getWeights())
+		print()
+		for x in self.StartingNodes:
+			print(id(x), 'has starting value:', x.getValue())
+		for y in self.HiddenNodes:
+			for x in y:
+				print(id(x), 'has hidden value:', x.getValue())
+				print(id(x), 'has hidden error:', x.getError())
+				print(id(x), 'had weights:', x.getWeights())
 		for x in self.OutputNodes:
 			print(id(x), 'has output value:', x.getValue(), '~', self.AnswerSet[self.OutputNodes.index(x)])
-		#	print(id(x), 'has output error:', x.getError())
-		#	print(id(x), 'had weights:', x.getWeights())
+			print(id(x), 'has output error:', x.getError())
+			print(id(x), 'had weights:', x.getWeights())
 
 	# Calculate the answer of the NN
 	def CalculateNNOutputs(self):
 		for i in range(len(self.HiddenNodes)):
 			for j in range(len(self.HiddenNodes[i])):
-				self.HiddenNodes[i][j].calcValue()
+				try:
+					self.HiddenNodes[i][j].calcValue()
+				except:
+					None
 		for i in range(len(self.OutputNodes)):
 			self.OutputNodes[i].calcValue()
 
@@ -349,7 +358,7 @@ class NN:
 		backprop = False
 		for i in range(len(self.OutputNodes)):
 			self.OutputNodes[i].calcOutputError(self.AnswerSet[i])
-			#print(self.Threshold, (self.AnswerSet[i] + (self.Threshold * self.AnswerSet[i])), self.OutputNodes[i].getValue(), (self.AnswerSet[i] - (self.Threshold * self.AnswerSet[i])), ((self.OutputNodes[i].getValue() <= (self.AnswerSet[i] + (self.Threshold * self.AnswerSet[i]))) and (self.OutputNodes[i].getValue() >= (self.AnswerSet[i] - (self.Threshold * self.AnswerSet[i])))))
+			print('%2.2f %2.5f %2.5f %2.5f' % (self.Threshold, (self.AnswerSet[i] + (self.Threshold * self.AnswerSet[i])), self.OutputNodes[i].getValue(), (self.AnswerSet[i] - (self.Threshold * self.AnswerSet[i]))), ((self.OutputNodes[i].getValue() <= (self.AnswerSet[i] + (self.Threshold * self.AnswerSet[i]))) and (self.OutputNodes[i].getValue() >= (self.AnswerSet[i] - (self.Threshold * self.AnswerSet[i])))))
 			if not ((self.OutputNodes[i].getValue() <= (self.AnswerSet[i] + (self.Threshold * self.AnswerSet[i]))) and 
 				(self.OutputNodes[i].getValue() >= (self.AnswerSet[i] - (self.Threshold * self.AnswerSet[i])))):
 				backprop = True
@@ -366,6 +375,7 @@ def CalculateCenters(vector):
 		maxinp = 0
 		mininp = 100
 		temp = []
+		summa = 0
 		for y in x:
 			maxinp = max(maxinp, y)
 			mininp = min(mininp, y)
@@ -393,7 +403,7 @@ def CalculateDmax(vector):
 # Returns the NN that has been trained and is ready for testing. Testing code will be handled in the Handler File.
 def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, momentum = 0):
 	global Bloops
-	Bloops = 20 ** len(inputs)
+	Bloops = 500000
 	NNinstances = []
 	OrigAnswers = copy.deepcopy(answers)
 
@@ -407,6 +417,10 @@ def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, 
 	baseNN = NN(inputs[0], arrangement, outputs, answers[0], learnrate, threshold, momentum, maxim, minim)
 	baseNN.ConstructNetwork()
 	dmax = 1
+	try:
+		arrangement[0][0]
+	except:
+		arrangement[0] = ['']
 	if arrangement[0][0] == 'G':
 		cVectors = CalculateCenters(inputs)
 		dmax = CalculateDmax(cVectors)
@@ -438,7 +452,7 @@ def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, 
 		# Calculate the outputs of all instances.
 		for i in range(len(NNinstances)): 
 			NNinstances[i].CalculateNNOutputs()
-			#NNinstances[i].PrintStatus()
+			#baseNN.PrintStatus()
 		# Calculate the output layer's error and determine if the network needs to backprop.
 		done = True
 		for i in range(len(NNinstances)): 
@@ -454,8 +468,6 @@ def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, 
 		# If, at this point, neither test has failed and flipped done to false, we have a valid Weight set for use as a solution.
 		for i in range(len(NNinstances)): 
 			if NNinstances[i].ShouldBackprop(): 
-				if done == True:
-					print('Almost')
 				done = False
 		print("Training {:2.2%}".format(loops / Bloops), end="\r")
 		# Make sure we have iterated at least 100 times before presenting our solution. Prevents us from being lucky.
@@ -470,6 +482,7 @@ def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, 
 		for i in range(len(NNinstances)):
 			NNinstances[i].CalculateNNErrors()
 			NNinstances[i].UpdateNNWeights(loops)
+			
 			CurrentWeights = (NNinstances[i].GetNNWeights())
 			current = 1
 			temp = []
@@ -486,7 +499,7 @@ def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, 
 		dmax = sum(dmaxSet)/len(dmaxSet)
 		for i in range(len(NNinstances)):
 			NNinstances[i].SetDmax(dmax)
-
+		
 	'''	
 	# See the output of each NN and how close it thought it got to the function it was learning. 
 	results = answers
@@ -509,13 +522,13 @@ def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, 
 	print()
 
 	# Testing Example(s)
-	finalNN.SetStartingNodesValues([2.5])
+	finalNN.SetStartingNodesValues([4,2])
 	finalNN.CalculateNNOutputs()
-	print(loops, [2.5], finalNN.GetNNResults(), [6.25])
+	print(loops, [4,2], finalNN.GetNNResults(), [19609])
 
-	finalNN.SetStartingNodesValues([6.6])
+	finalNN.SetStartingNodesValues([0,2])
 	finalNN.CalculateNNOutputs()
-	print(loops, [6.6], finalNN.GetNNResults(), [43.56])
+	print(loops, [0,2], finalNN.GetNNResults(), [401])
 
 	#finalNN.SetStartingNodesValues([5, 6])
 	#finalNN.CalculateNNOutputs()
@@ -534,11 +547,13 @@ if __name__== '__main__':
 	#main([[2,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101]], learnrate = 0.5, threshold = 10, momentum = 0.5)
 	#main([[2,3], [1,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101], [400]], learnrate = 0.1, threshold = 1, momentum = 0.5)
 	#main([[2,3], [1,3], [3,3]], [['S','S','S'], ['S','S']], ['S'], [[101], [400], [3604]], learnrate = 0.5, threshold = 1, momentum = 0.5)
-	#main([[1],[2],[3],[4],[5]], [['S','S','S','S','S'], ['S','S','S']], ['S'], [[1],[4],[9],[16],[25]], learnrate = 0.5, threshold = 5, momentum = 0.3)
+	#main([[1],[2],[3],[4],[5]], [['S','S','S','S','S'], ['S','S','S']], ['S'], [[1],[4],[9],[16],[25]], learnrate = 0.3, threshold = 5, momentum = 0.3)
 	#main([[1],[2],[3],[4],[5]], [['L', 'L', 'L']], ['S'], [[1],[4],[9],[16],[25]], learnrate = .5, threshold = 5, momentum = .3)
 	#main([[2,3], [1,3], [3,3]], [['G','G','G']], ['R'], [[101], [400], [3604]], learnrate = 0.5, threshold = 10, momentum = 0.5)
-	#main([[2,3], [1,3], [3,3]], [['G','G','G','G','G','G','G','G','G']], ['R'], [[101], [400], [3604]], learnrate = 0, threshold = 1, momentum = 0.5)
+	#main([[2,3], [1,3], [3,3]], [['G','G','G','G','G','G','G','G','G']], ['R'], [[101], [400], [3604]], learnrate = 0, threshold = 5, momentum = 0.5)
 	#main([[2,8],[7,8],[3,9],[2,1],[7,4],[4,4],[5,5],[9,1]], [['G','G','G','G','G','G','G','G','G']], ['R'], [[1601], [168136], [4], [901], [202536], [14409], [40016], [640064]], learnrate = 0, threshold = 5, momentum = 0.5)
 	#main([[3],[9],[8],[2],[5],[3.9],[4.5],[1]], [['S','S','S'], ['S','S']], ['S'], [[9],[81],[64],[4],[25],[15.21],[20.25],[1]], learnrate = 0.3, threshold = 5, momentum = 0.5)
-	main([[3,3],[9,9],[8,8],[2,2],[5,5],[3.9,3.9],[4.5,4.5],[1,1]], [['G','G','G','G','G']], ['R'], [[9],[81],[64],[4],[25],[15.21],[20.25],[1]], learnrate = 0.3, threshold = 5, momentum = 0.5)
+	#main([[3,3],[9,9],[8,8],[2,2]], [['G','G','G','G','G','G','G','G']], ['R'], [[9],[81],[64],[4]], learnrate = 0, threshold = 10, momentum = 0.5)
+	main([[3,4],[2,3],[4,0],[1,2],[2,4],[2,0],[2,1],[3,4]], [[]], ['S'], [[2504],[101],[25609],[100],[1],[1601],[901],[2504]], learnrate = 0.5, threshold = 5, momentum = 0.5)
+
 
