@@ -6,24 +6,15 @@ import NN
 #import Queue
 from queue import *
 import threading
+import time
+import logging
 
 #USAGE: python3 handler_NN.py <infile> <outfile>  
                                                         
 count = 0
 
-# inputs - 2D array where len(input[i]) is the number of dimensions, 
-# input[i][j] are the x values themselves for 2 - 6 dimensions
-# inputs = set([])
-# one output[i] per input[i]
-# outputs = []
-
-#def start_thread(q, inp, activation, out_activ, outp, learn, thresh, mmntm):
-#    q.put(NN.main(inp, activation, out_activ, outp, learn, thresh, mmntm))
-
-#q = Queue()
-
 # start a thread with the neural net calls for training and testing
-def start_thread(inp, activation, out_activ, outp, learn, thresh, mmntm):
+def start_thread(inp, activation, out_activ, outp, learn, thresh, mmntm, logger):
     global count
     training_inputs = []
     training_data = []
@@ -36,15 +27,11 @@ def start_thread(inp, activation, out_activ, outp, learn, thresh, mmntm):
             training_inputs.append(random.randint(0,4)) #create random inputs for testing
         training_data.append(training_inputs)
         training_inputs = []
-    outfile = open("out" + str(count) + ".txt", 'w')
     for x in training_data:
-        #print(x)
         testNN.SetStartingNodesValues(x)
         testNN.CalculateNNOutputs()
-        outfile.write(str(x))
-        outfile.write(str(testNN.GetNNResults()))
-        outfile.write('\n')
-    outfile.close()
+        logger.info(str(x))
+        logger.info(testNN.GetNNResults())
    
 def setup_test(inputs, outputs, activation, out_activ):
     # is there anything we want to ask the user for as input?
@@ -52,6 +39,8 @@ def setup_test(inputs, outputs, activation, out_activ):
     learn_rate      = 0.5
     momentum        = 0.5
     out_activ       = []
+    thread_count    = 0
+
     for i in range(int(5)):
         temp_input = inputs[(i*8):((i*8)+8)]
 #        print (temp_input) # only want inputs/outputs in sets of 8 per dimension
@@ -59,29 +48,47 @@ def setup_test(inputs, outputs, activation, out_activ):
 #        print (temp_out)
         for j in range(6): # there are 6 sets of activation test cases - 
                            # see test_NN() for setup of activation
-#            print (out_activ)
+            logger = logging.getLogger('thread-%s' % thread_count)
+            logger.setLevel(logging.DEBUG)
+
+            # file write handler
+            file_handler = logging.FileHandler('thread-%s.log' % thread_count)
+
+            # custom formatter
+            formatter = logging.Formatter()#('%(message)s')
+            file_handler.setFormatter(formatter)
+
+            # register file handler
+            logger.addHandler(file_handler)
+
+            delay = random.random()
             if j == 0:
                 # have to manually enter output activation (3rd arg) when 0 
                 # hidden layers
                 t = threading.Thread(target=start_thread, args = (temp_input,
                         activation[j], ['S'], temp_out, learn_rate, threshold, 
-                                                                    momentum,))
+                                                              momentum,logger,))
             elif j == 1:
                 # have to manually enter output activation (3rd arg) when 0 
                 # hidden layers
                 t = threading.Thread(target=start_thread, args = (temp_input,
                         activation[j], ['S'], temp_out, learn_rate, threshold, 
-                                                                    momentum,))
+                                                         momentum, logger,))
             else:
                 # add the first element in activation, either 'S' or 'L', 
                 # keeping all activation functions the same for all nodes
                 out_activ.append((activation[j][0][0]))                 
                 t = threading.Thread(target=start_thread, args = (temp_input,
                     activation[j], out_activ, temp_out, learn_rate, threshold, 
-                                                                    momentum,))
+                                                           momentum, logger,))
                 out_activ = [] # reset to empty since only needs one element
                 t.start()
+            thread_count+=1
 
+    main_thread = threading.currentThread()
+    for t in threading.enumerate():
+        if t is not main_thread:
+            t.join()
 # This function pulls inputs and outputs from files and sets up the activations
 def test_NN():
     inputs = [[]]
@@ -119,5 +126,5 @@ def test_NN():
 #    print(out_activation)
     setup_test(new_in, new_out, activation, out_activation)
 
-
 test_NN()
+
