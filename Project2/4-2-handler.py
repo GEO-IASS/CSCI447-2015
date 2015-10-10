@@ -49,9 +49,9 @@ def setup_test(inputs, outputs, activation, out_activ):
     out_activ       = []
     thread_count    = 0
     
-    temp_input = inputs[(4*8):((4*8)+8)]
+    temp_input = inputs[(2*8):((2*8)+8)]
 #        print (temp_input) # only want inputs/outputs in sets of 8 per dimension
-    temp_out = outputs[(4*8):((4*8)+8)]
+    temp_out = outputs[(2*8):((2*8)+8)]
     print (temp_input)
     print (temp_out)
 #    out_activ.append(activation[2][0])
@@ -59,7 +59,7 @@ def setup_test(inputs, outputs, activation, out_activ):
     logger = logging.getLogger('TEST-%s' % 2)
     logger.setLevel(logging.DEBUG)
     # file write handler
-    file_handler = logging.FileHandler('6-2-Results.log')
+    file_handler = logging.FileHandler('4-2-Results.log')
 
     # custom formatter
     formatter = logging.Formatter('')

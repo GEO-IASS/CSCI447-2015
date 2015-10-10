@@ -8,6 +8,7 @@ from queue import *
 import threading
 import time
 import logging
+import rb_test
 
 #USAGE: python3 handler_NN.py <infile> <outfile>  
                                                         
@@ -19,7 +20,6 @@ def start_thread(inp, activation, out_activ, outp, learn, thresh, mmntm, logger)
     training_inputs = []
     training_data = []
     count += 1
-    print (activation[0][0])
     print (out_activ)    
     testNN = NN.main(inp, activation, out_activ, outp, learn, thresh, mmntm)
     print ("DONE TRAINING")
@@ -39,11 +39,12 @@ def start_thread(inp, activation, out_activ, outp, learn, thresh, mmntm, logger)
         testNN.CalculateNNOutputs()
         logger.info(str(x))
         logger.info(testNN.GetNNResults())
+        logger.info("RB OUTPUT: %s" % rb_test.rb_test(x))   
    
 def setup_test(inputs, outputs, activation, out_activ):
     # is there anything we want to ask the user for as input?
-    threshold       = 1
-    learn_rate      = 0.5
+    threshold       = 5
+    learn_rate      = 0.3
     momentum        = 0.5
     out_activ       = []
     thread_count    = 0
@@ -65,7 +66,7 @@ def setup_test(inputs, outputs, activation, out_activ):
 
     # register file handler
     logger.addHandler(file_handler)
-    start_thread(temp_input, [activation[0]], out_activ, temp_out, learn_rate, 
+    start_thread(temp_input, activation[0], out_activ, temp_out, learn_rate, 
                                                            threshold, momentum, logger)
 #    for i in range(int(5)):
 #        temp_input = inputs[(i*8):((i*8)+8)]

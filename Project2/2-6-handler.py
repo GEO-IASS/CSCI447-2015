@@ -8,6 +8,7 @@ from queue import *
 import threading
 import time
 import logging
+import rb_test
 
 #USAGE: python3 handler_NN.py <infile> <outfile>  
                                                         
@@ -38,26 +39,27 @@ def start_thread(inp, activation, out_activ, outp, learn, thresh, mmntm, logger)
         testNN.CalculateNNOutputs()
         logger.info(str(x))
         logger.info(testNN.GetNNResults())
+        logger.info("RB OUTPUT: %s" % rb_test.rb_test(x))   
    
 def setup_test(inputs, outputs, activation, out_activ):
     # is there anything we want to ask the user for as input?
-    threshold       = 1
-    learn_rate      = 0.5
+    threshold       = 5
+    learn_rate      = 0.3
     momentum        = 0.5
     out_activ       = []
     thread_count    = 0
     
-    temp_input = inputs[(0*8):((0*8)+8)]
+    temp_input = inputs[(4*8):((4*8)+8)]
 #        print (temp_input) # only want inputs/outputs in sets of 8 per dimension
-    temp_out = outputs[(0*8):((0*8)+8)]
+    temp_out = outputs[(4*8):((4*8)+8)]
     print (temp_input)
     print (temp_out)
 #    out_activ.append(activation[2][0])
-    out_activ.append(['L'])                               
+    out_activ.append('L')                               
     logger = logging.getLogger('TEST-%s' % 6)
     logger.setLevel(logging.DEBUG)
     # file write handler
-    file_handler = logging.FileHandler('2-6-Results.log')
+    file_handler = logging.FileHandler('6-6-Results.log')
 
     # custom formatter
     formatter = logging.Formatter('')

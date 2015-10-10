@@ -43,15 +43,15 @@ def start_thread(inp, activation, out_activ, outp, learn, thresh, mmntm, logger)
    
 def setup_test(inputs, outputs, activation, out_activ):
     # is there anything we want to ask the user for as input?
-    threshold       = 5
-    learn_rate      = 0.3
+    threshold       = 1
+    learn_rate      = 0.5
     momentum        = 0.5
     out_activ       = []
     thread_count    = 0
     
-    temp_input = inputs[(4*8):((4*8)+8)]
+    temp_input = inputs[(3*8):((3*8)+8)]
 #        print (temp_input) # only want inputs/outputs in sets of 8 per dimension
-    temp_out = outputs[(4*8):((4*8)+8)]
+    temp_out = outputs[(3*8):((3*8)+8)]
     print (temp_input)
     print (temp_out)
 #    out_activ.append(activation[2][0])
@@ -59,7 +59,7 @@ def setup_test(inputs, outputs, activation, out_activ):
     logger = logging.getLogger('TEST-%s' % 2)
     logger.setLevel(logging.DEBUG)
     # file write handler
-    file_handler = logging.FileHandler('6-2-Results.log')
+    file_handler = logging.FileHandler('5-2-Results.log')
 
     # custom formatter
     formatter = logging.Formatter('')
