@@ -48,9 +48,9 @@ def setup_test(inputs, outputs, activation, out_activ):
     out_activ       = []
     thread_count    = 0
     
-    temp_input = inputs[(4*8):((4*8)+8)]
-#        print (temp_input) # only want inputs/outputs in sets of 8 per dimension
-    temp_out = outputs[(4*8):((4*8)+8)]
+    temp_input = inputs[(4*16):((4*16)+16)]
+#        print (temp_input) # only want inputs/outputs in sets of 16 per dimension
+    temp_out = outputs[(4*16):((4*16)+16)]
     print (temp_input)
     print (temp_out)
 #    out_activ.append(activation[2][0])
@@ -69,9 +69,9 @@ def setup_test(inputs, outputs, activation, out_activ):
     start_thread(temp_input, activation[0], out_activ, temp_out, learn_rate, 
                                                            threshold, momentum, logger)
 #    for i in range(int(5)):
-#        temp_input = inputs[(i*8):((i*8)+8)]
-##        print (temp_input) # only want inputs/outputs in sets of 8 per dimension
-#        temp_out = outputs[(i*8):((i*8)+8)]
+#        temp_input = inputs[(i*16):((i*16)+16)]
+##        print (temp_input) # only want inputs/outputs in sets of 16 per dimension
+#        temp_out = outputs[(i*16):((i*16)+16)]
 ##        print (temp_out)
 #        for j in range(6): # there are 6 sets of activation test cases - 
 #                           # see test_NN() for setup of activation

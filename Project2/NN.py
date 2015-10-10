@@ -358,7 +358,7 @@ class NN:
 		backprop = False
 		for i in range(len(self.OutputNodes)):
 			self.OutputNodes[i].calcOutputError(self.AnswerSet[i])
-			print('%2.2f %2.5f %2.5f %2.5f' % (self.Threshold, (self.AnswerSet[i] + (self.Threshold * self.AnswerSet[i])), self.OutputNodes[i].getValue(), (self.AnswerSet[i] - (self.Threshold * self.AnswerSet[i]))), ((self.OutputNodes[i].getValue() <= (self.AnswerSet[i] + (self.Threshold * self.AnswerSet[i]))) and (self.OutputNodes[i].getValue() >= (self.AnswerSet[i] - (self.Threshold * self.AnswerSet[i])))))
+#			print('%2.2f %2.5f %2.5f %2.5f' % (self.Threshold, (self.AnswerSet[i] + (self.Threshold * self.AnswerSet[i])), self.OutputNodes[i].getValue(), (self.AnswerSet[i] - (self.Threshold * self.AnswerSet[i]))), ((self.OutputNodes[i].getValue() <= (self.AnswerSet[i] + (self.Threshold * self.AnswerSet[i]))) and (self.OutputNodes[i].getValue() >= (self.AnswerSet[i] - (self.Threshold * self.AnswerSet[i])))))
 			if not ((self.OutputNodes[i].getValue() <= (self.AnswerSet[i] + (self.Threshold * self.AnswerSet[i]))) and 
 				(self.OutputNodes[i].getValue() >= (self.AnswerSet[i] - (self.Threshold * self.AnswerSet[i])))):
 				backprop = True
@@ -403,7 +403,7 @@ def CalculateDmax(vector):
 # Returns the NN that has been trained and is ready for testing. Testing code will be handled in the Handler File.
 def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, momentum = 0):
 	global Bloops
-	Bloops = 500000
+	Bloops = 1000000
 	NNinstances = []
 	OrigAnswers = copy.deepcopy(answers)
 
@@ -522,13 +522,13 @@ def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, 
 	print()
 
 	# Testing Example(s)
-	finalNN.SetStartingNodesValues([4,2])
-	finalNN.CalculateNNOutputs()
-	print(loops, [4,2], finalNN.GetNNResults(), [19609])
-
-	finalNN.SetStartingNodesValues([0,2])
-	finalNN.CalculateNNOutputs()
-	print(loops, [0,2], finalNN.GetNNResults(), [401])
+#	finalNN.SetStartingNodesValues([4,2])
+#	finalNN.CalculateNNOutputs()
+#	print(loops, [4,2], finalNN.GetNNResults(), [19609])
+#
+#	finalNN.SetStartingNodesValues([0,2])
+#	finalNN.CalculateNNOutputs()
+#	print(loops, [0,2], finalNN.GetNNResults(), [401])
 
 	#finalNN.SetStartingNodesValues([5, 6])
 	#finalNN.CalculateNNOutputs()
