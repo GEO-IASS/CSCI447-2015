@@ -9,6 +9,7 @@ import threading
 
 #USAGE: python3 handler_NN.py <infile> <outfile>  
                                                         
+count = 0
 
 # inputs - 2D array where len(input[i]) is the number of dimensions, 
 # input[i][j] are the x values themselves for 2 - 6 dimensions
@@ -23,31 +24,27 @@ import threading
 
 # start a thread with the neural net calls for training and testing
 def start_thread(inp, activation, out_activ, outp, learn, thresh, mmntm):
+    global count
     training_inputs = []
     training_data = []
-    count = 0
-    # scaling stuff
-    maxim = 0
-    for x in outp: maxim = max(maxim, max(x))
-    minim = 10000
-    for x in outp: minim = min(minim, min(x))
+    count += 1
     
     testNN = NN.main(inp, activation, out_activ, outp, learn, thresh, mmntm)
+    print ("DONE TRAINING")
     for i in inp:
         for j in i:
             training_inputs.append(random.randint(0,4)) #create random inputs for testing
         training_data.append(training_inputs)
         training_inputs = []
+    outfile = open("out" + str(count) + ".txt", 'w')
     for x in training_data:
-        count += 1
         #print(x)
         testNN.SetStartingNodesValues(x)
         testNN.CalculateNNOutputs()
-        outfile = open("out" + str(count) + ".txt", 'w')
         outfile.write(str(x))
         outfile.write(str(testNN.GetNNResults()))
         outfile.write('\n')
-        outfile.close()
+    outfile.close()
    
 def setup_test(inputs, outputs, activation, out_activ):
     # is there anything we want to ask the user for as input?
