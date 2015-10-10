@@ -15,6 +15,7 @@ from numpy import transpose, linalg
 import time
 import copy
 from operator import sub
+import sys
 
 # Class for a single node in either network and in input, hidden, or output layer
 class node:
@@ -99,9 +100,9 @@ class node:
 	# summa is the summation of the values of the input nodes multiplied by their weights
 	def calcValue(self): 
 		summa = 0	
-		for x in self.inputs: summa += x.getValue()*self.weights[self.inputs.index(x)]
 		# Sigmoid Function
 		if self.func == 'S':
+			for x in self.inputs: summa += x.getValue()*self.weights[self.inputs.index(x)]
 			self.value = 1 / (1 + math.exp(-summa))
 		# Bias Node Function
 		elif self.func == 'B':
@@ -116,10 +117,16 @@ class node:
 			self.value = math.e**((-EuclideanDistance(gaussInput)**2)/(2*width))
 		# Linear Step Function
 		elif self.func == 'L':
+			for x in self.inputs: summa += x.getValue()*self.weights[self.inputs.index(x)]
 			if summa > 0: self.value = 1
 			else: self.value = 0
 		# Summation Function for RBF
 		elif self.func == 'R':
+			try:
+				for x in self.inputs: 
+					summa += x.getValue()*self.weights[self.inputs.index(x)]
+			except:
+				summa = sys.maxsize
 			self.value = summa
 		else: self.value = 1
 
@@ -127,12 +134,13 @@ class node:
 	# summa is the summation of the errors from the output nodes multiplied by their weights
 	def calcHiddenError(self):
 		summa = 0
-		for x in self.outputs: summa += x.getError() * x.getWeightForNode(self)
 		# Sigmoid Error
 		if self.func == 'S':
+			for x in self.outputs: summa += x.getError() * x.getWeightForNode(self)
 			self.error = self.value * (1-self.value) * summa
 		# Linear Step Error
 		elif self.func == 'L':
+			for x in self.outputs: summa += x.getError() * x.getWeightForNode(self)
 			self.error = summa 
 		# Gaussian Error (Should not be needed / used)
 		elif self.func == 'G':
@@ -354,7 +362,6 @@ def EuclideanDistance(vector):
 
 def CalculateCenters(vector):
 	cVectors = []
-	dmax = 0
 	for x in transpose(vector):
 		maxinp = 0
 		mininp = 100
@@ -369,6 +376,7 @@ def CalculateCenters(vector):
 	for i in range(len(vector[0])):
 		temp.append(random.random()-0.5)
 	cVectors.append(temp)
+	#print(cVectors)
 	cVectors = transpose(cVectors)
 	return cVectors
 
@@ -378,14 +386,14 @@ def CalculateDmax(vector):
 	for x in vector:
 		for y in vector:
 			dmax = max((EuclideanDistance(list(map(sub, x[:-1], y[:-1])))), dmax)
-	return dmax
+	return max(dmax, 0.01)
 
 # Our Main Method that takes in the list of input vectors, the arrangement (topology), the list of output vectors, the list of answer vectors,
 # the NN Learning Rate (learnrate), the threshold percentage (threshold), and the momentum scalar (momentum)
 # Returns the NN that has been trained and is ready for testing. Testing code will be handled in the Handler File.
 def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, momentum = 0):
 	global Bloops
-	Bloops = 100 ** len(inputs)
+	Bloops = 20 ** len(inputs)
 	NNinstances = []
 	OrigAnswers = copy.deepcopy(answers)
 
@@ -398,10 +406,11 @@ def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, 
 	# Initial NN template that is duplicated for each input vector. 
 	baseNN = NN(inputs[0], arrangement, outputs, answers[0], learnrate, threshold, momentum, maxim, minim)
 	baseNN.ConstructNetwork()
-	dmax = 0
+	dmax = 1
 	if arrangement[0][0] == 'G':
 		cVectors = CalculateCenters(inputs)
 		dmax = CalculateDmax(cVectors)
+		#print(cVectors, dmax)
 
 		cVector = []
 		for x in cVectors:
@@ -499,12 +508,22 @@ def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, 
 		print(loops, x, finalNN.GetNNResults(), OrigAnswers[inputs.index(x)])
 	print()
 
-	'''
-	# Testing Example
-	finalNN.SetStartingNodesValues([2.3, 3])
+	# Testing Example(s)
+	finalNN.SetStartingNodesValues([2.5])
 	finalNN.CalculateNNOutputs()
-	print(loops, [2.3, 3], finalNN.GetNNResults(), [526.1])
-	'''
+	print(loops, [2.5], finalNN.GetNNResults(), [6.25])
+
+	finalNN.SetStartingNodesValues([6.6])
+	finalNN.CalculateNNOutputs()
+	print(loops, [6.6], finalNN.GetNNResults(), [43.56])
+
+	#finalNN.SetStartingNodesValues([5, 6])
+	#finalNN.CalculateNNOutputs()
+	#print(loops, [5, 6], finalNN.GetNNResults(), [36116])
+
+	#finalNN.SetStartingNodesValues([6, 3])
+	#finalNN.CalculateNNOutputs()
+	#print(loops, [6, 3], finalNN.GetNNResults(), [108925])
 
 	# Ready to run tests on this NN
 	return finalNN
@@ -514,10 +533,12 @@ if __name__== '__main__':
 	
 	#main([[2,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101]], learnrate = 0.5, threshold = 10, momentum = 0.5)
 	#main([[2,3], [1,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101], [400]], learnrate = 0.1, threshold = 1, momentum = 0.5)
-	main([[2,3], [1,3], [3,3]], [['S','S','S'], ['S','S']], ['S'], [[101], [400], [3604]], learnrate = 0.5, threshold = 1, momentum = 0.5)
+	#main([[2,3], [1,3], [3,3]], [['S','S','S'], ['S','S']], ['S'], [[101], [400], [3604]], learnrate = 0.5, threshold = 1, momentum = 0.5)
 	#main([[1],[2],[3],[4],[5]], [['S','S','S','S','S'], ['S','S','S']], ['S'], [[1],[4],[9],[16],[25]], learnrate = 0.5, threshold = 5, momentum = 0.3)
 	#main([[1],[2],[3],[4],[5]], [['L', 'L', 'L']], ['S'], [[1],[4],[9],[16],[25]], learnrate = .5, threshold = 5, momentum = .3)
 	#main([[2,3], [1,3], [3,3]], [['G','G','G']], ['R'], [[101], [400], [3604]], learnrate = 0.5, threshold = 10, momentum = 0.5)
 	#main([[2,3], [1,3], [3,3]], [['G','G','G','G','G','G','G','G','G']], ['R'], [[101], [400], [3604]], learnrate = 0, threshold = 1, momentum = 0.5)
-
+	#main([[2,8],[7,8],[3,9],[2,1],[7,4],[4,4],[5,5],[9,1]], [['G','G','G','G','G','G','G','G','G']], ['R'], [[1601], [168136], [4], [901], [202536], [14409], [40016], [640064]], learnrate = 0, threshold = 5, momentum = 0.5)
+	#main([[3],[9],[8],[2],[5],[3.9],[4.5],[1]], [['S','S','S'], ['S','S']], ['S'], [[9],[81],[64],[4],[25],[15.21],[20.25],[1]], learnrate = 0.3, threshold = 5, momentum = 0.5)
+	main([[3,3],[9,9],[8,8],[2,2],[5,5],[3.9,3.9],[4.5,4.5],[1,1]], [['G','G','G','G','G']], ['R'], [[9],[81],[64],[4],[25],[15.21],[20.25],[1]], learnrate = 0.3, threshold = 5, momentum = 0.5)
 
