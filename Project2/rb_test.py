@@ -1,5 +1,6 @@
 #/usr/bin/python3
 
+#pass an array of numbers to get Rosenbrock function results
 
 import random
 import math
