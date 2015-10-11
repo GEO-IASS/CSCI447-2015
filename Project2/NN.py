@@ -39,12 +39,12 @@ class node:
 			x.addOutput(self)
 			self.inputs.append(x)
 			#self.weights.append(random.random())
-			self.weights.append(.1)
+			self.weights.append(random.random())
 			self.historicalWeights.append(0)
 		if self.func == 'R': self.inputs.append(node(appFunc = 'B', value = -1))
 		else: self.inputs.append(node(appFunc = 'B', value = 1))
 		#self.weights.append(random.random())
-		self.weights.append(.1)
+		self.weights.append(random.random())
 		self.historicalWeights.append(0)
 
 	# Add a node as an output to this node
@@ -575,7 +575,7 @@ if __name__== '__main__':
 	#main([[2,3], [1,3], [3,3]], [['G','G','G']], ['R'], [[101], [400], [3604]], learnrate = 0.1, threshold = 5, momentum = 0.3)
 	#main([[2,3], [1,3], [3,3]], [['G','G','G','G','G','G','G','G','G']], ['R'], [[101], [400], [3604]], learnrate = 0, threshold = 5, momentum = 0.5)
 	#main([[2,8],[7,8],[3,9],[2,1],[7,4],[4,4],[5,5],[9,1]], [['L','L','L']], ['U'], [[1601], [168136], [4], [901], [202536], [14409], [40016], [640064]], learnrate = .1, threshold = 0.05, momentum = 0.2)
-	main([[2,8],[7,8],[3,9]], [['G','G','G']], ['R'], [[1601],[168136],[4]], learnrate = 0.1, threshold = 5, momentum = 0.3)
+	#main([[2,8],[7,8],[3,9]], [['G','G','G']], ['R'], [[1601],[168136],[4]], learnrate = 0.1, threshold = 5, momentum = 0.3)
 	#main([[3],[9],[8],[2],[5],[3.9],[4.5],[1]], [['S','S','S'], ['S','S']], ['S'], [[9],[81],[64],[4],[25],[15.21],[20.25],[1]], learnrate = 0.3, threshold = 5, momentum = 0.5)
 	#main([[3,3],[9,9],[8,8],[2,2]], [['G','G','G','G','G','G','G','G']], ['R'], [[9],[81],[64],[4]], learnrate = 0, threshold = 5, momentum = 0.5)
 	#main([[3,4],[2,3],[4,0],[1,2],[2,4],[2,0],[2,1],[3,4]], [[]], ['S'], [[2504],[101],[25609],[100],[1],[1601],[901],[2504]], learnrate = 0.5, threshold = 5, momentum = 0.5)
