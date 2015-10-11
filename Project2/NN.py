@@ -29,7 +29,6 @@ class node:
 		self.func = appFunc
 		self.value = value
 		self.historicalWeights = []
-		self.oldLR = 0.5
 		self.dmax = dmax
 
 	# Add an array of input nodes to this node. 
@@ -39,10 +38,13 @@ class node:
 		for x in nodes:
 			x.addOutput(self)
 			self.inputs.append(x)
-			self.weights.append(random.random()-0.5)
+			#self.weights.append(random.random())
+			self.weights.append(.1)
 			self.historicalWeights.append(0)
-		self.inputs.append(node(appFunc = 'B', value = 1))
-		self.weights.append(random.random()-0.5)
+		if self.func == 'R': self.inputs.append(node(appFunc = 'B', value = -1))
+		else: self.inputs.append(node(appFunc = 'B', value = 1))
+		#self.weights.append(random.random())
+		self.weights.append(.1)
 		self.historicalWeights.append(0)
 
 	# Add a node as an output to this node
@@ -121,11 +123,15 @@ class node:
 			for x in self.inputs: summa += x.getValue()*self.weights[self.inputs.index(x)]
 			if summa > 0: self.value = 1
 			else: self.value = 0
+		# Summation Function for Linear Step
+		elif self.func == 'U':
+			for x in self.inputs: summa += x.getValue()*self.weights[self.inputs.index(x)]
+			self.value = summa
 		# Summation Function for RBF
 		elif self.func == 'R':
 			try:
 				for x in self.inputs: 
-					#print(summa)
+					#print('Sum:', summa, x.getValue(), self.weights[self.inputs.index(x)])
 					summa += x.getValue()*self.weights[self.inputs.index(x)]
 			except:
 				summa = sys.maxsize
@@ -158,7 +164,7 @@ class node:
 			#self.error = (answer - self.value)
 			self.error = (answer - self.value) * self.value * (1 - self.value)
 		# Linear Step Error and RBF Error (Delta Rule as derivative of the Linear Step Function is 1)
-		elif self.func == 'L' or self.func == 'R': 
+		elif self.func == 'L' or self.func == 'R' or self.func == 'U': 
 			self.error = (answer - self.value)
 		# Safety
 		else: 
@@ -168,26 +174,27 @@ class node:
 	# Requires the Learning Rate (LearnRate), Momentum, and current loop (loop) to calculate
 	def updateWeights(self, LearnRate, Momentum, loop):
 		global Bloops
+		#DLR = 0
 		DLR = 1 - 1/(Bloops-loop+1) # Linear decreasing relationship
 		# Sigmoid, Linear Step, and RBF Output nodes apply a new weight based on their error. 
-		if self.func == 'S' or self.func == 'L' or self.func == 'R':
+		if self.func == 'S' or self.func == 'L' or self.func == 'R' or self.func == 'U':
 			for i in range(len(self.weights)):
 				temp = self.weights[i]
-				#print('Before:', temp)
-				#self.weights[i] = self.weights[i] + ((1 - Momentum) * max(LearnRate, DLR) * self.error * self.value * (1 - self.value) * self.inputs[i].getValue()) + (Momentum * (self.weights[i] - self.historicalWeights[i]))
+				#print('Change in Weight:', self.error * self.inputs[i].getValue())
 				self.weights[i] = self.weights[i] + ((1 - Momentum) * max(LearnRate, DLR) * self.error * self.inputs[i].getValue()) + (Momentum * (self.weights[i] - self.historicalWeights[i]))
 				self.historicalWeights[i] = temp
-				#print('After', self.weights[i])
 		# Gaussian nodes apply a new weight based on the derivative of the Gaussian equation (TBD) and their error
-		elif self.func == 'G':
-			for i in range(len(self.weights)):
-				temp = self.weights[i]
-				gaussInput = list(map(sub, (list(map(lambda x: x.getValue(), self.inputs))), self.weights)) # Takes vector x and subtract the center for this node
-				norm = EuclideanDistance(gaussInput)
-				width = (self.dmax**2)/(2*len(self.inputs[0].getOutputs()))
-				self.weights[i] = self.weights[i] + ((1 - Momentum) * max(LearnRate, DLR) * (norm/width) * self.value * sum(gaussInput) / sum([j ** 2 for j in gaussInput]))
-				self.weights[i] = self.weights[i] + (Momentum * (self.weights[i] - self.historicalWeights[i]))
-				self.historicalWeights[i] = temp
+		#elif self.func == 'G':
+		#	for i in range(len(self.weights)):
+		#		temp = self.weights[i]
+		#		gaussInput = list(map(sub, (list(map(lambda x: x.getValue(), self.inputs))), self.weights)) # Takes vector x and subtract the center for this node
+		#		norm = EuclideanDistance(gaussInput)
+		#		width = (self.dmax**2)/(2*len(self.inputs[0].getOutputs()))
+		#		#self.weights[i] = self.weights[i] + ((1 - Momentum) * max(LearnRate, DLR) * (norm/width) * self.value * sum(gaussInput) / sum([j ** 2 for j in gaussInput]))
+		#		#self.weights[i] = self.weights[i] + ((1 - Momentum) * max(LearnRate, DLR) * self.error * self.value)
+		#		self.weights[i] += ((1 - Momentum) * max(LearnRate, DLR) * (self.value * (self.inputs[i].getValue() - self.weights[i])) / (width * sum(list(map(lambda x: x.getError() * x.getWeightForNode(self), self.outputs)))))
+		#		self.weights[i] += self.weights[i] + (Momentum * (self.weights[i] - self.historicalWeights[i]))
+		#		self.historicalWeights[i] = temp
 
 # A single Neural Network that will approximate a function via an input vector, node arrangement matrix, output vector, answer vector, 
 # learning rate (optional) (0,1], threshold value (optional) (0,∞), momentum value (optional) (0,1]
@@ -196,7 +203,7 @@ class node:
 # or the possibility of estimating an answer that exceeds the domain of our training data. 
 class NN:
 	# Constructor for the Neural Network
-	def __init__(self, inputs, arrangement, outputs, answers, learnrate = 0.2, threshold = 1, momentum = 0.5, maxim = 0, minim = 1000):
+	def __init__(self, inputs, arrangement, outputs, answers, learnrate = 0.3, threshold = 1, momentum = 0.5, maxim = 0, minim = 1000):
 		self.StartingNodes = []
 		self.HiddenNodes = []
 		self.OutputNodes = []
@@ -211,6 +218,7 @@ class NN:
 		self.outputs = outputs
 		self.maxim = maxim
 		self.minim = minim
+		#self.Threshold = (self.maxim - threshold) / (self.maxim - self.minim) * threshold * 0.000001
 
 	# Construct the network from the inputs
 	def ConstructNetwork(self):
@@ -358,9 +366,16 @@ class NN:
 		backprop = False
 		for i in range(len(self.OutputNodes)):
 			self.OutputNodes[i].calcOutputError(self.AnswerSet[i])
-#			print('%2.2f %2.5f %2.5f %2.5f' % (self.Threshold, (self.AnswerSet[i] + (self.Threshold * self.AnswerSet[i])), self.OutputNodes[i].getValue(), (self.AnswerSet[i] - (self.Threshold * self.AnswerSet[i]))), ((self.OutputNodes[i].getValue() <= (self.AnswerSet[i] + (self.Threshold * self.AnswerSet[i]))) and (self.OutputNodes[i].getValue() >= (self.AnswerSet[i] - (self.Threshold * self.AnswerSet[i])))))
-			if not ((self.OutputNodes[i].getValue() <= (self.AnswerSet[i] + (self.Threshold * self.AnswerSet[i]))) and 
-				(self.OutputNodes[i].getValue() >= (self.AnswerSet[i] - (self.Threshold * self.AnswerSet[i])))):
+			#print('Error:', self.OutputNodes[i].getError())
+			#print('%2.2f %2.5f %2.5f %2.5f' % (self.Threshold, (self.AnswerSet[i] + (self.Threshold * self.AnswerSet[i])), ((((self.OutputNodes[i].getValue() - 0.2) * (self.maxim - self.minim)) / (0.8 - 0.2)) + self.minim), (self.AnswerSet[i] - (self.Threshold * self.AnswerSet[i]))), ((self.OutputNodes[i].getValue() <= (self.AnswerSet[i] + (self.Threshold * self.AnswerSet[i]))) and (self.OutputNodes[i].getValue() >= (self.AnswerSet[i] - (self.Threshold * self.AnswerSet[i])))))
+			#if not ((self.OutputNodes[i].getValue() <= (self.AnswerSet[i] + (self.Threshold * self.AnswerSet[i]))) and 
+			#	(self.OutputNodes[i].getValue() >= (self.AnswerSet[i] - (self.Threshold * self.AnswerSet[i])))):
+			#print('%2.2f %2.5f %2.5f %2.5f' % (self.Threshold, (self.AnswerSet[i] + self.Threshold), ((((self.OutputNodes[i].getValue() - 0.2) * (self.maxim - self.minim)) / (0.8 - 0.2)) + self.minim), (self.AnswerSet[i] - self.Threshold)), ((self.OutputNodes[i].getValue() <= self.AnswerSet[i] + self.Threshold) and (self.OutputNodes[i].getValue() <= self.AnswerSet[i] - self.Threshold)))
+			#print('%2.2f %2.5f %2.5f %2.5f' % (self.Threshold, (self.AnswerSet[i] + self.Threshold), self.OutputNodes[i].getValue(), (self.AnswerSet[i] - self.Threshold)), ((self.OutputNodes[i].getValue() <= self.AnswerSet[i] + self.Threshold) and (self.OutputNodes[i].getValue() >= self.AnswerSet[i] - self.Threshold)))
+			#print('%2.5f > %2.5f' % (self.OutputNodes[i].getError()**2, self.Threshold), self.OutputNodes[i].getError()**2 > self.Threshold * 0.01)
+			#if not((self.OutputNodes[i].getValue() <= self.AnswerSet[i] + self.Threshold) and (self.OutputNodes[i].getValue() >= self.AnswerSet[i] - self.Threshold)):
+			if (self.OutputNodes[i].getError()**2 > self.Threshold * 0.00000001):
+			#if (self.OutputNodes[i].getError()**2 > self.Threshold):
 				backprop = True
 		self.converged = backprop
 		return self.converged
@@ -384,7 +399,7 @@ def CalculateCenters(vector):
 		cVectors.append(temp)
 	temp = []
 	for i in range(len(vector[0])):
-		temp.append(random.random()-0.5)
+		temp.append(random.random())
 	cVectors.append(temp)
 	#print(cVectors)
 	cVectors = transpose(cVectors)
@@ -403,7 +418,7 @@ def CalculateDmax(vector):
 # Returns the NN that has been trained and is ready for testing. Testing code will be handled in the Handler File.
 def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, momentum = 0):
 	global Bloops
-	Bloops = 1000000
+	Bloops = 500000
 	NNinstances = []
 	OrigAnswers = copy.deepcopy(answers)
 
@@ -469,6 +484,7 @@ def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, 
 		for i in range(len(NNinstances)): 
 			if NNinstances[i].ShouldBackprop(): 
 				done = False
+			#print('Network', i, 'has', NNinstances[i].GetNNResults())
 		print("Training {:2.2%}".format(loops / Bloops), end="\r")
 		# Make sure we have iterated at least 100 times before presenting our solution. Prevents us from being lucky.
 		if (done and (loops >= 100)): break
@@ -482,7 +498,7 @@ def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, 
 		for i in range(len(NNinstances)):
 			NNinstances[i].CalculateNNErrors()
 			NNinstances[i].UpdateNNWeights(loops)
-			
+			'''
 			CurrentWeights = (NNinstances[i].GetNNWeights())
 			current = 1
 			temp = []
@@ -499,7 +515,7 @@ def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, 
 		dmax = sum(dmaxSet)/len(dmaxSet)
 		for i in range(len(NNinstances)):
 			NNinstances[i].SetDmax(dmax)
-		
+		'''
 	'''	
 	# See the output of each NN and how close it thought it got to the function it was learning. 
 	results = answers
@@ -522,13 +538,13 @@ def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, 
 	print()
 
 	# Testing Example(s)
-#	finalNN.SetStartingNodesValues([4,2])
-#	finalNN.CalculateNNOutputs()
-#	print(loops, [4,2], finalNN.GetNNResults(), [19609])
-#
-#	finalNN.SetStartingNodesValues([0,2])
-#	finalNN.CalculateNNOutputs()
-#	print(loops, [0,2], finalNN.GetNNResults(), [401])
+	finalNN.SetStartingNodesValues([4,2])
+	finalNN.CalculateNNOutputs()
+	print(loops, [4,2], finalNN.GetNNResults(), [19609])
+
+	finalNN.SetStartingNodesValues([0,2])
+	finalNN.CalculateNNOutputs()
+	print(loops, [0,2], finalNN.GetNNResults(), [401])
 
 	#finalNN.SetStartingNodesValues([5, 6])
 	#finalNN.CalculateNNOutputs()
@@ -546,14 +562,15 @@ if __name__== '__main__':
 	
 	#main([[2,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101]], learnrate = 0.5, threshold = 10, momentum = 0.5)
 	#main([[2,3], [1,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101], [400]], learnrate = 0.1, threshold = 1, momentum = 0.5)
-	#main([[2,3], [1,3], [3,3]], [['S','S','S'], ['S','S']], ['S'], [[101], [400], [3604]], learnrate = 0.5, threshold = 1, momentum = 0.5)
+	main([[2,3], [1,3], [3,3]], [['S','S','S'], ['S','S']], ['S'], [[101], [400], [3604]], learnrate = 0.7, threshold = 5, momentum = 0.5)
 	#main([[1],[2],[3],[4],[5]], [['S','S','S','S','S'], ['S','S','S']], ['S'], [[1],[4],[9],[16],[25]], learnrate = 0.3, threshold = 5, momentum = 0.3)
 	#main([[1],[2],[3],[4],[5]], [['L', 'L', 'L']], ['S'], [[1],[4],[9],[16],[25]], learnrate = .5, threshold = 5, momentum = .3)
-	#main([[2,3], [1,3], [3,3]], [['G','G','G']], ['R'], [[101], [400], [3604]], learnrate = 0.5, threshold = 10, momentum = 0.5)
+	#main([[2,3], [1,3], [3,3]], [['G','G','G']], ['R'], [[101], [400], [3604]], learnrate = 0.1, threshold = 0.05, momentum = 0.2)
 	#main([[2,3], [1,3], [3,3]], [['G','G','G','G','G','G','G','G','G']], ['R'], [[101], [400], [3604]], learnrate = 0, threshold = 5, momentum = 0.5)
-	#main([[2,8],[7,8],[3,9],[2,1],[7,4],[4,4],[5,5],[9,1]], [['G','G','G','G','G','G','G','G','G']], ['R'], [[1601], [168136], [4], [901], [202536], [14409], [40016], [640064]], learnrate = 0, threshold = 5, momentum = 0.5)
+	#main([[2,8],[7,8],[3,9],[2,1],[7,4],[4,4],[5,5],[9,1]], [['L','L','L']], ['U'], [[1601], [168136], [4], [901], [202536], [14409], [40016], [640064]], learnrate = .1, threshold = 0.05, momentum = 0.2)
+	#main([[2,8],[7,8],[3,9]], [['G','G','G']], ['R'], [[1601],[168136],[4]], learnrate = 0.1, threshold = 5, momentum = 0.2)
 	#main([[3],[9],[8],[2],[5],[3.9],[4.5],[1]], [['S','S','S'], ['S','S']], ['S'], [[9],[81],[64],[4],[25],[15.21],[20.25],[1]], learnrate = 0.3, threshold = 5, momentum = 0.5)
-	#main([[3,3],[9,9],[8,8],[2,2]], [['G','G','G','G','G','G','G','G']], ['R'], [[9],[81],[64],[4]], learnrate = 0, threshold = 10, momentum = 0.5)
-	main([[3,4],[2,3],[4,0],[1,2],[2,4],[2,0],[2,1],[3,4]], [[]], ['S'], [[2504],[101],[25609],[100],[1],[1601],[901],[2504]], learnrate = 0.5, threshold = 5, momentum = 0.5)
+	#main([[3,3],[9,9],[8,8],[2,2]], [['G','G','G','G','G','G','G','G']], ['R'], [[9],[81],[64],[4]], learnrate = 0, threshold = 5, momentum = 0.5)
+	#main([[3,4],[2,3],[4,0],[1,2],[2,4],[2,0],[2,1],[3,4]], [[]], ['S'], [[2504],[101],[25609],[100],[1],[1601],[901],[2504]], learnrate = 0.5, threshold = 5, momentum = 0.5)
 
 
