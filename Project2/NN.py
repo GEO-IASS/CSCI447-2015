@@ -391,7 +391,7 @@ class NN:
 def EuclideanDistance(vector):
 	return linalg.norm(vector)
 
-def CalculateCenters(vector):
+def CalculateCenters(vector, nodes):
 	cVectors = []
 	for x in transpose(vector):
 		maxinp = 0
@@ -401,15 +401,16 @@ def CalculateCenters(vector):
 		for y in x:
 			maxinp = max(maxinp, y)
 			mininp = min(mininp, y)
-		for y in x:
+		for y in range(nodes):
 			temp.append((random.random() * (maxinp - mininp)) + mininp)
 		cVectors.append(temp)
 	temp = []
-	for i in range(len(vector[0])):
+	for i in range(nodes):
 		temp.append(random.random())
 	cVectors.append(temp)
 	#print(cVectors)
 	cVectors = transpose(cVectors)
+	#print(cVectors)
 	return cVectors
 
 # Calculate the max spread between estimated centers.
@@ -444,7 +445,8 @@ def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, 
 	except:
 		arrangement[0] = ['']
 	if arrangement[0][0] == 'G':
-		cVectors = CalculateCenters(inputs)
+		cVectors = CalculateCenters(inputs, len(arrangement[0]))
+		#print('C:', cVectors)
 		dmax = CalculateDmax(cVectors)
 		#print(cVectors, dmax)
 
@@ -452,6 +454,8 @@ def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, 
 		for x in cVectors:
 			for y in x:
 				cVector.append(y)
+		#print(len(baseNN.GetNNWeights()), '\n', baseNN.GetNNWeights())
+		#print(len(cVector), '\n', cVector)
 
 		# Set the weights of the hidden nodes such that they match the cVectors values
 		OriginalWeights = baseNN.GetNNWeights()
@@ -574,10 +578,10 @@ if __name__== '__main__':
 	#main([[1],[2],[3],[4],[5]], [['L', 'L', 'L']], ['S'], [[1],[4],[9],[16],[25]], learnrate = .5, threshold = 5, momentum = .3)
 	#main([[2,3], [1,3], [3,3]], [['G','G','G']], ['R'], [[101], [400], [3604]], learnrate = 0.1, threshold = 5, momentum = 0.3)
 	#main([[2,3], [1,3], [3,3]], [['G','G','G','G','G','G','G','G','G']], ['R'], [[101], [400], [3604]], learnrate = 0, threshold = 5, momentum = 0.5)
-	#main([[2,8],[7,8],[3,9],[2,1],[7,4],[4,4],[5,5],[9,1]], [['L','L','L']], ['U'], [[1601], [168136], [4], [901], [202536], [14409], [40016], [640064]], learnrate = .1, threshold = 0.05, momentum = 0.2)
+	#main([[2,8],[7,8],[3,9],[2,1],[7,4],[4,4],[5,5],[9,1]], [['L','L','L']], ['L'], [[1601], [168136], [4], [901], [202536], [14409], [40016], [640064]], learnrate = .1, threshold = 0.05, momentum = 0.2)
 	#main([[2,8],[7,8],[3,9]], [['G','G','G']], ['R'], [[1601],[168136],[4]], learnrate = 0.1, threshold = 5, momentum = 0.3)
 	#main([[3],[9],[8],[2],[5],[3.9],[4.5],[1]], [['S','S','S'], ['S','S']], ['S'], [[9],[81],[64],[4],[25],[15.21],[20.25],[1]], learnrate = 0.3, threshold = 5, momentum = 0.5)
 	#main([[3,3],[9,9],[8,8],[2,2]], [['G','G','G','G','G','G','G','G']], ['R'], [[9],[81],[64],[4]], learnrate = 0, threshold = 5, momentum = 0.5)
 	#main([[3,4],[2,3],[4,0],[1,2],[2,4],[2,0],[2,1],[3,4]], [[]], ['S'], [[2504],[101],[25609],[100],[1],[1601],[901],[2504]], learnrate = 0.5, threshold = 5, momentum = 0.5)
-
+	main([[0, 3], [3, 2], [2, 0], [1, 4], [1, 2], [1, 3], [1, 4], [0, 2], [2, 0], [0, 1], [1, 2], [2, 1], [1, 4], [0, 2], [3, 2], [4, 0]], [['G', 'G', 'G', 'G', 'G', 'G', 'G']], ['R'], [[901], [4904], [1601], [900], [100], [400], [900], [401], [1601], [101], [100], [901], [900], [401], [4904], [25609]], learnrate = 0.1, threshold = 5, momentum = 0.3)
 
