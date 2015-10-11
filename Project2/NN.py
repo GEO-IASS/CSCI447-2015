@@ -431,7 +431,7 @@ def CalculateDmax(vector):
 # Returns the NN that has been trained and is ready for testing. Testing code will be handled in the Handler File.
 def main(inputs, arrangement, outputs, answers, learnrate = 0.5, threshold = 1, momentum = 0):
 	global Bloops
-	Bloops = 100000
+	Bloops = 500000
 	NNinstances = []
 	OrigAnswers = copy.deepcopy(answers)
 
