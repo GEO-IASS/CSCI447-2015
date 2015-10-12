@@ -17,7 +17,7 @@ my $folder = "Results";
 my @actSets = ("[['']]", "[['L', 'L', 'L']]", "[['S', 'S', 'S']]", "[['L', 'L', 'L'], ['L', 'L']]", "[['S', 'S', 'S'], ['S', 'S']]", "[['G', 'G', 'G']]", "[['G', 'G', 'G', 'G', 'G']]", "[['G', 'G', 'G', 'G', 'G', 'G', 'G']]");
 my @funcSets = ("['L']", "['S']", "['R']");
 
-open(my $output, '>', "results.tsv") or die "Unable to write new data file";
+open(my $output, '>', "results.csv") or die "Unable to write new data file";
 my @list = process_files($folder);
 
 foreach my $file (@list){
@@ -49,27 +49,27 @@ foreach my $file (@list){
 		++$funcIndex until $funcSets[$funcIndex] eq $activationOutput or $funcIndex > $#funcSets;
 		if ($funcIndex == 0) { # Linear
 			if ($actIndex == 0) { # 0 Layers
-				printf "L & %d & 0 & ", $file;					
+				printf $output "L, %d, 0, ", $file;					
 			} elsif ($actIndex == 1 or $actIndex == 2) { # 1 Layer
-				printf "L & %d & 1 & ", $file;
+				printf $output "L, %d, 1, ", $file;
 			} elsif ($actIndex == 3 or $actIndex == 4) { # 2 Layers
-				printf "L & %d & 2 & ", $file;
+				printf $output "L, %d, 2, ", $file;
 			}
 		} elsif ($funcIndex == 1) { # Sigmoid
 			if ($actIndex == 0) { # 0 Layers
-				printf "S & %d & 0 & ", $file;
+				printf $output "S, %d, 0, ", $file;
 			} elsif ($actIndex == 1 or $actIndex == 2) { # 1 Layer
-				printf "S & %d & 1 & ", $file;
+				printf $output "S, %d, 1, ", $file;
 			} elsif ($actIndex == 3 or $actIndex == 4) { # 2 Layers
-				printf "S & %d & 2 & ", $file;
+				printf $output "S, %d, 2, ", $file;
 			}
 		} elsif ($funcIndex == 2) { # Gaussian
 			if ($actIndex == 5) { # 3 Nodes
-				printf "G & %d & 3 & ", $file;
+				printf $output "G, %d, 3, ", $file;
 			} elsif ($actIndex == 1 or $actIndex == 6) { # 5 Nodes
-				printf "G & %d & 5 & ", $file;
+				printf $output "G, %d, 5, ", $file;
 			} elsif ($actIndex == 3 or $actIndex == 7) { # 7 Nodes
-				printf "G & %d & 7 & ", $file;
+				printf $output "G, %d, 7, ", $file;
 			}
 		}
 
@@ -91,11 +91,10 @@ foreach my $file (@list){
 			#print "RB: $RBOutput\n";
 			my $error = (abs(int($testOutput) - (int($RBOutput))) / (int($RBOutput) + 0.000001));
 			chomp($error);
-			printf("%.1f & ", $error * 100);
-			#printf "$activationSet\t$activationOutput\t$testInputs\t%.2f\t$RBOutput\t%.2f\n", $testOutput, $error;
+			printf $output "%.1f, ", $error * 100;
 			$counter = $counter + 1;
 		}
-		printf("\n");
+		printf $output "\n";
 	}
 }
 sub process_files {    
