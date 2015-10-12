@@ -31,7 +31,7 @@ def start_thread(inp, activation, out_activ, outp, learn, thresh, mmntm, logger)
     logger.info("ACTIVATION SET: ")
     logger.info(activation)
     logger.info("OUTPUT ACTIVATION: %s" % out_activ)
-    logger.info("TRAINING INPUT: ")
+    logger.info("TESTING INPUT: ")
     logger.info(training_data)
     logger.info("OUTPUT: ")
     for x in training_data:

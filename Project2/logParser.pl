@@ -9,11 +9,13 @@ Takes the generated .log files that contain the results of the tests
 on the NN and prints the data organized to a tsv file.
 =cut
 
-use strict;
-use warnings;
+#use strict;
+#use warnings;
 #use diagnostics;
 
 my $folder = "Results";
+my @actSets = ("[['']]", "[['L', 'L', 'L']]", "[['S', 'S', 'S']]", "[['L', 'L', 'L'], ['L', 'L']]", "[['S', 'S', 'S'], ['S', 'S']]", "[['G', 'G', 'G']]", "[['G', 'G', 'G', 'G', 'G']]", "[['G', 'G', 'G', 'G', 'G', 'G', 'G']]");
+my @funcSets = ("['L']", "['S']", "['R']");
 
 open(my $output, '>', "results.tsv") or die "Unable to write new data file";
 my @list = process_files($folder);
@@ -21,7 +23,11 @@ my @list = process_files($folder);
 foreach my $file (@list){
 	if (-f $file) {
 		open(INFILE, $file) or die "Cannot open $_!.\n";
-		#$file =~ s/$folder\///;
+		$file =~ s/$folder\///;
+		$file =~ s/RBF//;
+		$file =~ s/Results.log//;
+		$file =~ s/\-\d//;
+		$file =~ s/\-//;
 		my $line;
 		$line = <INFILE>;
 		$line = <INFILE>;
@@ -36,7 +42,39 @@ foreach my $file (@list){
 		$line = <INFILE>;
 		$line = <INFILE>;
 		$line = <INFILE>;
-		while($line = <INFILE>) {
+
+		my $actIndex = 0;
+		++$actIndex until $actSets[$actIndex] eq $activationSet or $actIndex > $#actSets;
+		my $funcIndex = 0;
+		++$funcIndex until $funcSets[$funcIndex] eq $activationOutput or $funcIndex > $#funcSets;
+		if ($funcIndex == 0) { # Linear
+			if ($actIndex == 0) { # 0 Layers
+				printf "L & %d & 0 & ", $file;					
+			} elsif ($actIndex == 1 or $actIndex == 2) { # 1 Layer
+				printf "L & %d & 1 & ", $file;
+			} elsif ($actIndex == 3 or $actIndex == 4) { # 2 Layers
+				printf "L & %d & 2 & ", $file;
+			}
+		} elsif ($funcIndex == 1) { # Sigmoid
+			if ($actIndex == 0) { # 0 Layers
+				printf "S & %d & 0 & ", $file;
+			} elsif ($actIndex == 1 or $actIndex == 2) { # 1 Layer
+				printf "S & %d & 1 & ", $file;
+			} elsif ($actIndex == 3 or $actIndex == 4) { # 2 Layers
+				printf "S & %d & 2 & ", $file;
+			}
+		} elsif ($funcIndex == 2) { # Gaussian
+			if ($actIndex == 5) { # 3 Nodes
+				printf "G & %d & 3 & ", $file;
+			} elsif ($actIndex == 1 or $actIndex == 6) { # 5 Nodes
+				printf "G & %d & 5 & ", $file;
+			} elsif ($actIndex == 3 or $actIndex == 7) { # 7 Nodes
+				printf "G & %d & 7 & ", $file;
+			}
+		}
+
+		my $counter = 0;
+		while($line = <INFILE> and $counter < 4) {
 			my $testInputs = $line;
 			chomp($testInputs);
 			#print "In: $testInputs\n";
@@ -53,17 +91,20 @@ foreach my $file (@list){
 			#print "RB: $RBOutput\n";
 			my $error = (abs(int($testOutput) - (int($RBOutput))) / (int($RBOutput) + 0.000001));
 			chomp($error);
-			printf $output "$activationSet\t$activationOutput\t$testInputs\t%.2f\t$RBOutput\t%.2f\n", $testOutput, $error;
+			printf("%.1f & ", $error * 100);
+			#printf "$activationSet\t$activationOutput\t$testInputs\t%.2f\t$RBOutput\t%.2f\n", $testOutput, $error;
+			$counter = $counter + 1;
 		}
+		printf("\n");
 	}
 }
-
 sub process_files {    
 	my $path = shift;
 	opendir (DIR, $path) or die "Unable to open $path: $!";
 	my @files =
 		map { $path . '/' . $_ }
 		grep { !/^\.{1,2}$/ } # Don't climb up
+		grep { !/^\.\w+$/ }
 		readdir (DIR);
 
 	closedir (DIR);
