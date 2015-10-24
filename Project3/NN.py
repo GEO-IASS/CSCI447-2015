@@ -176,8 +176,7 @@ class NN(object):
                     temp.append(n)
                 else:
                     n = node(appFunc=x)
-                    n.addInputs(self.HiddenNodes[
-                                self.arrangement.index(y) - 1])
+                    n.addInputs(self.HiddenNodes[self.arrangement.index(y) - 1])
                     temp.append(n)
             self.HiddenNodes.append(temp)
         # Make Output Layers
@@ -219,6 +218,7 @@ class NN(object):
             print(id(x), 'has output value:', x.getValue(), '~', self.AnswerSet[self.OutputNodes.index(x)])
             print(id(x), 'has output error:', x.getError())
             print(id(x), 'had weights:', x.getWeights())
+        print()
 
     def CalculateNNOutputs(self):
         '''Calculate the answer of the NN'''
@@ -285,17 +285,13 @@ class NN(object):
                 self.HiddenNodes[i][j].updateWeights(
                     self.LearnRate, self.Momentum, loop)
         for i in range(len(self.OutputNodes)):
-            self.OutputNodes[i].updateWeights(
-                self.LearnRate, self.Momentum, loop)
+            self.OutputNodes[i].updateWeights(self.LearnRate, self.Momentum, loop)
 
     def GetNNResults(self):
-        '''
-        Returns the values of the output nodes
-        '''
+        '''Returns the values of the output nodes'''
         resultSet = []
         for i in range(len(self.OutputNodes)):
-            resultSet.append((((self.OutputNodes[i].getValue(
-            ) - 0.2) * (self.maxim - self.minim)) / (0.8 - 0.2)) + self.minim)
+            resultSet.append((((self.OutputNodes[i].getValue() - 0.2) * (self.maxim - self.minim)) / (0.8 - 0.2)) + self.minim)
         return resultSet
 
     def ShouldBackprop(self):
@@ -307,6 +303,14 @@ class NN(object):
                 backprop = True
         self.converged = backprop
         return self.converged
+
+    def GetNNOutputErrors(self):
+        '''Returns the list of errors for the output nodes.'''
+        errorSet = []
+        for i in range(len(self.OutputNodes)):
+            self.OutputNodes[i].calcOutputError(self.AnswerSet[i])
+            errorSet.append(self.OutputNodes[i].getError()**2)
+        return errorSet
 
 
 def main(inputs, arrangement, outputs, answers, learnrate=0.5, threshold=1, momentum=0):
@@ -391,10 +395,9 @@ def main(inputs, arrangement, outputs, answers, learnrate=0.5, threshold=1, mome
 if __name__ == '__main__':
     print('Starting some NN training...\n')
 
-    #main([[2,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101]], learnrate = 0.5, threshold = 10, momentum = 0.5)
-    #main([[2,3], [1,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101], [400]], learnrate = 0.5, threshold = 5, momentum = 0.3)
-    for i in range(1):
-        main([[2, 3], [1, 3], [3, 3]], [['S', 'S', 'S'], ['S', 'S']], ['S'], [[101], [400], [3604]], learnrate=0.3, threshold=5, momentum=0.3)
+    #main([[2,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101]], learnrate = 0.3, threshold = 5, momentum = 0.3)
+    main([[2,3], [1,3]], [['S','S','S'], ['S', 'S']], ['S'], [[101], [400]], learnrate = 0.3, threshold = 5, momentum = 0.3)
+    #for i in range(1): main([[2, 3], [1, 3], [3, 3]], [['S', 'S', 'S'], ['S', 'S']], ['S'], [[101], [400], [3604]], learnrate=0.3, threshold=5, momentum=0.3)
     #main([[1],[2],[3],[4],[5]], [['S','S','S','S','S'], ['S','S','S']], ['S'], [[1],[4],[9],[16],[25]], learnrate = 0.3, threshold = 5, momentum = 0.3)
     #main([[3],[9],[8],[2],[5],[3.9],[4.5],[1]], [['S','S','S'], ['S','S']], ['S'], [[9],[81],[64],[4],[25],[15.21],[20.25],[1]], learnrate = 0.3, threshold = 5, momentum = 0.5)
     #main([[3,4],[2,3],[4,0],[1,2],[2,4],[2,0],[2,1],[3,4]], [[]], ['S'], [[2504],[101],[25609],[100],[1],[1601],[901],[2504]], learnrate = 0.5, threshold = 5, momentum = 0.5)

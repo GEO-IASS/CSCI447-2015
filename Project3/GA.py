@@ -9,36 +9,153 @@ CSCI 447:	Project 3
 import NN
 import random
 import copy
+from operator import itemgetter
 
-# Make base NN for template and fitness evaluations
-baseNN = NN.NN([0, 0], [['S', 'S', 'S'], ['S', 'S']], ['S'], [0], learnrate=0.3, threshold=5, momentum=0.3)
-baseNN.ConstructNetwork()
 
-# Create citizens as arrays of weights that will be injected and stripped from the NN
-citizenTemp = baseNN.GetNNWeights()
+def generatePopulation(net, inputs, outputs, size):
+    # Create citizens as arrays of weights that will be injected and stripped from the NN
+    citizenTemp = net.GetNNWeights()
+    population = []
+    for i in range(size):
+        for j in range(len(citizenTemp)):
+            citizenTemp[j] = random.random()  # Random weights for the NN topology
+        population.append(copy.deepcopy(citizenTemp))
+        population[-1].append(0)  # Each citizen tracks their current heroic level based on the dimensionality of the outputs
+    # for i in population:
+    #    print(i)
+    # print()
+    # for i in population:
+    #    print(i[:-1])
+    # print()
+    return population
 
-population = []
-for i in range(10):
-    for j in range(len(citizenTemp)):
-        citizenTemp[j] = round(random.random(), 3)
-    population.append(copy.deepcopy(citizenTemp))
 
-for i in population: print(i)
+def crossover(parent1, parent2, rate=0.2):
+    child = []
+    current = 0
+    for i in range(len(parent1[:-1])):
+        if random.random() < rate:
+            current = 1
+        else:
+            current = 0
+        if current == 0:
+            child.append(parent1[i])
+        else:
+            child.append(parent2[i])
+    child.append(0)  # child has not yet tested
+    return child
 
-# Bulk of GA code
 
-    # Test each citizen and determine heroic level
-    # If we have a hero go ahead and return him/her
-    # Else, loop until a hero is found or we've reached max generations
-        # Keep track of generation number starting at 0 and ended at our max generation count
-        # Citizens are selected via random distribution and ranked based on heroics where we'll pull some number of potential heros
-        # Have our heros mate (Crossover)
-            # 2 parents where a random number of crossovers occur at random locations based on a passed in paramenter likelyhood
-        # Have our heros children experience the world (Mutate)
+def mutate(child, rate=0.2):
+    for i in range(len(child[:-1])):
+        if random.random() < rate:  # chance child will experience something that enlightens them
+            child[i] += (random.random() * 1) - 0.5
+
+
+def tournament(population, participants, victors):
+    # Treat this as a minimization problem with regards to error.
+    braket = sorted(random.sample(population, participants), key=itemgetter(-1))
+    return braket[0:victors]
+
+
+def evaluate(NN, group, inputs, outputs):
+    for citizen in group:
+        citizen[-1] = 0
+        NN.SetNNWeights(citizen[:-1])
+        for startingValues in inputs:
+            NN.SetStartingNodesValues(startingValues)
+            NN.SetAnswerSetValues(outputs[inputs.index(startingValues)])
+            NN.CalculateNNOutputs()
+            citizen[-1] += sum(NN.GetNNOutputErrors())  # Each citizen evaluates itself. Closer to 0 the better
+
+
+def printCitizen(citizen):
+    for x in citizen[:-1]:
+        print('%.3f, ' % x, end='')
+    print('%.9f' % citizen[-1])
+
+
+def main(inputs, outputs, size=20, participants=10, victors=5, generations=10, threshold=5):
+
+    OrigAnswers = copy.deepcopy(outputs)
+    # Make base NN for template and fitness evaluations
+    # Max and Min of our outputs
+    maxim = 0
+    for x in outputs:
+        maxim = max(maxim, max(x))
+    minim = 10000
+    for x in outputs:
+        minim = min(minim, min(x))
+    EvaluationNN = NN.NN([0 for x in inputs[0]], [['S', 'S', 'S'], ['S', 'S']], ['S' for x in outputs[0]], [0 for x in outputs[0]], threshold=threshold, maxim=maxim, minim=minim)
+    EvaluationNN.ConstructNetwork()
+    # EvaluationNN.PrintStatus()
+    population = generatePopulation(EvaluationNN, inputs, outputs, size)
+
+    # Test each citizen and determine heroic level (make this a function?)
+    evaluate(EvaluationNN, population, inputs, outputs)
+
+    gen = 0
+    hero = 0
+    children = []
+    # loop until a hero is found or we've reached max generations
+    # Keep track of generation number starting at 0 and ended at our max generation count
+    while gen < generations and hero == 0:
+        print('\nGeneration:', gen)
+        print('Old Population:')
+        for citizen in population:
+            printCitizen(citizen)
+        # Citizens are selected via random distribution and ranked based on heroics where we'll pull some number of potential parents
+        parents = tournament(population, participants, victors)
+        # Have our parents mate (Crossover)
+        # 2 parents where a random number of crossovers occur at random locations based on a passed in paramenter likelyhood
+        children = []
+        for p1 in parents:
+            for p2 in parents:
+                children.append(crossover(p1, p2))
+        # Have the children experience the world (Mutate)
             # random number of mutations that occur on random weights based on a passed in parameter of likelyhood
+        for child in children:
+            mutate(child)
         # Test each child's heroic level
-            # Determine if a child is a hero and if so, return child
-        # Genocide of population is determined by elitism inverted on heroic level (cowardace).
+        evaluate(EvaluationNN, children, inputs, outputs)
+        # We were to prolific, thus children must fight to the death via draft call. Make participants len(children) to have all of them fight
+        children = tournament(children, participants, victors)
+        print('\nChildren')
+        for child in children:
+            printCitizen(child)
+        # purging of population is determined by elitism inverted on heroic level (cowardace is greater number).
         # Take number of children equal to number of tournament victors and reintroduce to the population
+        population = sorted(population+children, key=itemgetter(-1))[0:participants]
+        print('\nNew Population:')
+        for citizen in population:
+            printCitizen(citizen)
+
+        # Determine if a child is a hero (<threshold) and if so, return child (break)
+        if population[0][-1] < threshold * 0.00000001:  # Check if answer is acceptable
+            print('\nHero Found in Generation', gen)
+            hero = copy.deepcopy(population[0])
+            printCitizen(hero)
+            break
         # Increment Generation counter
+        gen += 1
     # return best hero we have if max generations is met.
+    hero = sorted(population, key=itemgetter(-1))[0]  # default to best in population if no hero steps forward
+    EvaluationNN.SetNNWeights(hero[:-1])
+    print()
+
+    for x in inputs:
+        EvaluationNN.SetStartingNodesValues(x)
+        EvaluationNN.CalculateNNOutputs()
+        EvaluationNN.SetAnswerSetValues(copy.deepcopy(OrigAnswers[inputs.index(x)]))
+        print(x, EvaluationNN.GetNNResults(), OrigAnswers[inputs.index(x)])
+        EvaluationNN.PrintStatus()
+    print()
+
+    # Evaluate the hero on the inputs and outputs
+
+if __name__ == '__main__':
+    print('Starting some GA training...')
+
+    #main([[2, 3]], [[101]], size=9, participants=6, victors=3, generations=500, threshold=5)
+    main([[2, 3], [1, 3]], [[101], [400]], size=9, participants=6, victors=3, generations=500, threshold=5)
+    #main([[2, 3], [1, 3], [3, 3]], [[101], [400], [3604]], size=9, participants=6, victors=3, generations=100)
