@@ -2,14 +2,14 @@
 
 """
 Author: 	Clint Cooper, Emily Rohrbough, Leah Thompson
-Date:   	10/23/15
+Date:   	10/24/15
 CSCI 447:	Project 3
 
 Code for a Generic Neural Network Structure that defaults to Backpropagation.
 getWeights() and setWeights() allow for this NN to work with other update functions.
 For more accurate results, run on more training sets.
 Input is in the format of:
-([Input Vectors of Values], [Hidden Layer Arrays of Functions], Output Nodes Functions, [Output Vectors of Values], LearnRate, Threshold, Momentum
+([Input Vectors of Values], [Hidden Layer Arrays of Functions], Output Nodes Functions, [Output Vectors of Values], LearnRate, Threshold, Momentum)
 This file can be added to any project that requires a NN.
 Simply import this file and call main with the specified parameters.
 The returned structure is a NN that has been trained.
