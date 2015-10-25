@@ -5,7 +5,7 @@ Author: 	Clint Cooper, Emily Rohrbough, Leah Thompson
 Date:   	10/25/15
 CSCI 447:	Project 3
 
-Code for training a Neural Network via a genetic algorithm.
+Code for training a Neural Network via a genetic algorithm - template for ES, DE.
 For more accurate results, run on more training sets.
 Input is in the format of:
 ([Input Vectors of Values], [Output Vectors of Values], size of the population used, number of participants in the tournaments,
