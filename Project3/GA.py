@@ -32,7 +32,7 @@ def generatePopulation(net, inputs, outputs, size):
     for i in range(size):
         for j in range(len(citizenTemp)):
             # Random weights for the NN topology
-            citizenTemp[j] = random.random()
+            citizenTemp[j] = (random.random() * 1) - 0.5
         population.append(copy.deepcopy(citizenTemp))
         # Each citizen tracks their current fitness based on the dimensionality
         # of the outputs
@@ -47,9 +47,7 @@ def crossover(parent1, parent2, rate=0.2):
     current = 0
     for i in range(len(parent1[:-1])):
         if random.random() < rate:
-            current = 1
-        else:
-            current = 0
+            current = (current + 1) % 2
         if current == 0:
             child.append(parent1[i])
         else:
@@ -88,8 +86,8 @@ def evaluate(NN, population, inputs, outputs):
             NN.SetStartingNodesValues(inputs[i])  # Load inputs into NN
             NN.CalculateNNOutputs()  # Run the NN once
             # Calculate the fitness value and let the citizen track it
-            citizen[-1] += sum(list(map(lambda x: abs(NN.GetNNResults()[x] -
-                                                      outputs[i][x]),
+            citizen[-1] += sum(list(map(lambda x: (NN.GetNNResults()[x] -
+                                                   outputs[i][x])**2,
                                         range(len(NN.GetNNResults())))))
 
 
@@ -181,24 +179,25 @@ def train(mutate_func, inputs, outputs, size, participants, victors,
         population = sorted(population + children,
                             key=itemgetter(-1))[:-victors]
         # Determine if a child is a hero (<threshold) and if so, return child
-        if heroFound(population, threshold):
+        if heroFound(population, len(inputs) * threshold):
             break
-        # print("Training {:2.2%}".format(gen / generations), end="\r")
+        print("Training {:2.2%}".format(gen / generations), end="\r")
         gen += 1
     # return best hero if max generations is met and hero hasn't been selected.
     # hero = sorted(population, key=itemgetter(-1))[0]  # default to best in
     # population if no hero steps forward
     if hero == 0:
+        gen -= 1
         hero = sorted(population, key=itemgetter(-1))[0]
     EvaluationNN.SetNNWeights(hero[:-1])  # Load hero into NN, prep for usage.
     print()
 
     # Evaluate the hero on the inputs and outputs
+    print('Generations:', gen, 'Fitness (Sum r^2):', hero[-1])
     for x in inputs:
         EvaluationNN.SetStartingNodesValues(x)
         EvaluationNN.CalculateNNOutputs()
-        print(gen, x, EvaluationNN.GetNNResults(),
-              OrigAnswers[inputs.index(x)])
+        print(x, EvaluationNN.GetNNResults(), OrigAnswers[inputs.index(x)])
 
     return EvaluationNN
 
@@ -206,6 +205,10 @@ def train(mutate_func, inputs, outputs, size, participants, victors,
 def main(inputs, outputs, size=20, participants=10, victors=5, generations=100,
          threshold=5, cRate=0.2, mRate=0.2):
 
+    global OrigAnswer
+    OrigAnswers = []
+    global hero
+    hero = 0
     eval_nn = train(mutate, inputs, outputs, size, participants, victors,
                     generations, threshold, cRate, mRate)
 
@@ -215,6 +218,7 @@ if __name__ == '__main__':
     #     generations=500, threshold=5)
     # main([[2, 3], [1, 3]], [[101], [400]], size=9, participants=6, victors=3,
     #     generations=100000, threshold=10, cRate=0.5, mRate=0.5)
-    main([[2, 3], [1, 3], [3, 3]], [[101], [400], [3604]], size=9,
-         participants=6, victors=3, generations=100000, threshold=10,
-         cRate=0.5, mRate=0.5)
+    for i in range(1):
+        main([[2, 3], [1, 3], [3, 3]], [[101], [400], [3604]], size=20,
+             participants=10, victors=5, generations=100000, threshold=10,
+             cRate=0.5, mRate=0.5)
