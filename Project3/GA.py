@@ -29,7 +29,7 @@ def generatePopulation(net, inputs, outputs, size):
     from the NN'''
     citizenTemp = net.GetNNWeights()
     population = []
-    for i in range(size):
+    for i in range(size):   
         for j in range(len(citizenTemp)):
             # Random weights for the NN topology
             citizenTemp[j] = random.random()
@@ -40,7 +40,8 @@ def generatePopulation(net, inputs, outputs, size):
     return population
 
 
-def crossover(parent1, parent2, rate=0.2):
+def crossover(parent1, parent2, rate=0.2): 
+####THOUGHT CROSS OVER FROM GA ALGORITHM WAS 1 POINT OR 2 POINT. NOT PER CHROMOSOME ELEMENT...????
     '''2 parents 'mate' and produce a child where a random number of crossovers
     have occured at random locations based on a rate percentage'''
     child = []
@@ -64,7 +65,7 @@ def mutate(child, rate=0.2):
     for i in range(len(child[:-1])):
         # chance child will experience something that enlightens them
         if random.random() < rate:
-            child[i] += (random.random() * 1) - 0.5
+            child[i] += (random.random() * 1) - 0.5 #assumed weights for our
 
 
 def tournament(population, participants, victors):
@@ -72,8 +73,8 @@ def tournament(population, participants, victors):
     fitness where we'll pull some number of potential parents via elitism.
     We select some number of participants randomly from the population and
     rank them, then selecting victors number of them as return set.'''
-    bracket = sorted(random.sample(
-        population, participants), key=itemgetter(-1))
+    bracket = sorted(random.sample(population, participants), 
+        key=itemgetter(-1))
     return bracket[0:victors]
 
 
@@ -84,13 +85,14 @@ def evaluate(NN, population, inputs, outputs):
     for citizen in population:
         citizen[-1] = 0
         NN.SetNNWeights(citizen[:-1])  # Load weights into the NN
+#########WHY ARE WE TESTING EACH INPUT INDIVIDUALLY?
         for i in range(len(inputs)):
             NN.SetStartingNodesValues(inputs[i])  # Load inputs into NN
+##########ISNT THIS REDUNDENT? SHOUDLN'T THE NN HAVE DONE THIS WHEN IT WAS CREATED? THESE SHOULDN'T CHANGE.....???
             NN.CalculateNNOutputs()  # Run the NN once
             # Calculate the fitness value and let the citizen track it
             citizen[-1] += sum(list(map(lambda x: abs(NN.GetNNResults()[x] -
-                                                      outputs[i][x]),
-                                        range(len(NN.GetNNResults())))))
+                outputs[i][x]), range(len(NN.GetNNResults())))))
 
 
 def printCitizen(citizen):
@@ -101,7 +103,8 @@ def printCitizen(citizen):
     print('%.9f' % citizen[-1])
 
 
-def create_net(inputs, outputs):
+def create_net(inputs, outputs): 
+####Should this be updated to pass in topology a more flexible structure technically????
     '''Takes sets of inputs and outputs and maps to a hard coded NN topology'''
     global OrigAnswers
     OrigAnswers = copy.deepcopy(outputs)
@@ -112,7 +115,7 @@ def create_net(inputs, outputs):
         minim = min(minim, min(x))
     EvalNN = NN.NN([0 for x in inputs[0]], [['S', 'S', 'S'], ['S', 'S']],
                    ['S' for x in outputs[0]], [0 for x in outputs[0]],
-                   maxim=maxim, minim=minim)
+                   maxim=maxim, minim=minim)    #assuming default learning rate, momentum & threshold?????
     EvalNN.ConstructNetwork()
     return EvalNN
 
@@ -121,7 +124,8 @@ def mate(parents, cRate):
     '''Handler for crossover function that takes in a set of parents and cRate
     and has each parent mate with every other parent'''
     children = []
-    for p1 in parents:
+####THIS HAS THE SAME PARENTS REPRODUCING OFFSPRING TWICE. SHOULDN'T IT ONLY BE ONE TIME TWO PARENTS PRODUCE A CHILD IN GA?????
+    for p1 in parents: 
         for p2 in parents:
             if not p1 == p2:  # Avoid asexual reproduction
                 children.append(crossover(p1, p2, cRate))
@@ -143,13 +147,14 @@ def heroFound(population, threshold):
 def train(mutate_func, inputs, outputs, size, participants, victors,
           generations, threshold, cRate, mRate):
     '''The train method takes in a set of inputs and outputs which will be
-    compared against a hardcoded NN topology. The size, participants, and
-    victors are with regard to tournament selection and elitism selection
-    techniques. Generations is the max number of generations allowed while
-    threshold is the accuracy needed. cRate and mRate are the rate of
-    crossover and rate of mutation respectively. mutate_func is a reference to
-    a particular mutation function that will change depending on what type of
-    evolutionary learning technique is employed.'''
+    compared against a hardcoded NN topology. The size, number of 
+    participants, and number of victors are with regard to tournament 
+    selection and elitism selection techniques. Generations is the max number 
+    of generations allowed while threshold is the accuracy needed. cRate and 
+    mRate are the ate of crossover and rate of mutation respectively. 
+    mutate_func is a reference to a particular mutation function that will 
+    change depending on what type of evolutionary learning technique is 
+    employed.'''
     global hero
     global OrigAnswers
     EvaluationNN = create_net(inputs, outputs)
@@ -172,14 +177,13 @@ def train(mutate_func, inputs, outputs, size, participants, victors,
         # We were to prolific, thus children must fight to the death via draft
         # call. Make participants len(children) to have all of them fight
         # This might not be a good idea as late generation counts result in not
-        # keeping the children.
+        # keeping the children. RANKS CHILDREN
         children = tournament(children, participants, victors)
         # purging of population is determined by elitism inverted on fitness
         # level (cowardace is greater number).
         # Take number of children equal to number of tournament victors and
-        # reintroduce to the population
-        population = sorted(population + children,
-                            key=itemgetter(-1))[:-victors]
+        # reintroduce to the population. PICKS BEST OF PARENTS & CHILDREN
+        population = sorted(population + children, key=itemgetter(-1))[:-victors]
         # Determine if a child is a hero (<threshold) and if so, return child
         if heroFound(population, threshold):
             break
