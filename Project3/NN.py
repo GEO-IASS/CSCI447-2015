@@ -437,11 +437,11 @@ if __name__ == '__main__':
 
     # main([[2, 3]], [['S', 'S', 'S'], ['S', 'S']], ['S'], [[101]],
     #     learnrate=0.3, threshold=5, momentum=0.3)
-    main([[2, 3], [1, 3]], [['S', 'S', 'S'], ['S', 'S']], ['S'],
-         [[101], [400]], learnrate=0.3, threshold=5, momentum=0.3)
+    # main([[2, 3], [1, 3]], [['S', 'S', 'S'], ['S', 'S']], ['S'],
+    #     [[101], [400]], learnrate=0.3, threshold=5, momentum=0.3)
     # for i in range(1):
-    #     main([[2, 3], [1, 3], [3, 3]], [['S', 'S', 'S'], ['S', 'S']], ['S'],
-    #          [[101], [400], [3604]], learnrate=0.3, threshold=5, momentum=0.3)
+    main([[2, 3], [1, 3], [3, 3]], [['S', 'S', 'S'], ['S', 'S']], ['S'],
+        [[101], [400], [3604]], learnrate=0.3, threshold=10, momentum=0.3)
     # main([[1], [2], [3], [4], [5]], [['S', 'S', 'S', 'S', 'S'],
     #                                  ['S', 'S', 'S']],
     #      ['S'], [[1], [4], [9], [16], [25]], learnrate=0.3, threshold=5,
