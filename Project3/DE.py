@@ -114,6 +114,7 @@ def train(inputs, outputs, size, generations, threshold, cRate, mRate):
         #check for hero in population
         if GA.heroFound(population, threshold):
             break
+        print("Training {:2.2%}".format(gen / generations), end="\r")
         gen += 1
 
     # get best vector from population
