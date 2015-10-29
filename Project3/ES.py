@@ -126,7 +126,7 @@ def main(inputs, outputs, size=20, members=10, victs=5, gens=100,
 if __name__ == '__main__':
     print('Starting some ES training...')
     main([[2, 3], [1, 3], [3, 3]], [[101], [400], [3604]], size=20,
-         members=10, victs=5, gens=10, threshold=10, cRate=0.5, mRate=0.5)
+         members=10, victs=5, gens=225, threshold=10, cRate=0.5, mRate=0.5)
 
 
 
