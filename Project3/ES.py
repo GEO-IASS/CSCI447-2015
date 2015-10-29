@@ -40,13 +40,11 @@ class ES:
         return numpy.random.normal(0, 1) #(mu_2*w)
 
     def mutate_vec(child):
-        x = []
         length = int((len(child)-1)/2)
         for i in range(length):
-            x.append(child[i] + child[length+i]*ES.gauss())
+            child[i] = (child[i] + child[length+i]*ES.gauss())
 #            x[i] = parents[i][0] if x[i] < parents[i][0]
 #            x[i] = parents[i][1] if x[i] > parents[i][1]
-        return x
 
     def mutate_strat(child): # get std devs for a child, x', pg 218
         length = int((len(child)-1)/2)
@@ -56,11 +54,10 @@ class ES:
             child[i] = (child[i]*numpy.exp(t_prime*ES.gauss() + t*ES.gauss()))
 
     def mutate(child, mRate):
-        child = ES.mutate_vec(child)
-        #child = ES.mutate_strat(child)
+        ES.mutate_vec(child)
+        ES.mutate_strat(child)
 
     def create_net(inputs, outputs):
-        '''Takes sets of inputs and outputs and maps to a hard coded NN topology'''
         global OrigAnswers
         OrigAnswers = copy.deepcopy(outputs)
         maxim = 0
