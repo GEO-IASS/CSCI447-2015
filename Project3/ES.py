@@ -31,13 +31,13 @@ class ES:
 
     # random Gaussian N(0, 1)    
     def gauss():
-        w = 1
-        while w >= 1:
-            mu_1 = 2*random.random() - 1
-            mu_2 = 2*random.random() - 1
-            w = mu_1*mu_2 + mu_2*mu_2
-        w = math.sqrt((-2.0*numpy.log(w))/w)
-        return (mu_2*w)
+#        w = 1
+#        while w >= 1:
+#            mu_1 = 2*random.random() - 1
+#            mu_2 = 2*random.random() - 1
+#            w = mu_1*mu_2 + mu_2*mu_2
+#        w = math.sqrt((-2.0*numpy.log(w))/w)
+        return numpy.random.normal(0, 1) #(mu_2*w)
 
     def mutate_vec(child):
         x = []
@@ -57,7 +57,7 @@ class ES:
 
     def mutate(child, mRate):
         child = ES.mutate_vec(child)
-        child = ES.mutate_strat(child)
+        #child = ES.mutate_strat(child)
 
     def create_net(inputs, outputs):
         '''Takes sets of inputs and outputs and maps to a hard coded NN topology'''
@@ -100,7 +100,7 @@ def train(inputs, outputs, size, participants, victors, generations, threshold,
                             key=itemgetter(-1))[:-victors]
         if GA.heroFound(population, threshold):
             break
-        # print("Training {:2.2%}".format(gen / generations), end="\r")
+        print("Training {:2.2%}".format(gen / generations), end="\r")
         gen += 1
     if hero == 0:
         hero = sorted(population, key=itemgetter(-1))[0]
@@ -126,7 +126,7 @@ def main(inputs, outputs, size=20, members=10, victs=5, gens=100,
 if __name__ == '__main__':
     print('Starting some ES training...')
     main([[2, 3], [1, 3], [3, 3]], [[101], [400], [3604]], size=20,
-         members=10, victs=5, gens=225, threshold=10, cRate=0.5, mRate=0.5)
+         members=10, victs=5, gens=100000, threshold=10, cRate=0.5, mRate=0.5)
 
 
 
