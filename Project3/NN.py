@@ -2,7 +2,7 @@
 
 """
 Author: 	Clint Cooper, Emily Rohrbough, Leah Thompson
-Date:   	10/25/15
+Date:   	11/01/15
 CSCI 447:	Project 3
 
 Code for a Generic Neural Network Structure that defaults to Backpropagation.
@@ -20,6 +20,7 @@ The returned structure is a NN that has been trained.
 import math
 import random
 from numpy import transpose
+from scipy.special import expit
 import copy
 
 
@@ -56,10 +57,6 @@ class node(object):
     def setValue(self, value):
         '''Set the value of this node without calculating it'''
         self.value = value
-
-    def setNewError(self, newError):
-        '''Set the error of this node without calculating it'''
-        self.error = newError
 
     def setWeights(self, values):
         '''Set the weights to the values provided by the list values'''
@@ -98,14 +95,14 @@ class node(object):
 
     def calcValue(self):
         '''Calculate the value of this node.
-        This is dependent on the function this node possesses.
+        This is dependent on the function this node podds.
         summa is the summation of the values of the input nodes multiplied by
         their weights'''
         summa = 0
         if self.func == 'S':  # Sigmoid Function
             for x in self.inputs:
                 summa += x.getValue() * self.weights[self.inputs.index(x)]
-            self.value = 1 / (1 + math.exp(-summa))
+            self.value = expit(summa)
         elif self.func == 'B':  # Bias Node Function
             self.value = 1
         else:
@@ -127,6 +124,7 @@ class node(object):
         '''Calculate the Error assuming this is an output layer node'''
         if self.func == 'S':  # Sigmoid Error
             self.error = (answer - self.value) * self.value * (1 - self.value)
+            # self.error = 0.5 * (answer - self.value)**2
         else:
             self.error = 0
 
@@ -135,14 +133,13 @@ class node(object):
         Requires the Learning Rate (LearnRate), Momentum, and current loop
         (loop) to calculate'''
         global Bloops
-        #DLR = 0
+        # DLR = 0
         DLR = 1 - 1 / (Bloops - loop + 1)  # Linear decreasing relationship
         if self.func == 'S':
             for i in range(len(self.weights)):
                 temp = self.weights[i]
-                self.weights[i] += ((1 - Momentum) * max(LearnRate, DLR) *
-                                    self.error * self.inputs[i].getValue()) + \
-                    (Momentum * (self.weights[i] - self.historicalWeights[i]))
+                self.weights[i] += ((1 - Momentum) * max(LearnRate, DLR) * self.error * self.inputs[
+                                    i].getValue()) + (Momentum * (self.weights[i] - self.historicalWeights[i]))
                 self.historicalWeights[i] = temp
 
 
@@ -162,10 +159,9 @@ class NN(object):
         self.StartingNodes = []
         self.HiddenNodes = []
         self.OutputNodes = []
-        self.Threshold = 0.01 * threshold
+        self.Threshold = threshold
         self.AnswerSet = answers
         self.LearnRate = learnrate
-        self.converged = False
         self.Momentum = momentum
         self.inputs = inputs
         self.arrangement = arrangement
@@ -207,6 +203,12 @@ class NN(object):
         '''Reset the starting nodes values to values'''
         for i in range(len(self.StartingNodes)):
             self.StartingNodes[i].setValue(values[i])
+
+    def GetStartingNodesValues(self):
+        ans = []
+        for i in range(len(self.StartingNodes)):
+            ans.append(self.StartingNodes[i].getValue())
+        return ans
 
     def SetAnswerSetValues(self, values):
         '''Reset the answerSet for the NN that is used to train against to
@@ -253,6 +255,8 @@ class NN(object):
     def CalculateNNErrors(self):
         '''Calculate the error from the output. Should only ever be run after
         ShouldBackprop() has been run.'''
+        for i in range(len(list(reversed(self.OutputNodes)))):
+            self.OutputNodes[i].calcOutputError(self.AnswerSet[i])
         for i in range(len(list(reversed(self.HiddenNodes)))):
             for j in range(len(list(reversed(self.HiddenNodes))[i])):
                 (list(reversed(self.HiddenNodes))[i][j]).calcHiddenError()
@@ -314,31 +318,99 @@ class NN(object):
         '''Returns the values of the output nodes'''
         resultSet = []
         for i in range(len(self.OutputNodes)):
-            resultSet.append((((self.OutputNodes[i].getValue(
-            ) - 0.2) * (self.maxim - self.minim)) / (0.8 - 0.2)) + self.minim)
+            resultSet.append((((self.OutputNodes[i].getValue() - 0.2) *
+                               (self.maxim - self.minim)) / (0.8 - 0.2)) + self.minim)
         return resultSet
 
-    def ShouldBackprop(self):
-        '''Calculates the error of the output nodes and determines if the
-        results are within the threshold percentage.'''
-        backprop = False
+    def GetNNResultsUnscaled(self):
+        '''Returns the values of the output nodes unscaled'''
+        resultSet = []
         for i in range(len(self.OutputNodes)):
-            self.OutputNodes[i].calcOutputError(self.AnswerSet[i])
-            if self.OutputNodes[i].getError()**2 > self.Threshold * 0.00000001:
-                backprop = True
-        self.converged = backprop
-        return self.converged
+            resultSet.append(self.OutputNodes[i].getValue())
+        return resultSet
 
-    def GetNNOutputErrors(self):
-        '''Returns the list of errors for the output nodes.'''
-        errorSet = []
-        for i in range(len(self.OutputNodes)):
-            self.OutputNodes[i].calcOutputError(self.AnswerSet[i])
-            errorSet.append(self.OutputNodes[i].getError()**2)
-        return errorSet
+#    def ShouldBackprop(self, answers):
+#        '''Calculates the error of the output nodes and determines if the
+#        results are within the threshold percentage.'''
+#        backprop = False
+#        if (calcRelativeError(self, self.inputs, answers)):
+#            None
+#        # for i in range(len(self.OutputNodes)):
+#        #     self.OutputNodes[i].calcOutputError(self.AnswerSet[i])
+#        #     if 0.5 * sum(list(map(lambda i: (self.GetNNResults()[i] - answers[i])**2,
+#        #                           range(len(answers))))) > self.Threshold:
+#        #         backprop = True
+#        self.converged = backprop
+#        return self.converged
 
 
-def main(inputs, arrangement, outputs, answers, learnrate=0.5, threshold=1,
+########## Doesn't currently work nor is it relavent really... ###########
+#
+# def d(NNset, answers):
+#     '''Returns the list of errors for the output nodes.
+#     This is effectively the Sum of Squares Residuals'''
+#     if answers[0][0] < 1:
+#         NNTesting = list(
+#             map(lambda i: NNset[i].GetNNResultsUnscaled(), range(len(NNset))))
+#     else:
+#         NNTesting = list(
+#             map(lambda i: NNset[i].GetNNResults(), range(len(NNset))))
+#     errorValue = 0
+#     for i in range(len(NNTesting)):
+#         for j in range(len(NNTesting[i])):
+#             errorValue += (NNTesting[i][j] - answers[i][j])**2
+#     return errorValue
+#
+#
+# def SST(values, average):
+#     '''Sum of Squares Totals'''
+#     val = 0
+#     for i in range(len(values)):
+#         for j in range(len(values[i])):
+#             val += (values[i][j] - average)**2
+#     return val
+#
+#
+# def calcRSquared(NN, answers):
+#     '''Calculates an R^2 value for a NN and set of answers'''
+#     return (1 - (d([NN], answers)) / (SST(answers, sum(map(sum, answers)))))
+#
+##########################################################################
+
+def calcRelativeError(NN, inputs, answers):
+    '''Calculate the relative error in percent of the NN, given a set of inputs and answers'''
+    NNWorking = copy.deepcopy(NN)
+    count = 0
+    errorValue = 0
+    for i in range(len(inputs)):
+        NNWorking.SetStartingNodesValues(inputs[i])
+        NNWorking.CalculateNNOutputs()
+        if answers[0][0] < 1: # Check if it's been scaled. 
+            NNRes = NNWorking.GetNNResultsUnscaled()
+        else:
+            NNRes = NNWorking.GetNNResults()
+        for j in range(len(NNRes)):
+            errorValue += (abs(NNRes[j] - answers[i][j]) / answers[i][j])
+            count += 1
+    return errorValue / count
+
+def calcLeastSquaresError(NN, inputs, answers):
+    '''Calculate the Least Squares Regression of the NN, given a set of inputs and answers'''
+    NNWorking = copy.deepcopy(NN)
+    errorValue = 0
+    for i in range(len(inputs)):
+        NNWorking.SetStartingNodesValues(inputs[i])
+        NNWorking.CalculateNNOutputs()
+        if answers[0][0] < 1: # Check if it's been scaled.
+            NNRes = NNWorking.GetNNResultsUnscaled()
+        else:
+            NNRes = NNWorking.GetNNResults()
+        for j in range(len(NNRes)):
+            errorValue += (NNRes[j] - answers[i][j])**2
+    return errorValue
+
+
+def main(inputs, arrangement, outputs, answers, maxLoops, learnrate=0.5, threshold=1,
          momentum=0):
     '''Our Main Method that takes in the list of input vectors, the arrangement
     (topology), the list of output vectors, the list of answer vectors, the NN
@@ -347,7 +419,7 @@ def main(inputs, arrangement, outputs, answers, learnrate=0.5, threshold=1,
     Returns the NN that has been trained and is ready for testing.
     Testing code will be handled in the Handler File.'''
     global Bloops
-    Bloops = 100000
+    Bloops = maxLoops
     NNinstances = []
     OrigAnswers = copy.deepcopy(answers)
 
@@ -373,6 +445,9 @@ def main(inputs, arrangement, outputs, answers, learnrate=0.5, threshold=1,
         temp.SetAnswerSetValues(answers[i])
         NNinstances.append(temp)
 
+    f = open('NN.csv', 'w')
+    finalErrorMeasure = 0
+    errorMeasure = 0
     loops = 0
     while True:
         # Calculate the outputs of all instances.
@@ -380,10 +455,6 @@ def main(inputs, arrangement, outputs, answers, learnrate=0.5, threshold=1,
             NNinstances[i].CalculateNNOutputs()
         # Calculate the output layer's error and determine if the network needs
         # to backprop.
-        done = True
-        for i in range(len(NNinstances)):
-            if NNinstances[i].ShouldBackprop():
-                done = False
         # Merge all the weights from every instance and average the values,
         # then reset each NN to have these new Weights
         weightSet = []
@@ -399,17 +470,19 @@ def main(inputs, arrangement, outputs, answers, learnrate=0.5, threshold=1,
         # to backprop again.
         # If, at this point, neither test has failed and flipped done to false,
         # we have a valid Weight set for use as a solution.
-        for i in range(len(NNinstances)):
-            if NNinstances[i].ShouldBackprop():
-                done = False
-        # Make sure we have iterated at least 100 times before presenting our
-        # solution. Prevents us from being lucky.
-        if done and (loops >= 100):
+        # for i in range(len(NNinstances)):
+        if calcRelativeError(NNinstances[0], inputs, OrigAnswers) * 100 < threshold:
             break
+        else:
+            print("\rTraining: {:2.2%}".format(calcRelativeError(NNinstances[
+                  0], inputs, OrigAnswers)), "{:2.2%}   ".format(loops / Bloops), end="\r")
+            f.write('%f,' % calcRelativeError(
+                NNinstances[0], inputs, OrigAnswers))
+            f.write('\n')
         loops += 1
         # Gets us out of this loop if we have backproped more times than our
         # max number of loops: Bloops
-        if loops > (Bloops):
+        if loops >= (Bloops):
             break
         # If we reach this point, then the network needs to fully backprop and
         # update its errors and weights before recalculating its outputs.
@@ -419,14 +492,20 @@ def main(inputs, arrangement, outputs, answers, learnrate=0.5, threshold=1,
 
     # Select one of the finished NN's as they should all be the same and call
     # it your final NN.
+    f.close()
     finalNN = copy.deepcopy(NNinstances[0])
 
     # Test your original input vectors on the finalNN. Results should be
     # accurate...
+    print('Loops: %d' % loops, ' ' * 20)
+    # print("Error R^2: {:2.5%}".format(calcRSquared(finalNN, inputs,
+    # OrigAnswers)))
+    print("Error Relative: {:2.5%}".format(calcRelativeError(finalNN, inputs, OrigAnswers)))
+    print("Least Squares: %d" % calcLeastSquaresError(finalNN, inputs, OrigAnswers))
     for x in inputs:
         finalNN.SetStartingNodesValues(x)
         finalNN.CalculateNNOutputs()
-        print(loops, x, finalNN.GetNNResults(), OrigAnswers[inputs.index(x)])
+        print(x, finalNN.GetNNResults(), OrigAnswers[inputs.index(x)])
     print()
 
     # Ready to run tests on this NN
@@ -435,21 +514,6 @@ def main(inputs, arrangement, outputs, answers, learnrate=0.5, threshold=1,
 if __name__ == '__main__':
     print('Starting some NN training...\n')
 
-    # main([[2, 3]], [['S', 'S', 'S'], ['S', 'S']], ['S'], [[101]],
-    #     learnrate=0.3, threshold=5, momentum=0.3)
-    # main([[2, 3], [1, 3]], [['S', 'S', 'S'], ['S', 'S']], ['S'],
-    #     [[101], [400]], learnrate=0.3, threshold=5, momentum=0.3)
-    # for i in range(1):
-    main([[2, 3], [1, 3], [3, 3]], [['S', 'S', 'S'], ['S', 'S']], ['S'],
-        [[101], [400], [3604]], learnrate=0.3, threshold=10, momentum=0.3)
-    # main([[1], [2], [3], [4], [5]], [['S', 'S', 'S', 'S', 'S'],
-    #                                  ['S', 'S', 'S']],
-    #      ['S'], [[1], [4], [9], [16], [25]], learnrate=0.3, threshold=5,
-    #      momentum=0.3)
-    # main([[3], [9], [8], [2], [5], [3.9], [4.5], [1]], [['S', 'S', 'S'],
-    #                                                     ['S', 'S']],
-    #      ['S'], [[9], [81], [64], [4], [25], [15.21], [20.25], [1]],
-    #      learnrate=0.3, threshold=5, momentum=0.5)
-    # main([[3, 4], [2, 3], [4, 0], [1, 2], [2, 4], [2, 0], [2, 1], [3, 4]],
-    #      [[]], ['S'], [[2504], [101], [25609], [100], [1], [1601], [901],
-    #                    [2504]], learnrate=0.5, threshold=5, momentum=0.5)
+    for i in range(1):
+        main([[2, 3], [1, 3], [3, 3]], [['S', 'S', 'S'], ['S', 'S']], ['S'],
+             [[101], [400], [3604]], maxLoops=100000, learnrate=0.5, threshold=10, momentum=0.5)

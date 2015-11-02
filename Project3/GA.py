@@ -2,7 +2,7 @@
 
 """
 Author: 	Clint Cooper, Emily Rohrbough, Leah Thompson
-Date:   	10/25/15
+Date:   	11/01/15
 CSCI 447:	Project 3
 
 Code for training a Neural Network via a genetic algorithm - template for ES/DE
@@ -75,20 +75,21 @@ def tournament(population, participants, victors):
     return bracket[0:victors]
 
 
-def evaluate(NN, population, inputs, outputs):
+def evaluate(NNWorking, population, inputs, outputs):
     '''Tests each citizen in the population against a NN topology with inputs
     and outputs to generate an cumulitive fitness measurement, which should be
     minimized'''
     for citizen in population:
         citizen[-1] = 0
-        NN.SetNNWeights(citizen[:-1])  # Load weights into the NN
+        NNWorking.SetNNWeights(citizen[:-1])  # Load weights into the NN
         for i in range(len(inputs)):
-            NN.SetStartingNodesValues(inputs[i])  # Load inputs into NN
-            NN.CalculateNNOutputs()  # Run the NN once
+            NNWorking.SetStartingNodesValues(inputs[i])  # Load inputs into NN
+            NNWorking.CalculateNNOutputs()  # Run the NN once
             # Calculate the fitness value and let the citizen track it
-            citizen[-1] += sum(list(map(lambda x: (NN.GetNNResults()[x] -
-                                                   outputs[i][x])**2,
-                                        range(len(NN.GetNNResults())))))
+            # for j in range(len(NN.GetNNResults())):
+            #    citizen[-1] += ((outputs[i][j] - NN.GetNNResults()[j]))**2
+            citizen[-1] += NN.calcRelativeError(NNWorking,
+                                                inputs, outputs) / len(inputs)
 
 
 def printCitizen(citizen):
@@ -130,30 +131,30 @@ def heroFound(population, threshold):
     '''Takes a population and a test threshold and determines if a member of
     the population is actually a hero.'''
     global hero
-    if population[0][-1] < threshold * 0.01:
-        print('\nHero Found in Generation')
+    #print(population[0][-1], threshold)
+    if population[0][-1] * 100 < threshold:
+        #print('\nHero Found in Generation')
         hero = copy.deepcopy(population[0])
-        printCitizen(hero)
+        # printCitizen(hero)
         return True
     return False
 
 
-def train(mutate_func, inputs, outputs, size, participants, victors,
+def train(inputs, outputs, size, participants, victors,
           generations, threshold, cRate, mRate):
     '''The train method takes in a set of inputs and outputs which will be
     compared against a hardcoded NN topology. The size, participants, and
     victors are with regard to tournament selection and elitism selection
     techniques. Generations is the max number of generations allowed while
     threshold is the accuracy needed. cRate and mRate are the rate of
-    crossover and rate of mutation respectively. mutate_func is a reference to
-    a particular mutation function that will change depending on what type of
-    evolutionary learning technique is employed.'''
+    crossover and rate of mutation respectively. '''
     global hero
     global OrigAnswers
     EvaluationNN = create_net(inputs, outputs)
     population = generatePopulation(EvaluationNN, inputs, outputs, size)
     # Test each citizen and determine initial fitness
     evaluate(EvaluationNN, population, inputs, outputs)
+    f = open('GA.csv', 'w')
     gen = 0
     children = []
     # loop until a hero is found or we've reached max generations
@@ -164,7 +165,7 @@ def train(mutate_func, inputs, outputs, size, participants, victors,
         children = mate(parents, cRate)
         # Have the children experience the world (Mutate)
         for child in children:
-            mutate_func(child, mRate)
+            mutate(child, mRate)
         # Test each child's fitness
         evaluate(EvaluationNN, children, inputs, outputs)
         # We were to prolific, thus children must fight to the death via draft
@@ -179,25 +180,30 @@ def train(mutate_func, inputs, outputs, size, participants, victors,
         population = sorted(population + children,
                             key=itemgetter(-1))[:-victors]
         # Determine if a child is a hero (<threshold) and if so, return child
-        if heroFound(population, len(inputs) * threshold):
+        if heroFound(population, threshold):
             break
-        print("Training {:2.2%}".format(gen / generations), end="\r")
+        else:
+            print("Training: {:2.2%}".format(
+                population[0][-1]), "{:2.2%}     ".format(gen / generations), end="\r")
+            f.write('%f,' % population[0][-1])
+            f.write('\n')
         gen += 1
     # return best hero if max generations is met and hero hasn't been selected.
-    # hero = sorted(population, key=itemgetter(-1))[0]  # default to best in
-    # population if no hero steps forward
+    f.close()
     if hero == 0:
         gen -= 1
         hero = sorted(population, key=itemgetter(-1))[0]
     EvaluationNN.SetNNWeights(hero[:-1])  # Load hero into NN, prep for usage.
-    print()
 
     # Evaluate the hero on the inputs and outputs
-    print('Generations:', gen, 'Fitness (Sum r^2):', hero[-1])
+    print('Generations: %d' % gen, ' ' * 20)
+    print("Error Relative: {:2.5%}".format(NN.calcRelativeError(EvaluationNN, inputs, OrigAnswers)))
+    print("Least Squares: %d" % NN.calcLeastSquaresError(EvaluationNN, inputs, OrigAnswers))
     for x in inputs:
         EvaluationNN.SetStartingNodesValues(x)
         EvaluationNN.CalculateNNOutputs()
         print(x, EvaluationNN.GetNNResults(), OrigAnswers[inputs.index(x)])
+    print()
 
     return EvaluationNN
 
@@ -209,16 +215,12 @@ def main(inputs, outputs, size=20, participants=10, victors=5, generations=100,
     OrigAnswers = []
     global hero
     hero = 0
-    eval_nn = train(mutate, inputs, outputs, size, participants, victors,
+    eval_nn = train(inputs, outputs, size, participants, victors,
                     generations, threshold, cRate, mRate)
 
 if __name__ == '__main__':
-    print('Starting some GA training...')
-    # main([[2, 3]], [[101]], size=5, participants=3, victors=2,
-    #     generations=500, threshold=5)
-    # main([[2, 3], [1, 3]], [[101], [400]], size=9, participants=6, victors=3,
-    #     generations=100000, threshold=10, cRate=0.5, mRate=0.5)
+    print('Starting some GA training...\n')
     for i in range(1):
-        main([[2, 3], [1, 3], [3, 3]], [[101], [400], [3604]], size=20,
-             participants=10, victors=5, generations=100000, threshold=10,
+        main([[2, 3], [1, 3], [3, 3]], [[101], [400], [3604]], size=9,
+             participants=6, victors=3, generations=100000, threshold=10,
              cRate=0.5, mRate=0.5)

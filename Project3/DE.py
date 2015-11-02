@@ -2,7 +2,7 @@
 
 """
 Author: 	Clint Cooper, Emily Rohrbough, Leah Thompson
-Date:   	10/25/15
+Date:   	11/01/15
 CSCI 447:	Project 3
 
 Code for training a Neural Network via a differential evolution 
@@ -26,10 +26,10 @@ import random
 import numpy
 import copy
 from operator import itemgetter
-from operator import sub
 
 OrigAnswers = []
 hero = 0
+
 
 def crossover(donorV, trialV, cRate=.5):
     '''Binomial  Crossover: insures at least 1 element of the donor
@@ -40,7 +40,7 @@ def crossover(donorV, trialV, cRate=.5):
     indices = 0
     if(len(donorV) == len(trialV)):
         indices = len(donorV)
-    forwardIndex = random.randint(0, indices-1)
+    forwardIndex = random.randint(0, indices - 1)
     for i in range(indices):
         if random.random() < cRate and i != forwardIndex:
             offspringV.append(trialV[i])
@@ -49,7 +49,8 @@ def crossover(donorV, trialV, cRate=.5):
 
     return offspringV
 
-def mutate(population, i, cRate=.5): 
+
+def mutate(population, i, cRate=.5):
     '''Mutation based on population vector i. The entire population 
     is passed so two other distinct vectors can randomly be picked 
     for the difference vector.'''
@@ -61,17 +62,19 @@ def mutate(population, i, cRate=.5):
     same = 0
     while(same < 2):
         same = 0
-        j = random.randint(0, len(population)-1)
-        k = random.randint(0, len(population)-1)
+        j = random.randint(0, len(population) - 1)
+        k = random.randint(0, len(population) - 1)
         if j != i:
             same = same + 1
         if k != i and k != j:
             same = same + 1
 
     # trialV = population[i] - cRate*(population[j] - population[k])
-    trialV = list(map(lambda n: population[i][n] - cRate * (population[j][n] - population[k][n]),range(len(population[i]))))
+    trialV = list(map(lambda n: population[i][
+                  n] - cRate * (population[j][n] - population[k][n]), range(len(population[i]))))
 
     return trialV
+
 
 def train(inputs, outputs, size, generations, threshold, cRate, mRate):
     '''The train method creates a neural netwrok from the sets of 
@@ -91,57 +94,67 @@ def train(inputs, outputs, size, generations, threshold, cRate, mRate):
     # initialize population of size as random weights of NN
     population = GA.generatePopulation(EvaluationNN, inputs, outputs, size)
 
+    f = open('DE.csv', 'w')
     gen = 0
     trialV = []
     offspringV = []
     # loop until a hero is found or we've reached max generations
-    while gen <= generations: #and hero == 0:
+    while gen <= generations and hero == 0:
         # evaluate the entire population
         GA.evaluate(EvaluationNN, population, inputs, outputs)
 
         for i in range(size):
             # mutate with DE/x/1/bin
             trialV = mutate(population, i, mRate)
-            # perform binomial crossover 
+            # perform binomial crossover
             offspringV = crossover(population[i], trialV, cRate)
             # evaluation of offspring
             GA.evaluate(EvaluationNN, [offspringV], inputs, outputs)
             # selection of better vector
-            if population[i][-1]  > offspringV[-1]:
-               population[i] = offspringV
-
-        #check for hero in population
-        if GA.heroFound(population, len(inputs) * threshold):
+            if population[i][-1] > offspringV[-1]:
+                population[i] = offspringV
+        population = sorted(population, key=itemgetter(-1))
+        # check for hero in population
+        if GA.heroFound(population, threshold):
             break
-        print("Training {:2.2%}".format(gen / generations), end="\r")
+        else:
+            print("Training: {:2.2%}".format(population[0][-1]), "{:2.2%}     ".format(gen / generations), end="\r")
+            f.write('%f,' % population[0][-1])
+            f.write('\n')
         gen += 1
-
-    # get best vector from population
-    hero = sorted(population, key=itemgetter(-1))[0]
-    # Load hero into NN, prep for usage.
-    EvaluationNN.SetNNWeights(hero[:-1])  
-    print()
+    # return best hero if max generations is met and hero hasn't been selected.
+    # hero = sorted(population, key=itemgetter(-1))[0]  # default to best in
+    # population if no hero steps forward
+    f.close()
+    if hero == 0:
+        gen -= 1
+        hero = sorted(population, key=itemgetter(-1))[0]
+    EvaluationNN.SetNNWeights(hero[:-1])  # Load hero into NN, prep for usage.
 
     # Evaluate the hero on the inputs and outputs
-    print('Generations:', gen, 'Fitness (Sum r^2):', hero[-1])
+    print('Generations: %d' % gen, ' ' * 20)
+    print("Error Relative: {:2.5%}".format(NN.calcRelativeError(EvaluationNN, inputs, OrigAnswers)))
+    print("Least Squares: %d" % NN.calcLeastSquaresError(EvaluationNN, inputs, OrigAnswers))
     for x in inputs:
         EvaluationNN.SetStartingNodesValues(x)
         EvaluationNN.CalculateNNOutputs()
         print(x, EvaluationNN.GetNNResults(), OrigAnswers[inputs.index(x)])
+    print()
 
     return EvaluationNN
 
 
-def main(inputs, outputs, size=20, generations=100, threshold = 10,cRate=0.5, mRate=0.5):
+def main(inputs, outputs, size=20, generations=100, threshold=10, cRate=0.5, mRate=0.5):
 
-    eval_nn = train(inputs, outputs, size, generations, threshold, cRate, mRate)
+    global OrigAnswer
+    OrigAnswers = []
+    global hero
+    hero = 0
+    eval_nn = train(inputs, outputs, size, generations,
+                    threshold, cRate, mRate)
 
 if __name__ == '__main__':
-    print('Starting some DE training...')
-    # main([[2, 3]], [[101]], size=5, participants=3, victors=2,
-    #     generations=500, threshold=5)
-    # main([[2, 3], [1, 3]], [[101], [400]], size=9, participants=6, victors=3,
-    #     generations=100000, threshold=10, cRate=0.5, mRate=0.5)
-    main([[2, 3], [1, 3], [3, 3]], [[101], [400], [3604]], size=20, threshold=10, generations=100000, cRate=0.3, mRate=0.6)
-
-
+    print('Starting some DE training...\n')
+    for i in range(1):
+        main([[2, 3], [1, 3], [3, 3]], [[101], [400], [3604]], size=18,
+             threshold=10, generations=100000, cRate=0.5, mRate=0.5)
