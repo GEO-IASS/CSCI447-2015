@@ -1,0 +1,7 @@
+Attributes:
+class:(w,n)
+GLCM_pan:numeric
+Mean_Grean:numeric
+Mean_Red:numeric
+Mean_NIR:numeric
+SD_pan:numeric

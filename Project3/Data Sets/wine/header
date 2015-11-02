@@ -4,6 +4,7 @@ Creator: Stefan Aeberhard (stefan@coral.cs.jcu.edu.au)
 Donor: Riccardo Leardi (riclea@anchem.unige.it)
 Date: July, 1991
 Attributes:
+class:(1,2,3)
 Alcohol:numeric
 Malic Acid:numeric
 Ash:numeric
