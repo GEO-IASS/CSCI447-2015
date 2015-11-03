@@ -34,11 +34,16 @@ def train_test():
     inputs = dataIn[0]
     outputs = dataIn[1]
     testInput = []
+    testOutput = []
+    # Need 20% of inputs for testing
     for i in range((int(len(inputs)*0.8)+1), len(inputs)):
         testInput.append(inputs[i])
+        testOutput.append(outputs[i])
     for i in range((int(len(inputs)*0.8)+1), len(inputs)):
         del inputs[-1]
+        del outputs[-1]
 
+    # Which algorithm gets chosen to run
     if algo in 'G':
         resultsFile.write(testNN = GA.train(inputs, outputs, size, participants, 
                           victors, generations, threshold, cRate, mRate))
@@ -54,7 +59,12 @@ def train_test():
     else:
         print("Unrecognized algorithm!")
         sys.exit()
-    
+    # Print test input/expected output - could be made prettier in a table
+    resultsFile.write("Test inputs: ")
+    restulsFile.write(testInput)
+    resultsFile.write("Test expected outputs: ")
+    resultsFile.write(testOutput)
+    # Start testing testNN
     for x in testInput:
         resultsFile.write("Set starting node vals")
         resultsFile.write(testNN.SetStartingNodesValues(x))
@@ -62,7 +72,7 @@ def train_test():
         resultsFile.write(testNN.CalculateNNOutputs())
         resultsFile.write("Test Input: " + str(x))
         resultsFile.write("Test results: " + testNN.GetNNResults())
- 
+    resultsFile.write("Relative error, least squares error:")
     resultsFile.write(calcRelativeError(testNN, inputs, outputs))
     resultsFile.write(calcLeastSqauresError(testNN, inputs, outputs))
     close(resultsFile)
