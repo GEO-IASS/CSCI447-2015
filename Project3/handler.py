@@ -33,23 +33,36 @@ def train_test():
     dataIn = dataHandler()
     inputs = dataIn[0]
     outputs = dataIn[1]
+    testInput = []
+    for i in range((int(len(inputs)*0.8)+1), len(inputs)):
+        testInput.append(inputs[i])
+    for i in range((int(len(inputs)*0.8)+1), len(inputs)):
+        del inputs[-1]
 
     if algo in 'G':
-        resultsFile.write(testNN = GA.train(inputs, outputs, size, participants, victors, 
-                          generations, threshold, cRate, mRate))
+        resultsFile.write(testNN = GA.train(inputs, outputs, size, participants, 
+                          victors, generations, threshold, cRate, mRate))
     elif algo in 'E':
-        resultsFile.write(testNN = ES.train(inputs, outputs, size, participants, victors, 
-                          generations, threshold, cRate, mRate))
+        resultsFile.write(testNN = ES.train(inputs, outputs, size, participants, 
+                          victors, generations, threshold, cRate, mRate))
     elif algo in 'D':
-        resultsFile.write(testNN = DE.train(inputs, outputs, size, participants, victors, 
-                          generations, threshold, cRate, mRate))
+        resultsFile.write(testNN = DE.train(inputs, outputs, size, participants, 
+                          victors, generations, threshold, cRate, mRate))
     elif algo in 'B':
-        resultsFile.write(testNN = NN.train(inputs, outputs, size, participants, victors, 
-                          generations, threshold, cRate, mRate))
+        resultsFile.write(testNN = NN.train(inputs, outputs, size, participants, 
+                          victors, generations, threshold, cRate, mRate))
     else:
         print("Unrecognized algorithm!")
         sys.exit()
     
+    for x in testInput:
+        resultsFile.write("Set starting node vals")
+        resultsFile.write(testNN.SetStartingNodesValues(x))
+        resultsFile.write("Calculate NN Outputs")
+        resultsFile.write(testNN.CalculateNNOutputs())
+        resultsFile.write("Test Input: " + str(x))
+        resultsFile.write("Test results: " + testNN.GetNNResults())
+ 
     resultsFile.write(calcRelativeError(testNN, inputs, outputs))
     resultsFile.write(calcLeastSqauresError(testNN, inputs, outputs))
     close(resultsFile)
@@ -61,7 +74,6 @@ def evolve():
 
     for i in range(len(sys.argv)):
         if sys.argv[i] in '-h':
-            print("WHAT")
             printHelp()
             sys.exit()
         elif sys.argv[i] in '-m':
@@ -120,14 +132,10 @@ def dataHandler():
         temp = []
         del ins[i-(index+1)][0]
     del outs[0]
-    print(outs)
     for i in range(len(outs)):
-        print (i)
         outs[i][0] = int(outs[i][0])
         for j in range(len(ins[i])):
             ins[i][j] = float(ins[i][j])
-    print(ins)
-    print(outs)
     # need to parse input file for inputs and outputs    
     return ins, outs
 
