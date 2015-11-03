@@ -14,33 +14,50 @@ size = 20
 participants = 10
 victors = 5
 inFile = ""
-
+algo = ""
+dataset = ""
+resultsFile = ""
 
 def trainNtest():
-    global cRate, mRate, threshold, generations, size, participants, victors, inFile
+    global cRate, mRate, threshold, generations, size, participants, victors, inFile, algo, dataset, resultsFile
+    inputs = []
+    outputs = []
     evolve()
+    
+    restultsFile.write("DATASET: ", dataset)
+    resultsFile.write("ALGORITHM | Generations | Size | Participants | Victors | mRate | cRate | Threshold")
+    resultsFile.write("   ", algo, "      |     ", generations, "      |  ", 
+              size, "  |     ",participants, "       |    ", victors, 
+              "    |  ", mRate, "  |  ", cRate, "  |   ", threshold, "     ")
+
+    dataIn = dataHandler()
+    inputs = dataIn[0]
+    outputs = dataIn[1]
 
     if algo in 'G':
-        testNN = GA.train(inputs, outputs, size, participants, victors, 
-                          generations, threshold, cRate, mRate)
+        resultsFile.write(testNN = GA.train(inputs, outputs, size, participants, victors, 
+                          generations, threshold, cRate, mRate))
     elif algo in 'E':
-        testNN = ES.train(inputs, outputs, size, participants, victors, 
-                          generations, threshold, cRate, mRate)
+        resultsFile.write(testNN = ES.train(inputs, outputs, size, participants, victors, 
+                          generations, threshold, cRate, mRate))
     elif algo in 'D':
-        testNN = DE.train(inputs, outputs, size, participants, victors, 
-                          generations, threshold, cRate, mRate)
+        resultsFile.write(testNN = DE.train(inputs, outputs, size, participants, victors, 
+                          generations, threshold, cRate, mRate))
     elif algo in 'B':
-        testNN = NN.train(inputs, outputs, size, participants, victors, 
-                          generations, threshold, cRate, mRate)
+        resultsFile.write(testNN = NN.train(inputs, outputs, size, participants, victors, 
+                          generations, threshold, cRate, mRate))
     else:
         print("Unrecognized algorithm!")
         sys.exit()
     
-    calcRelativeError(testNN, inputs, outputs)
-    calcLeastSqauresError(testNN, inputs, outputs)
+    resultsFile.write(calcRelativeError(testNN, inputs, outputs))
+    resultsFile.write(calcLeastSqauresError(testNN, inputs, outputs))
+    close(resultsFile)
 
 def evolve():
-    global cRate, mRate, threshold, generations, size, participants, victors, inFile
+    global cRate, mRate, threshold, generations, size, participants, victors, inFile, algo, dataset, resultsFile
+    data = False
+    alg = False
 
     for i in range(len(sys.argv)):
         if sys.argv[i] in '-h':
@@ -62,10 +79,29 @@ def evolve():
             participants = sys.argv[i+1]
         elif sys.argv[i] in '-v':
             victors = sys.argv[i+1]
+        elif sys.argv[i] in '-d':
+            dataset = sys.argv[i+1]
+            data = True
+        elif sys.argv[i] in '-a':
+            algo = sys.argv[i+1]
+            alg = True
+        if alg is False or data is False:
+            print("Need more information! Either algorithm or dataset name.")
+            sys.exit()
+
+    results = algo + "-" + dataset + ".txt"
+    resultsFile = open(results,'w')
  
     if inFile in "":
         print("Need input file!")
         sys.exit()
+
+def dataHandler():
+    global inFile
+    ins = 0
+    outs = 0
+    # need to parse input file for inputs and outputs    
+    return ins, outs
 
 def printHelp():
     print ("USAGE: handler.py [OPTIONS]")
