@@ -18,17 +18,17 @@ algo = ""
 dataset = ""
 resultsFile = ""
 
-def trainNtest():
+def train_test():
     global cRate, mRate, threshold, generations, size, participants, victors, inFile, algo, dataset, resultsFile
     inputs = []
     outputs = []
     evolve()
     
-    restultsFile.write("DATASET: ", dataset)
+    resultsFile.write("DATASET: " + dataset)
     resultsFile.write("ALGORITHM | Generations | Size | Participants | Victors | mRate | cRate | Threshold")
-    resultsFile.write("   ", algo, "      |     ", generations, "      |  ", 
-              size, "  |     ",participants, "       |    ", victors, 
-              "    |  ", mRate, "  |  ", cRate, "  |   ", threshold, "     ")
+    resultsFile.write("   " + str(algo) + "      |     " + str(generations) + "      |  " +
+              str(size) + "  |     " + str(participants) + "       |    " + str(victors) + 
+              "    |  " + str(mRate) + "  |  " + str(cRate) + "  |   " + str(threshold) + "     ")
 
     dataIn = dataHandler()
     inputs = dataIn[0]
@@ -61,12 +61,13 @@ def evolve():
 
     for i in range(len(sys.argv)):
         if sys.argv[i] in '-h':
+            print("WHAT")
             printHelp()
             sys.exit()
         elif sys.argv[i] in '-m':
             mRate = sys.argv[i+1]
         elif sys.argv[i] in '-i':
-            infile = sys.argv[i+1]
+            inFile = sys.argv[i+1]
         elif sys.argv[i] in '-t':
             threshold = sys.argv[i+1]
         elif sys.argv[i] in '-c':
@@ -85,9 +86,9 @@ def evolve():
         elif sys.argv[i] in '-a':
             algo = sys.argv[i+1]
             alg = True
-        if alg is False or data is False:
-            print("Need more information! Either algorithm or dataset name.")
-            sys.exit()
+    if alg is False or data is False:
+        print("Need more information! Either algorithm or dataset name.")
+        sys.exit()
 
     results = algo + "-" + dataset + ".txt"
     resultsFile = open(results,'w')
@@ -98,8 +99,35 @@ def evolve():
 
 def dataHandler():
     global inFile
-    ins = 0
-    outs = 0
+    index = 0
+
+    with open(inFile, 'r') as f:
+        content = f.readlines()
+    for i in range(len(content)):
+        if '@DATA' in content[i]:
+            index = i
+    if index == 0:
+        print("Data needs @DATA section!")
+        sys.exit()
+
+    ins = []
+    outs = [[]]
+    temp = []
+    for i in range(index+1, len(content)):
+        ins.append(content[i].split())
+        temp.append(ins[i-(index+1)][0])
+        outs.append(temp)
+        temp = []
+        del ins[i-(index+1)][0]
+    del outs[0]
+    print(outs)
+    for i in range(len(outs)):
+        print (i)
+        outs[i][0] = int(outs[i][0])
+        for j in range(len(ins[i])):
+            ins[i][j] = float(ins[i][j])
+    print(ins)
+    print(outs)
     # need to parse input file for inputs and outputs    
     return ins, outs
 
@@ -117,4 +145,4 @@ def printHelp():
     print ("EXAMPLE CASE:")
     print ("handler.py -a G -c 0.5 -m 0.5 -t 5 -g 100000 -s 20 -v 5 -p 10 -i input.txt")
 
-
+train_test()
