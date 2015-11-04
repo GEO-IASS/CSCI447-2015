@@ -5,6 +5,7 @@ import ES
 import GA
 import DE
 import NN
+import random
 
 cRate = 0.5
 mRate = 0.5
@@ -37,19 +38,20 @@ def train_test():
     testOutput = []
     # Need 20% of inputs for testing
     for i in range((int(len(inputs)*0.8)+1), len(inputs)):
-        testInput.append(inputs[i])
-        testOutput.append(outputs[i])
-    for i in range((int(len(inputs)*0.8)+1), len(inputs)):
-        del inputs[-1]
-        del outputs[-1]
+        testInput.append(random.choice(inputs))
+        testOutput.append(outputs[inputs.index(testInput[i-((int(len(inputs)*0.8))+1)])])
 
     # Which algorithm gets chosen to run
     if algo in 'G':
+#        testNN = GA.train(inputs, outputs, size, participants, 
+#                          victors, generations, threshold, cRate, mRate)
         resultsFile.write(testNN = GA.train(inputs, outputs, size, participants, 
-                          victors, generations, threshold, cRate, mRate))
+                         victors, generations, threshold, cRate, mRate))
     elif algo in 'E':
-        resultsFile.write(testNN = ES.train(inputs, outputs, size, participants, 
-                          victors, generations, threshold, cRate, mRate))
+        testNN = ES.train(inputs, outputs, size, participants, 
+                          victors, generations, threshold, cRate, mRate)
+#        resultsFile.write(testNN = ES.train(inputs, outputs, size, participants, 
+#                          victors, generations, threshold, cRate, mRate))
     elif algo in 'D':
         resultsFile.write(testNN = DE.train(inputs, outputs, size, participants, 
                           victors, generations, threshold, cRate, mRate))
