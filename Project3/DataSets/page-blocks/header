@@ -1,0 +1,12 @@
+Attributes:
+height:numeric
+lenght:numeric
+area:numeric
+eccen:numeric
+p_black:numeric
+p_and:numeric
+mean_tr:numeric
+blackpix:numeric
+blackand:numeric
+wb_trans:numeric
+class:(1,2,3,4,5)

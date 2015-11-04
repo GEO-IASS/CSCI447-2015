@@ -37,7 +37,7 @@ use List::MoreUtils qw(firstidx);
 #	chop($folder); # Remove extra / at end of path
 #}
 #$folder =~ tr/\\//; # Remove user escaping spaces.
-my $folder = "wilt";
+my $folder = "car";
 my $newtxt = $folder;
 $folder = "DataSets/" . $folder;
 
@@ -70,7 +70,8 @@ foreach my $y (@lines[$split+1 .. $#lines]){
 	$y =~s/\'//g;
 
 	if (index(uc $y, 'STRING') != -1) {
-		print $output substr($y, 0, index($y, ":")) . "\n";
+		#print $output substr($y, 0, index($y, ":")) . "\n";
+		print $output $y;
 		push (@inputVector, 'S');
 		push (@collectionVectors, '-');
 	} elsif (index(uc $y, 'NUMERIC') != -1) {
@@ -80,7 +81,7 @@ foreach my $y (@lines[$split+1 .. $#lines]){
 	} elsif (index(uc $y, 'CLASS') != -1) {
 		$classCol = $classCounter;
 		chop($y);
-		print $output substr($y, index($y, ":") + 1, length $y) . "\n";
+		#print $output substr($y, index($y, ":") + 1, length $y) . "\n";
 		my $count = 0;
 		chop($y);
 		for my $el (split /,/, substr($y, index($y, ":")+2, length $y)) {
@@ -90,7 +91,7 @@ foreach my $y (@lines[$split+1 .. $#lines]){
 		}
 	} else { # This is if it is a set of strings...
 		my @temp;
-		print $output substr($y, 0, index($y, ":")) . "\n";
+		print $output substr($y, 0, index($y, ":"));
 		chop($y);
 		chop($y);
 		for my $el (split /,/, substr($y, index($y, "{")+1, length $y)) {
@@ -98,6 +99,8 @@ foreach my $y (@lines[$split+1 .. $#lines]){
 		}
 		push (@collectionVectors, \@temp);
 		push (@inputVector, 'C');
+
+		print $output ": " . join(",", @temp) . "\n";
 	}
 	$classCounter++;
 }
@@ -149,7 +152,7 @@ foreach my $r (@lines){
 				#} else {
 					#print $output (firstidx { $_ eq $el } @{$collectionVectors[$posCounter]}) . ',';
 				#}
-				push (@DInputs, (firstidx { $_ eq $el } @{$collectionVectors[$posCounter]}));
+				push (@DInputs, (firstidx { $_ eq $el } @{$collectionVectors[$posCounter]})+1);
 			} else {
 				# Others?
 			}
