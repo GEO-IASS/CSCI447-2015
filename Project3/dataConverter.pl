@@ -1,11 +1,11 @@
 #!/usr/bin/perl
 
 =for comment
-Machine Learning Assignment 3 COOP Converter
-Authors: Clint Cooper, Emily Rohrbough, Leah Thompson
+Machine Learning Assignment 3 txt Converter
+Authors: Clint txter, Emily Rohrbough, Leah Thompson
 Date: 11/01/15
 
-Takes header and data files to create an COOP file for use with our NN Testing
+Takes header and data files to create an txt file for use with our NN Testing
 
 ---Begin Header Format---
 Title: <String>
@@ -37,14 +37,14 @@ use List::MoreUtils qw(firstidx);
 #	chop($folder); # Remove extra / at end of path
 #}
 #$folder =~ tr/\\//; # Remove user escaping spaces.
-my $folder = "tic-tac-toe";
-my $newcoop = $folder;
-$folder = "Data Sets/" . $folder;
+my $folder = "wilt";
+my $newtxt = $folder;
+$folder = "DataSets/" . $folder;
 
 # Open files for reading and writing for this transaction
 open(my $header, '<', "$folder/header") or die "Unable to locate header file.";
 open(my $data, '<', "$folder/data") or die "Unable to locate data file.";
-open(my $output, '>', "Data Sets/$newcoop.coop") or die "Unable to write new coop file";
+open(my $output, '>', "DataSets/$newtxt.txt") or die "Unable to write new txt file";
 
 # Get lines from crafted header file
 my @lines;
@@ -54,10 +54,10 @@ while(<$header>){
 
 my $split = first_index { index($_, 'Attributes:') != -1} @lines;
 
-# Write relation line to new coop file based on folder name
+# Write relation line to new txt file based on folder name
 my $relation = substr($folder, index($folder, '/')+1, length $folder);
 
-# Write attributes to coop file from types in header file. Needs some more work for all types to be supported.
+# Write attributes to txt file from types in header file. Needs some more work for all types to be supported.
 print $output "\@ATTRIBUTES\n";
 
 my @inputVector;
@@ -104,9 +104,8 @@ foreach my $y (@lines[$split+1 .. $#lines]){
 
 print $output "\nInput: " . join(",", @inputVector) . "\n"; # This is the mask for inputs
 print $output "Output: " . join(",", @outputVector) . "\n"; # This is the mask for outputs
-print $output "ClassCol: " . $classCol . "\n";
 
-# Write data lines to coop file
+# Write data lines to txt file
 print $output "\n\@DATA\n";
 @lines = ();
 while (<$data>){
@@ -115,18 +114,20 @@ while (<$data>){
 foreach my $r (@lines){
 	my $posCounter = 0;
 	my $classFound = 0;
-	print $output "[";
+	my @DOutputs;
+	my @DInputs;
 	chop($r);
 	for my $el (split /,/, $r) {
 		#print $output '|>' . $el . '<|';
 		if ($posCounter == $classCol and $classFound == 0) {
-			if ($posCounter != 0) {
-				print $output "][";
-			}
-			print $output (firstidx { $_ eq $el } @outputVector);
-			if ($posCounter == 0) {
-				print $output "][";
-			}
+			#if ($posCounter != 0) {
+			#	print $output "][";
+			#}
+			#print $output (firstidx { $_ eq $el } @outputVector);
+			#if ($posCounter == 0) {
+			#	print $output "][";
+			#}
+			push (@DOutputs, (firstidx { $_ eq $el } @outputVector)+1);
 			$classFound = 1;
 			$posCounter--;
 		} else {
@@ -135,20 +136,29 @@ foreach my $r (@lines){
 			} elsif ($inputVector[$posCounter] eq '#') {
 				chomp($el);
 				if ($posCounter >= $#inputVector) {
-					print $output $el;
+					#print $output $el;
+					push (@DInputs, $el);
 				} else {
-					print $output $el . ',';
+					#print $output $el . ',';
+					push (@DInputs, $el);
 				}
 			} elsif ($inputVector[$posCounter] eq 'C') {
-				print $output @{$collectionVectors[$posCounter]};
-				print $output (firstidx { $_ eq $el } @{$collectionVectors[$posCounter]});
+				#print $output join("-", @{$collectionVectors[$posCounter]});
+				#if ($posCounter >= $#inputVector) {
+					#print $output (firstidx { $_ eq $el } @{$collectionVectors[$posCounter]});
+				#} else {
+					#print $output (firstidx { $_ eq $el } @{$collectionVectors[$posCounter]}) . ',';
+				#}
+				push (@DInputs, (firstidx { $_ eq $el } @{$collectionVectors[$posCounter]}));
 			} else {
 				# Others?
 			}
 		}
 		$posCounter++;
 	}
-	print $output "]\n";
+	#print $output "]\n";
+	#print $output "][" . join(",", @DOutputs) . "]\n";
+	print $output join(" ", @DOutputs) . " " . join(" ", @DInputs) . "\n";
 }
 
 # Close opened files
@@ -157,7 +167,7 @@ close $data;
 close $output;
 
 # Print finished confirmation
-print("Successfully created $folder/$newcoop.coop\n");
+print("Successfully created $folder/$newtxt.txt\n");
 	
 
 
