@@ -168,6 +168,8 @@ def printHelp():
     print ("-p <num>         set participants to num")
     print ("-o <num>         set number of outputs per input set")
     print ("-a <algo>        G(GA), E(ES), D(DE), or B(Backprop)")
+    print ("-d <name>        add name for dataset for output file: algo-name.txt")
+    print ("-i <dataFile>    enter the file for the dataset you want to test")
     print ("-h               print this help screen")
     print ("EXAMPLE CASE:")
     print ("handler.py -a G -c 0.5 -m 0.5 -t 5 -g 100000 -s 20 -v 5 -p 10 -i input.txt")
