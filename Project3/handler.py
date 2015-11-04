@@ -74,14 +74,14 @@ def train_test():
     for x in testInput:
         resultsFile.write("\nSet starting node vals\n")
         resultsFile.write("%s \n" % testNN.SetStartingNodesValues(x))
-        resultsFile.write("\nCalculate NN Outputs\n")
-        resultsFile.write("%s \n" % testNN.CalculateNNOutputs())
+        testNN.CalculateNNOutputs()
         resultsFile.write("\nTest Input: " + str(x) + "\n")
         resultsFile.write("\nTest results: %s\n" % testNN.GetNNResults())
     resultsFile.write("\nRelative Error: %s \n" % NN.calcRelativeError(testNN, inputs, outputs))
     resultsFile.write("\nLeast Squares Error %s \n" % NN.calcLeastSquaresError(testNN, inputs, outputs))
     resultsFile.close()
 
+# Set parameters via command line arguments
 def evolve():
     global cRate, mRate, num_outs, threshold, generations, size, participants, victors, inFile, algo, dataset, resultsFile
     data = False
