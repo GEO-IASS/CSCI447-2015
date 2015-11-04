@@ -36,28 +36,27 @@ def train_test():
     outputs = dataIn[1]
     testInput = []
     testOutput = []
+    learnrate = 0.5
+    momentum = 0.5
     # Need 20% of inputs for testing
     for i in range((int(len(inputs)*0.8)+1), len(inputs)):
         testInput.append(random.choice(inputs))
-        testOutput.append(outputs[inputs.index(testInput[i-((int(len(inputs)*0.8))+1)])])
+        testOutput.append(outputs[inputs.index(
+                                    testInput[i-((int(len(inputs)*0.8))+1)])])
 
     # Which algorithm gets chosen to run
     if algo in 'G':
-#        testNN = GA.train(inputs, outputs, size, participants, 
-#                          victors, generations, threshold, cRate, mRate)
         resultsFile.write(testNN = GA.train(inputs, outputs, size, participants, 
                          victors, generations, threshold, cRate, mRate))
     elif algo in 'E':
-        testNN = ES.train(inputs, outputs, size, participants, 
-                          victors, generations, threshold, cRate, mRate)
-#        resultsFile.write(testNN = ES.train(inputs, outputs, size, participants, 
-#                          victors, generations, threshold, cRate, mRate))
+        resultsFile.write(testNN = ES.train(inputs, outputs, size, participants, 
+                          victors, generations, threshold, cRate, mRate))
     elif algo in 'D':
         resultsFile.write(testNN = DE.train(inputs, outputs, size, participants, 
                           victors, generations, threshold, cRate, mRate))
     elif algo in 'B':
-        resultsFile.write(testNN = NN.train(inputs, outputs, size, participants, 
-                          victors, generations, threshold, cRate, mRate))
+        resultsFile.write(testNN = NN.main(inputs, [['S','S','S'], ['S','S']], 
+          ['S'], outputs, generations, learnrate, threshold, momentum))
     else:
         print("Unrecognized algorithm!")
         sys.exit()
