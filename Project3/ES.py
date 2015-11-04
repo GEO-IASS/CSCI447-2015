@@ -19,11 +19,10 @@ import math
 OrigAnswers = []
 hero = 0
 
-
-def init_pop(es_net, inputs, outputs, sz):
+def init_pop(es_net, inputs, outputs, size):
     '''ES citizens have 2 vectors: x = reals, sigma = strategies <x, sigma'''
     pop = []
-    pop = GA.generatePopulation(es_net, inputs, outputs, sz)
+    pop = GA.generatePopulation(es_net, inputs, outputs, size)
     for i in range(len(pop)):
         del pop[i][-1]
         for j in range(len(pop[i])):
@@ -42,8 +41,9 @@ def gauss():
     #        w = math.sqrt((-2.0*numpy.log(w))/w)
     return numpy.random.normal(0, 1)  # (mu_2*w)
 
-
+# mutate the real-values
 def mutate_vec(child):
+    '''Mutate the real valued vector bassed off of strategy params'''
     length = int((len(child) - 1) / 2)
     for i in range(length):
         child[i] = (child[i] + child[length + i] * gauss())
@@ -61,9 +61,12 @@ def mutate_strat(child):
 
 
 def mutate(child, mRate):
-    mutate_vec(child)
-    mutate_strat(child)
-
+    '''This just mutates.'''
+    length = int((len(child) - 1)/2)
+    for i in range(length):
+        if random.random() < mRate:
+            mutate_vec(child)
+            mutate_strat(child)
 
 def train(inputs, outputs, size, participants, victors, generations, threshold, cRate, mRate):
     global hero
