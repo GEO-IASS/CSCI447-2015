@@ -31,13 +31,12 @@ use List::MoreUtils qw(firstidx);
 
 #print "Please enter folder to scan: ";
 #my $folder = <>;
-#my @alphabet = ('a','b','c','d','e','f','g','h','i','j');
 #chomp($folder);
 #if ((substr $folder, -1) eq '/'){
 #	chop($folder); # Remove extra / at end of path
 #}
 #$folder =~ tr/\\//; # Remove user escaping spaces.
-my $folder = "car";
+my $folder = "indian-liver-patient";
 my $newtxt = $folder;
 $folder = "DataSets/" . $folder;
 
