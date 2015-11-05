@@ -380,6 +380,8 @@ class NN(object):
 def calcRelativeError(NN, inputs, answers):
     '''Calculate the relative error in percent of the NN, given a set of inputs and answers'''
     NNWorking = copy.deepcopy(NN)
+    #StartingWeights = NN.GetNNWeights()
+    #NNWorking = NN
     count = 0
     errorValue = 0
     for i in range(len(inputs)):
@@ -392,6 +394,7 @@ def calcRelativeError(NN, inputs, answers):
         for j in range(len(NNRes)):
             errorValue += (abs(NNRes[j] - answers[i][j]) / answers[i][j])
             count += 1
+    #NN.SetNNWeights(StartingWeights)
     return errorValue / count
 
 def calcLeastSquaresError(NN, inputs, answers):
@@ -411,7 +414,7 @@ def calcLeastSquaresError(NN, inputs, answers):
 
 
 def main(inputs, arrangement, outputs, answers, maxLoops, learnrate=0.5, threshold=1,
-         momentum=0):
+         momentum=0, print=False):
     '''Our Main Method that takes in the list of input vectors, the arrangement
     (topology), the list of output vectors, the list of answer vectors, the NN
     Learning Rate (learnrate), the threshold percentage (threshold), and the
@@ -445,7 +448,7 @@ def main(inputs, arrangement, outputs, answers, maxLoops, learnrate=0.5, thresho
         temp.SetAnswerSetValues(answers[i])
         NNinstances.append(temp)
 
-    f = open('NN.csv', 'w')
+    if print: f = open('NN.csv', 'w')
     finalErrorMeasure = 0
     errorMeasure = 0
     loops = 0
@@ -474,11 +477,13 @@ def main(inputs, arrangement, outputs, answers, maxLoops, learnrate=0.5, thresho
         if calcRelativeError(NNinstances[0], inputs, OrigAnswers) * 100 < threshold:
             break
         else:
+            #NNinstances[0].PrintStatus()
             print("\rTraining: {:2.2%}".format(calcRelativeError(NNinstances[
                   0], inputs, OrigAnswers)), "{:2.2%}   ".format(loops / Bloops), end="\r")
-            f.write('%f,' % calcRelativeError(
+            #NNinstances[0].PrintStatus()
+            if print: f.write('%f,' % calcRelativeError(
                 NNinstances[0], inputs, OrigAnswers))
-            f.write('\n')
+            if print: f.write('\n')
         loops += 1
         # Gets us out of this loop if we have backproped more times than our
         # max number of loops: Bloops
@@ -492,7 +497,7 @@ def main(inputs, arrangement, outputs, answers, maxLoops, learnrate=0.5, thresho
 
     # Select one of the finished NN's as they should all be the same and call
     # it your final NN.
-    f.close()
+    if print: f.close()
     finalNN = copy.deepcopy(NNinstances[0])
 
     # Test your original input vectors on the finalNN. Results should be
@@ -516,4 +521,4 @@ if __name__ == '__main__':
 
     for i in range(1):
         main([[2, 3], [1, 3], [3, 3]], [['S', 'S', 'S'], ['S', 'S']], ['S'],
-             [[101], [400], [3604]], maxLoops=100000, learnrate=0.5, threshold=10, momentum=0.5)
+             [[101], [400], [3604]], maxLoops=100000, learnrate=0.5, threshold=10, momentum=0.5, print=False)

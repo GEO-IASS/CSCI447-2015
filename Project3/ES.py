@@ -68,7 +68,7 @@ def mutate(child, mRate):
             mutate_vec(child)
             mutate_strat(child)
 
-def train(inputs, outputs, size, participants, victors, generations, threshold, cRate, mRate):
+def train(inputs, outputs, size, participants, victors, generations, threshold, cRate, mRate, print=False):
     global hero
     global OrigAnswers
     OrigAnswers = copy.deepcopy(outputs)
@@ -77,7 +77,7 @@ def train(inputs, outputs, size, participants, victors, generations, threshold, 
     # Test each citizen and determine initial fitness
     GA.evaluate(EvaluationNN, population, inputs, outputs)
 
-    f = open('ES.csv', 'w')
+    if print: f = open('ES.csv', 'w')
     gen = 0
     children = []
     # loop until a hero is found or we've reached max generations
@@ -99,10 +99,10 @@ def train(inputs, outputs, size, participants, victors, generations, threshold, 
         else:
             print("Training: {:2.2%}".format(
                 population[0][-1]), "{:2.2%}     ".format(gen / generations), end="\r")
-            f.write('%f,' % population[0][-1])
-            f.write('\n')
+            if print: f.write('%f,' % population[0][-1])
+            if print: f.write('\n')
         gen += 1
-    f.close()
+    if print: f.close()
     if hero == 0:
         gen -= 1
         hero = sorted(population, key=itemgetter(-1))[0]
@@ -120,7 +120,7 @@ def train(inputs, outputs, size, participants, victors, generations, threshold, 
 
 
 def main(inputs, outputs, size=20, members=10, victors=5, generations=100,
-         threshold=5, cRate=0.2, mRate=0.2):
+         threshold=5, cRate=0.2, mRate=0.2, print=False):
     global OrigAnswer
     OrigAnswers = []
     global hero
@@ -132,4 +132,4 @@ def main(inputs, outputs, size=20, members=10, victors=5, generations=100,
 if __name__ == '__main__':
     print('Starting some ES training...\n')
     main([[2, 3], [1, 3], [3, 3]], [[101], [400], [3604]], size=9,
-         members=6, victors=3, generations=100000, threshold=10, cRate=0.5, mRate=0.5)
+         members=6, victors=3, generations=100000, threshold=10, cRate=0.5, mRate=0.5, print=False)
