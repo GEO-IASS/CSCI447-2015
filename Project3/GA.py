@@ -141,7 +141,7 @@ def heroFound(population, threshold):
 
 
 def train(inputs, outputs, size, participants, victors,
-          generations, threshold, cRate, mRate, print=False):
+          generations, threshold, cRate, mRate, printFile=False):
     '''The train method takes in a set of inputs and outputs which will be
     compared against a hardcoded NN topology. The size, participants, and
     victors are with regard to tournament selection and elitism selection
@@ -154,7 +154,7 @@ def train(inputs, outputs, size, participants, victors,
     population = generatePopulation(EvaluationNN, inputs, outputs, size)
     # Test each citizen and determine initial fitness
     evaluate(EvaluationNN, population, inputs, outputs)
-    if print: f = open('GA.csv', 'w')
+    if printFile: f = open('GA.csv', 'w')
     gen = 0
     children = []
     # loop until a hero is found or we've reached max generations
@@ -185,11 +185,11 @@ def train(inputs, outputs, size, participants, victors,
         else:
             print("Training: {:2.2%}".format(
                 population[0][-1]), "{:2.2%}     ".format(gen / generations), end="\r")
-            if print: f.write('%f,' % population[0][-1])
-            if print: f.write('\n')
+            if printFile: f.write('%f,' % population[0][-1])
+            if printFile: f.write('\n')
         gen += 1
     # return best hero if max generations is met and hero hasn't been selected.
-    if print: f.close()
+    if printFile: f.close()
     if hero == 0:
         gen -= 1
         hero = sorted(population, key=itemgetter(-1))[0]
@@ -209,7 +209,7 @@ def train(inputs, outputs, size, participants, victors,
 
 
 def main(inputs, outputs, size=20, participants=10, victors=5, generations=100,
-         threshold=5, cRate=0.2, mRate=0.2, print=False):
+         threshold=5, cRate=0.2, mRate=0.2, printFile=False):
 
     global OrigAnswer
     OrigAnswers = []
@@ -221,6 +221,7 @@ def main(inputs, outputs, size=20, participants=10, victors=5, generations=100,
 if __name__ == '__main__':
     print('Starting some GA training...\n')
     for i in range(1):
-        main([[2, 3], [1, 3], [3, 3]], [[101], [400], [3604]], size=9,
-             participants=6, victors=3, generations=100000, threshold=10,
-             cRate=0.5, mRate=0.5, print=False)
+        #main([[2, 3], [1, 3], [3, 3]], [[101], [400], [3604]], size=20,
+        #     participants=10, victors=5, generations=100000, threshold=5,
+        #     cRate=0.25, mRate=0.75, printFile=False)
+        main([[1,1,1,1], [1,0,1,0], [0,0,1,1]], [[2],[1],[1]], size=20, participants=10, victors=5, generations=100000, threshold=5, cRate=0.75, mRate=0.25, printFile=False)

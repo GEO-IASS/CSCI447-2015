@@ -76,7 +76,7 @@ def mutate(population, i, cRate=.5):
     return trialV
 
 
-def train(inputs, outputs, size, generations, threshold, cRate, mRate, print=False):
+def train(inputs, outputs, size, generations, threshold, cRate, mRate, printFile=False):
     '''The train method creates a neural netwrok from the sets of 
     inputs and outputs. A population vector of size, is initialized 
     with ranodm weight vectors associated with the weights between 
@@ -94,7 +94,7 @@ def train(inputs, outputs, size, generations, threshold, cRate, mRate, print=Fal
     # initialize population of size as random weights of NN
     population = GA.generatePopulation(EvaluationNN, inputs, outputs, size)
 
-    if print: f = open('DE.csv', 'w')
+    if printFile: f = open('DE.csv', 'w')
     gen = 0
     trialV = []
     offspringV = []
@@ -119,14 +119,15 @@ def train(inputs, outputs, size, generations, threshold, cRate, mRate, print=Fal
         if GA.heroFound(population, threshold):
             break
         else:
-            print("Training: {:2.2%}".format(population[0][-1]), "{:2.2%}     ".format(gen / generations), end="\r")
-            if print: f.write('%f,' % population[0][-1])
-            if print: f.write('\n')
+            print("Training: {:2.2%}".format(
+                population[0][-1]), "{:2.2%}     ".format(gen / generations), end="\r")
+            if printFile: f.write('%f,' % population[0][-1])
+            if printFile: f.write('\n')
         gen += 1
     # return best hero if max generations is met and hero hasn't been selected.
     # hero = sorted(population, key=itemgetter(-1))[0]  # default to best in
     # population if no hero steps forward
-    if print: f.close()
+    if printFile: f.close()
     if hero == 0:
         gen -= 1
         hero = sorted(population, key=itemgetter(-1))[0]
@@ -145,7 +146,7 @@ def train(inputs, outputs, size, generations, threshold, cRate, mRate, print=Fal
     return EvaluationNN
 
 
-def main(inputs, outputs, size=20, generations=100, threshold=10, cRate=0.5, mRate=0.5, print=False):
+def main(inputs, outputs, size=20, generations=100, threshold=10, cRate=0.5, mRate=0.5, printFile=False):
 
     global OrigAnswer
     OrigAnswers = []
@@ -157,5 +158,5 @@ def main(inputs, outputs, size=20, generations=100, threshold=10, cRate=0.5, mRa
 if __name__ == '__main__':
     print('Starting some DE training...\n')
     for i in range(1):
-        main([[2, 3], [1, 3], [3, 3]], [[101], [400], [3604]], size=50,
-             threshold=10, generations=10000, cRate=0.5, mRate=0.5, print=False)
+        main([[2, 3], [1, 3], [3, 3]], [[101], [400], [3604]], size=20,
+             threshold=5, generations=10000, cRate=0.4, mRate=0.6, printFile=False)

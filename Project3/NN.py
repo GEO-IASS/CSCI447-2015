@@ -321,7 +321,7 @@ class NN(object):
             resultSet.append((((self.OutputNodes[i].getValue() - 0.2) *
                                (self.maxim - self.minim)) / (0.8 - 0.2)) + self.minim)
         return resultSet
-
+        
     def GetNNResultsUnscaled(self):
         '''Returns the values of the output nodes unscaled'''
         resultSet = []
@@ -414,7 +414,7 @@ def calcLeastSquaresError(NN, inputs, answers):
 
 
 def main(inputs, arrangement, outputs, answers, maxLoops, learnrate=0.5, threshold=1,
-         momentum=0, print=False):
+         momentum=0, printFile=False):
     '''Our Main Method that takes in the list of input vectors, the arrangement
     (topology), the list of output vectors, the list of answer vectors, the NN
     Learning Rate (learnrate), the threshold percentage (threshold), and the
@@ -448,7 +448,7 @@ def main(inputs, arrangement, outputs, answers, maxLoops, learnrate=0.5, thresho
         temp.SetAnswerSetValues(answers[i])
         NNinstances.append(temp)
 
-    if print: f = open('NN.csv', 'w')
+    if printFile: f = open('NN.csv', 'w')
     finalErrorMeasure = 0
     errorMeasure = 0
     loops = 0
@@ -481,9 +481,9 @@ def main(inputs, arrangement, outputs, answers, maxLoops, learnrate=0.5, thresho
             print("\rTraining: {:2.2%}".format(calcRelativeError(NNinstances[
                   0], inputs, OrigAnswers)), "{:2.2%}   ".format(loops / Bloops), end="\r")
             #NNinstances[0].PrintStatus()
-            if print: f.write('%f,' % calcRelativeError(
+            if printFile: f.write('%f,' % calcRelativeError(
                 NNinstances[0], inputs, OrigAnswers))
-            if print: f.write('\n')
+            if printFile: f.write('\n')
         loops += 1
         # Gets us out of this loop if we have backproped more times than our
         # max number of loops: Bloops
@@ -497,7 +497,7 @@ def main(inputs, arrangement, outputs, answers, maxLoops, learnrate=0.5, thresho
 
     # Select one of the finished NN's as they should all be the same and call
     # it your final NN.
-    if print: f.close()
+    if printFile: f.close()
     finalNN = copy.deepcopy(NNinstances[0])
 
     # Test your original input vectors on the finalNN. Results should be
@@ -521,4 +521,4 @@ if __name__ == '__main__':
 
     for i in range(1):
         main([[2, 3], [1, 3], [3, 3]], [['S', 'S', 'S'], ['S', 'S']], ['S'],
-             [[101], [400], [3604]], maxLoops=100000, learnrate=0.5, threshold=10, momentum=0.5, print=False)
+             [[101], [400], [3604]], maxLoops=100000, learnrate=0.3, threshold=5, momentum=0.5, printFile=False)
