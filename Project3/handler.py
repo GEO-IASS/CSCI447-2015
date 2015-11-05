@@ -84,9 +84,10 @@ def train_test():
         testNN.CalculateNNOutputs()
         resultsFile.write("\nTest Input: " + str(x) + "\n")
         resultsFile.write("\nTest results: %s\n" % testNN.GetNNResults())
-    resultsFile.write("\nRelative Error: %s \n" % NN.calcRelativeError(testNN, inputs, outputs))
-    resultsFile.write("\nLeast Squares Error: %s \n" % NN.calcLeastSquaresError(testNN, inputs, outputs))
-    resultsFile.write("\nLoss Squared Error: %s \n" % NN.calcLossSquared(testNN, inputs, outputs))
+    resultsFile.write("\nRelative Error: {:2.2%} \n".format(NN.calcRelativeError(testNN, testInput, testOutput)))
+    resultsFile.write("\nLeast Squares Error: %s \n" % NN.calcLeastSquaresError(testNN, testInput, testOutput))
+    resultsFile.write("\nLoss Squared Error: %s \n" % NN.calcLossSquared(testNN, testInput, testOutput))
+    resultsFile.write("\nPercent Misidentified: %s \n" % NN.calcPercentIncorrect(testNN, testInput, testOutput))
     resultsFile.close()
 
 # Set parameters via command line arguments

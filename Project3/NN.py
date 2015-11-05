@@ -20,7 +20,7 @@ The returned structure is a NN that has been trained.
 import math
 import random
 from numpy import transpose
-from scipy.special import expit
+#from scipy.special import expit
 import copy
 
 
@@ -102,7 +102,8 @@ class node(object):
         if self.func == 'S':  # Sigmoid Function
             for x in self.inputs:
                 summa += x.getValue() * self.weights[self.inputs.index(x)]
-            self.value = expit(summa)
+            #self.value = expit(summa)
+            self.value = 1 / (1 + math.exp(-summa))
         elif self.func == 'B':  # Bias Node Function
             self.value = 1
         else:
@@ -440,6 +441,20 @@ def calcLossSquared(NN, inputs, answers):
             count += 1
     return errorValue / count
 
+def calcPercentIncorrect(NN, inputs, answers):
+    NNWorking = copy.deepcopy(NN)
+    errorValue = 0
+    count = 0
+    for i in range(len(inputs)):
+        NNWorking.SetStartingNodesValues(inputs[i])
+        NNWorking.CalculateNNOutputs()
+        NNRes = NNWorking.GetNNResultsInt()
+        for j in range(len(NNRes)):
+            if NNRes[j] != round_int(answers[i][j]):
+                errorValue += 1
+            count += 1
+    return errorValue / count
+
 
 def main(inputs, arrangement, outputs, answers, maxLoops, learnrate=0.5, threshold=1,
          momentum=0, printFile=False):
@@ -536,6 +551,7 @@ def main(inputs, arrangement, outputs, answers, maxLoops, learnrate=0.5, thresho
     print("Error Relative: {:2.5%}".format(calcRelativeError(finalNN, inputs, OrigAnswers)))
     print("Least Squares: %d" % calcLeastSquaresError(finalNN, inputs, OrigAnswers))
     print("Loss Squared: %f" % calcLossSquared(finalNN, inputs, OrigAnswers))
+    print("Percent Error: {:2.2%}".format(calcPercentIncorrect(finalNN, inputs, OrigAnswers)))
     for x in inputs:
         finalNN.SetStartingNodesValues(x)
         finalNN.CalculateNNOutputs()
@@ -551,5 +567,5 @@ if __name__ == '__main__':
     for i in range(1):
         #main([[2, 3], [1, 3], [3, 3]], [['S', 'S', 'S'], ['S', 'S']], ['S'],
         #     [[101], [400], [3604]], maxLoops=100000, learnrate=0.3, threshold=5, momentum=0.5, printFile=False)
-        main([[1,1,1,1], [1,0,1,0], [0,0,1,1]], [['S', 'S', 'S'], ['S', 'S']], ['S'], [[2], [1], [1]], maxLoops=1000, 
-            learnrate=0.3, threshold=10, momentum=0.5, printFile=False)
+        main([[1,1,1,1], [1,0,1,0], [0,0,1,1]], [['S', 'S', 'S'], ['S', 'S']], ['S'], [[2], [1], [1]], maxLoops=10000, 
+            learnrate=0.3, threshold=20, momentum=0.5, printFile=False)
