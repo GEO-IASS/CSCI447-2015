@@ -9,8 +9,8 @@ import random
 
 cRate = 0.5
 mRate = 0.5
-threshold = 10
-generations = 10000
+threshold = 5
+generations = 1000
 num_outs = 1
 size = 20
 participants = 10
@@ -27,23 +27,25 @@ def train_test():
     evolve()
     
     resultsFile.write("DATASET: " + dataset + "\n")
-    resultsFile.write("ALGORITHM | Generations | Size | Participants | Victors | mRate | cRate | Threshold \n")
-    resultsFile.write("   " + str(algo) + "      |     " + str(generations) + "      |  " +
-              str(size) + "  |     " + str(participants) + "       |    " + str(victors) + 
-              "    |  " + str(mRate) + "  |  " + str(cRate) + "  |   " + str(threshold) + "     \n")
+    #resultsFile.write("ALGORITHM | Generations | Size | Participants | Victors | mRate | cRate | Threshold \n")
+    #resultsFile.write("   " + str(algo) + "      |     " + str(generations) + "      |  " +
+    #          str(size) + "  |     " + str(participants) + "       |    " + str(victors) + 
+    #          "    |  " + str(mRate) + "  |  " + str(cRate) + "  |   " + str(threshold) + "     \n")
 
     dataIn = dataHandler()
     inputs = dataIn[0]
     outputs = dataIn[1]
     testInput = []
     testOutput = []
-    learnrate = 0.5
+    learnrate = 0.3
     momentum = 0.5
     # Need 20% of inputs for testing
     for i in range((int(len(inputs)*0.8)+1), len(inputs)):
         x = random.choice(inputs)
         testInput.append(x)
         testOutput.append(outputs[inputs.index(x)])
+        del outputs[inputs.index(x)]
+        del inputs[inputs.index(x)]
     resultsFile.write("\nTest inputs: \n")
     for i in range(len(testInput)):
         resultsFile.write("%s " % testInput[i])
@@ -52,20 +54,25 @@ def train_test():
         resultsFile.write("%s " % testOutput[i])
     # Which algorithm gets chosen to run
     if algo in 'G':
-        print("DOING GA TRAINING")
-        testNN = GA.train(inputs, outputs, size, participants, 
-                         victors, generations, threshold, cRate, mRate)
+        print("DOING GA TRAINING...")
+        resultsFile.write("ALGORITHM | Generations | Size | Participants | Victors | mRate | cRate | Threshold \n")
+        resultsFile.write("   " + str(algo) + "      |     " + str(generations) + "      |  " + str(size) + "  |     " + str(participants) + "       |    " + str(victors) + "    |  " + str(mRate) + "  |  " + str(cRate) + "  |   " + str(threshold) + "     \n")
+        testNN = GA.train(inputs, outputs, size, participants, victors, generations, threshold, cRate, mRate)
     elif algo in 'E':
-        print("DOING ES TRAINING")
-        testNN = ES.train(inputs, outputs, size, participants, 
-                          victors, generations, threshold, cRate, mRate)
+        print("DOING ES TRAINING...")
+        resultsFile.write("ALGORITHM | Generations | Size | Participants | Victors | mRate | cRate | Threshold \n")
+        resultsFile.write("   " + str(algo) + "      |     " + str(generations) + "      |  " + str(size) + "  |     " + str(participants) + "       |    " + str(victors) + "    |  " + str(mRate) + "  |  " + str(cRate) + "  |   " + str(threshold) + "     \n")
+        testNN = ES.train(inputs, outputs, size, participants, victors, generations, threshold, cRate, mRate)
     elif algo in 'D':
-        print("DOING DE TRAINING")
-        testNN = DE.train(inputs, outputs, size, generations, threshold, 
-                                                                cRate, mRate)
+        print("DOING DE TRAINING...")
+        resultsFile.write("ALGORITHM | Generations | Size | mRate | cRate | Threshold \n")
+        resultsFile.write("   " + str(algo) + "      |     " + str(generations) + "      |  " +  str(size) + "    |  " + str(mRate) + "  |  " + str(cRate) + "  |   " + str(threshold) + "     \n")
+        testNN = DE.train(inputs, outputs, size, generations, threshold, cRate, mRate)
     elif algo in 'B':
-        testNN = NN.main(inputs, [['S','S','S'], ['S','S']], 
-          ['S'], outputs, generations, learnrate, threshold, momentum)
+        print("DOING BP TRAINING...")
+        resultsFile.write("ALGORITHM | Generations | learnrate | momentum | Threshold \n")
+        resultsFile.write("   " + str(algo) + "      |     " + str(generations) + "      |  " + str(learnrate) + "  |  " + str(momentum) + "  |   " + str(threshold) + "     \n")
+        testNN = NN.main(inputs, [['S','S','S'], ['S','S']], ['S'], outputs, generations, learnrate, threshold, momentum)
     else:
         print("Unrecognized algorithm!")
         sys.exit()
@@ -78,7 +85,8 @@ def train_test():
         resultsFile.write("\nTest Input: " + str(x) + "\n")
         resultsFile.write("\nTest results: %s\n" % testNN.GetNNResults())
     resultsFile.write("\nRelative Error: %s \n" % NN.calcRelativeError(testNN, inputs, outputs))
-    resultsFile.write("\nLeast Squares Error %s \n" % NN.calcLeastSquaresError(testNN, inputs, outputs))
+    resultsFile.write("\nLeast Squares Error: %s \n" % NN.calcLeastSquaresError(testNN, inputs, outputs))
+    resultsFile.write("\nLoss Squared Error: %s \n" % NN.calcLossSquared(testNN, inputs, outputs))
     resultsFile.close()
 
 # Set parameters via command line arguments
@@ -116,6 +124,7 @@ def evolve():
             algo = sys.argv[i+1]
             alg = True
     if alg is False or data is False:
+        print(alg, data)
         print("Need more information! Either algorithm or dataset name.")
         sys.exit()
 
@@ -174,4 +183,10 @@ def printHelp():
     print ("EXAMPLE CASE:")
     print ("handler.py -a G -c 0.5 -m 0.5 -t 5 -g 100000 -s 20 -v 5 -p 10 -i input.txt")
 
-train_test()
+    # Parameters:
+    # BP:   maxLoops=100000, learnrate=0.3, threshold=5, momentum=0.5
+    # GA:   size=20, participants=10, victors=5, generations=100000, threshold=5, cRate=0.75, mRate=0.25
+    # ES:   size=20, members=10, victors=5, generations=100000, threshold=5, cRate=0.75, mRate=0.25
+    # DE:   size=20, threshold=5, generations=10000, cRate=0.4, mRate=0.6
+
+if __name__ == '__main__': train_test()

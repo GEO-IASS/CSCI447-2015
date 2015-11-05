@@ -137,10 +137,11 @@ def train(inputs, outputs, size, generations, threshold, cRate, mRate, printFile
     print('Generations: %d' % gen, ' ' * 20)
     print("Error Relative: {:2.5%}".format(NN.calcRelativeError(EvaluationNN, inputs, OrigAnswers)))
     print("Least Squares: %d" % NN.calcLeastSquaresError(EvaluationNN, inputs, OrigAnswers))
+    print("Loss Squared: %d" % NN.calcLossSquared(EvaluationNN, inputs, OrigAnswers))
     for x in inputs:
         EvaluationNN.SetStartingNodesValues(x)
         EvaluationNN.CalculateNNOutputs()
-        print(x, EvaluationNN.GetNNResults(), OrigAnswers[inputs.index(x)])
+        print(x, EvaluationNN.GetNNResults(), EvaluationNN.GetNNResultsInt(), OrigAnswers[inputs.index(x)])
     print()
 
     return EvaluationNN
@@ -157,6 +158,8 @@ def main(inputs, outputs, size=20, generations=100, threshold=10, cRate=0.5, mRa
 
 if __name__ == '__main__':
     print('Starting some DE training...\n')
-    for i in range(1):
-        main([[2, 3], [1, 3], [3, 3]], [[101], [400], [3604]], size=20,
-             threshold=5, generations=10000, cRate=0.4, mRate=0.6, printFile=False)
+    #for i in range(1):
+    #   main([[2, 3], [1, 3], [3, 3]], [[101], [400], [3604]], size=20,
+    #        threshold=5, generations=10000, cRate=0.4, mRate=0.6, printFile=False)
+    main([[1,1,1,1], [1,0,1,0], [0,0,1,1]], [[2],[1],[1]], size=20, 
+        threshold=5, generations=10000, cRate=0.4, mRate=0.6, printFile=False)

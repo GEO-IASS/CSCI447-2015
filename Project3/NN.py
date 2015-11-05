@@ -318,16 +318,31 @@ class NN(object):
         '''Returns the values of the output nodes'''
         resultSet = []
         for i in range(len(self.OutputNodes)):
-            resultSet.append((((self.OutputNodes[i].getValue() - 0.2) *
-                               (self.maxim - self.minim)) / (0.8 - 0.2)) + self.minim)
+            resultSet.append((((self.OutputNodes[i].getValue() - 0.2) * (self.maxim - self.minim)) / (0.8 - 0.2)) + self.minim)
         return resultSet
-        
+
+    def GetNNResultsInt(self):
+        resultSet = []
+        for i in range(len(self.OutputNodes)):
+            resultSet.append(round_int((((self.OutputNodes[i].getValue() - 0.2) * (self.maxim - self.minim)) / (0.8 - 0.2)) + self.minim))
+        return resultSet
+
     def GetNNResultsUnscaled(self):
         '''Returns the values of the output nodes unscaled'''
         resultSet = []
         for i in range(len(self.OutputNodes)):
             resultSet.append(self.OutputNodes[i].getValue())
         return resultSet
+
+    def GetNNResultsIntUnscaled(self):
+        '''Returns the values of the output nodes unscaled'''
+        resultSet = []
+        for i in range(len(self.OutputNodes)):
+            resultSet.append(round_int(self.OutputNodes[i].getValue()))
+        return resultSet
+
+def round_int(x):
+    return int(round(x))
 
 #    def ShouldBackprop(self, answers):
 #        '''Calculates the error of the output nodes and determines if the
@@ -380,8 +395,6 @@ class NN(object):
 def calcRelativeError(NN, inputs, answers):
     '''Calculate the relative error in percent of the NN, given a set of inputs and answers'''
     NNWorking = copy.deepcopy(NN)
-    #StartingWeights = NN.GetNNWeights()
-    #NNWorking = NN
     count = 0
     errorValue = 0
     for i in range(len(inputs)):
@@ -394,7 +407,6 @@ def calcRelativeError(NN, inputs, answers):
         for j in range(len(NNRes)):
             errorValue += (abs(NNRes[j] - answers[i][j]) / answers[i][j])
             count += 1
-    #NN.SetNNWeights(StartingWeights)
     return errorValue / count
 
 def calcLeastSquaresError(NN, inputs, answers):
@@ -411,6 +423,22 @@ def calcLeastSquaresError(NN, inputs, answers):
         for j in range(len(NNRes)):
             errorValue += (NNRes[j] - answers[i][j])**2
     return errorValue
+
+def calcLossSquared(NN, inputs, answers):
+    NNWorking = copy.deepcopy(NN)
+    errorValue = 0
+    count = 0
+    for i in range(len(inputs)):
+        NNWorking.SetStartingNodesValues(inputs[i])
+        NNWorking.CalculateNNOutputs()
+        if answers[0][0] < 1: # Check if it's been scaled. 
+            NNRes = NNWorking.GetNNResultsIntUnscaled()
+        else:
+            NNRes = NNWorking.GetNNResultsInt()
+        for j in range(len(NNRes)):
+            errorValue += ((NNRes[j] - answers[i][j])**2)
+            count += 1
+    return errorValue / count
 
 
 def main(inputs, arrangement, outputs, answers, maxLoops, learnrate=0.5, threshold=1,
@@ -438,7 +466,7 @@ def main(inputs, arrangement, outputs, answers, maxLoops, learnrate=0.5, thresho
     baseNN = NN(inputs[0], arrangement, outputs, answers[0],
                 learnrate, threshold, momentum, maxim, minim)
     baseNN.ConstructNetwork()
-
+    #baseNN.PrintStatus()
     # Create a copy of the template and set it's inputs and answers to the
     # appropriate vectors.
     # Then saves this new NN as an instance in NNinstances
@@ -507,10 +535,11 @@ def main(inputs, arrangement, outputs, answers, maxLoops, learnrate=0.5, thresho
     # OrigAnswers)))
     print("Error Relative: {:2.5%}".format(calcRelativeError(finalNN, inputs, OrigAnswers)))
     print("Least Squares: %d" % calcLeastSquaresError(finalNN, inputs, OrigAnswers))
+    print("Loss Squared: %f" % calcLossSquared(finalNN, inputs, OrigAnswers))
     for x in inputs:
         finalNN.SetStartingNodesValues(x)
         finalNN.CalculateNNOutputs()
-        print(x, finalNN.GetNNResults(), OrigAnswers[inputs.index(x)])
+        print(x, finalNN.GetNNResults(), finalNN.GetNNResultsInt(), OrigAnswers[inputs.index(x)])
     print()
 
     # Ready to run tests on this NN
@@ -520,5 +549,7 @@ if __name__ == '__main__':
     print('Starting some NN training...\n')
 
     for i in range(1):
-        main([[2, 3], [1, 3], [3, 3]], [['S', 'S', 'S'], ['S', 'S']], ['S'],
-             [[101], [400], [3604]], maxLoops=100000, learnrate=0.3, threshold=5, momentum=0.5, printFile=False)
+        #main([[2, 3], [1, 3], [3, 3]], [['S', 'S', 'S'], ['S', 'S']], ['S'],
+        #     [[101], [400], [3604]], maxLoops=100000, learnrate=0.3, threshold=5, momentum=0.5, printFile=False)
+        main([[1,1,1,1], [1,0,1,0], [0,0,1,1]], [['S', 'S', 'S'], ['S', 'S']], ['S'], [[2], [1], [1]], maxLoops=1000, 
+            learnrate=0.3, threshold=10, momentum=0.5, printFile=False)
