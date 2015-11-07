@@ -1,0 +1,11 @@
+Attributes:
+Wife's Age:numeric
+Wife's Education:numeric
+Husband's Education:numeric
+Number of Children:numeric
+Wife's Religion:numeric
+Wife's Working:numeric
+Husband's Occupation:numeric
+Standard-of-living:numeric
+Media Exposure:numeric
+Class:(1,2,3)
