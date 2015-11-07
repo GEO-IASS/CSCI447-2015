@@ -37,12 +37,12 @@ use List::MoreUtils qw(firstidx);
 #}
 #$folder =~ tr/\\//; # Remove user escaping spaces.
 my $folder = "cmc";
-my $newtxt = $folder;
+my $newtxt = $folder . "2";
 $folder = "DataSets/" . $folder;
 
 # Open files for reading and writing for this transaction
 open(my $header, '<', "$folder/header") or die "Unable to locate header file.";
-open(my $data, '<', "$folder/data") or die "Unable to locate data file.";
+open(my $data, '<', "$folder/dataTrim") or die "Unable to locate data file.";
 open(my $output, '>', "DataSets/$newtxt.txt") or die "Unable to write new txt file";
 
 # Get lines from crafted header file
