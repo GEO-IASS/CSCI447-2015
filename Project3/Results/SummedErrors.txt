@@ -1,0 +1,388 @@
+==> B-Abalone2.txt <==
+Relative Error: 36.24% 
+
+Least Squares Error: 734.7646961105934 
+
+Loss Squared Error: 12.271186440677965 
+
+Percent Misidentified: 89.83% 
+
+==> B-Artificial2.txt <==
+Relative Error: 71.58% 
+
+Least Squares Error: 580.4369903235419 
+
+Loss Squared Error: 9.23728813559322 
+
+Percent Misidentified: 93.22% 
+
+==> B-car2.txt <==
+Relative Error: 42.22% 
+
+Least Squares Error: 28.108707210059645 
+
+Loss Squared Error: 0.5932203389830508 
+
+Percent Misidentified: 27.12% 
+
+==> B-cmc2.txt <==
+Relative Error: 55.68% 
+
+Least Squares Error: 48.98436597213964 
+
+Loss Squared Error: 0.8305084745762712 
+
+Percent Misidentified: 83.05% 
+
+==> B-indian2.txt <==
+Relative Error: 32.10% 
+
+Least Squares Error: 11.393350818481675 
+
+Loss Squared Error: 0.2542372881355932 
+
+Percent Misidentified: 25.42% 
+
+==> B-monks2.txt <==
+Relative Error: 32.59% 
+
+Least Squares Error: 6.534662193947021 
+
+Loss Squared Error: 0.7083333333333334 
+
+Percent Misidentified: 70.83% 
+
+==> B-page-blocks2.txt <==
+Relative Error: 28.21% 
+
+Least Squares Error: 30.687430915843624 
+
+Loss Squared Error: 0.576271186440678 
+
+Percent Misidentified: 13.56% 
+
+==> B-tic-tac-toe2.txt <==
+Relative Error: 33.65% 
+
+Least Squares Error: 14.800380349540074 
+
+Loss Squared Error: 0.423728813559322 
+
+Percent Misidentified: 42.37% 
+
+==> B-wilt2.txt <==
+Relative Error: 2.18% 
+
+Least Squares Error: 0.9856838207417066 
+
+Loss Squared Error: 0.01694915254237288 
+
+Percent Misidentified: 1.69% 
+
+==> B-wine2.txt <==
+Relative Error: 33.53% 
+
+Least Squares Error: 14.650050788334932 
+
+Loss Squared Error: 0.42857142857142855 
+
+Percent Misidentified: 42.86% 
+
+==> B-yeast2.txt <==
+Relative Error: 58.81% 
+
+Least Squares Error: 170.0310768119303 
+
+Loss Squared Error: 2.830508474576271 
+
+Percent Misidentified: 83.05% 
+
+==> D-Abalone2.txt <==
+Relative Error: 16.66% 
+
+Least Squares Error: 544.8618810630086 
+
+Loss Squared Error: 9.389830508474576 
+
+Percent Misidentified: 74.58% 
+
+==> D-Artificial2.txt <==
+Relative Error: 65.75% 
+
+Least Squares Error: 1055.3156937653705 
+
+Loss Squared Error: 18.64406779661017 
+
+Percent Misidentified: 84.75% 
+
+==> D-car2.txt <==
+Relative Error: 18.79% 
+
+Least Squares Error: 44.539067698172545 
+
+Loss Squared Error: 0.7627118644067796 
+
+Percent Misidentified: 33.90% 
+
+==> D-cmc2.txt <==
+Relative Error: 39.14% 
+
+Least Squares Error: 82.03122546612157 
+
+Loss Squared Error: 1.3898305084745763 
+
+Percent Misidentified: 62.71% 
+
+==> D-indian2.txt <==
+Relative Error: 15.25% 
+
+Least Squares Error: 17.999982577747446 
+
+Loss Squared Error: 0.3050847457627119 
+
+Percent Misidentified: 30.51% 
+
+==> D-monks2.txt <==
+Relative Error: 8.83% 
+
+Least Squares Error: 4.046122545355846 
+
+Loss Squared Error: 0.16666666666666666 
+
+Percent Misidentified: 16.67% 
+
+==> D-page-blocks2.txt <==
+Relative Error: 6.62% 
+
+Least Squares Error: 36.0010506977509 
+
+Loss Squared Error: 0.6271186440677966 
+
+Percent Misidentified: 10.17% 
+
+==> D-tic-tac-toe2.txt <==
+Relative Error: 17.80% 
+
+Least Squares Error: 20.999832007875938 
+
+Loss Squared Error: 0.3559322033898305 
+
+Percent Misidentified: 35.59% 
+
+==> D-wilt2.txt <==
+Relative Error: 7.67% 
+
+Least Squares Error: 2.152703113046885 
+
+Loss Squared Error: 0.03389830508474576 
+
+Percent Misidentified: 3.39% 
+
+==> D-wine2.txt <==
+Relative Error: 17.57% 
+
+Least Squares Error: 10.931194308781883 
+
+Loss Squared Error: 0.3142857142857143 
+
+Percent Misidentified: 31.43% 
+
+==> D-yeast2.txt <==
+Relative Error: 31.21% 
+
+Least Squares Error: 309.8904734709985 
+
+Loss Squared Error: 5.288135593220339 
+
+Percent Misidentified: 50.85% 
+
+==> E-Abalone2.txt <==
+Relative Error: 17.17% 
+
+Least Squares Error: 974.2904789532588 
+
+Loss Squared Error: 17.152542372881356 
+
+Percent Misidentified: 77.97% 
+
+==> E-Artificial2.txt <==
+Relative Error: 59.87% 
+
+Least Squares Error: 916.1622269248768 
+
+Loss Squared Error: 15.559322033898304 
+
+Percent Misidentified: 93.22% 
+
+==> E-car2.txt <==
+Relative Error: 23.16% 
+
+Least Squares Error: 68.00000000000001 
+
+Loss Squared Error: 1.152542372881356 
+
+Percent Misidentified: 40.68% 
+
+==> E-cmc2.txt <==
+Relative Error: 32.49% 
+
+Least Squares Error: 88.99999998376548 
+
+Loss Squared Error: 1.5084745762711864 
+
+Percent Misidentified: 54.24% 
+
+==> E-indian2.txt <==
+Relative Error: 11.86% 
+
+Least Squares Error: 14.0 
+
+Loss Squared Error: 0.23728813559322035 
+
+Percent Misidentified: 23.73% 
+
+==> E-monks2.txt <==
+Relative Error: 20.87% 
+
+Least Squares Error: 10.007512692934926 
+
+Loss Squared Error: 0.4166666666666667 
+
+Percent Misidentified: 41.67% 
+
+==> E-page-blocks2.txt <==
+Relative Error: 10.05% 
+
+Least Squares Error: 35.40556086956593 
+
+Loss Squared Error: 0.5932203389830508 
+
+Percent Misidentified: 15.25% 
+
+==> E-tic-tac-toe2.txt <==
+
+==> E-wilt2.txt <==
+Relative Error: 6.89% 
+
+Least Squares Error: 2.046562701977733 
+
+Loss Squared Error: 0.03389830508474576 
+
+Percent Misidentified: 3.39% 
+
+==> E-wine2.txt <==
+Relative Error: 23.13% 
+
+Least Squares Error: 16.198480026568696 
+
+Loss Squared Error: 0.45714285714285713 
+
+Percent Misidentified: 45.71% 
+
+==> E-yeast2.txt <==
+Relative Error: 41.55% 
+
+Least Squares Error: 314.53958106452785 
+
+Loss Squared Error: 5.372881355932203 
+
+Percent Misidentified: 69.49% 
+
+==> G-Abalone2.txt <==
+Relative Error: 13.31% 
+
+Least Squares Error: 259.3442676731866 
+
+Loss Squared Error: 4.5423728813559325 
+
+Percent Misidentified: 76.27% 
+
+==> G-Artificial2.txt <==
+Relative Error: 67.01% 
+
+Least Squares Error: 1221.795359168166 
+
+Loss Squared Error: 22.033898305084747 
+
+Percent Misidentified: 89.83% 
+
+==> G-car2.txt <==
+Relative Error: 11.16% 
+
+Least Squares Error: 25.99907762365791 
+
+Loss Squared Error: 0.4406779661016949 
+
+Percent Misidentified: 20.34% 
+
+==> G-cmc2.txt <==
+Relative Error: 38.64% 
+
+Least Squares Error: 95.78554610589735 
+
+Loss Squared Error: 1.7118644067796611 
+
+Percent Misidentified: 59.32% 
+
+==> G-indian2.txt <==
+Relative Error: 15.25% 
+
+Least Squares Error: 17.999726131294032 
+
+Loss Squared Error: 0.3050847457627119 
+
+Percent Misidentified: 30.51% 
+
+==> G-monks2.txt <==
+Relative Error: 11.11% 
+
+Least Squares Error: 4.945193179675936 
+
+Loss Squared Error: 0.20833333333333334 
+
+Percent Misidentified: 20.83% 
+
+==> G-page-blocks2.txt <==
+Relative Error: 8.14% 
+
+Least Squares Error: 44.62250605488016 
+
+Loss Squared Error: 0.7627118644067796 
+
+Percent Misidentified: 11.86% 
+
+==> G-tic-tac-toe2.txt <==
+Relative Error: 19.49% 
+
+Least Squares Error: 23.000159663692852 
+
+Loss Squared Error: 0.3898305084745763 
+
+Percent Misidentified: 38.98% 
+
+==> G-wilt2.txt <==
+Relative Error: 11.72% 
+
+Least Squares Error: 3.915802230607514 
+
+Loss Squared Error: 0.06779661016949153 
+
+Percent Misidentified: 6.78% 
+
+==> G-wine2.txt <==
+Relative Error: 8.94% 
+
+Least Squares Error: 8.051752679672724 
+
+Loss Squared Error: 0.22857142857142856 
+
+Percent Misidentified: 22.86% 
+
+==> G-yeast2.txt <==
+Relative Error: 36.71% 
+
+Least Squares Error: 212.3077660622595 
+
+Loss Squared Error: 3.8983050847457625 
+
+Percent Misidentified: 64.41% 
