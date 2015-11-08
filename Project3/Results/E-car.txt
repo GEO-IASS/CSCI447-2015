@@ -1,0 +1,2431 @@
+DATASET: car
+
+Test inputs: 
+[2.0, 1.0, 3.0, 3.0, 3.0, 2.0] [1.0, 2.0, 4.0, 2.0, 3.0, 2.0] [2.0, 1.0, 2.0, 1.0, 3.0, 1.0] [2.0, 2.0, 4.0, 2.0, 2.0, 1.0] [1.0, 1.0, 2.0, 2.0, 2.0, 3.0] [3.0, 1.0, 3.0, 2.0, 3.0, 3.0] [3.0, 3.0, 2.0, 2.0, 2.0, 2.0] [2.0, 1.0, 1.0, 2.0, 1.0, 3.0] [4.0, 1.0, 4.0, 2.0, 1.0, 2.0] [4.0, 3.0, 4.0, 3.0, 2.0, 3.0] [2.0, 4.0, 3.0, 3.0, 1.0, 2.0] [2.0, 2.0, 2.0, 2.0, 3.0, 2.0] [3.0, 1.0, 4.0, 2.0, 3.0, 2.0] [3.0, 4.0, 2.0, 1.0, 1.0, 2.0] [4.0, 4.0, 3.0, 3.0, 3.0, 3.0] [3.0, 4.0, 2.0, 3.0, 1.0, 2.0] [4.0, 2.0, 3.0, 3.0, 2.0, 2.0] [1.0, 1.0, 4.0, 2.0, 3.0, 3.0] [3.0, 1.0, 2.0, 3.0, 1.0, 3.0] [2.0, 3.0, 2.0, 1.0, 1.0, 3.0] [1.0, 1.0, 1.0, 2.0, 2.0, 2.0] [4.0, 2.0, 4.0, 2.0, 3.0, 1.0] [1.0, 1.0, 4.0, 1.0, 1.0, 2.0] [4.0, 3.0, 2.0, 3.0, 2.0, 1.0] [1.0, 4.0, 2.0, 3.0, 3.0, 3.0] [1.0, 3.0, 4.0, 1.0, 1.0, 1.0] [4.0, 3.0, 2.0, 2.0, 3.0, 2.0] [3.0, 1.0, 3.0, 3.0, 2.0, 2.0] [4.0, 1.0, 4.0, 3.0, 3.0, 3.0] [1.0, 4.0, 4.0, 3.0, 2.0, 1.0] [3.0, 2.0, 3.0, 1.0, 3.0, 2.0] [4.0, 2.0, 4.0, 1.0, 1.0, 1.0] [4.0, 1.0, 1.0, 1.0, 3.0, 2.0] [3.0, 1.0, 4.0, 2.0, 1.0, 2.0] [4.0, 4.0, 4.0, 2.0, 2.0, 3.0] [2.0, 1.0, 4.0, 3.0, 1.0, 1.0] [3.0, 1.0, 2.0, 2.0, 2.0, 3.0] [2.0, 1.0, 2.0, 3.0, 1.0, 3.0] [4.0, 1.0, 1.0, 3.0, 3.0, 1.0] [2.0, 2.0, 1.0, 3.0, 3.0, 3.0] [3.0, 4.0, 2.0, 3.0, 2.0, 2.0] [3.0, 4.0, 3.0, 3.0, 3.0, 1.0] [3.0, 1.0, 1.0, 2.0, 3.0, 3.0] [2.0, 2.0, 2.0, 1.0, 1.0, 2.0] [2.0, 3.0, 1.0, 1.0, 3.0, 3.0] [1.0, 1.0, 2.0, 1.0, 3.0, 1.0] [4.0, 4.0, 2.0, 1.0, 2.0, 2.0] [4.0, 2.0, 3.0, 1.0, 3.0, 1.0] [3.0, 1.0, 3.0, 3.0, 1.0, 1.0] [2.0, 4.0, 4.0, 3.0, 1.0, 1.0] [1.0, 2.0, 3.0, 1.0, 2.0, 2.0] [2.0, 1.0, 4.0, 1.0, 2.0, 2.0] [3.0, 1.0, 2.0, 2.0, 3.0, 2.0] [2.0, 4.0, 2.0, 3.0, 3.0, 3.0] [2.0, 2.0, 2.0, 2.0, 1.0, 3.0] [1.0, 2.0, 2.0, 3.0, 1.0, 3.0] [1.0, 2.0, 2.0, 3.0, 2.0, 2.0] [2.0, 2.0, 4.0, 3.0, 2.0, 3.0] [1.0, 2.0, 4.0, 3.0, 2.0, 2.0] [1.0, 3.0, 2.0, 3.0, 1.0, 1.0] [4.0, 2.0, 2.0, 2.0, 1.0, 2.0] [1.0, 4.0, 3.0, 1.0, 3.0, 3.0] [2.0, 4.0, 4.0, 3.0, 2.0, 2.0] [1.0, 3.0, 1.0, 1.0, 1.0, 3.0] [1.0, 1.0, 2.0, 2.0, 1.0, 1.0] [1.0, 4.0, 4.0, 3.0, 1.0, 2.0] [3.0, 2.0, 4.0, 2.0, 1.0, 2.0] [2.0, 3.0, 1.0, 3.0, 2.0, 2.0] [2.0, 2.0, 4.0, 3.0, 1.0, 3.0] [2.0, 1.0, 1.0, 2.0, 1.0, 1.0] [4.0, 1.0, 3.0, 1.0, 1.0, 1.0] [4.0, 2.0, 2.0, 2.0, 3.0, 3.0] [2.0, 1.0, 2.0, 2.0, 2.0, 1.0] [2.0, 1.0, 4.0, 1.0, 1.0, 3.0] [4.0, 4.0, 2.0, 3.0, 3.0, 3.0] [2.0, 2.0, 3.0, 1.0, 3.0, 1.0] [2.0, 4.0, 3.0, 1.0, 2.0, 3.0] [1.0, 1.0, 4.0, 3.0, 1.0, 1.0] [3.0, 3.0, 1.0, 3.0, 1.0, 1.0] [2.0, 1.0, 2.0, 3.0, 1.0, 2.0] [3.0, 1.0, 4.0, 1.0, 1.0, 2.0] [3.0, 3.0, 4.0, 1.0, 1.0, 3.0] [1.0, 4.0, 2.0, 3.0, 2.0, 3.0] [4.0, 1.0, 2.0, 1.0, 2.0, 1.0] [4.0, 1.0, 3.0, 3.0, 2.0, 1.0] [3.0, 3.0, 2.0, 2.0, 1.0, 1.0] [4.0, 2.0, 1.0, 3.0, 2.0, 2.0] [4.0, 3.0, 2.0, 1.0, 3.0, 2.0] [1.0, 2.0, 1.0, 1.0, 1.0, 1.0] [1.0, 3.0, 2.0, 2.0, 2.0, 3.0] [3.0, 4.0, 4.0, 3.0, 1.0, 2.0] [4.0, 3.0, 4.0, 1.0, 2.0, 2.0] [3.0, 3.0, 2.0, 2.0, 1.0, 3.0] [1.0, 1.0, 2.0, 2.0, 2.0, 1.0] [2.0, 4.0, 2.0, 2.0, 1.0, 3.0] [2.0, 1.0, 4.0, 2.0, 2.0, 1.0] [1.0, 2.0, 4.0, 2.0, 3.0, 1.0] [4.0, 2.0, 4.0, 3.0, 3.0, 1.0] [1.0, 4.0, 2.0, 3.0, 2.0, 1.0] [1.0, 1.0, 1.0, 1.0, 3.0, 1.0] [2.0, 3.0, 2.0, 1.0, 1.0, 1.0] [2.0, 1.0, 3.0, 3.0, 1.0, 3.0] [4.0, 1.0, 4.0, 2.0, 3.0, 1.0] [1.0, 4.0, 1.0, 3.0, 2.0, 2.0] [2.0, 2.0, 1.0, 2.0, 1.0, 3.0] [2.0, 4.0, 2.0, 3.0, 2.0, 3.0] [3.0, 2.0, 4.0, 1.0, 1.0, 2.0] [3.0, 2.0, 2.0, 1.0, 3.0, 1.0] [1.0, 1.0, 1.0, 3.0, 3.0, 3.0] [1.0, 2.0, 3.0, 3.0, 3.0, 3.0] [2.0, 4.0, 3.0, 1.0, 2.0, 1.0] [4.0, 4.0, 2.0, 3.0, 2.0, 2.0] [2.0, 3.0, 3.0, 3.0, 2.0, 2.0] [1.0, 3.0, 2.0, 1.0, 3.0, 2.0] [2.0, 4.0, 4.0, 2.0, 3.0, 3.0] [4.0, 3.0, 3.0, 2.0, 1.0, 2.0] [4.0, 3.0, 2.0, 2.0, 2.0, 2.0] [2.0, 4.0, 4.0, 2.0, 2.0, 3.0] [3.0, 1.0, 2.0, 1.0, 2.0, 3.0] [1.0, 3.0, 1.0, 2.0, 2.0, 1.0] [2.0, 3.0, 4.0, 1.0, 3.0, 2.0] [4.0, 1.0, 3.0, 2.0, 3.0, 1.0] [3.0, 3.0, 2.0, 2.0, 2.0, 1.0] [3.0, 3.0, 3.0, 1.0, 2.0, 3.0] [3.0, 3.0, 4.0, 3.0, 1.0, 2.0] [4.0, 1.0, 1.0, 3.0, 2.0, 3.0] [4.0, 3.0, 1.0, 1.0, 1.0, 1.0] [1.0, 1.0, 4.0, 3.0, 2.0, 2.0] [1.0, 3.0, 2.0, 3.0, 2.0, 1.0] [1.0, 2.0, 3.0, 2.0, 2.0, 2.0] [1.0, 1.0, 4.0, 3.0, 3.0, 3.0] [2.0, 3.0, 3.0, 3.0, 3.0, 3.0] [2.0, 3.0, 3.0, 1.0, 2.0, 2.0] [4.0, 1.0, 3.0, 3.0, 2.0, 3.0] [4.0, 1.0, 4.0, 1.0, 1.0, 2.0] [4.0, 1.0, 1.0, 2.0, 3.0, 1.0] [2.0, 3.0, 4.0, 1.0, 1.0, 3.0] [1.0, 3.0, 4.0, 2.0, 3.0, 1.0] [1.0, 4.0, 2.0, 2.0, 2.0, 3.0] [3.0, 2.0, 4.0, 3.0, 3.0, 3.0] [1.0, 3.0, 2.0, 3.0, 3.0, 3.0] [2.0, 1.0, 4.0, 1.0, 1.0, 1.0] [1.0, 4.0, 3.0, 3.0, 2.0, 3.0] [2.0, 2.0, 1.0, 3.0, 1.0, 1.0] [3.0, 1.0, 2.0, 3.0, 1.0, 1.0] [4.0, 1.0, 2.0, 3.0, 3.0, 2.0] [3.0, 3.0, 4.0, 1.0, 3.0, 2.0] [4.0, 2.0, 4.0, 1.0, 3.0, 1.0] [4.0, 4.0, 3.0, 2.0, 1.0, 3.0] [3.0, 2.0, 4.0, 3.0, 2.0, 2.0] [1.0, 3.0, 3.0, 1.0, 3.0, 3.0] [2.0, 3.0, 3.0, 3.0, 1.0, 2.0] [2.0, 2.0, 2.0, 3.0, 1.0, 1.0] [1.0, 3.0, 2.0, 2.0, 1.0, 3.0] [1.0, 3.0, 2.0, 1.0, 1.0, 2.0] [4.0, 4.0, 2.0, 1.0, 1.0, 2.0] [2.0, 2.0, 3.0, 3.0, 2.0, 3.0] [1.0, 3.0, 2.0, 2.0, 2.0, 2.0] [3.0, 2.0, 2.0, 1.0, 2.0, 3.0] [4.0, 4.0, 2.0, 1.0, 3.0, 3.0] [2.0, 1.0, 2.0, 1.0, 1.0, 3.0] [2.0, 1.0, 2.0, 3.0, 2.0, 1.0] [3.0, 3.0, 1.0, 2.0, 2.0, 3.0] [1.0, 1.0, 4.0, 2.0, 2.0, 3.0] [1.0, 3.0, 2.0, 1.0, 2.0, 3.0] [1.0, 3.0, 3.0, 2.0, 1.0, 1.0] [4.0, 2.0, 1.0, 2.0, 1.0, 3.0] [2.0, 3.0, 1.0, 2.0, 2.0, 2.0] [2.0, 2.0, 2.0, 3.0, 1.0, 3.0] [2.0, 4.0, 2.0, 1.0, 3.0, 2.0] [2.0, 1.0, 3.0, 3.0, 2.0, 1.0] [2.0, 3.0, 4.0, 2.0, 2.0, 3.0] [4.0, 1.0, 4.0, 1.0, 3.0, 3.0] [2.0, 1.0, 4.0, 3.0, 3.0, 1.0] [4.0, 1.0, 4.0, 2.0, 2.0, 3.0] [4.0, 2.0, 3.0, 1.0, 1.0, 2.0] [1.0, 3.0, 1.0, 2.0, 2.0, 2.0] [1.0, 4.0, 2.0, 3.0, 1.0, 1.0] [4.0, 1.0, 4.0, 2.0, 2.0, 2.0] [3.0, 2.0, 2.0, 2.0, 2.0, 3.0] [4.0, 2.0, 1.0, 3.0, 3.0, 3.0] [3.0, 1.0, 4.0, 3.0, 3.0, 3.0] [4.0, 4.0, 3.0, 3.0, 2.0, 2.0] [2.0, 2.0, 3.0, 1.0, 3.0, 2.0] [3.0, 1.0, 1.0, 3.0, 2.0, 1.0] [2.0, 2.0, 3.0, 3.0, 2.0, 2.0] [3.0, 4.0, 4.0, 1.0, 3.0, 2.0] [2.0, 3.0, 4.0, 3.0, 3.0, 2.0] [2.0, 4.0, 4.0, 1.0, 2.0, 3.0] [4.0, 1.0, 3.0, 3.0, 1.0, 2.0] [4.0, 2.0, 3.0, 3.0, 3.0, 1.0] [2.0, 3.0, 3.0, 1.0, 3.0, 1.0] [2.0, 2.0, 4.0, 1.0, 1.0, 3.0] [4.0, 2.0, 1.0, 3.0, 2.0, 1.0] [2.0, 3.0, 1.0, 3.0, 2.0, 3.0] [1.0, 2.0, 3.0, 1.0, 2.0, 1.0] [4.0, 4.0, 4.0, 1.0, 2.0, 1.0] [3.0, 4.0, 4.0, 1.0, 2.0, 2.0] [1.0, 3.0, 1.0, 3.0, 3.0, 3.0] [2.0, 2.0, 2.0, 1.0, 3.0, 3.0] [4.0, 4.0, 1.0, 1.0, 2.0, 2.0] [3.0, 2.0, 1.0, 2.0, 3.0, 1.0] [4.0, 2.0, 3.0, 3.0, 3.0, 3.0] [3.0, 4.0, 2.0, 1.0, 2.0, 3.0] [1.0, 2.0, 2.0, 1.0, 1.0, 2.0] [3.0, 3.0, 3.0, 2.0, 3.0, 1.0] [4.0, 2.0, 2.0, 1.0, 2.0, 1.0] [2.0, 4.0, 3.0, 2.0, 2.0, 1.0] [3.0, 1.0, 3.0, 1.0, 3.0, 2.0] [1.0, 4.0, 3.0, 3.0, 3.0, 3.0] [3.0, 2.0, 1.0, 2.0, 2.0, 3.0] [3.0, 1.0, 2.0, 1.0, 3.0, 2.0] [2.0, 2.0, 1.0, 1.0, 2.0, 3.0] [2.0, 4.0, 3.0, 3.0, 3.0, 3.0] [1.0, 2.0, 1.0, 1.0, 2.0, 2.0] [3.0, 3.0, 2.0, 1.0, 3.0, 2.0] [2.0, 3.0, 2.0, 2.0, 1.0, 3.0] [1.0, 4.0, 2.0, 3.0, 1.0, 2.0] [2.0, 4.0, 1.0, 3.0, 2.0, 1.0] [1.0, 1.0, 3.0, 2.0, 2.0, 3.0] [2.0, 3.0, 4.0, 3.0, 2.0, 2.0] [4.0, 3.0, 3.0, 3.0, 3.0, 1.0] [3.0, 4.0, 2.0, 2.0, 2.0, 2.0] [2.0, 2.0, 1.0, 1.0, 2.0, 2.0] [4.0, 3.0, 1.0, 1.0, 1.0, 3.0] [1.0, 1.0, 3.0, 1.0, 3.0, 2.0] [4.0, 1.0, 4.0, 2.0, 3.0, 3.0] [2.0, 1.0, 3.0, 3.0, 1.0, 1.0] [1.0, 2.0, 3.0, 1.0, 3.0, 3.0] [4.0, 2.0, 4.0, 3.0, 2.0, 3.0] [2.0, 3.0, 2.0, 2.0, 1.0, 1.0] [1.0, 3.0, 1.0, 2.0, 3.0, 3.0] [2.0, 1.0, 1.0, 1.0, 1.0, 3.0] [3.0, 3.0, 2.0, 1.0, 1.0, 2.0] [3.0, 1.0, 2.0, 1.0, 1.0, 2.0] [1.0, 1.0, 4.0, 2.0, 2.0, 2.0] [3.0, 3.0, 3.0, 1.0, 2.0, 1.0] [4.0, 4.0, 3.0, 1.0, 3.0, 2.0] [4.0, 2.0, 1.0, 3.0, 2.0, 3.0] [3.0, 1.0, 1.0, 3.0, 1.0, 3.0] [4.0, 4.0, 2.0, 1.0, 3.0, 1.0] [2.0, 3.0, 4.0, 1.0, 2.0, 2.0] [4.0, 4.0, 4.0, 1.0, 3.0, 2.0] [4.0, 2.0, 3.0, 2.0, 1.0, 1.0] [3.0, 4.0, 1.0, 3.0, 3.0, 1.0] [2.0, 3.0, 1.0, 1.0, 2.0, 2.0] [4.0, 4.0, 4.0, 2.0, 2.0, 1.0] [1.0, 4.0, 1.0, 3.0, 3.0, 1.0] [4.0, 3.0, 4.0, 2.0, 3.0, 2.0] [3.0, 4.0, 4.0, 3.0, 3.0, 2.0] [4.0, 2.0, 4.0, 3.0, 2.0, 2.0] [2.0, 4.0, 3.0, 3.0, 3.0, 2.0] [4.0, 3.0, 4.0, 3.0, 3.0, 1.0] [1.0, 2.0, 2.0, 2.0, 1.0, 2.0] [4.0, 4.0, 2.0, 3.0, 2.0, 1.0] [2.0, 4.0, 2.0, 3.0, 2.0, 2.0] [4.0, 4.0, 1.0, 1.0, 3.0, 3.0] [3.0, 3.0, 1.0, 1.0, 2.0, 2.0] [1.0, 3.0, 1.0, 1.0, 1.0, 1.0] [1.0, 2.0, 3.0, 2.0, 3.0, 3.0] [3.0, 2.0, 4.0, 1.0, 2.0, 1.0] [4.0, 4.0, 1.0, 3.0, 2.0, 1.0] [1.0, 2.0, 2.0, 1.0, 2.0, 2.0] [3.0, 3.0, 1.0, 2.0, 1.0, 2.0] [4.0, 2.0, 2.0, 2.0, 3.0, 2.0] [2.0, 1.0, 4.0, 3.0, 2.0, 2.0] [3.0, 4.0, 4.0, 3.0, 1.0, 3.0] [2.0, 2.0, 2.0, 2.0, 1.0, 2.0] [1.0, 2.0, 1.0, 3.0, 2.0, 2.0] [2.0, 1.0, 1.0, 1.0, 2.0, 2.0] [2.0, 1.0, 4.0, 1.0, 3.0, 3.0] [1.0, 2.0, 2.0, 2.0, 2.0, 1.0] [2.0, 3.0, 3.0, 1.0, 3.0, 3.0] [2.0, 1.0, 3.0, 1.0, 3.0, 2.0] [2.0, 4.0, 2.0, 2.0, 3.0, 2.0] [3.0, 1.0, 3.0, 3.0, 2.0, 3.0] [3.0, 1.0, 2.0, 3.0, 3.0, 1.0] [2.0, 1.0, 3.0, 2.0, 1.0, 3.0] [1.0, 2.0, 2.0, 3.0, 3.0, 1.0] [2.0, 4.0, 4.0, 2.0, 2.0, 1.0] [4.0, 3.0, 2.0, 3.0, 1.0, 1.0] [2.0, 4.0, 1.0, 3.0, 1.0, 2.0] [1.0, 3.0, 1.0, 2.0, 1.0, 3.0] [1.0, 1.0, 3.0, 1.0, 2.0, 3.0] [3.0, 3.0, 4.0, 3.0, 2.0, 2.0] [3.0, 4.0, 3.0, 1.0, 1.0, 2.0] [2.0, 4.0, 2.0, 2.0, 2.0, 1.0] [3.0, 3.0, 1.0, 2.0, 1.0, 3.0] [1.0, 4.0, 4.0, 1.0, 3.0, 1.0] [2.0, 3.0, 4.0, 1.0, 3.0, 1.0] [3.0, 1.0, 1.0, 2.0, 1.0, 2.0] [3.0, 3.0, 4.0, 3.0, 2.0, 3.0] [2.0, 2.0, 2.0, 1.0, 2.0, 2.0] [3.0, 3.0, 3.0, 2.0, 3.0, 2.0] [4.0, 1.0, 1.0, 1.0, 2.0, 3.0] [2.0, 4.0, 4.0, 1.0, 2.0, 2.0] [2.0, 4.0, 4.0, 2.0, 2.0, 2.0] [3.0, 1.0, 2.0, 2.0, 2.0, 2.0] [1.0, 2.0, 2.0, 1.0, 3.0, 1.0] [1.0, 3.0, 4.0, 1.0, 3.0, 1.0] [4.0, 1.0, 4.0, 3.0, 2.0, 2.0] [2.0, 1.0, 1.0, 2.0, 3.0, 2.0] [3.0, 4.0, 2.0, 1.0, 2.0, 2.0] [3.0, 4.0, 4.0, 2.0, 1.0, 3.0] [4.0, 1.0, 2.0, 2.0, 2.0, 2.0] [4.0, 3.0, 2.0, 2.0, 1.0, 1.0] [4.0, 2.0, 2.0, 3.0, 3.0, 1.0] [3.0, 3.0, 1.0, 1.0, 2.0, 3.0] [4.0, 2.0, 4.0, 1.0, 2.0, 2.0] [3.0, 4.0, 4.0, 1.0, 2.0, 3.0] [3.0, 4.0, 3.0, 2.0, 3.0, 2.0] [2.0, 1.0, 3.0, 2.0, 3.0, 3.0] [4.0, 2.0, 2.0, 2.0, 1.0, 1.0] [1.0, 1.0, 1.0, 3.0, 2.0, 2.0] [1.0, 2.0, 2.0, 3.0, 1.0, 2.0] [1.0, 2.0, 1.0, 2.0, 3.0, 2.0] [3.0, 3.0, 3.0, 3.0, 3.0, 2.0] [2.0, 4.0, 4.0, 2.0, 3.0, 1.0] [2.0, 2.0, 4.0, 3.0, 2.0, 2.0] [3.0, 3.0, 3.0, 3.0, 1.0, 1.0] [4.0, 4.0, 4.0, 1.0, 3.0, 3.0] [1.0, 4.0, 3.0, 2.0, 2.0, 2.0] [2.0, 1.0, 3.0, 1.0, 3.0, 1.0] [1.0, 4.0, 1.0, 2.0, 1.0, 1.0] [2.0, 1.0, 1.0, 3.0, 1.0, 1.0] [2.0, 1.0, 2.0, 2.0, 1.0, 3.0] [3.0, 1.0, 4.0, 2.0, 1.0, 3.0] [4.0, 4.0, 4.0, 2.0, 3.0, 1.0] [4.0, 4.0, 1.0, 2.0, 3.0, 3.0] [1.0, 1.0, 3.0, 3.0, 1.0, 1.0] [3.0, 3.0, 4.0, 2.0, 1.0, 3.0] [1.0, 3.0, 4.0, 2.0, 1.0, 2.0] [4.0, 2.0, 4.0, 3.0, 2.0, 1.0] [1.0, 1.0, 1.0, 2.0, 3.0, 3.0] [1.0, 3.0, 1.0, 1.0, 1.0, 2.0] [4.0, 2.0, 1.0, 2.0, 2.0, 3.0] [1.0, 4.0, 2.0, 2.0, 3.0, 3.0] [4.0, 3.0, 4.0, 2.0, 2.0, 1.0] [1.0, 1.0, 2.0, 2.0, 3.0, 1.0] [1.0, 4.0, 4.0, 1.0, 1.0, 3.0] [3.0, 4.0, 4.0, 2.0, 3.0, 1.0] [1.0, 1.0, 1.0, 1.0, 1.0, 1.0] [3.0, 4.0, 4.0, 1.0, 1.0, 3.0] [3.0, 1.0, 1.0, 2.0, 2.0, 3.0] [1.0, 4.0, 3.0, 3.0, 3.0, 2.0] 
+Test expected outputs: 
+[1] [1] [1] [1] [1] [2] [2] [1] [1] [4] [1] [2] [2] [1] [4] [2] [2] [1] [2] [1] [1] [1] [1] [1] [2] [1] [3] [2] [2] [1] [1] [1] [1] [1] [4] [1] [2] [1] [1] [2] [3] [1] [2] [1] [1] [1] [1] [1] [1] [1] [1] [1] [2] [2] [2] [1] [1] [2] [1] [1] [2] [1] [2] [1] [1] [1] [1] [1] [2] [1] [1] [4] [1] [1] [4] [1] [1] [1] [1] [1] [1] [1] [2] [1] [1] [1] [2] [1] [1] [2] [2] [1] [2] [1] [2] [1] [1] [1] [1] [1] [1] [1] [1] [1] [2] [2] [1] [1] [1] [1] [1] [3] [2] [1] [2] [2] [2] [2] [1] [1] [1] [1] [1] [1] [2] [2] [1] [1] [1] [1] [1] [2] [1] [2] [1] [1] [1] [1] [2] [2] [2] [1] [2] [1] [1] [2] [1] [1] [3] [2] [1] [1] [1] [2] [1] [1] [2] [1] [1] [1] [1] [1] [2] [1] [1] [1] [2] [1] [2] [1] [1] [2] [1] [1] [2] [1] [1] [1] [2] [2] [4] [2] [3] [1] [1] [2] [1] [2] [1] [1] [1] [1] [1] [1] [2] [1] [1] [1] [2] [1] [1] [1] [4] [1] [1] [1] [1] [1] [1] [2] [2] [1] [1] [2] [1] [1] [2] [1] [1] [1] [2] [1] [2] [1] [1] [1] [2] [1] [1] [4] [1] [2] [1] [1] [1] [1] [1] [1] [2] [1] [1] [1] [1] [1] [1] [1] [1] [1] [3] [3] [2] [2] [1] [1] [1] [2] [1] [1] [1] [1] [1] [1] [1] [2] [2] [1] [3] [1] [1] [1] [1] [1] [1] [1] [2] [2] [1] [1] [1] [1] [1] [1] [2] [1] [2] [1] [1] [2] [1] [1] [1] [4] [1] [2] [1] [1] [2] [1] [1] [1] [2] [1] [1] [3] [1] [1] [1] [1] [1] [1] [3] [1] [1] [1] [1] [1] [2] [1] [2] [1] [1] [2] [1] [1] [1] [1] [2] [1] [4] [1] [2] [1] [1] [1] [1] [2] [2] [1] [1] [1] [1] [1] [1] [2] [2] 
+ALGORITHM | Generations | Size | Participants | Victors | mRate | cRate | Threshold 
+   E      |     1000      |  20  |     10       |    5    |  0.25  |  0.75  |   20.0     
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 1.0, 3.0, 3.0, 3.0, 2.0]
+
+Test results: [0.9700618593370806]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 2.0, 4.0, 2.0, 3.0, 2.0]
+
+Test results: [0.9700618647382676]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 1.0, 2.0, 1.0, 3.0, 1.0]
+
+Test results: [0.9700619809274134]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 2.0, 4.0, 2.0, 2.0, 1.0]
+
+Test results: [0.9700618619245563]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 1.0, 2.0, 2.0, 2.0, 3.0]
+
+Test results: [0.9700621885764383]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 1.0, 3.0, 2.0, 3.0, 3.0]
+
+Test results: [0.9700618592059498]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 3.0, 2.0, 2.0, 2.0, 2.0]
+
+Test results: [0.9700618610819404]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 1.0, 1.0, 2.0, 1.0, 3.0]
+
+Test results: [0.9700623224318963]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 1.0, 4.0, 2.0, 1.0, 2.0]
+
+Test results: [0.9700618591220787]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 3.0, 4.0, 3.0, 2.0, 3.0]
+
+Test results: [0.9700618590247889]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 4.0, 3.0, 3.0, 1.0, 2.0]
+
+Test results: [0.9700618610432428]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 2.0, 2.0, 2.0, 3.0, 2.0]
+
+Test results: [0.9700618665800965]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 1.0, 4.0, 2.0, 3.0, 2.0]
+
+Test results: [0.9700618590894735]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 4.0, 2.0, 1.0, 1.0, 2.0]
+
+Test results: [0.9700619118001017]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 4.0, 3.0, 3.0, 3.0, 3.0]
+
+Test results: [0.9700618590244451]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 4.0, 2.0, 3.0, 1.0, 2.0]
+
+Test results: [0.9700618597279212]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 2.0, 3.0, 3.0, 2.0, 2.0]
+
+Test results: [0.9700618590315282]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 1.0, 4.0, 2.0, 3.0, 3.0]
+
+Test results: [0.9700618647077045]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 1.0, 2.0, 3.0, 1.0, 3.0]
+
+Test results: [0.970061860322127]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 3.0, 2.0, 1.0, 1.0, 3.0]
+
+Test results: [0.9700624297237274]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 1.0, 1.0, 2.0, 2.0, 2.0]
+
+Test results: [0.970063568472252]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 2.0, 4.0, 2.0, 3.0, 1.0]
+
+Test results: [0.970061859029761]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 1.0, 4.0, 1.0, 1.0, 2.0]
+
+Test results: [0.9700629538521568]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 3.0, 2.0, 3.0, 2.0, 1.0]
+
+Test results: [0.970061859053606]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 4.0, 2.0, 3.0, 3.0, 3.0]
+
+Test results: [0.9700618627646019]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 3.0, 4.0, 1.0, 1.0, 1.0]
+
+Test results: [0.970062667593177]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 3.0, 2.0, 2.0, 3.0, 2.0]
+
+Test results: [0.970061859070613]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 1.0, 3.0, 3.0, 2.0, 2.0]
+
+Test results: [0.9700618591399037]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 1.0, 4.0, 3.0, 3.0, 3.0]
+
+Test results: [0.9700618590241885]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 4.0, 4.0, 3.0, 2.0, 1.0]
+
+Test results: [0.9700618609894651]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 2.0, 3.0, 1.0, 3.0, 2.0]
+
+Test results: [0.9700618606100772]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 2.0, 4.0, 1.0, 1.0, 1.0]
+
+Test results: [0.9700618598800689]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 1.0, 1.0, 1.0, 3.0, 2.0]
+
+Test results: [0.9700618618796848]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 1.0, 4.0, 2.0, 1.0, 2.0]
+
+Test results: [0.9700618600937183]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 4.0, 4.0, 2.0, 2.0, 3.0]
+
+Test results: [0.9700618590307412]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 1.0, 4.0, 3.0, 1.0, 1.0]
+
+Test results: [0.9700618608635294]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 1.0, 2.0, 2.0, 2.0, 3.0]
+
+Test results: [0.970061861811001]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 1.0, 2.0, 3.0, 1.0, 3.0]
+
+Test results: [0.9700618731433409]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 1.0, 1.0, 3.0, 3.0, 1.0]
+
+Test results: [0.9700618590758426]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 2.0, 1.0, 3.0, 3.0, 3.0]
+
+Test results: [0.970061861441783]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 4.0, 2.0, 3.0, 2.0, 2.0]
+
+Test results: [0.9700618591983091]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 4.0, 3.0, 3.0, 3.0, 1.0]
+
+Test results: [0.9700618590393093]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 1.0, 1.0, 2.0, 3.0, 3.0]
+
+Test results: [0.9700618616445916]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 2.0, 2.0, 1.0, 1.0, 2.0]
+
+Test results: [0.9700629223539265]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 3.0, 1.0, 1.0, 3.0, 3.0]
+
+Test results: [0.9700619921184008]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 1.0, 2.0, 1.0, 3.0, 1.0]
+
+Test results: [0.9700631838982628]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 4.0, 2.0, 1.0, 2.0, 2.0]
+
+Test results: [0.970061860227181]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 2.0, 3.0, 1.0, 3.0, 1.0]
+
+Test results: [0.9700618592233675]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 1.0, 3.0, 3.0, 1.0, 1.0]
+
+Test results: [0.9700618596652534]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 4.0, 4.0, 3.0, 1.0, 1.0]
+
+Test results: [0.970061859752692]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 2.0, 3.0, 1.0, 2.0, 2.0]
+
+Test results: [0.9700626152722622]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 1.0, 4.0, 1.0, 2.0, 2.0]
+
+Test results: [0.970061884001814]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 1.0, 2.0, 2.0, 3.0, 2.0]
+
+Test results: [0.9700618599697648]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 4.0, 2.0, 3.0, 3.0, 3.0]
+
+Test results: [0.9700618593676932]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 2.0, 2.0, 2.0, 1.0, 3.0]
+
+Test results: [0.9700619487990588]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 2.0, 2.0, 3.0, 1.0, 3.0]
+
+Test results: [0.9700619717929151]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 2.0, 2.0, 3.0, 2.0, 2.0]
+
+Test results: [0.9700618973016663]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 2.0, 4.0, 3.0, 2.0, 3.0]
+
+Test results: [0.9700618592025232]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 2.0, 4.0, 3.0, 2.0, 2.0]
+
+Test results: [0.9700618616857696]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 3.0, 2.0, 3.0, 1.0, 1.0]
+
+Test results: [0.9700620142107798]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 2.0, 2.0, 2.0, 1.0, 2.0]
+
+Test results: [0.970061860062918]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 4.0, 3.0, 1.0, 3.0, 3.0]
+
+Test results: [0.9700619329545552]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 4.0, 4.0, 3.0, 2.0, 2.0]
+
+Test results: [0.9700618591557437]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 3.0, 1.0, 1.0, 1.0, 3.0]
+
+Test results: [0.9700851421318264]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 1.0, 2.0, 2.0, 1.0, 1.0]
+
+Test results: [0.9700643466045209]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 4.0, 4.0, 3.0, 1.0, 2.0]
+
+Test results: [0.9700618648151951]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 2.0, 4.0, 2.0, 1.0, 2.0]
+
+Test results: [0.9700618598096092]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 3.0, 1.0, 3.0, 2.0, 2.0]
+
+Test results: [0.9700618688276913]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 2.0, 4.0, 3.0, 1.0, 3.0]
+
+Test results: [0.9700618597449152]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 1.0, 1.0, 2.0, 1.0, 1.0]
+
+Test results: [0.9700627271257991]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 1.0, 3.0, 1.0, 1.0, 1.0]
+
+Test results: [0.9700618634451927]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 2.0, 2.0, 2.0, 3.0, 3.0]
+
+Test results: [0.970061859070362]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 1.0, 2.0, 2.0, 2.0, 1.0]
+
+Test results: [0.9700619158131166]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 1.0, 4.0, 1.0, 1.0, 3.0]
+
+Test results: [0.9700619326116406]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 4.0, 2.0, 3.0, 3.0, 3.0]
+
+Test results: [0.9700618590265871]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 2.0, 3.0, 1.0, 3.0, 1.0]
+
+Test results: [0.9700618826368671]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 4.0, 3.0, 1.0, 2.0, 3.0]
+
+Test results: [0.9700618864416035]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 1.0, 4.0, 3.0, 1.0, 1.0]
+
+Test results: [0.9700618790306361]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 3.0, 1.0, 3.0, 1.0, 1.0]
+
+Test results: [0.9700618640004618]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 1.0, 2.0, 3.0, 1.0, 2.0]
+
+Test results: [0.9700618783508315]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 1.0, 4.0, 1.0, 1.0, 2.0]
+
+Test results: [0.9700618682868941]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 3.0, 4.0, 1.0, 1.0, 3.0]
+
+Test results: [0.97006186267447]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 4.0, 2.0, 3.0, 2.0, 3.0]
+
+Test results: [0.9700618741098088]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 1.0, 2.0, 1.0, 2.0, 1.0]
+
+Test results: [0.9700618631812349]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 1.0, 3.0, 3.0, 2.0, 1.0]
+
+Test results: [0.9700618590383079]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 3.0, 2.0, 2.0, 1.0, 1.0]
+
+Test results: [0.9700618703854158]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 2.0, 1.0, 3.0, 2.0, 2.0]
+
+Test results: [0.970061859136558]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 3.0, 2.0, 1.0, 3.0, 2.0]
+
+Test results: [0.9700618594299918]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 2.0, 1.0, 1.0, 1.0, 1.0]
+
+Test results: [0.9701202677479033]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 3.0, 2.0, 2.0, 2.0, 3.0]
+
+Test results: [0.9700620368206828]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 4.0, 4.0, 3.0, 1.0, 2.0]
+
+Test results: [0.9700618590726546]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 3.0, 4.0, 1.0, 2.0, 2.0]
+
+Test results: [0.9700618591376318]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 3.0, 2.0, 2.0, 1.0, 3.0]
+
+Test results: [0.9700618650876417]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 1.0, 2.0, 2.0, 2.0, 1.0]
+
+Test results: [0.9700624764082474]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 4.0, 2.0, 2.0, 1.0, 3.0]
+
+Test results: [0.9700619074558932]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 1.0, 4.0, 2.0, 2.0, 1.0]
+
+Test results: [0.970061862973204]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 2.0, 4.0, 2.0, 3.0, 1.0]
+
+Test results: [0.970061866845884]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 2.0, 4.0, 3.0, 3.0, 1.0]
+
+Test results: [0.9700618590243806]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 4.0, 2.0, 3.0, 2.0, 1.0]
+
+Test results: [0.9700618872896836]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 1.0, 1.0, 1.0, 3.0, 1.0]
+
+Test results: [0.9700668742590741]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 3.0, 2.0, 1.0, 1.0, 1.0]
+
+Test results: [0.9700629280686042]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 1.0, 3.0, 3.0, 1.0, 3.0]
+
+Test results: [0.9700618627472501]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 1.0, 4.0, 2.0, 3.0, 1.0]
+
+Test results: [0.97006185903196]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 4.0, 1.0, 3.0, 2.0, 2.0]
+
+Test results: [0.9700619373263031]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 2.0, 1.0, 2.0, 1.0, 3.0]
+
+Test results: [0.9700621994107411]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 4.0, 2.0, 3.0, 2.0, 3.0]
+
+Test results: [0.9700618604110045]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 2.0, 4.0, 1.0, 1.0, 2.0]
+
+Test results: [0.9700618658273944]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 2.0, 2.0, 1.0, 3.0, 1.0]
+
+Test results: [0.9700618672578976]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 1.0, 1.0, 3.0, 3.0, 3.0]
+
+Test results: [0.9700618948239245]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 2.0, 3.0, 3.0, 3.0, 3.0]
+
+Test results: [0.9700618608523844]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 4.0, 3.0, 1.0, 2.0, 1.0]
+
+Test results: [0.9700619103947914]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 4.0, 2.0, 3.0, 2.0, 2.0]
+
+Test results: [0.9700618590397367]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 3.0, 3.0, 3.0, 2.0, 2.0]
+
+Test results: [0.9700618597055022]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 3.0, 2.0, 1.0, 3.0, 2.0]
+
+Test results: [0.9700623813738934]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 4.0, 4.0, 2.0, 3.0, 3.0]
+
+Test results: [0.9700618592307915]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 3.0, 3.0, 2.0, 1.0, 2.0]
+
+Test results: [0.9700618592249735]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 3.0, 2.0, 2.0, 2.0, 2.0]
+
+Test results: [0.9700618592129556]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 4.0, 4.0, 2.0, 2.0, 3.0]
+
+Test results: [0.9700618598589145]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 1.0, 2.0, 1.0, 2.0, 3.0]
+
+Test results: [0.9700618831530989]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 3.0, 1.0, 2.0, 2.0, 1.0]
+
+Test results: [0.9700631216071667]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 3.0, 4.0, 1.0, 3.0, 2.0]
+
+Test results: [0.9700618623651037]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 1.0, 3.0, 2.0, 3.0, 1.0]
+
+Test results: [0.9700618590550836]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 3.0, 2.0, 2.0, 2.0, 1.0]
+
+Test results: [0.9700618618410568]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 3.0, 3.0, 1.0, 2.0, 3.0]
+
+Test results: [0.9700618624565146]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 3.0, 4.0, 3.0, 1.0, 2.0]
+
+Test results: [0.9700618590903594]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 1.0, 1.0, 3.0, 2.0, 3.0]
+
+Test results: [0.9700618591359546]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 3.0, 1.0, 1.0, 1.0, 1.0]
+
+Test results: [0.9700618933216648]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 1.0, 4.0, 3.0, 2.0, 2.0]
+
+Test results: [0.9700618626480976]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 3.0, 2.0, 3.0, 2.0, 1.0]
+
+Test results: [0.9700618975074848]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 2.0, 3.0, 2.0, 2.0, 2.0]
+
+Test results: [0.9700619464085825]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 1.0, 4.0, 3.0, 3.0, 3.0]
+
+Test results: [0.9700618596802663]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 3.0, 3.0, 3.0, 3.0, 3.0]
+
+Test results: [0.9700618591471949]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 3.0, 3.0, 1.0, 2.0, 2.0]
+
+Test results: [0.9700619101200505]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 1.0, 3.0, 3.0, 2.0, 3.0]
+
+Test results: [0.9700618590314863]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 1.0, 4.0, 1.0, 1.0, 2.0]
+
+Test results: [0.9700618598755186]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 1.0, 1.0, 2.0, 3.0, 1.0]
+
+Test results: [0.9700618594752637]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 3.0, 4.0, 1.0, 1.0, 3.0]
+
+Test results: [0.9700618987229255]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 3.0, 4.0, 2.0, 3.0, 1.0]
+
+Test results: [0.9700618647689949]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 4.0, 2.0, 2.0, 2.0, 3.0]
+
+Test results: [0.9700619896162161]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 2.0, 4.0, 3.0, 3.0, 3.0]
+
+Test results: [0.9700618590277562]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 3.0, 2.0, 3.0, 3.0, 3.0]
+
+Test results: [0.9700618641169196]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 1.0, 4.0, 1.0, 1.0, 1.0]
+
+Test results: [0.9700619968977572]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 4.0, 3.0, 3.0, 2.0, 3.0]
+
+Test results: [0.970061863002124]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 2.0, 1.0, 3.0, 1.0, 1.0]
+
+Test results: [0.9700619327041656]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 1.0, 2.0, 3.0, 1.0, 1.0]
+
+Test results: [0.9700618614565205]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 1.0, 2.0, 3.0, 3.0, 2.0]
+
+Test results: [0.970061859033728]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 3.0, 4.0, 1.0, 3.0, 2.0]
+
+Test results: [0.9700618593309552]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 2.0, 4.0, 1.0, 3.0, 1.0]
+
+Test results: [0.9700618590763388]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 4.0, 3.0, 2.0, 1.0, 3.0]
+
+Test results: [0.9700618591316903]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 2.0, 4.0, 3.0, 2.0, 2.0]
+
+Test results: [0.9700618590461901]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 3.0, 3.0, 1.0, 3.0, 3.0]
+
+Test results: [0.9700619596788499]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 3.0, 3.0, 3.0, 1.0, 2.0]
+
+Test results: [0.9700618617733018]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 2.0, 2.0, 3.0, 1.0, 1.0]
+
+Test results: [0.9700618784547538]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 3.0, 2.0, 2.0, 1.0, 3.0]
+
+Test results: [0.9700625758538859]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 3.0, 2.0, 1.0, 1.0, 2.0]
+
+Test results: [0.9700703225084643]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 4.0, 2.0, 1.0, 1.0, 2.0]
+
+Test results: [0.970061863877093]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 2.0, 3.0, 3.0, 2.0, 3.0]
+
+Test results: [0.9700618597018558]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 3.0, 2.0, 2.0, 2.0, 2.0]
+
+Test results: [0.9700621023873535]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 2.0, 2.0, 1.0, 2.0, 3.0]
+
+Test results: [0.9700618767464866]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 4.0, 2.0, 1.0, 3.0, 3.0]
+
+Test results: [0.9700618592417005]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 1.0, 2.0, 1.0, 1.0, 3.0]
+
+Test results: [0.9700629166697498]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 1.0, 2.0, 3.0, 2.0, 1.0]
+
+Test results: [0.970061865583829]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 3.0, 1.0, 2.0, 2.0, 3.0]
+
+Test results: [0.9700618647256102]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 1.0, 4.0, 2.0, 2.0, 3.0]
+
+Test results: [0.9700618819457498]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 3.0, 2.0, 1.0, 2.0, 3.0]
+
+Test results: [0.9700633972213919]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 3.0, 3.0, 2.0, 1.0, 1.0]
+
+Test results: [0.9700622132758274]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 2.0, 1.0, 2.0, 1.0, 3.0]
+
+Test results: [0.9700618619026511]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 3.0, 1.0, 2.0, 2.0, 2.0]
+
+Test results: [0.9700619438933635]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 2.0, 2.0, 3.0, 1.0, 3.0]
+
+Test results: [0.9700618693944107]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 4.0, 2.0, 1.0, 3.0, 2.0]
+
+Test results: [0.9700618943129741]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 1.0, 3.0, 3.0, 2.0, 1.0]
+
+Test results: [0.9700618607536862]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 3.0, 4.0, 2.0, 2.0, 3.0]
+
+Test results: [0.970061860160847]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 1.0, 4.0, 1.0, 3.0, 3.0]
+
+Test results: [0.970061859061944]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 1.0, 4.0, 3.0, 3.0, 1.0]
+
+Test results: [0.9700618591368085]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 1.0, 4.0, 2.0, 2.0, 3.0]
+
+Test results: [0.9700618590415039]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 2.0, 3.0, 1.0, 1.0, 2.0]
+
+Test results: [0.9700618613962095]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 3.0, 1.0, 2.0, 2.0, 2.0]
+
+Test results: [0.9700627815622477]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 4.0, 2.0, 3.0, 1.0, 1.0]
+
+Test results: [0.9700619730088417]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 1.0, 4.0, 2.0, 2.0, 2.0]
+
+Test results: [0.9700618590480784]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 2.0, 2.0, 2.0, 2.0, 3.0]
+
+Test results: [0.9700618610709323]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 2.0, 1.0, 3.0, 3.0, 3.0]
+
+Test results: [0.9700618590441269]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 1.0, 4.0, 3.0, 3.0, 3.0]
+
+Test results: [0.9700618590292304]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 4.0, 3.0, 3.0, 2.0, 2.0]
+
+Test results: [0.9700618590279126]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 2.0, 3.0, 1.0, 3.0, 2.0]
+
+Test results: [0.9700618762745603]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 1.0, 1.0, 3.0, 2.0, 1.0]
+
+Test results: [0.9700618613112745]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 2.0, 3.0, 3.0, 2.0, 2.0]
+
+Test results: [0.9700618599519774]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 4.0, 4.0, 1.0, 3.0, 2.0]
+
+Test results: [0.9700618592493694]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 3.0, 4.0, 3.0, 3.0, 2.0]
+
+Test results: [0.9700618590682647]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 4.0, 4.0, 1.0, 2.0, 3.0]
+
+Test results: [0.9700618662542395]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 1.0, 3.0, 3.0, 1.0, 2.0]
+
+Test results: [0.9700618590667803]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 2.0, 3.0, 3.0, 3.0, 1.0]
+
+Test results: [0.9700618590263423]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 3.0, 3.0, 1.0, 3.0, 1.0]
+
+Test results: [0.9700618763673186]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 2.0, 4.0, 1.0, 1.0, 3.0]
+
+Test results: [0.9700619130735988]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 2.0, 1.0, 3.0, 2.0, 1.0]
+
+Test results: [0.9700618591781901]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 3.0, 1.0, 3.0, 2.0, 3.0]
+
+Test results: [0.9700618661860985]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 2.0, 3.0, 1.0, 2.0, 1.0]
+
+Test results: [0.9700628940528574]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 4.0, 4.0, 1.0, 2.0, 1.0]
+
+Test results: [0.9700618591382448]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 4.0, 4.0, 1.0, 2.0, 2.0]
+
+Test results: [0.9700618599338341]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 3.0, 1.0, 3.0, 3.0, 3.0]
+
+Test results: [0.9700618783370474]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 2.0, 2.0, 1.0, 3.0, 3.0]
+
+Test results: [0.9700619068125906]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 4.0, 1.0, 1.0, 2.0, 2.0]
+
+Test results: [0.9700618635873371]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 2.0, 1.0, 2.0, 3.0, 1.0]
+
+Test results: [0.9700618626305114]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 2.0, 3.0, 3.0, 3.0, 3.0]
+
+Test results: [0.9700618590250999]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 4.0, 2.0, 1.0, 2.0, 3.0]
+
+Test results: [0.9700618685846683]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 2.0, 2.0, 1.0, 1.0, 2.0]
+
+Test results: [0.9700733655533997]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 3.0, 3.0, 2.0, 3.0, 1.0]
+
+Test results: [0.9700618592079154]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 2.0, 2.0, 1.0, 2.0, 1.0]
+
+Test results: [0.9700618620773527]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 4.0, 3.0, 2.0, 2.0, 1.0]
+
+Test results: [0.9700618649579065]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 1.0, 3.0, 1.0, 3.0, 2.0]
+
+Test results: [0.9700618611835501]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 4.0, 3.0, 3.0, 3.0, 3.0]
+
+Test results: [0.9700618600102134]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 2.0, 1.0, 2.0, 2.0, 3.0]
+
+Test results: [0.9700618667868158]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 1.0, 2.0, 1.0, 3.0, 2.0]
+
+Test results: [0.9700618672138586]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 2.0, 1.0, 1.0, 2.0, 3.0]
+
+Test results: [0.9700625895846906]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 4.0, 3.0, 3.0, 3.0, 3.0]
+
+Test results: [0.9700618591143996]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 2.0, 1.0, 1.0, 2.0, 2.0]
+
+Test results: [0.970072682061844]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 3.0, 2.0, 1.0, 3.0, 2.0]
+
+Test results: [0.9700618634420567]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 3.0, 2.0, 2.0, 1.0, 3.0]
+
+Test results: [0.9700619249632975]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 4.0, 2.0, 3.0, 1.0, 2.0]
+
+Test results: [0.9700619422977759]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 4.0, 1.0, 3.0, 2.0, 1.0]
+
+Test results: [0.9700618688804077]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 1.0, 3.0, 2.0, 2.0, 3.0]
+
+Test results: [0.970061945941242]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 3.0, 4.0, 3.0, 2.0, 2.0]
+
+Test results: [0.9700618592034846]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 3.0, 3.0, 3.0, 3.0, 1.0]
+
+Test results: [0.970061859025635]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 4.0, 2.0, 2.0, 2.0, 2.0]
+
+Test results: [0.9700618605354461]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 2.0, 1.0, 1.0, 2.0, 2.0]
+
+Test results: [0.9700628589003444]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 3.0, 1.0, 1.0, 1.0, 3.0]
+
+Test results: [0.9700618773292248]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 1.0, 3.0, 1.0, 3.0, 2.0]
+
+Test results: [0.9700621144000021]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 1.0, 4.0, 2.0, 3.0, 3.0]
+
+Test results: [0.9700618590280982]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 1.0, 3.0, 3.0, 1.0, 1.0]
+
+Test results: [0.970061866000351]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 2.0, 3.0, 1.0, 3.0, 3.0]
+
+Test results: [0.9700619960627374]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 2.0, 4.0, 3.0, 2.0, 3.0]
+
+Test results: [0.9700618590251904]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 3.0, 2.0, 2.0, 1.0, 1.0]
+
+Test results: [0.9700619825683418]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 3.0, 1.0, 2.0, 3.0, 3.0]
+
+Test results: [0.970062026206623]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 1.0, 1.0, 1.0, 1.0, 3.0]
+
+Test results: [0.9700658640752]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 3.0, 2.0, 1.0, 1.0, 2.0]
+
+Test results: [0.9700619308778133]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 1.0, 2.0, 1.0, 1.0, 2.0]
+
+Test results: [0.9700619922133833]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 1.0, 4.0, 2.0, 2.0, 2.0]
+
+Test results: [0.9700618903996207]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 3.0, 3.0, 1.0, 2.0, 1.0]
+
+Test results: [0.9700618654556146]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 4.0, 3.0, 1.0, 3.0, 2.0]
+
+Test results: [0.9700618591023789]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 2.0, 1.0, 3.0, 2.0, 3.0]
+
+Test results: [0.9700618591061435]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 1.0, 1.0, 3.0, 1.0, 3.0]
+
+Test results: [0.9700618639473698]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 4.0, 2.0, 1.0, 3.0, 1.0]
+
+Test results: [0.9700618594321766]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 3.0, 4.0, 1.0, 2.0, 2.0]
+
+Test results: [0.9700618724987484]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 4.0, 4.0, 1.0, 3.0, 2.0]
+
+Test results: [0.9700618590444324]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 2.0, 3.0, 2.0, 1.0, 1.0]
+
+Test results: [0.9700618593988182]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 4.0, 1.0, 3.0, 3.0, 1.0]
+
+Test results: [0.9700618592484445]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 3.0, 1.0, 1.0, 2.0, 2.0]
+
+Test results: [0.9700625935116022]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 4.0, 4.0, 2.0, 2.0, 1.0]
+
+Test results: [0.9700618590369118]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 4.0, 1.0, 3.0, 3.0, 1.0]
+
+Test results: [0.9700618856021592]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 3.0, 4.0, 2.0, 3.0, 2.0]
+
+Test results: [0.970061859026942]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 4.0, 4.0, 3.0, 3.0, 2.0]
+
+Test results: [0.9700618590266896]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 2.0, 4.0, 3.0, 2.0, 2.0]
+
+Test results: [0.9700618590257482]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 4.0, 3.0, 3.0, 3.0, 2.0]
+
+Test results: [0.970061859147859]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 3.0, 4.0, 3.0, 3.0, 1.0]
+
+Test results: [0.9700618590241941]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 2.0, 2.0, 2.0, 1.0, 2.0]
+
+Test results: [0.970063194545386]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 4.0, 2.0, 3.0, 2.0, 1.0]
+
+Test results: [0.9700618590456596]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 4.0, 2.0, 3.0, 2.0, 2.0]
+
+Test results: [0.9700618609226703]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 4.0, 1.0, 1.0, 3.0, 3.0]
+
+Test results: [0.9700618598504164]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 3.0, 1.0, 1.0, 2.0, 2.0]
+
+Test results: [0.9700619265880979]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 3.0, 1.0, 1.0, 1.0, 1.0]
+
+Test results: [0.9701050726942586]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 2.0, 3.0, 2.0, 3.0, 3.0]
+
+Test results: [0.9700618748545571]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 2.0, 4.0, 1.0, 2.0, 1.0]
+
+Test results: [0.9700618613330377]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 4.0, 1.0, 3.0, 2.0, 1.0]
+
+Test results: [0.9700618591070329]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 2.0, 2.0, 1.0, 2.0, 2.0]
+
+Test results: [0.9700647238804128]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 3.0, 1.0, 2.0, 1.0, 2.0]
+
+Test results: [0.9700618904984595]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 2.0, 2.0, 2.0, 3.0, 2.0]
+
+Test results: [0.9700618590875798]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 1.0, 4.0, 3.0, 2.0, 2.0]
+
+Test results: [0.9700618593569795]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 4.0, 4.0, 3.0, 1.0, 3.0]
+
+Test results: [0.9700618590594582]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 2.0, 2.0, 2.0, 1.0, 2.0]
+
+Test results: [0.9700619819076274]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 2.0, 1.0, 3.0, 2.0, 2.0]
+
+Test results: [0.9700620041660019]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 1.0, 1.0, 1.0, 2.0, 2.0]
+
+Test results: [0.9700632201196187]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 1.0, 4.0, 1.0, 3.0, 3.0]
+
+Test results: [0.9700618635486749]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 2.0, 2.0, 2.0, 2.0, 1.0]
+
+Test results: [0.970062312519597]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 3.0, 3.0, 1.0, 3.0, 3.0]
+
+Test results: [0.9700618682803027]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 1.0, 3.0, 1.0, 3.0, 2.0]
+
+Test results: [0.9700618825105781]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 4.0, 2.0, 2.0, 3.0, 2.0]
+
+Test results: [0.9700618631001585]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 1.0, 3.0, 3.0, 2.0, 3.0]
+
+Test results: [0.9700618591085877]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 1.0, 2.0, 3.0, 3.0, 1.0]
+
+Test results: [0.970061859173271]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 1.0, 3.0, 2.0, 1.0, 3.0]
+
+Test results: [0.9700618912579553]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 2.0, 2.0, 3.0, 3.0, 1.0]
+
+Test results: [0.9700618720163232]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 4.0, 4.0, 2.0, 2.0, 1.0]
+
+Test results: [0.9700618605886205]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 3.0, 2.0, 3.0, 1.0, 1.0]
+
+Test results: [0.9700618591443707]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 4.0, 1.0, 3.0, 1.0, 2.0]
+
+Test results: [0.9700618880629422]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 3.0, 1.0, 2.0, 1.0, 3.0]
+
+Test results: [0.9700645746933872]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 1.0, 3.0, 1.0, 2.0, 3.0]
+
+Test results: [0.9700626112290487]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 3.0, 4.0, 3.0, 2.0, 2.0]
+
+Test results: [0.9700618590402129]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 4.0, 3.0, 1.0, 1.0, 2.0]
+
+Test results: [0.970061872941806]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 4.0, 2.0, 2.0, 2.0, 1.0]
+
+Test results: [0.9700618815260117]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 3.0, 1.0, 2.0, 1.0, 3.0]
+
+Test results: [0.9700618820179581]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 4.0, 4.0, 1.0, 3.0, 1.0]
+
+Test results: [0.9700618955542136]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 3.0, 4.0, 1.0, 3.0, 1.0]
+
+Test results: [0.9700618635974678]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 1.0, 1.0, 2.0, 1.0, 2.0]
+
+Test results: [0.970061917366655]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 3.0, 4.0, 3.0, 2.0, 3.0]
+
+Test results: [0.9700618590357577]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 2.0, 2.0, 1.0, 2.0, 2.0]
+
+Test results: [0.9700621227959975]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 3.0, 3.0, 2.0, 3.0, 2.0]
+
+Test results: [0.970061859158274]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 1.0, 1.0, 1.0, 2.0, 3.0]
+
+Test results: [0.9700618674379152]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 4.0, 4.0, 1.0, 2.0, 2.0]
+
+Test results: [0.9700618689209637]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 4.0, 4.0, 2.0, 2.0, 2.0]
+
+Test results: [0.9700618601669615]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 1.0, 2.0, 2.0, 2.0, 2.0]
+
+Test results: [0.9700618628390046]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 2.0, 2.0, 1.0, 3.0, 1.0]
+
+Test results: [0.9700628322873462]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 3.0, 4.0, 1.0, 3.0, 1.0]
+
+Test results: [0.9700619087594677]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 1.0, 4.0, 3.0, 2.0, 2.0]
+
+Test results: [0.9700618590264966]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 1.0, 1.0, 2.0, 3.0, 2.0]
+
+Test results: [0.9700618980351137]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 4.0, 2.0, 1.0, 2.0, 2.0]
+
+Test results: [0.9700618721108796]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 4.0, 4.0, 2.0, 1.0, 3.0]
+
+Test results: [0.9700618593334261]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 1.0, 2.0, 2.0, 2.0, 2.0]
+
+Test results: [0.9700618593745353]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 3.0, 2.0, 2.0, 1.0, 1.0]
+
+Test results: [0.970061860068506]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 2.0, 2.0, 3.0, 3.0, 1.0]
+
+Test results: [0.9700618590337821]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 3.0, 1.0, 1.0, 2.0, 3.0]
+
+Test results: [0.9700619083839019]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 2.0, 4.0, 1.0, 2.0, 2.0]
+
+Test results: [0.9700618591788258]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 4.0, 4.0, 1.0, 2.0, 3.0]
+
+Test results: [0.970061859688601]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 4.0, 3.0, 2.0, 3.0, 2.0]
+
+Test results: [0.9700618591225372]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 1.0, 3.0, 2.0, 3.0, 3.0]
+
+Test results: [0.9700618610057595]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 2.0, 2.0, 2.0, 1.0, 1.0]
+
+Test results: [0.9700618604462048]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 1.0, 1.0, 3.0, 2.0, 2.0]
+
+Test results: [0.9700620566292024]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 2.0, 2.0, 3.0, 1.0, 2.0]
+
+Test results: [0.9700620133808543]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 2.0, 1.0, 2.0, 3.0, 2.0]
+
+Test results: [0.9700621705702309]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 3.0, 3.0, 3.0, 3.0, 2.0]
+
+Test results: [0.9700618590392257]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 4.0, 4.0, 2.0, 3.0, 1.0]
+
+Test results: [0.9700618594117367]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 2.0, 4.0, 3.0, 2.0, 2.0]
+
+Test results: [0.9700618592684835]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 3.0, 3.0, 3.0, 1.0, 1.0]
+
+Test results: [0.9700618593697897]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 4.0, 4.0, 1.0, 3.0, 3.0]
+
+Test results: [0.9700618590388405]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 4.0, 3.0, 2.0, 2.0, 2.0]
+
+Test results: [0.9700619061662493]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 1.0, 3.0, 1.0, 3.0, 1.0]
+
+Test results: [0.9700618911727595]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 4.0, 1.0, 2.0, 1.0, 1.0]
+
+Test results: [0.9700655944764522]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 1.0, 1.0, 3.0, 1.0, 1.0]
+
+Test results: [0.9700619593379545]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 1.0, 2.0, 2.0, 1.0, 3.0]
+
+Test results: [0.9700619812504461]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 1.0, 4.0, 2.0, 1.0, 3.0]
+
+Test results: [0.9700618598054058]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 4.0, 4.0, 2.0, 3.0, 1.0]
+
+Test results: [0.9700618590269596]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 4.0, 1.0, 2.0, 3.0, 3.0]
+
+Test results: [0.9700618591191782]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 1.0, 3.0, 3.0, 1.0, 1.0]
+
+Test results: [0.9700619348877905]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 3.0, 4.0, 2.0, 1.0, 3.0]
+
+Test results: [0.9700618594453981]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 3.0, 4.0, 2.0, 1.0, 2.0]
+
+Test results: [0.9700619272825741]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 2.0, 4.0, 3.0, 2.0, 1.0]
+
+Test results: [0.9700618590265117]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 1.0, 1.0, 2.0, 3.0, 3.0]
+
+Test results: [0.9700621689042316]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 3.0, 1.0, 1.0, 1.0, 2.0]
+
+Test results: [0.970093601894256]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 2.0, 1.0, 2.0, 2.0, 3.0]
+
+Test results: [0.9700618597375767]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 4.0, 2.0, 2.0, 3.0, 3.0]
+
+Test results: [0.9700618914081646]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 3.0, 4.0, 2.0, 2.0, 1.0]
+
+Test results: [0.9700618590416961]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 1.0, 2.0, 2.0, 3.0, 1.0]
+
+Test results: [0.9700620121496051]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 4.0, 4.0, 1.0, 1.0, 3.0]
+
+Test results: [0.9700621760624591]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 4.0, 4.0, 2.0, 3.0, 1.0]
+
+Test results: [0.9700618590593637]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+
+Test results: [0.9701406050885066]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 4.0, 4.0, 1.0, 1.0, 3.0]
+
+Test results: [0.970061861705138]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 1.0, 1.0, 2.0, 2.0, 3.0]
+
+Test results: [0.9700618695931276]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 4.0, 3.0, 3.0, 3.0, 2.0]
+
+Test results: [0.9700618603740622]
+
+Relative Error: 19.35% 
+
+Least Squares Error: 226.5721191205462 
+
+Loss Squared Error: 0.6318840579710145 
+
+Percent Misidentified: 31.30% 

@@ -1,0 +1,184 @@
+DATASET: monks2
+
+Test inputs: 
+[1.0, 2.0, 1.0, 1.0, 1.0, 2.0] [3.0, 3.0, 1.0, 3.0, 2.0, 1.0] [2.0, 3.0, 1.0, 3.0, 4.0, 2.0] [2.0, 2.0, 1.0, 3.0, 2.0, 2.0] [1.0, 1.0, 2.0, 1.0, 2.0, 2.0] [3.0, 3.0, 2.0, 3.0, 4.0, 2.0] [1.0, 3.0, 2.0, 3.0, 1.0, 1.0] [2.0, 3.0, 2.0, 2.0, 2.0, 1.0] [2.0, 1.0, 1.0, 2.0, 4.0, 2.0] [3.0, 3.0, 2.0, 3.0, 2.0, 2.0] [1.0, 3.0, 1.0, 1.0, 2.0, 1.0] [1.0, 2.0, 1.0, 2.0, 1.0, 1.0] [2.0, 2.0, 1.0, 3.0, 4.0, 2.0] [1.0, 1.0, 1.0, 1.0, 3.0, 2.0] [2.0, 1.0, 1.0, 2.0, 1.0, 1.0] [1.0, 3.0, 2.0, 3.0, 4.0, 2.0] [1.0, 1.0, 2.0, 2.0, 3.0, 1.0] [1.0, 1.0, 1.0, 1.0, 3.0, 1.0] [2.0, 3.0, 2.0, 2.0, 1.0, 1.0] [3.0, 2.0, 1.0, 2.0, 4.0, 2.0] [3.0, 3.0, 1.0, 1.0, 2.0, 1.0] [2.0, 2.0, 2.0, 2.0, 2.0, 1.0] [1.0, 3.0, 2.0, 3.0, 4.0, 1.0] [2.0, 3.0, 1.0, 2.0, 1.0, 1.0] 
+Test expected outputs: 
+[2] [2] [1] [2] [2] [2] [2] [1] [1] [2] [1] [2] [2] [2] [2] [1] [2] [2] [2] [1] [2] [2] [1] [2] 
+ALGORITHM | Generations | learnrate | momentum | Threshold 
+   B      |     10000      |  0.3  |  0.5  |   10.0     
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 2.0, 1.0, 1.0, 1.0, 2.0]
+
+Test results: [1.4520561087976587]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 3.0, 1.0, 3.0, 2.0, 1.0]
+
+Test results: [1.452048793910174]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 3.0, 1.0, 3.0, 4.0, 2.0]
+
+Test results: [1.4520487351661013]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 2.0, 1.0, 3.0, 2.0, 2.0]
+
+Test results: [1.4520490248963092]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 1.0, 2.0, 1.0, 2.0, 2.0]
+
+Test results: [1.4520517576663214]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 3.0, 2.0, 3.0, 4.0, 2.0]
+
+Test results: [1.452048719608547]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 3.0, 2.0, 3.0, 1.0, 1.0]
+
+Test results: [1.4520492515679633]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 3.0, 2.0, 2.0, 2.0, 1.0]
+
+Test results: [1.4520488313590776]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 1.0, 1.0, 2.0, 4.0, 2.0]
+
+Test results: [1.452048924392263]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 3.0, 2.0, 3.0, 2.0, 2.0]
+
+Test results: [1.452048742346201]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 3.0, 1.0, 1.0, 2.0, 1.0]
+
+Test results: [1.4520502072570962]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 2.0, 1.0, 2.0, 1.0, 1.0]
+
+Test results: [1.452053650728135]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 2.0, 1.0, 3.0, 4.0, 2.0]
+
+Test results: [1.4520487529605066]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 1.0, 1.0, 1.0, 3.0, 2.0]
+
+Test results: [1.4520510151959962]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 1.0, 1.0, 2.0, 1.0, 1.0]
+
+Test results: [1.4520574508559942]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 3.0, 2.0, 3.0, 4.0, 2.0]
+
+Test results: [1.4520487251811358]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 1.0, 2.0, 2.0, 3.0, 1.0]
+
+Test results: [1.4520493674875512]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 1.0, 1.0, 1.0, 3.0, 1.0]
+
+Test results: [1.452051467059703]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 3.0, 2.0, 2.0, 1.0, 1.0]
+
+Test results: [1.4520491343970203]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 2.0, 1.0, 2.0, 4.0, 2.0]
+
+Test results: [1.4520487788743692]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 3.0, 1.0, 1.0, 2.0, 1.0]
+
+Test results: [1.4520492572363435]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 2.0, 2.0, 2.0, 2.0, 1.0]
+
+Test results: [1.4520490870083993]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 3.0, 2.0, 3.0, 4.0, 1.0]
+
+Test results: [1.4520487270573594]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 3.0, 1.0, 2.0, 1.0, 1.0]
+
+Test results: [1.4520496177967275]
+
+Relative Error: 32.59% 
+
+Least Squares Error: 6.534662193947021 
+
+Loss Squared Error: 0.7083333333333334 
+
+Percent Misidentified: 70.83% 

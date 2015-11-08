@@ -1,0 +1,429 @@
+DATASET: Artificial2
+
+Test inputs: 
+[4.0, 10.0, 6.0, 0.0, 0.0, 11.66, 32.56] [4.0, 26.0, 0.0, 26.0, 11.0, 11.0, 45.61] [1.0, 2.0, 25.0, 19.0, 16.0, 19.24, 31.4] [5.0, 30.0, 7.0, 26.0, 7.0, 4.0, 53.25] [1.0, 1.0, 8.0, 0.0, 16.0, 8.06, 35.78] [3.0, 8.0, 45.0, 17.0, 39.0, 10.82, 49.98] [0.0, 0.0, 0.0, 0.0, 22.0, 22.0, 24.6] [2.0, 0.0, 53.0, 21.0, 42.0, 23.71, 58.6] [7.0, 0.0, 23.0, 11.0, 0.0, 25.5, 49.73] [2.0, 0.0, 47.0, 33.0, 34.0, 35.47, 57.43] [5.0, 2.0, 27.0, 19.0, 41.0, 22.02, 45.19] [2.0, 0.0, 17.0, 28.0, 17.0, 28.0, 47.63] [3.0, 0.0, 30.0, 10.0, 30.0, 10.0, 40.36] [4.0, 13.0, 6.0, 14.0, 14.0, 8.06, 34.01] [3.0, 29.0, 0.0, 29.0, 7.0, 7.0, 51.61] [2.0, 0.0, 20.0, 21.0, 14.0, 21.84, 49.66] [0.0, 0.0, 0.0, 0.0, 19.0, 19.0, 37.66] [3.0, 10.0, 34.0, 12.0, 28.0, 6.32, 39.85] [2.0, 0.0, 25.0, 10.0, 11.0, 17.2, 55.9] [4.0, 14.0, 20.0, 0.0, 9.0, 17.8, 42.38] [2.0, 1.0, 41.0, 23.0, 37.0, 22.36, 47.51] [7.0, 0.0, 19.0, 4.0, 0.0, 19.42, 34.18] [0.0, 0.0, 0.0, 0.0, 13.0, 13.0, 29.83] [0.0, 0.0, 0.0, 2.0, 32.0, 32.06, 45.31] [3.0, 0.0, 27.0, 5.0, 34.0, 8.6, 44.72] [1.0, 22.0, 0.0, 22.0, 24.0, 24.0, 47.41] [1.0, 0.0, 38.0, 0.0, 59.0, 21.0, 64.47] [2.0, 0.0, 20.0, 25.0, 20.0, 25.0, 46.86] [4.0, 0.0, 0.0, 7.0, -2.0, 7.28, 26.63] [2.0, 0.0, 14.0, 7.0, 14.0, 7.0, 24.17] [3.0, 24.0, 52.0, 27.0, 37.0, 15.3, 68.54] [2.0, 17.0, 14.0, 17.0, 7.0, 7.0, 26.25] [0.0, 0.0, 0.0, 0.0, 35.0, 35.0, 50.99] [2.0, 0.0, 28.0, 17.0, 42.0, 22.02, 46.1] [0.0, 0.0, 0.0, 0.0, 9.0, 9.0, 39.2] [1.0, 7.0, 3.0, 0.0, 6.0, 7.62, 20.0] [3.0, 0.0, 33.0, 2.0, 41.0, 8.25, 56.82] [1.0, 22.0, 0.0, 23.0, 21.0, 21.02, 41.88] [0.0, 7.0, 0.0, 0.0, 5.0, 8.6, 18.36] [1.0, 0.0, 22.0, 0.0, 32.0, 10.0, 32.98] [3.0, 19.0, 43.0, 21.0, 36.0, 7.28, 52.39] [4.0, 19.0, 31.0, 19.0, 18.0, 13.0, 46.1] [0.0, 0.0, 0.0, 0.0, 29.0, 29.0, 56.08] [4.0, 14.0, 6.0, 0.0, 0.0, 15.23, 32.2] [0.0, 0.0, 0.0, 0.0, 24.0, 24.0, 28.84] [4.0, 0.0, 0.0, 32.0, 0.0, 32.0, 48.92] [2.0, 34.0, 26.0, 34.0, 13.0, 13.0, 51.74] [0.0, 17.0, 0.0, 4.0, 6.0, 14.32, 38.47] [5.0, 1.0, 29.0, 23.0, 33.0, 22.36, 40.22] [4.0, 14.0, 10.0, 7.0, 5.0, 8.6, 30.41] [0.0, 0.0, 0.0, 0.0, 26.0, 26.0, 34.71] [2.0, 0.0, 18.0, 2.0, 27.0, 9.22, 40.25] [3.0, 23.0, 16.0, 23.0, 8.0, 8.0, 33.97] [6.0, 7.0, 26.0, 0.0, 21.0, 8.6, 52.77] [2.0, 0.0, 20.0, 16.0, 22.0, 16.12, 52.2] [1.0, 0.0, 36.0, 2.0, 45.0, 9.22, 45.89] [0.0, 0.0, 0.0, 0.0, 11.0, 11.0, 35.36] [3.0, 19.0, 0.0, 18.0, 9.0, 9.06, 48.33] [2.0, 0.0, 59.0, 26.0, 53.0, 26.68, 68.6] 
+Test expected outputs: 
+[3] [6] [3] [6] [2] [9] [3] [9] [10] [9] [1] [5] [4] [7] [6] [1] [1] [10] [1] [9] [10] [10] [4] [10] [2] [7] [9] [5] [4] [5] [10] [3] [9] [6] [7] [6] [6] [7] [6] [10] [10] [9] [9] [3] [3] [4] [3] [6] [1] [3] [3] [2] [3] [10] [5] [9] [7] [6] [9] 
+ALGORITHM | Generations | Size | mRate | cRate | Threshold 
+   D      |     1000      |  20    |  0.6  |  0.4  |   10.0     
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 10.0, 6.0, 0.0, 0.0, 11.66, 32.56]
+
+Test results: [4.309709653664685]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 26.0, 0.0, 26.0, 11.0, 11.0, 45.61]
+
+Test results: [2.001884924111055]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 2.0, 25.0, 19.0, 16.0, 19.24, 31.4]
+
+Test results: [2.0018849993016827]
+
+Set starting node vals
+None 
+
+Test Input: [5.0, 30.0, 7.0, 26.0, 7.0, 4.0, 53.25]
+
+Test results: [3.2914908630214383]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 1.0, 8.0, 0.0, 16.0, 8.06, 35.78]
+
+Test results: [3.9772053109963608]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 8.0, 45.0, 17.0, 39.0, 10.82, 49.98]
+
+Test results: [3.2128640683294694]
+
+Set starting node vals
+None 
+
+Test Input: [0.0, 0.0, 0.0, 0.0, 22.0, 22.0, 24.6]
+
+Test results: [4.204970631149564]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 0.0, 53.0, 21.0, 42.0, 23.71, 58.6]
+
+Test results: [3.2123884729547267]
+
+Set starting node vals
+None 
+
+Test Input: [7.0, 0.0, 23.0, 11.0, 0.0, 25.5, 49.73]
+
+Test results: [4.2073361288525035]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 0.0, 47.0, 33.0, 34.0, 35.47, 57.43]
+
+Test results: [2.001884923813738]
+
+Set starting node vals
+None 
+
+Test Input: [5.0, 2.0, 27.0, 19.0, 41.0, 22.02, 45.19]
+
+Test results: [2.001884923813738]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 0.0, 17.0, 28.0, 17.0, 28.0, 47.63]
+
+Test results: [4.207317068525001]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 0.0, 30.0, 10.0, 30.0, 10.0, 40.36]
+
+Test results: [3.2013906632147964]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 13.0, 6.0, 14.0, 14.0, 8.06, 34.01]
+
+Test results: [2.001884955987663]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 29.0, 0.0, 29.0, 7.0, 7.0, 51.61]
+
+Test results: [3.264079872832663]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 0.0, 20.0, 21.0, 14.0, 21.84, 49.66]
+
+Test results: [4.2073171973523475]
+
+Set starting node vals
+None 
+
+Test Input: [0.0, 0.0, 0.0, 0.0, 19.0, 19.0, 37.66]
+
+Test results: [4.207336128564964]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 10.0, 34.0, 12.0, 28.0, 6.32, 39.85]
+
+Test results: [3.291487571798151]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 0.0, 25.0, 10.0, 11.0, 17.2, 55.9]
+
+Test results: [4.513902258956019]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 14.0, 20.0, 0.0, 9.0, 17.8, 42.38]
+
+Test results: [3.2128640145320313]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 1.0, 41.0, 23.0, 37.0, 22.36, 47.51]
+
+Test results: [2.0018849578365012]
+
+Set starting node vals
+None 
+
+Test Input: [7.0, 0.0, 19.0, 4.0, 0.0, 19.42, 34.18]
+
+Test results: [4.207339864579113]
+
+Set starting node vals
+None 
+
+Test Input: [0.0, 0.0, 0.0, 0.0, 13.0, 13.0, 29.83]
+
+Test results: [4.207336128564964]
+
+Set starting node vals
+None 
+
+Test Input: [0.0, 0.0, 0.0, 2.0, 32.0, 32.06, 45.31]
+
+Test results: [4.207336128564964]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 0.0, 27.0, 5.0, 34.0, 8.6, 44.72]
+
+Test results: [2.0310088275513323]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 22.0, 0.0, 22.0, 24.0, 24.0, 47.41]
+
+Test results: [2.001884923813738]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 0.0, 38.0, 0.0, 59.0, 21.0, 64.47]
+
+Test results: [2.001884923813738]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 0.0, 20.0, 25.0, 20.0, 25.0, 46.86]
+
+Test results: [2.001884923947854]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 0.0, 0.0, 7.0, -2.0, 7.28, 26.63]
+
+Test results: [4.207336128568153]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 0.0, 14.0, 7.0, 14.0, 7.0, 24.17]
+
+Test results: [2.0031261899076243]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 24.0, 52.0, 27.0, 37.0, 15.3, 68.54]
+
+Test results: [3.212864068327764]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 17.0, 14.0, 17.0, 7.0, 7.0, 26.25]
+
+Test results: [3.2128640683276815]
+
+Set starting node vals
+None 
+
+Test Input: [0.0, 0.0, 0.0, 0.0, 35.0, 35.0, 50.99]
+
+Test results: [4.207336128564964]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 0.0, 28.0, 17.0, 42.0, 22.02, 46.1]
+
+Test results: [2.001884923813738]
+
+Set starting node vals
+None 
+
+Test Input: [0.0, 0.0, 0.0, 0.0, 9.0, 9.0, 39.2]
+
+Test results: [4.207336128564965]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 7.0, 3.0, 0.0, 6.0, 7.62, 20.0]
+
+Test results: [2.0020466958128127]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 0.0, 33.0, 2.0, 41.0, 8.25, 56.82]
+
+Test results: [3.212691309325537]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 22.0, 0.0, 23.0, 21.0, 21.02, 41.88]
+
+Test results: [2.001884923813738]
+
+Set starting node vals
+None 
+
+Test Input: [0.0, 7.0, 0.0, 0.0, 5.0, 8.6, 18.36]
+
+Test results: [2.0171389394628374]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 0.0, 22.0, 0.0, 32.0, 10.0, 32.98]
+
+Test results: [2.001887661081874]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 19.0, 43.0, 21.0, 36.0, 7.28, 52.39]
+
+Test results: [3.291490863021482]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 19.0, 31.0, 19.0, 18.0, 13.0, 46.1]
+
+Test results: [3.212864068327764]
+
+Set starting node vals
+None 
+
+Test Input: [0.0, 0.0, 0.0, 0.0, 29.0, 29.0, 56.08]
+
+Test results: [4.207336128564964]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 14.0, 6.0, 0.0, 0.0, 15.23, 32.2]
+
+Test results: [2.0158597761414194]
+
+Set starting node vals
+None 
+
+Test Input: [0.0, 0.0, 0.0, 0.0, 24.0, 24.0, 28.84]
+
+Test results: [4.207333475543855]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 0.0, 0.0, 32.0, 0.0, 32.0, 48.92]
+
+Test results: [4.207336128564964]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 34.0, 26.0, 34.0, 13.0, 13.0, 51.74]
+
+Test results: [3.212864068327764]
+
+Set starting node vals
+None 
+
+Test Input: [0.0, 17.0, 0.0, 4.0, 6.0, 14.32, 38.47]
+
+Test results: [2.0018851631953902]
+
+Set starting node vals
+None 
+
+Test Input: [5.0, 1.0, 29.0, 23.0, 33.0, 22.36, 40.22]
+
+Test results: [2.001884923813738]
+
+Set starting node vals
+None 
+
+Test Input: [4.0, 14.0, 10.0, 7.0, 5.0, 8.6, 30.41]
+
+Test results: [3.2128635760670194]
+
+Set starting node vals
+None 
+
+Test Input: [0.0, 0.0, 0.0, 0.0, 26.0, 26.0, 34.71]
+
+Test results: [4.207336128547747]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 0.0, 18.0, 2.0, 27.0, 9.22, 40.25]
+
+Test results: [2.001884990744662]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 23.0, 16.0, 23.0, 8.0, 8.0, 33.97]
+
+Test results: [3.212864191989033]
+
+Set starting node vals
+None 
+
+Test Input: [6.0, 7.0, 26.0, 0.0, 21.0, 8.6, 52.77]
+
+Test results: [3.2128640683258296]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 0.0, 20.0, 16.0, 22.0, 16.12, 52.2]
+
+Test results: [2.001884923860718]
+
+Set starting node vals
+None 
+
+Test Input: [1.0, 0.0, 36.0, 2.0, 45.0, 9.22, 45.89]
+
+Test results: [3.2128334836045966]
+
+Set starting node vals
+None 
+
+Test Input: [0.0, 0.0, 0.0, 0.0, 11.0, 11.0, 35.36]
+
+Test results: [4.207336128564964]
+
+Set starting node vals
+None 
+
+Test Input: [3.0, 19.0, 0.0, 18.0, 9.0, 9.06, 48.33]
+
+Test results: [2.0018849319578447]
+
+Set starting node vals
+None 
+
+Test Input: [2.0, 0.0, 59.0, 26.0, 53.0, 26.68, 68.6]
+
+Test results: [2.0081740119125824]
+
+Relative Error: 65.75% 
+
+Least Squares Error: 1055.3156937653705 
+
+Loss Squared Error: 18.64406779661017 
+
+Percent Misidentified: 84.75% 

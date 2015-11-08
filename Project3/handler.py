@@ -55,22 +55,22 @@ def train_test():
     # Which algorithm gets chosen to run
     if algo in 'G':
         print("DOING GA TRAINING...")
-        resultsFile.write("ALGORITHM | Generations | Size | Participants | Victors | mRate | cRate | Threshold \n")
+        resultsFile.write("\nALGORITHM | Generations | Size | Participants | Victors | mRate | cRate | Threshold \n")
         resultsFile.write("   " + str(algo) + "      |     " + str(generations) + "      |  " + str(size) + "  |     " + str(participants) + "       |    " + str(victors) + "    |  " + str(mRate) + "  |  " + str(cRate) + "  |   " + str(threshold) + "     \n")
         testNN = GA.train(inputs, outputs, size, participants, victors, generations, threshold, cRate, mRate)
     elif algo in 'E':
         print("DOING ES TRAINING...")
-        resultsFile.write("ALGORITHM | Generations | Size | Participants | Victors | mRate | cRate | Threshold \n")
+        resultsFile.write("\nALGORITHM | Generations | Size | Participants | Victors | mRate | cRate | Threshold \n")
         resultsFile.write("   " + str(algo) + "      |     " + str(generations) + "      |  " + str(size) + "  |     " + str(participants) + "       |    " + str(victors) + "    |  " + str(mRate) + "  |  " + str(cRate) + "  |   " + str(threshold) + "     \n")
         testNN = ES.train(inputs, outputs, size, participants, victors, generations, threshold, cRate, mRate)
     elif algo in 'D':
         print("DOING DE TRAINING...")
-        resultsFile.write("ALGORITHM | Generations | Size | mRate | cRate | Threshold \n")
+        resultsFile.write("\nALGORITHM | Generations | Size | mRate | cRate | Threshold \n")
         resultsFile.write("   " + str(algo) + "      |     " + str(generations) + "      |  " +  str(size) + "    |  " + str(mRate) + "  |  " + str(cRate) + "  |   " + str(threshold) + "     \n")
         testNN = DE.train(inputs, outputs, size, generations, threshold, cRate, mRate)
     elif algo in 'B':
         print("DOING BP TRAINING...")
-        resultsFile.write("ALGORITHM | Generations | learnrate | momentum | Threshold \n")
+        resultsFile.write("\nALGORITHM | Generations | learnrate | momentum | Threshold \n")
         resultsFile.write("   " + str(algo) + "      |     " + str(generations) + "      |  " + str(learnrate) + "  |  " + str(momentum) + "  |   " + str(threshold) + "     \n")
         testNN = NN.main(inputs, [['S','S','S'], ['S','S']], ['S'], outputs, generations, learnrate, threshold, momentum)
     else:
@@ -87,7 +87,7 @@ def train_test():
     resultsFile.write("\nRelative Error: {:2.2%} \n".format(NN.calcRelativeError(testNN, testInput, testOutput)))
     resultsFile.write("\nLeast Squares Error: %s \n" % NN.calcLeastSquaresError(testNN, testInput, testOutput))
     resultsFile.write("\nLoss Squared Error: %s \n" % NN.calcLossSquared(testNN, testInput, testOutput))
-    resultsFile.write("\nPercent Misidentified: %s \n" % NN.calcPercentIncorrect(testNN, testInput, testOutput))
+    resultsFile.write("\nPercent Misidentified: {:2.2%} \n".format(NN.calcPercentIncorrect(testNN, testInput, testOutput)))
     resultsFile.close()
 
 # Set parameters via command line arguments

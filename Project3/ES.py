@@ -113,11 +113,13 @@ def train(inputs, outputs, size, participants, victors, generations, threshold, 
     print("Error Relative: {:2.5%}".format(NN.calcRelativeError(EvaluationNN, inputs, OrigAnswers)))
     print("Least Squares: %d" % NN.calcLeastSquaresError(EvaluationNN, inputs, OrigAnswers))
     print("Loss Squared: %d" % NN.calcLossSquared(EvaluationNN, inputs, OrigAnswers))
-    for x in inputs:
-        EvaluationNN.SetStartingNodesValues(x)
-        EvaluationNN.CalculateNNOutputs()
-        print(x, EvaluationNN.GetNNResults(), EvaluationNN.GetNNResultsInt(), OrigAnswers[inputs.index(x)])
+    #for x in inputs:
+    #    EvaluationNN.SetStartingNodesValues(x)
+    #    EvaluationNN.CalculateNNOutputs()
+    #    print(x, EvaluationNN.GetNNResults(), EvaluationNN.GetNNResultsInt(), OrigAnswers[inputs.index(x)])
     print()
+
+    return EvaluationNN
 
 
 def main(inputs, outputs, size=20, members=10, victors=5, generations=100,

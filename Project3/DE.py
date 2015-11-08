@@ -138,10 +138,10 @@ def train(inputs, outputs, size, generations, threshold, cRate, mRate, printFile
     print("Error Relative: {:2.5%}".format(NN.calcRelativeError(EvaluationNN, inputs, OrigAnswers)))
     print("Least Squares: %d" % NN.calcLeastSquaresError(EvaluationNN, inputs, OrigAnswers))
     print("Loss Squared: %d" % NN.calcLossSquared(EvaluationNN, inputs, OrigAnswers))
-    for x in inputs:
-        EvaluationNN.SetStartingNodesValues(x)
-        EvaluationNN.CalculateNNOutputs()
-        print(x, EvaluationNN.GetNNResults(), EvaluationNN.GetNNResultsInt(), OrigAnswers[inputs.index(x)])
+    #for x in inputs:
+    #    EvaluationNN.SetStartingNodesValues(x)
+    #    EvaluationNN.CalculateNNOutputs()
+    #    print(x, EvaluationNN.GetNNResults(), EvaluationNN.GetNNResultsInt(), OrigAnswers[inputs.index(x)])
     print()
 
     return EvaluationNN

@@ -552,10 +552,10 @@ def main(inputs, arrangement, outputs, answers, maxLoops, learnrate=0.5, thresho
     print("Least Squares: %d" % calcLeastSquaresError(finalNN, inputs, OrigAnswers))
     print("Loss Squared: %f" % calcLossSquared(finalNN, inputs, OrigAnswers))
     print("Percent Error: {:2.2%}".format(calcPercentIncorrect(finalNN, inputs, OrigAnswers)))
-    for x in inputs:
-        finalNN.SetStartingNodesValues(x)
-        finalNN.CalculateNNOutputs()
-        print(x, finalNN.GetNNResults(), finalNN.GetNNResultsInt(), OrigAnswers[inputs.index(x)])
+    #for x in inputs:
+    #    finalNN.SetStartingNodesValues(x)
+    #    finalNN.CalculateNNOutputs()
+    #    print(x, finalNN.GetNNResults(), finalNN.GetNNResultsInt(), OrigAnswers[inputs.index(x)])
     print()
 
     # Ready to run tests on this NN
