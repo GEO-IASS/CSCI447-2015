@@ -260,6 +260,13 @@ Loss Squared Error: 0.5932203389830508
 Percent Misidentified: 15.25% 
 
 ==> E-tic-tac-toe2.txt <==
+Relative Error: 19.49% 
+
+Least Squares Error: 23.00000000000003 
+
+Loss Squared Error: 0.3898305084745763 
+
+Percent Misidentified: 38.98% 
 
 ==> E-wilt2.txt <==
 Relative Error: 6.89% 
