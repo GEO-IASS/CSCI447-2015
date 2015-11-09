@@ -5,7 +5,14 @@ Author:     Clint Cooper, Emily Rohrbough, Leah Thompson
 Date:       11/01/15
 CSCI 447:   Project 3
 
-Description here
+Code for training a Neural Network via a Evolution Strategy
+For more accurate results, run on more training sets.
+Input is in the format of:
+([Input Vectors of Values], [Output Vectors of Values], size of the population
+used, number of participants in the tournaments, number of victors to be used
+as parents, number of generations to iterate through, Threshold,
+Crossover Rate, Mutation Rate)
+The returned structure is a NN that has been trained via the ES.
 """
 
 import GA
@@ -61,7 +68,7 @@ def mutate_strat(child):
 
 
 def mutate(child, mRate):
-    '''This just mutates.'''
+    '''This mutates the child.'''
     length = int((len(child) - 1)/2)
     for i in range(length):
         if random.random() < mRate:
@@ -69,6 +76,7 @@ def mutate(child, mRate):
             mutate_strat(child)
 
 def train(inputs, outputs, size, participants, victors, generations, threshold, cRate, mRate, printFile=False):
+    '''Create and start training the NN via evolution strategy. Selection, crossover, mutation, evaluation.''' 
     global hero
     global OrigAnswers
     OrigAnswers = copy.deepcopy(outputs)
