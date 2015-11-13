@@ -46,17 +46,18 @@ def kmeans(inputs, k, iterations):
 def getClusters(inputs, centroids, k):
     '''Find closes cluster to each centroid via euclidean distance'''
     chosenCluster = 0
-    for i in range(len(inputs)-1):
+    for i in range(k):
+        centroids[i][1:] = []
+    for i in range(len(inputs)):
         a = numpy.array(inputs[i])
         euclidean = numpy.linalg.norm(a - centroids[0][0])
         for j in range(k):
-            centroids[i][1:-1] = []
             b = numpy.array(centroids[j][0])
             tempEuc = numpy.linalg.norm(a - b)
             if tempEuc < euclidean:
                 euclidean = numpy.linalg.norm(a - b)
                 chosenCluster = j
-        centroids[chosenCluster].append(a)
+        centroids[chosenCluster].append(inputs[i])
     return centroids
 
 def updateCentroids(centroids, inputs):
@@ -75,4 +76,4 @@ def main(inputs, k, iterations):
     print("Final Clusters: ", clusters)
 
 if __name__ == '__main__':
-    main([[1,1,1,1],[1,0,1,0],[0,0,1,1]], 2, 20)
+    main([[10,10,7,8],[25,20,24,25],[1,1,1,1],[3,3,3,3],[0,0,0,0],[1,1,1,1],[3,3,3,3]], 5, 40)
