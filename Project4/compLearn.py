@@ -28,7 +28,7 @@ output: winner
 tunable parameters:
     numHNodes: number of hidden nodes in hidden layer
 """
-
+# not sure if this is needed - LT
 def sigmoid(node):
    return 1 / (1 + math.exp(-node))
 
@@ -52,20 +52,21 @@ def competitiveLearn(inputs, numHNodes, iterations, learnRate):
         # normalize the chosen input
         selectedInput = numpy.linalg.norm(selectedInput)
         # calculate a starting point for the winner
-        winner = weights[0] * selectedInput
+        winner = math.fabs(weights[0] - selectedInput)
         # find the winning weight vector
         index = 0
         for w in weights:
             tmp_w = w
-            temp = tmp_w * selectedInput
-            if winner <= temp:
+            temp = math.fabs(tmp_w - selectedInput)
+            if winner >= temp: # want the shortest distance
                 winner = temp
-                index = weights.index(w)
-        weights[index] = weights[index] + learnRate*(selectedInput - 
-                                                                weights[index])
+                index = weights.index(w) # winning index
+        # update the weight at the winning index
+        weights[index] = weights[index] + learnRate*(math.fabs(selectedInput - 
+                                                               weights[index]))
     temp_inputs = []
     tmp_i = []
-    # normalize inputs to compare against weights
+    # normalize inputs to compare against weights, can use for clusters
     for i in inputs:
         tmp_i = i
         temp_inputs.append(numpy.linalg.norm(tmp_i))
@@ -79,10 +80,11 @@ def main(inputs, numHNodes, iterations, learnRate):
     clusters = competitiveLearn(inputs, numHNodes, iterations, learnRate)
     #TODO: calculate distance to get which cluster center the inputs lie in
     print("Cluster centers (normalized): ", clusters[0], 
-                                        "\nValues (normalized): ", clusters[1])
+                                        "\n\nValues (normalized): ", clusters[1])
 
 if __name__ == '__main__':
 #    main([[10,10,7,8],[25,20,24,25],[1,1,1,1],[3,3,3,3],[2,2,2,2],[1,1,1,1],
 #         [3,3,3,3]], 2, 500, 0.2)
-    main([[10,10],[2,2],[10,10],[2,2],[10,10],[2,2],[10,10],[2,2],[10,10],[2,2],[10,10],[2,2]], 2, 1000, 0.25)
+    main([[10,10],[2,2],[10,10],[2,2],[10,10],[2,2],[10,10],[2,2],[10,10],
+            [2,2],[10,10],[2,2]], 2, 100, 0.05)
 
