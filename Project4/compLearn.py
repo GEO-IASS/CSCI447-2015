@@ -3,6 +3,7 @@
 import random
 import numpy
 import math
+import PSO
 
 """
 Author: 	Clint Cooper, Emily Rohrbough, Leah Thompson
@@ -38,52 +39,75 @@ def competitiveLearn(inputs, numHNodes, iterations, learnRate):
     winner = []
     weights = []
     wcount = 0
-    temp_weights = []
     tmp_wt = []
+    minWt = 10000
+    maxWt = 0
     # randomly assign numHNodes input vectors to be the weights
     for i in range(numHNodes):
         weights.append(random.choice(inputs))
-        weights[i] = numpy.linalg.norm(weights[i])
-    temp_weights = weights
-
     for i in range(iterations):
         # randomly select an input vector for comparison
         selectedInput = random.choice(inputs)
-        # normalize the chosen input
-        selectedInput = numpy.linalg.norm(selectedInput)
         # calculate a starting point for the winner
-        winner = math.fabs(weights[0] - selectedInput)
+        winner = PSO.EuclideanDistance(weights[0], selectedInput)
         # find the winning weight vector
         index = 0
         for w in weights:
             tmp_w = w
-            temp = math.fabs(tmp_w - selectedInput)
+            temp = PSO.EuclideanDistance(tmp_w, selectedInput)
             if winner >= temp: # want the shortest distance
                 winner = temp
                 index = weights.index(w) # winning index
         # update the weight at the winning index
-        weights[index] = weights[index] + learnRate*(math.fabs(selectedInput - 
-                                                               weights[index]))
-    temp_inputs = []
-    tmp_i = []
-    # normalize inputs to compare against weights, can use for clusters
-    for i in inputs:
-        tmp_i = i
-        temp_inputs.append(numpy.linalg.norm(tmp_i))
-    # weights are now the cluster centers, TODO: calc distances for each input
-    return weights, temp_inputs
+        dist = learnRate*(PSO.EuclideanDistance(selectedInput, weights[index]))
+        for j in range(len(weights[index])):
+            weights[index][j] += learnRate*(dist)
+        for x in weights:
+            for y in x:
+                minWt = min(minWt, y)
+                maxWt = max(maxWt, y)
+        weights = PSO.rescaleMatrix(weights, minWt, maxWt, 0, 1)
+    # weights are now the cluster centers
+    return weights
 
 
 # numHNodes is number hidden nodes aka length of weight vector
 def main(inputs, numHNodes, iterations, learnRate):
     clusters = []
-    clusters = competitiveLearn(inputs, numHNodes, iterations, learnRate)
-    #TODO: calculate distance to get which cluster center the inputs lie in
-    print("Cluster centers (normalized): ", clusters[0], 
-                                        "\n\nValues (normalized): ", clusters[1])
+    cluster_num = 0
+    final_clusters = []
+    inputs_copy = []
+    # normalize inputs
+    minIn = 10000
+    maxIn = 0
+    for x in inputs:
+        for y in x:
+            minIn = min(minIn, y)
+            maxIn = max(maxIn, y)
+    print("Max: ", maxIn, ", Min: ", minIn)
+    inputs_copy = PSO.rescaleMatrix(inputs, minIn, maxIn, 0, 1)
+    clusters = competitiveLearn(inputs_copy, numHNodes, iterations, learnRate)
+    print("Clusters: ", clusters)
+    for c in range(len(clusters)):
+        final_clusters.append([])
+    # calculate distance to get which cluster center the inputs lie in
+    dist = 10000
+    for i in range(len(inputs_copy)):
+        for j in range(len(clusters)):
+            tmpDist = PSO.EuclideanDistance(clusters[j], inputs_copy[i])
+            if tmpDist < dist:
+                dist = tmpDist
+                cluster_num = j
+        dist = 10000
+        final_clusters[cluster_num].append(inputs_copy[i])
+    print("Clusters: ")
+    for i in range(len(final_clusters)):
+        print(final_clusters[i])
+        
 
 if __name__ == '__main__':
     data = [[0, 0, 255], [0, 255, 0], [255, 0, 0], [0, 0, 0], [255, 255, 255], [0, 0, 127], [77, 76, 255], [38, 38, 127], [
         0, 0, 204], [127, 0, 0], [255, 77, 76], [127, 38, 38], [204, 0, 0], [0, 127, 0], [76, 255, 77], [38, 127, 38], [0, 204, 0]]
-    main(data, 3, 100, 0.05)
+    main(data, 5, 200, 0.95)
 
+#    main([[10,10,7,8],[25,20,24,25],[1,1,1,1],[3,3,3,3],[0,0,0,0],[1,1,1,1],[3,3,3,3]], 5, 200, 0.05)
