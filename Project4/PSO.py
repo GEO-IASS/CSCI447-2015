@@ -28,7 +28,6 @@ class particle(object):
     def __init__(self, dim, clusterNum):
         '''Start the particle in a random location in the space with a little starting
         speed in a random direction.'''
-        self.bestPosition = []
         self.bestFitness = 1000
         self.fitness = 0
         self.dimensions = dim
@@ -37,6 +36,7 @@ class particle(object):
         self.phiGlobal = random.random()
         self.position = [random.random() for x in range(dim * clusterNum)] # Start Location
         self.velocity = [random.uniform(-1, 1) for x in range(dim * clusterNum)] # Start speed
+        self.bestPosition = copy.deepcopy(self.position)
 
     def __str__(self):
         return "PARTICLE " + hex(id(self)) + ' ' + str(self.fitness) + '\t' + str(["{:1.5}".format(x) for x in self.position])
@@ -52,13 +52,15 @@ class particle(object):
         based on how long it's been alive. Also updates phiPersonal and
         phiGlobal using a chaos map to give it some "jiggle". '''
         global BestPosition
-        clamp = (0.9 - 0.4) * ((maxIter - curIter) / maxIter) + 0.4 # Clamp value from papar
+        clamp = (0.5) * ((maxIter - curIter) / maxIter) + 0.4 # Clamp value from papar
         # Update phi's using Guass Chaos Map
         self.phiPersonal = (1 / self.phiPersonal) % 1 if self.phiPersonal > 0 else 0
         self.phiGlobal = (1 / self.phiGlobal) % 1 if self.phiGlobal > 0 else 0
         for i in range(len(self.velocity)):
             # Bring it all together for each dimension
             GlobalUpdate = self.phiPersonal * (BestPosition[i] - self.position[i])
+            #print(self.bestPosition)
+            #print(self.position)
             PersonalUpdate = self.phiGlobal * (self.bestPosition[i] - self.position[i])
             self.velocity[i] = clamp * self.velocity[i] + GlobalUpdate + PersonalUpdate
 
@@ -102,7 +104,7 @@ def EuclideanDistance(val1, val2):
     '''Calculate euclidean distance between val1 and val2 for n dimensions.'''
     if len(val1) != len(val2):
         print('Distance Mismatch:', val1, val2)
-        sys.exit(0)
+        sys.exit(1)
     difference = 0
     for i in range(len(val1)):
         difference += (val1[i] - val2[i])**2
@@ -164,14 +166,14 @@ def PSO(data, clusterNum, iterations):
     # Run until we're static for a long time or we finish.
     for i in range(iterations):
         #print('%2%' % i/iterations, end="\r")
-        #print("{:>7.2%}".format(i / iterations), end="\r")
+        print("{:>7.2%}".format(i / iterations), end="\r")
         for p in particleSet:
             p.calcFitness(iterations)
             p.move()
             p.calcVelocity(i, iterations)
         Alive -= 1
         if Alive == 0:
-            print('\nStatic system discovered...')
+            #print('\nStatic system discovered...')
             break
 
     # Return tuple of clusters and their matches

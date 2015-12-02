@@ -1,0 +1,10 @@
+Title: Blood Transfusion Service Center Data Set
+Creator: I-Cheng Yeh (icyeh@chu.edu.tw)
+Donor: I-Cheng Yeh (icyeh@chu.edu.tw)
+Date: 3 October 2008
+Attributes:
+R:numeric
+F:numeric
+M:numeric
+T:numeric
+Class:{1,0}

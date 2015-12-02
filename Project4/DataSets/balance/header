@@ -1,0 +1,10 @@
+Title: Balance Scale Weight & Distance Database
+Creator: (nakai@imcb.osaka-u.ac.jp)
+Donor: Tim Hume (hum@ics.uci.edu)
+Date:  22 April 1994
+Attributes:
+Class:{L,B,R}
+Left-Weight:{1,2,3,4,5}
+Left-Distance:{1,2,3,4,5}
+Right-Weight:{1,2,3,4,5}
+Right-Distance:{1,2,3,4,5}

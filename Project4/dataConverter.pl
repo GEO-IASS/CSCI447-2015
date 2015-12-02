@@ -36,7 +36,7 @@ use List::MoreUtils qw(firstidx);
 #	chop($folder); # Remove extra / at end of path
 #}
 #$folder =~ tr/\\//; # Remove user escaping spaces.
-my $folder = "blood";
+my $folder = "user";
 my $newtxt = $folder;
 $folder = "DataSets/" . $folder;
 
