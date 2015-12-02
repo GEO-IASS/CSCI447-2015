@@ -59,9 +59,10 @@ def competitiveLearn(inputs, numHNodes, iterations, learnRate):
                 winner = temp
                 index = weights.index(w) # winning index
         # update the weight at the winning index
-        dist = learnRate*(PSO.EuclideanDistance(selectedInput, weights[index]))
+        dist = PSO.EuclideanDistance(selectedInput, weights[index])
         for j in range(len(weights[index])):
             weights[index][j] += learnRate*(dist)
+        # renormalize weights
         for x in weights:
             for y in x:
                 minWt = min(minWt, y)
@@ -84,10 +85,8 @@ def main(inputs, numHNodes, iterations, learnRate):
         for y in x:
             minIn = min(minIn, y)
             maxIn = max(maxIn, y)
-    print("Max: ", maxIn, ", Min: ", minIn)
     inputs_copy = PSO.rescaleMatrix(inputs, minIn, maxIn, 0, 1)
     clusters = competitiveLearn(inputs_copy, numHNodes, iterations, learnRate)
-    print("Clusters: ", clusters)
     for c in range(len(clusters)):
         final_clusters.append([])
     # calculate distance to get which cluster center the inputs lie in
@@ -99,15 +98,15 @@ def main(inputs, numHNodes, iterations, learnRate):
                 dist = tmpDist
                 cluster_num = j
         dist = 10000
-        final_clusters[cluster_num].append(inputs_copy[i])
+        final_clusters[cluster_num].append(inputs[i])
     print("Clusters: ")
     for i in range(len(final_clusters)):
-        print(final_clusters[i])
+        print(clusters[i], final_clusters[i])
         
 
 if __name__ == '__main__':
     data = [[0, 0, 255], [0, 255, 0], [255, 0, 0], [0, 0, 0], [255, 255, 255], [0, 0, 127], [77, 76, 255], [38, 38, 127], [
         0, 0, 204], [127, 0, 0], [255, 77, 76], [127, 38, 38], [204, 0, 0], [0, 127, 0], [76, 255, 77], [38, 127, 38], [0, 204, 0]]
-    main(data, 5, 200, 0.95)
+#    main(data, 5, 200, 0.005)
 
-#    main([[10,10,7,8],[25,20,24,25],[1,1,1,1],[3,3,3,3],[0,0,0,0],[1,1,1,1],[3,3,3,3]], 5, 200, 0.05)
+    main([[10,10,7,8],[25,20,24,25],[1,1,1,1],[3,3,3,3],[0,0,0,0],[1,1,1,1],[3,3,3,3]], 5, 20, 0.005)
