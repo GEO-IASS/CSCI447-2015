@@ -16,7 +16,7 @@ Tunable parameters:
     - # of swarms partilces should be expecting (Upper bound)
     - # iterations
 
-input:  N examples of real-vector observations (x1, ..., xn), # partitions, # iterations
+input:  N examples of real-vector observations (x1, ..., xn), # clusters, # iterations
 output: clusters of N real-vector observations
 """
 
@@ -177,17 +177,18 @@ def PSO(data, clusterNum, iterations):
     # Return tuple of clusters and their matches
     BestPosition = rescaleArray(BestPosition, 0, 1, minVal, maxVal)
     clusterPairs = rescaleMatrix(clusterPairs, 0, 1, minVal, maxVal)
-    return (list(chunks(BestPosition, len(data[0]))), clusterPairs)
+
+    finalClusters = [[] for x in range(clusterNum)]
+    for i in range(len(data)):
+        finalClusters[(list(chunks(BestPosition, len(data[0])))).index(clusterPairs[i])].append(data[i])
+
+    return finalClusters
 
 def main(data, clusterNum, iterations):
-    (clusters, pairing) = PSO(data, clusterNum, iterations)
-
-    print('\nClusters:')
-    for i in range(len(clusters)):
-        print(i, clusters[i])
-    print('\nResults:')
-    for i in range(len(data)):
-        print(data[i], clusters.index(pairing[i]), pairing[i])
+    clusters = PSO(data, clusterNum, iterations)
+    print('Clusters:')
+    for x in clusters:
+        print(x)
 
 if __name__ == '__main__':
     data = [[0, 0, 255], [0, 255, 0], [255, 0, 0], [0, 0, 0], [255, 255, 255], [0, 0, 127], [77, 76, 255], [38, 38, 127], [

@@ -45,10 +45,13 @@ def kmeans(inputs, k, iterations):
             centroids = updateCentroids(centroids, inputs)
         iterCount+=1
 
+    for i in range(len(centroids)):
+        del centroids[i][0]
+
     return centroids
 
 def getClusters(inputs, centroids, k):
-    '''Find closes cluster to each centroid via euclidean distance'''
+    '''Find closest cluster to each centroid via euclidean distance'''
     chosenCluster = 0
     for i in range(k):
         centroids[i][1:] = []
@@ -86,13 +89,15 @@ def getMean(centroid):
 
 def main(inputs, k, iterations):
     clusters = kmeans(inputs, k, iterations)
-#    print("Final Clusters: ", clusters)
-    for i in range(len(clusters)):
-        del clusters[i][0]
-    print("Final Clusters: ", clusters)
+    #print("Final Clusters: ", clusters)
+    print("Final Clusters:")
+    for x in clusters:
+        print(x)
+
+    return clusters
 
 if __name__ == '__main__':
     data = [[0, 0, 255], [0, 255, 0], [255, 0, 0], [0, 0, 0], [255, 255, 255], [0, 0, 127], [77, 76, 255], [38, 38, 127], [
         0, 0, 204], [127, 0, 0], [255, 77, 76], [127, 38, 38], [204, 0, 0], [0, 127, 0], [76, 255, 77], [38, 127, 38], [0, 204, 0]]
-    main(data, 5, 4000)
+    main(data, 3, 4000)
 #    main([[10,10,7,8],[25,20,24,25],[1,1,1,1],[3,3,3,3],[0,0,0,0],[1,1,1,1],[3,3,3,3]], 5, 20)
