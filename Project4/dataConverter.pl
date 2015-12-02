@@ -20,7 +20,7 @@ Types include: Numeric, String, (Options), Date Format
 
 Code can be run by typing in the name of the folder that contains a header and data file.
 The header file needs to have the parameters above while the data should be csv or similar.
-Warning: Not all possible layouts and conditions have been tested. 
+Warning: Not all possible ayouts and conditions have been tested. 
 =cut
 
 use strict;
@@ -36,7 +36,7 @@ use List::MoreUtils qw(firstidx);
 #	chop($folder); # Remove extra / at end of path
 #}
 #$folder =~ tr/\\//; # Remove user escaping spaces.
-my $folder = "balance";
+my $folder = "blood";
 my $newtxt = $folder;
 $folder = "DataSets/" . $folder;
 

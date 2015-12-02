@@ -1,0 +1,12 @@
+Title: User Knowledge Modeling Data Set
+Creator: Hamdi Tolga Kaharma (htolgakahraman@yahoo.com) Ilhami Colak (icolak@gazi.edu.tr) Seref Sagiroglu (ss@gazi.edu.tr)
+Donor: Department of EE at Gazi University
+Date: October 2009
+Attributes:
+STG:numeric
+SCG:numeric
+STR:numeric
+LPR:numeric
+PEG:numeric
+UNS:numeric
+Class:{very_low,Low,Middle,High}

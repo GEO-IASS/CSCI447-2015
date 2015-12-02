@@ -1,0 +1,12 @@
+Attributes:
+Age:numeric
+Gender:{Female,Male}
+Total Bilirubin:numeric
+Direct Bilirubin:numeric
+Alkaline Phosphotase:numeric
+Alamine Aminotransferase:numeric
+Aspartate Aminotransferase:numeric
+Total Protiens:numeric
+Albumin:numeric
+Albumin and Globulin Ratio:numeric
+class:{1,2}

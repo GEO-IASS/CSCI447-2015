@@ -1,0 +1,14 @@
+Title: Wholesale Customers Data Set
+Creator: ?
+Donor: Margarida G. M. S. Cardoso (margarida.cardoso@iscte.pt)
+Date: 31 March 2014
+Attributes:
+FRESH:numeric
+MILK:numeric
+GROCERY:numeric
+FROZEN:numeric
+DETERGENTS_PAPER:numeric
+DELICATESSEN:numeric
+CHANNEL:numeric
+REGION:numeric
+
