@@ -46,6 +46,7 @@ def competitiveLearn(inputs, numHNodes, iterations, learnRate):
     for i in range(numHNodes):
         weights.append(random.choice(inputs))
     for i in range(iterations):
+        #print("{:>7.2%}".format(i / iterations), end="\r")
         # randomly select an input vector for comparison
         selectedInput = random.choice(inputs)
         # calculate a starting point for the winner
@@ -71,9 +72,8 @@ def competitiveLearn(inputs, numHNodes, iterations, learnRate):
     # weights are now the cluster centers
     return weights
 
-
 # numHNodes is number hidden nodes aka length of weight vector
-def main(inputs, numHNodes, iterations, learnRate):
+def compLearn(inputs, numHNodes, iterations, learnRate):
     clusters = []
     cluster_num = 0
     final_clusters = []
@@ -99,14 +99,21 @@ def main(inputs, numHNodes, iterations, learnRate):
                 cluster_num = j
         dist = 10000
         final_clusters[cluster_num].append(inputs[i])
-    print("Clusters: ")
-    for i in range(len(final_clusters)):
-        print(clusters[i], final_clusters[i])
-        
+    #print("Clusters: ")
+    #for i in range(len(final_clusters)):
+    #    print(clusters[i], final_clusters[i])
+    return [x for x in final_clusters if x != []]
+
+
+def main(inputs, numHNodes, iterations, learnRate):
+    clusters = compLearn(inputs, numHNodes, iterations, learnRate)
+    print("Final Clusters:")
+    for x in clusters:
+        print(x)
 
 if __name__ == '__main__':
     data = [[0, 0, 255], [0, 255, 0], [255, 0, 0], [0, 0, 0], [255, 255, 255], [0, 0, 127], [77, 76, 255], [38, 38, 127], [
         0, 0, 204], [127, 0, 0], [255, 77, 76], [127, 38, 38], [204, 0, 0], [0, 127, 0], [76, 255, 77], [38, 127, 38], [0, 204, 0]]
-#    main(data, 5, 200, 0.005)
+    main(data, 5, 200, 0.005)
 
-    main([[10,10,7,8],[25,20,24,25],[1,1,1,1],[3,3,3,3],[0,0,0,0],[1,1,1,1],[3,3,3,3]], 5, 20, 0.005)
+   # main([[10,10,7,8],[25,20,24,25],[1,1,1,1],[3,3,3,3],[0,0,0,0],[1,1,1,1],[3,3,3,3]], 5, 20, 0.005)

@@ -42,6 +42,10 @@ def dbscan(inputs, eps, minPoints):
                 clusters.append(next_cluster)
                 c+=1
 
+    for i in range(len(clusters)):
+        for j in range(len(clusters[i])):
+            del clusters[i][j][-1]
+
     return clusters
 
 def getNeighbors(inputs, point, eps):
@@ -49,7 +53,7 @@ def getNeighbors(inputs, point, eps):
     neighbors = []
     for i in range(len(inputs)):
         dist = PSO.EuclideanDistance(inputs[point][0:-1], inputs[i][0:-1])
-        print(dist)
+        #print(dist)
         if dist < eps:
             neighbors.append(inputs[i])
     return neighbors
@@ -82,9 +86,6 @@ def growCluster(clusters, inputs, point, neighbors, c, eps, minPoints):
 def main(inputs, eps, minPoints):
     nums = []
     final_clusters = dbscan(inputs, eps, minPoints)
-    for i in range(len(final_clusters)):
-        for j in range(len(final_clusters[i])):
-            del final_clusters[i][j][-1]
     print("Final Clusters: ", final_clusters)
 
 if __name__ == '__main__':

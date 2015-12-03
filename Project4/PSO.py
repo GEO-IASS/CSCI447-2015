@@ -166,7 +166,7 @@ def PSO(data, clusterNum, iterations):
     # Run until we're static for a long time or we finish.
     for i in range(iterations):
         #print('%2%' % i/iterations, end="\r")
-        print("{:>7.2%}".format(i / iterations), end="\r")
+        #print("{:>7.2%}".format(i / iterations), end="\r")
         for p in particleSet:
             p.calcFitness(iterations)
             p.move()
@@ -184,7 +184,7 @@ def PSO(data, clusterNum, iterations):
     for i in range(len(data)):
         finalClusters[(list(chunks(BestPosition, len(data[0])))).index(clusterPairs[i])].append(data[i])
 
-    return finalClusters
+    return [x for x in finalClusters if x != []]
 
 def main(data, clusterNum, iterations):
     clusters = PSO(data, clusterNum, iterations)

@@ -36,6 +36,7 @@ def kmeans(inputs, k, iterations):
         temp = []
 
     while iterCount < iterations:
+        #print("{:>7.2%}".format(iterCount / iterations), end="\r")
         #find closest cluster to each points via euclidean distance
         clusters = getClusters(inputs, centroids, k)
         #update centroids based on new clusters
