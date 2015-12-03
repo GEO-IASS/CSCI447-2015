@@ -166,7 +166,7 @@ def PSO(data, clusterNum, iterations):
     # Run until we're static for a long time or we finish.
     for i in range(iterations):
         #print('%2%' % i/iterations, end="\r")
-        #print("{:>7.2%}".format(i / iterations), end="\r")
+        print("{:>7.2%}".format(i / iterations), end="\r")
         for p in particleSet:
             p.calcFitness(iterations)
             p.move()

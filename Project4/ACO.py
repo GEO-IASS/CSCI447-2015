@@ -261,7 +261,7 @@ def ACO(data, ants, iterations):
     for a in range(ants):
         antCollection.append(ant(int(math.sqrt(2 * maxDimensions))))
     for i in range(iterCount):
-        #print("{:>7.2%}".format(i / iterCount), end="\r")
+        print("{:>7.2%}".format(i / iterCount), end="\r")
         for x in antCollection:
             x.logic(int(((i * 5) / iterCount) + 1))
         if i % 100 == 0:

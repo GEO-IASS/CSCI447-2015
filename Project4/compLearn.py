@@ -46,7 +46,7 @@ def competitiveLearn(inputs, numHNodes, iterations, learnRate):
     for i in range(numHNodes):
         weights.append(random.choice(inputs))
     for i in range(iterations):
-        #print("{:>7.2%}".format(i / iterations), end="\r")
+        print("{:>7.2%}".format(i / iterations), end="\r")
         # randomly select an input vector for comparison
         selectedInput = random.choice(inputs)
         # calculate a starting point for the winner
