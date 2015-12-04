@@ -94,7 +94,7 @@ if __name__ == '__main__':
     if variables[0] == 'K':
         clusters = kmeans.kmeans(data, int(variables[2]), int(variables[3]))
     elif variables[0] == 'D':
-        clusters = dbscan.dbscan(data, len(data), len(data[0]) + 1)
+        clusters = dbscan.dbscan(data, 15)
     elif variables[0] == 'C':
         clusters = compLearn.compLearn(data, int(variables[2]), int(variables[3]), float(variables[4]))
     elif variables[0] == 'A':

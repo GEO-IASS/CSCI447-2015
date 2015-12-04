@@ -62,7 +62,7 @@ class ant(object):
     def updateActivity(self):
         '''Updates activity value based on how correct it has been so far.'''
         if self.totals > 0:
-            if self.bads / self.totals < 0.75:
+            if self.bads / self.totals > 0.75:
                 self.activity += 0.01
                 self.bads = 0
                 self.totals = 0
